@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GR4AI · Get Ready For AI · An interactive guide about AI for kids</title>
+<meta name="description" content="A non-profit book project that introduces kids (ages 7–12) to artificial intelligence in a way that's fun, clear, and actually makes sense to them." />
+<meta property="og:title" content="GR4AI · Get Ready For AI" />
+<meta property="og:description" content="An interactive guide about AI for kids." />
+<meta property="og:image" content="assets/card.jpg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:        #E5EEF5;
+    --bg-deep:   #D5E2EC;
+    --ink:       #15171A;
+    --ink-soft:  #4A5159;
+    --paper:     #FFFFFF;
+    --pink:      #F5B0B3;
+    --green:     #1FA059;
+    --purple:    #5B2D8A;
+    --yellow:    #F2D63A;
+    --blue:      #2F8CD9;
+    --radius:    22px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ---------- Journey line ---------- */
+  main{ position: relative; isolation: isolate; }
+  .journey{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+  }
+  .journey .path{
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 9;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.7;
+    animation: journey-flow 1.4s linear infinite;
+  }
+  @keyframes journey-flow{
+    to { stroke-dashoffset: -14; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .journey .path{ animation: none; }
+  }
+  /* Dots removed for a cleaner path */
+  section > .wrap{ position: relative; z-index: 2; }
+  /* Dark mission section: switch line to light so it stays visible */
+  .mission{ position: relative; }
+  .mission > .wrap{ z-index: 2; }
+  @media (max-width: 800px){
+    .journey{ display: none; }
+  }
+  ::selection{ background: var(--yellow); color: var(--ink); }
+  img{ display:block; max-width:100%; height:auto; }
+  a{ color: inherit; }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header ---------- */
+  header.site{
+    padding: 22px 0 0;
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(229,238,245,0.85);
+    backdrop-filter: saturate(160%) blur(10px);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(20,23,26,0.08);
+  }
+  .brand{
+    display:inline-flex; align-items:center; gap:12px;
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: inherit;
+  }
+  .brand .dot{
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--yellow);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .menu{ display:flex; gap: 26px; }
+  .menu a{
+    font-size: 14.5px; color: var(--ink-soft);
+    text-decoration: none; font-weight: 500;
+  }
+  .menu a:hover{ color: var(--ink); }
+  @media (max-width: 760px){ .menu{ display:none; } }
+  .hashtag{
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--paper);
+    border: 1px solid rgba(20,23,26,0.08);
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{ padding: 80px 0; }
+  .section-head{
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 800px){ .section-head{ grid-template-columns: 1fr; gap: 16px; } }
+  .kicker{
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .kicker::before{
+    content: ""; display:inline-block; width: 22px; height: 2px; background: var(--ink);
+  }
+  h2{
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 12px 0 0;
+  }
+  .section-head p.intro{
+    margin: 0; color: var(--ink-soft); font-size: 19px; max-width: 56ch;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 56px 0 32px; }
+  .hero-inner{
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 900px){ .hero-inner{ grid-template-columns: 1fr; gap: 32px; } }
+  h1.title{
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: clamp(48px, 7.5vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin: 0 0 24px;
+  }
+  h1.title .squiggle{
+    position: relative; display: inline-block; white-space: nowrap;
+  }
+  h1.title .squiggle::after{
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: -10px;
+    height: 16px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'><path d='M2 8 Q 25 0 50 8 T 100 8 T 150 8 T 198 8' fill='none' stroke='%23F2D63A' stroke-width='6' stroke-linecap='round'/></svg>") center/100% 100% no-repeat;
+  }
+  .lede{
+    font-size: clamp(19px, 2vw, 24px);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 30ch;
+    margin: 0 0 24px;
+  }
+  blockquote.pull{
+    margin: 0;
+    padding: 18px 22px;
+    border-left: 4px solid var(--ink);
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  /* Image collage built from the four panels */
+  .collage{
+    position: relative;
+    aspect-ratio: 5/4;
+    width: 100%;
+  }
+  .collage .tile{
+    position: absolute;
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--paper);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 24px 60px -28px rgba(20,30,50,0.25);
+    transition: transform .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .collage .tile img{ width: 100%; height: 100%; object-fit: cover; }
+  .collage .t1{ top: 4%;  left: 0%;  width: 36%; height: 56%;  transform: rotate(-4deg); }
+  .collage .t2{ top: 0%;  left: 32%; width: 44%; height: 64%;  transform: rotate(2deg);  z-index: 2; }
+  .collage .t3{ top: 42%; left: 6%;  width: 42%; height: 52%;  transform: rotate(3deg);  z-index: 3; }
+  .collage .t4{ top: 36%; left: 52%; width: 42%; height: 60%;  transform: rotate(-3deg); z-index: 4; }
+  .collage .tile:hover{ transform: rotate(0) translateY(-4px); z-index: 10; }
+  .dotlayer{ position: absolute; inset: 0; pointer-events:none; }
+  .dotlayer .dot{ position: absolute; border-radius: 50%; }
+  .dotlayer .d1{ top: 6%; right: -2%; background: var(--yellow); border: 2px solid var(--ink); width:20px; height:20px; }
+  .dotlayer .d2{ bottom: 4%; left: -2%; background: var(--pink); border: 2px solid var(--ink); width:24px; height:24px; }
+  .dotlayer .d3{ top: 50%; right: -1%; background: var(--green); border: 2px solid var(--ink); width:14px; height:14px; }
+
+  /* ---------- Problem / why-now ---------- */
+  .why{ background: var(--bg-deep); }
+  .why-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 800px){ .why-grid{ grid-template-columns: 1fr; } }
+  .stat-card{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .stat-card h3{
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: clamp(24px, 2.8vw, 32px);
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .stat-card p{ margin: 0; color: var(--ink-soft); font-size: 16px; }
+  .stat-card.accent{ background: var(--yellow); }
+  .stat-card.accent h3{ color: var(--ink); }
+  .stat-card.accent p{ color: rgba(20,23,26,0.75); }
+
+  /* ---------- The book details ---------- */
+  .book-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 900px){ .book-grid{ grid-template-columns: 1fr; } }
+  .book-text p{ font-size: 17px; color: var(--ink-soft); margin: 0 0 16px; }
+  .specs{
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  @media (max-width: 600px){ .specs{ grid-template-columns: 1fr; } }
+  .specs > div{
+    padding: 18px 20px;
+    border-right: 2px solid var(--ink);
+  }
+  @media (max-width: 600px){
+    .specs > div{ border-right: 0; border-bottom: 2px solid var(--ink); }
+    .specs > div:last-child{ border-bottom: 0; }
+  }
+  .specs > div:last-child{ border-right: 0; }
+  .specs .label{
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .specs .value{
+    margin-top: 6px;
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .panel-img{
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: var(--bg);
+    box-shadow: 10px 10px 0 var(--pink);
+  }
+  .panel-img img{ width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---------- Chapters ---------- */
+  .chapters{ background: var(--bg-deep); }
+  .chapter-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    counter-reset: ch;
+  }
+  @media (max-width: 800px){ .chapter-list{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px){ .chapter-list{ grid-template-columns: 1fr; } }
+  .chap{
+    counter-increment: ch;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .chap:hover{ transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--ink); }
+  .chap .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid var(--ink);
+    font-family: "Fraunces", serif;
+    font-weight: 800; font-size: 16px;
+    background: var(--yellow);
+  }
+  .chap:nth-child(2) .num{ background: var(--pink); }
+  .chap:nth-child(3) .num{ background: var(--green); color: white; }
+  .chap:nth-child(4) .num{ background: var(--purple); color: white; }
+  .chap:nth-child(5) .num{ background: var(--blue); color: white; }
+  .chap:nth-child(6) .num{ background: var(--paper); }
+  .chap h3{
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 14px 0 0;
+    line-height: 1.15;
+  }
+
+  /* ---------- Capabilities (Promise) ---------- */
+  .promise-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 1000px){ .promise-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px){ .promise-grid{ grid-template-columns: 1fr; } }
+  .promise{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .promise h3{
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+  .promise p{ margin: 0; color: var(--ink-soft); font-size: 15px; }
+  .promise .bar{
+    height: 8px; border-radius: 999px;
+    background: var(--yellow);
+    margin-bottom: 14px;
+  }
+  .promise:nth-child(2) .bar{ background: var(--pink); }
+  .promise:nth-child(3) .bar{ background: var(--green); }
+  .promise:nth-child(4) .bar{ background: var(--purple); }
+  .promise:nth-child(5) .bar{ background: var(--blue); }
+
+  /* ---------- Mission / non-profit ---------- */
+  .mission{
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 0;
+  }
+  .mission h2{ color: var(--paper); }
+  .mission .kicker{ color: rgba(255,255,255,0.65); }
+  .mission .kicker::before{ background: rgba(255,255,255,0.5); }
+  .mission p.intro{ color: rgba(255,255,255,0.75); }
+  .mission-grid{
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
+  }
+  @media (max-width: 900px){ .mission-grid{ grid-template-columns: 1fr; } }
+  .mission-quote{
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .mission-quote em{
+    font-style: normal;
+    color: var(--yellow);
+  }
+  .mission-list{ color: rgba(255,255,255,0.85); font-size: 17px; }
+  .mission-list p{ margin: 0 0 14px; }
+
+  /* ---------- Team ---------- */
+  .team-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+  }
+  .member{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 6px 6px 0 var(--ink);
+    display: flex; flex-direction: column;
+    gap: 12px;
+  }
+  .member .avatar{
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 14px;
+    border: 2px solid var(--ink);
+    background: var(--bg-deep);
+    display:grid; place-items:center;
+    overflow: hidden;
+    position: relative;
+  }
+  .member.a .avatar{ background: var(--pink); }
+  .member.b .avatar{ background: var(--yellow); }
+  .member.c .avatar{ background: var(--green); }
+  .member.d .avatar{ background: var(--blue); }
+  .member.e .avatar{ background: var(--purple); }
+  .member.e .initials{ color: var(--paper); }
+  .member .avatar img{
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .member.placeholder .bio{ font-style: italic; }
+  .member .initials{
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-size: 64px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .member h3{
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .member .role{
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .member .bio{
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .member .followers{
+    margin-top: auto;
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .member .follow{
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600;
+    padding: 5px 10px; border-radius: 999px;
+    background: var(--bg);
+    border: 1.5px solid var(--ink);
+  }
+
+  /* ---------- Where we are / Timeline ---------- */
+  .where{ background: var(--bg-deep); }
+  .where-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 900px){ .where-grid{ grid-template-columns: 1fr; } }
+  .where-card{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 8px 8px 0 var(--green);
+  }
+  .where-card.b{ box-shadow: 8px 8px 0 var(--purple); }
+  .where-card h3{
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: 26px;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  .where-card ul{
+    margin: 0; padding-left: 0; list-style: none;
+  }
+  .where-card li{
+    position: relative; padding: 12px 0 12px 30px;
+    border-top: 1px dashed rgba(20,23,26,0.18);
+    font-size: 15.5px;
+    color: var(--ink-soft);
+  }
+  .where-card li:first-child{ border-top: 0; }
+  .where-card li::before{
+    content: ""; position: absolute; left: 0; top: 18px;
+    width: 18px; height: 12px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'><path d='M1 7 L7 11 L17 1' fill='none' stroke='%2315171A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
+  }
+
+  .timeline{
+    margin-top: 36px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .timeline-head{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    padding: 14px 22px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .timeline-row{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    padding: 14px 22px;
+    border-top: 1px dashed rgba(20,23,26,0.18);
+    align-items: center;
+  }
+  .timeline-row:first-of-type{ border-top: 0; }
+  .timeline-row .ms{
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  .timeline-row .date{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .timeline-row .date::before{
+    content:""; width:10px; height:10px; border-radius:50%; background: var(--yellow); border: 1.5px solid var(--ink);
+  }
+  .timeline-row:nth-of-type(2) .date::before{ background: var(--pink); }
+  .timeline-row:nth-of-type(3) .date::before{ background: var(--purple); }
+  .timeline-row:nth-of-type(4) .date::before{ background: var(--blue); }
+  .timeline-row:nth-of-type(5) .date::before{ background: var(--ink); }
+  .timeline-row.done .ms{ color: var(--ink-soft); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+  .timeline-row.done .date{ color: var(--green); font-weight: 700; }
+  .timeline-row.done .date::before{
+    content:""; width:16px; height:12px; border-radius:0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'><path d='M1 7 L7 11 L17 1' fill='none' stroke='%231FA059' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
+    border: 0;
+  }
+
+  /* ---------- Contact ---------- */
+  .actions{
+    padding: 80px 0 0;
+  }
+  .panel{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 36px;
+    max-width: 720px;
+    margin: 0 auto;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .panel h2{ font-size: clamp(26px, 3vw, 34px); margin: 0 0 18px; line-height: 1.05; }
+
+  form.contact{ display: grid; gap: 12px; }
+  form.contact label{
+    display: grid; gap: 6px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  form.contact input, form.contact textarea{
+    font-family: inherit;
+    background: var(--bg);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+  form.contact input:focus, form.contact textarea:focus{
+    outline: none;
+    background: #FFFBE6;
+  }
+  form.contact textarea{ min-height: 110px; resize: vertical; }
+  form.contact button{
+    justify-self: start;
+    margin-top: 6px;
+    background: var(--ink);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 13px 26px;
+    border-radius: 999px;
+    font-weight: 700; font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--yellow);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  form.contact button:hover{ transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--yellow); }
+  .form-status{ font-size: 14px; color: var(--ink-soft); min-height: 1.2em; }
+  .contact-direct{
+    margin-top: 18px;
+    font-size: 15px; color: var(--ink-soft);
+  }
+  .contact-direct a{ color: var(--ink); text-decoration: none; font-weight: 600; }
+  .contact-direct a:hover{ text-decoration: underline; }
+
+  /* ---------- Footer ---------- */
+  footer.site{
+    padding: 80px 0 40px;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  footer.site .row{
+    border-top: 1px solid rgba(20,23,26,0.1);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer.site a{ color: var(--ink); text-decoration: none; margin-left: 18px; }
+  footer.site a:hover{ text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="GR4AI home">
+      <span class="dot" aria-hidden="true"></span>
+      GR4AI
+    </a>
+    <nav class="menu" aria-label="Primary">
+      <a href="#why">Why</a>
+      <a href="#book">The book</a>
+      <a href="#chapters">Chapters</a>
+      <a href="#promise">Promise</a>
+      <a href="#team">Team</a>
+      <a href="#where">Where we are</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="hashtag">#GR4AI</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <svg class="journey" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <path class="path" d="
+      M 50 2
+      C 85 7, 88 11, 80 16
+      C 65 22, 30 24, 22 30
+      C 14 36, 28 40, 50 44
+      C 76 48, 86 54, 78 60
+      C 66 66, 24 66, 22 72
+      C 20 78, 40 82, 50 86
+      C 62 90, 70 94, 50 98
+    " />
+  </svg>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <h1 class="title">Get Ready<br/>For <span class="squiggle">AI</span>.</h1>
+        <p class="lede">An interactive guide about AI for kids.</p>
+        <blockquote class="pull">
+          Children are surrounded by AI.<br/>They should know how it works.
+        </blockquote>
+      </div>
+      <div style="position:relative">
+        <div class="collage" aria-hidden="true">
+          <div class="tile t1"><img src="assets/control-room.jpg" alt=""></div>
+          <div class="tile t2"><img src="assets/puzzles.jpg" alt=""></div>
+          <div class="tile t3"><img src="assets/learning.jpg" alt=""></div>
+          <div class="tile t4"><img src="assets/art.jpg" alt=""></div>
+        </div>
+        <div class="dotlayer" aria-hidden="true">
+          <span class="dot d1"></span>
+          <span class="dot d2"></span>
+          <span class="dot d3"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why now -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Why now</span>
+          <h2>Kids are growing up with AI all around them.</h2>
+        </div>
+        <p class="intro">Most don’t understand what it is. We’re fixing that.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="stat-card">
+          <h3>It’s already in their pockets, classrooms, and toys.</h3>
+          <p>From smart phones to self-driving cars, AI is everywhere in a kid’s daily life, usually without anyone telling them so.</p>
+        </div>
+        <div class="stat-card accent">
+          <h3>GR4AI is a non-profit book project.</h3>
+          <p>We introduce kids ages 7–12 to artificial intelligence in a way that’s fun, clear, and actually makes sense to them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The book -->
+  <section id="book">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">The book</span>
+          <h2>A launchpad into the world of tomorrow.</h2>
+        </div>
+        <p class="intro">More than just a book. It equips kids and the grownups guiding them with the tools to understand AI, navigate its impact, and dream up a better world using it.</p>
+      </div>
+
+      <div class="book-grid">
+        <div class="book-text">
+          <p>
+            This book ignites children’s natural curiosity and transforms it into a powerful understanding of artificial intelligence: what it is, how it’s shaping our world, and why it matters.
+          </p>
+          <p>
+            Through engaging storytelling and real-world applications, it inspires young minds to dream big and think boldly, equipping them with the knowledge and confidence to become the innovators, leaders, and ethical entrepreneurs of tomorrow’s AI-driven future.
+          </p>
+          <p>
+            As the digital landscape evolves, this book prepares kids not just to keep up, but to lead the way.
+          </p>
+
+          <div class="specs" aria-label="Book details">
+            <div>
+              <div class="label">Format</div>
+              <div class="value">Interactive, illustrated educational book</div>
+            </div>
+            <div>
+              <div class="label">Audience</div>
+              <div class="value">Primary school children, ages 7–12<br/>Teachers &amp; parents</div>
+            </div>
+            <div>
+              <div class="label">Languages</div>
+              <div class="value">English<br/>German</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-img">
+          <img src="assets/puzzles-portrait.jpg" alt="Two kids and a small robot solving a puzzle together at a table." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapters -->
+  <section class="chapters" id="chapters">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Inside the book</span>
+          <h2>Six chapters.</h2>
+        </div>
+        <p class="intro">Built around the questions kids actually ask, and the ones the adults around them are still working out.</p>
+      </div>
+
+      <div class="chapter-list">
+        <div class="chap"><span class="num">01</span><h3>Introduction</h3></div>
+        <div class="chap"><span class="num">02</span><h3>What is AI?</h3></div>
+        <div class="chap"><span class="num">03</span><h3>AI in Daily Life</h3></div>
+        <div class="chap"><span class="num">04</span><h3>Fun with AI</h3></div>
+        <div class="chap"><span class="num">05</span><h3>How AI Works</h3></div>
+        <div class="chap"><span class="num">06</span><h3>The Future of AI</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promise -->
+  <section id="promise">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Our promise</span>
+          <h2>Spark curiosity. Fuel creativity. Build confidence.</h2>
+        </div>
+        <p class="intro">We promise to help children aged 7–12:</p>
+      </div>
+
+      <div class="promise-grid">
+        <div class="promise">
+          <div class="bar"></div>
+          <h3>Understand</h3>
+          <p>What AI is and how it affects their world today, from smart phones to self-driving cars.</p>
+        </div>
+        <div class="promise">
+          <div class="bar"></div>
+          <h3>Explore</h3>
+          <p>Exciting real-life examples of AI in action across health, education, fashion, food, entertainment, and more.</p>
+        </div>
+        <div class="promise">
+          <div class="bar"></div>
+          <h3>Think</h3>
+          <p>Critically and ethically about how we use AI and how it should be used in the future.</p>
+        </div>
+        <div class="promise">
+          <div class="bar"></div>
+          <h3>Play &amp; experiment</h3>
+          <p>Through hands-on activities, fun facts, and interactive learning tools.</p>
+        </div>
+        <div class="promise">
+          <div class="bar"></div>
+          <h3>Imagine</h3>
+          <p>Their role in shaping the future as tomorrow’s innovators, scientists, artists, and leaders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission / non-profit -->
+  <section class="mission">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Why we’re doing this</span>
+          <h2>We’re not doing this to make money.<br/><em style="color:var(--yellow);font-style:normal">We’re doing it to make impact.</em></h2>
+        </div>
+        <p class="intro">Looking for a publishing partner to help us bring this book to life, in print, in English and German.</p>
+      </div>
+
+      <div class="mission-grid">
+        <p class="mission-quote">
+          An 8-year-old student coauthor, a global healthcare executive, a professor of AI in medical education, and a visual storyteller. <em>Yes, really.</em>
+        </p>
+        <div class="mission-list">
+          <p>All proceeds will go toward the non-profit mission of promoting AI literacy for kids.</p>
+          <p>Together, we’re building something that speaks <em style="color:var(--yellow);font-style:normal">to</em> kids, not just <em style="color:var(--yellow);font-style:normal">about</em> them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">The team</span>
+          <h2>Five people.<br/>One shared idea.</h2>
+        </div>
+        <p class="intro">Healthcare AI, medical education, visual storytelling, and a primary-school point of view.</p>
+      </div>
+
+      <div class="team-grid">
+        <article class="member c">
+          <div class="avatar"><img src="assets/katerina-photo.jpg" alt="Katerina Tapeinos" loading="lazy"></div>
+          <div>
+            <h3>Katerina Tapeinos</h3>
+            <div class="role">Student coauthor · The kids’ voice</div>
+          </div>
+          <p class="bio">
+            Year 3 (almost Year 4!) pupil. Loves maths, sciences, art, cycling, the beach, seashells, books, the flute, and her mum. She has already given a talk about AI to her school. Her job on this book: make it easier for all kids to understand, in simple words.
+          </p>
+          <div class="followers">
+            <span class="follow">Age 8</span>
+          </div>
+        </article>
+
+        <article class="member b">
+          <div class="avatar"><img src="assets/christina-photo.jpg" alt="Christina Malamateniou" loading="lazy"></div>
+          <div>
+            <h3>Christina Malamateniou</h3>
+            <div class="role">Assoc. Professor · AI in medical education</div>
+          </div>
+          <p class="bio">
+            Associate Professor of Technology-enabled Care in Radiography at City St George’s, University of London, and Director of the CRRAG Research group. 100+ peer-reviewed papers, 120+ keynotes, and PI/Co-I on grants worth £3.5M+. Led the first AI textbook for radiographers with Springer.
+          </p>
+          <div class="followers">
+            <span class="follow">7k LinkedIn</span>
+          </div>
+        </article>
+
+        <article class="member d">
+          <div class="avatar"><img src="assets/manuel-photo.jpg" alt="Manuel Recker" loading="lazy"></div>
+          <div>
+            <h3>Manuel Recker</h3>
+            <div class="role">Health economist · Visual storyteller</div>
+          </div>
+          <p class="bio">
+            Studied health economics and captures the world through drawing. 100+ graphic recordings for clients including McKinsey, BCG, the German Federal Ministry of Health, Roche, Bayer, AstraZeneca, GSK, Charité, and the LSE. He makes complex problems understandable, and visible.
+          </p>
+          <div class="followers">
+            <span class="follow">2k LinkedIn</span>
+            <span class="follow">1.1k Instagram</span>
+          </div>
+        </article>
+
+        <article class="member e placeholder">
+          <div class="avatar"><span class="initials">SS</span></div>
+          <div>
+            <h3>Susan Shelmerdine</h3>
+            <div class="role">Bio coming soon</div>
+          </div>
+          <p class="bio">
+            More about Susan, and her role on the book, coming soon.
+          </p>
+          <div class="followers">
+            <span class="follow">TBA</span>
+          </div>
+        </article>
+
+        <article class="member a">
+          <div class="avatar"><img src="assets/jan-photo.jpg" alt="Jan Beger" loading="lazy"></div>
+          <div>
+            <h3>Jan Beger</h3>
+            <div class="role">Global AI advocate · Healthcare executive</div>
+          </div>
+          <p class="bio">
+            20+ years in healthcare and AI. Runs HelloAI, whose global education programs have trained 7,000 professionals in 70+ countries. Founded the Edison Accelerator at GE HealthCare with Telefónica’s Open Innovation Hub. Global Head of AI Advocacy at GE HealthCare.
+          </p>
+          <div class="followers">
+            <span class="follow">77k LinkedIn</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where we are -->
+  <section class="where" id="where">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Where we are now</span>
+          <h2>Early R&amp;D. Moving fast, but deliberately.</h2>
+        </div>
+        <p class="intro">A passion project, backed by a team with experience in AI, education, and visual storytelling.</p>
+      </div>
+
+      <div class="where-grid">
+        <div class="where-card">
+          <h3>Right now, we’re focused on:</h3>
+          <ul>
+            <li>Structuring the content and chapters</li>
+            <li>Researching age-appropriate learning methods for complex topics like AI</li>
+            <li>Drafting initial text and visual concepts</li>
+          </ul>
+        </div>
+        <div class="where-card b">
+          <h3>What we’re looking for:</h3>
+          <ul>
+            <li>A publisher to print and distribute the book in English and German</li>
+            <li>Advice on timelines, formats, and educational publishing standards</li>
+            <li>Possibly co-funding or in-kind support (this is a non-profit project)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline" aria-label="Draft timeline">
+        <div class="timeline-head">
+          <div>Milestone</div>
+          <div>Target date</div>
+        </div>
+        <div class="timeline-row done">
+          <div class="ms">Chapter outlines complete</div>
+          <div class="date">Done</div>
+        </div>
+        <div class="timeline-row">
+          <div class="ms">First draft (text + visuals)</div>
+          <div class="date">July 2026</div>
+        </div>
+        <div class="timeline-row">
+          <div class="ms">Feedback &amp; revisions</div>
+          <div class="date">August 2026</div>
+        </div>
+        <div class="timeline-row">
+          <div class="ms">Final manuscript + layout</div>
+          <div class="date">September 2026</div>
+        </div>
+        <div class="timeline-row">
+          <div class="ms">Print-ready</div>
+          <div class="date">November 2026</div>
+        </div>
+        <div class="timeline-row">
+          <div class="ms">Launch (print &amp; digital)</div>
+          <div class="date">December 2026 / January 2027</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="actions" id="contact">
+    <div class="wrap">
+      <div class="panel">
+        <h2>You want to know more?<br/>Contact us.</h2>
+        <form class="contact" id="contactForm" novalidate>
+          <label>Name
+            <input type="text" name="name" autocomplete="name" />
+          </label>
+          <label>Email
+            <input type="email" name="email" autocomplete="email" />
+          </label>
+          <label>Message
+            <textarea name="message" placeholder="If you’re a publisher who believes in education, equity, and early digital literacy, we’d love to hear from you."></textarea>
+          </label>
+          <button type="submit">Submit</button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+        <div class="contact-direct">
+          Or write to <a href="mailto:jan.beger@me.com">jan.beger@me.com</a> · <a href="tel:+491743428857">+49 174 3428857</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap row">
+    <div>© <span id="yr"></span> GR4AI · An interactive guide about AI for kids.</div>
+    <div>
+      <a href="#book">The book</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    status.textContent = 'Thanks. We’ll be in touch.';
+    form.reset();
+  });
+</script>
+</body>
+</html>
