@@ -12,8 +12,9 @@ Live at **[gr4ai.org](https://gr4ai.org)**.
 |---|---|---|---|
 | Domain registrar + DNS | [united-domains.de](https://united-domains.de) | Account: Jan | Domain renewal fee (~€20/year) |
 | Source of truth (Git) | [github.com/jaclbe/gr4ai](https://github.com/jaclbe/gr4ai) | Account: `jaclbe` | Free |
-| Hosting + CDN + SSL | [Netlify](https://app.netlify.com) | Account: Jan | Free tier |
+| Hosting + CDN + SSL | [Netlify](https://app.netlify.com) | Account: Jan, project `candid-fox-ab3037` | Free tier |
 | SSL certificate | Let's Encrypt (auto, via Netlify) | — | Free, auto-renewed |
+| Contact form handler | [Web3Forms](https://web3forms.com) | Access key tied to `jan.beger@me.com` | Free, unlimited submissions |
 | Local working folder | `/Users/jnbgr/Documents/CLAUDE WORKSPACE/PROFESSIONAL/gr4ai-redesign/` | On Jan's Mac | — |
 
 **Netlify project:** `candid-fox-ab3037` (also reachable directly at [candid-fox-ab3037.netlify.app](https://candid-fox-ab3037.netlify.app), useful if the custom domain ever breaks).
@@ -22,11 +23,19 @@ Live at **[gr4ai.org](https://gr4ai.org)**.
 
 ## How the site goes from edit to live
 
+Current deploy flow is **manual drag-drop**:
+
 ```
-Edit files on Mac  →  git push to GitHub  →  Netlify auto-deploys  →  gr4ai.org updates
+Edit files on Mac  →  copy index.html to dist/  →  drag dist/ onto Netlify  →  gr4ai.org updates (~30s)
 ```
 
-Netlify is watching the `main` branch of `github.com/jaclbe/gr4ai`. Any push to `main` triggers a fresh build and rollout within ~30–60 seconds. There is no manual upload step after the initial setup.
+The GitHub repo (`jaclbe/gr4ai`) exists as a backup of the files but is not currently auto-deploying. Each change is a manual upload to Netlify's Deploys page.
+
+**Future improvement:** connect Netlify to the GitHub repo so pushes auto-deploy. To do that:
+1. Netlify → site → **Site configuration** → **Build & deploy** → **Continuous deployment** → **Link to a Git repository** → choose `jaclbe/gr4ai`.
+2. Set branch to `main`, publish directory to `/`.
+3. Save. From then on, `git push origin main` auto-deploys within ~60 seconds.
+4. The local repo at `dist/.git/` is already wired to the GitHub remote, but pushing requires authentication. Install `gh` (`brew install gh && gh auth login`) once and `git push` works forever after.
 
 ---
 
@@ -86,12 +95,17 @@ Auto-handled by Netlify. They request a Let's Encrypt certificate when DNS is ve
 1. Open `index.html` in any text editor.
 2. Find the text, change it.
 3. Save.
-4. In Terminal:
+4. **Sync to dist:** copy the file into the deployable folder.
+   ```
+   cp "/Users/jnbgr/Documents/CLAUDE WORKSPACE/PROFESSIONAL/gr4ai-redesign/index.html" "/Users/jnbgr/Documents/CLAUDE WORKSPACE/PROFESSIONAL/gr4ai-redesign/dist/index.html"
+   ```
+5. **Deploy:** drag the `dist` folder onto Netlify's Deploys page in your project dashboard. ~30 seconds later it's live.
+6. **(Optional) commit to GitHub** as a backup record. From Terminal:
    ```
    cd "/Users/jnbgr/Documents/CLAUDE WORKSPACE/PROFESSIONAL/gr4ai-redesign/dist"
-   git add . && git commit -m "Fix typo in hero" && git push
+   git add . && git commit -m "Fix typo in hero"
    ```
-5. Wait ~60 seconds. Refresh gr4ai.org.
+   Pushing requires GitHub auth set up first (see "Future improvement" above).
 
 ### Swap a photo
 
@@ -102,7 +116,7 @@ Auto-handled by Netlify. They request a Let's Encrypt certificate when DNS is ve
    ```
    Replace `500 500` with the height + width you want. `--cropOffset top left` for off-center crops.
 3. In `index.html` find the `<img src="assets/...">` for the photo you're replacing and update the path.
-4. Commit and push (see above).
+4. Copy `index.html` and the new asset into `dist/`, then drag `dist/` onto Netlify (see "Change some text" above).
 
 ### Add a new team member
 
@@ -110,15 +124,48 @@ Auto-handled by Netlify. They request a Let's Encrypt certificate when DNS is ve
 2. In `index.html`, find the `team-grid` section. Copy one of the existing `<article class="member …">` blocks.
 3. Update the `class` letter (`a` through `e` map to coloured fallback backgrounds: pink, yellow, green, blue, purple). Use a fresh one or reuse, doesn't matter much since the photo covers it.
 4. Update the image src, name, role, bio, and follower chip.
-5. Commit and push.
+5. Sync to `dist/` and deploy (see "Change some text").
 
 ### Remove a team member
 
-Delete the entire `<article class="member …">` block. Update the "Five people. One shared idea." heading if the count changes. Commit and push.
+Delete the entire `<article class="member …">` block. Update the "Five people. One shared idea." heading if the count changes. Sync and deploy.
 
 ### Update the timeline
 
 In `index.html`, find the `timeline` section. Each `<div class="timeline-row">` is one milestone with a `.ms` title and a `.date` date. Add a `done` class to the row for items that are complete (it strikes through the title and shows a green check next to the date instead of a coloured dot).
+
+---
+
+## Contact form (Web3Forms)
+
+The form on the page is wired to **Web3Forms** (a free, hosted form-handling service).
+
+**How it works:**
+1. User fills out the form on `gr4ai.org` and hits Submit.
+2. JavaScript POSTs the data to `https://api.web3forms.com/submit`.
+3. Web3Forms records the submission in their dashboard AND emails it to `jan.beger@me.com`.
+4. Page shows "Thanks. We'll be in touch." inline.
+
+**Where to find things:**
+- **Submissions dashboard:** [web3forms.com/dashboard](https://web3forms.com/dashboard) (log in with the same email you used to create the key)
+- **Access key:** stored as a hidden `<input>` in `index.html` (currently `9a32c31f-2c0d-467f-bb09-365439ef6f22`). Web3Forms keys are designed to be public-readable — they're scoped to a specific email destination and Web3Forms has its own rate limits/spam protection.
+- **Sender name + subject** (what appears in your inbox): configured in the Web3Forms dashboard under the form's settings, not in HTML.
+
+**Spam protection:**
+- Web3Forms has built-in spam filtering (hCaptcha + content analysis).
+- The HTML form also has a honeypot field (`botcheck`) hidden off-screen — bots that auto-fill all fields trigger it and get silently rejected.
+- For extra security, log into Web3Forms dashboard and add **`gr4ai.org`** to the allowed domains list for the access key. Then no other site can hijack the key for spam.
+
+**If submissions stop arriving at `jan.beger@me.com`:**
+1. Check the Web3Forms dashboard. If submissions are appearing there but not arriving as emails, the issue is between Web3Forms and iCloud (iCloud sometimes silently filters automated senders).
+2. Check iCloud Mail's Junk folder thoroughly.
+3. Add `notify@web3forms.com` and `web3forms.com` to your iCloud safe senders list / contacts.
+4. If iCloud has put the email on a permanent suppression list, contact Web3Forms support via [web3forms.com/help?contact=true](https://web3forms.com/help?contact=true) and ask them to remove `jan.beger@me.com` from their internal suppression list. This is a known iCloud-flavoured problem and they can fix it from their side.
+
+**To change the destination email:**
+1. Log into Web3Forms dashboard.
+2. Find the access key / form → settings → **Recipient Emails**.
+3. Add or replace. Save. Effect is immediate — no need to redeploy the site.
 
 ---
 
@@ -127,11 +174,9 @@ In `index.html`, find the `timeline` section. Each `<div class="timeline-row">` 
 These are placeholders waiting for real content or decisions:
 
 1. **Susan Shelmerdine's bio.** Her card still says "Bio coming soon". When her bio + photo arrive, swap them in like any other team update.
-2. **Contact form does nothing.** Submit currently shows a thank-you message client-side, but no email is sent. Two paths to fix this:
-   - **Netlify Forms** (free, ~5 lines of HTML to add). Submissions land in Netlify's dashboard and email Jan.
-   - **Formspree** or **Web3Forms** (also free for low volume, also email-based).
-3. **Open Graph image is the original Carrd placeholder** (`assets/card.jpg`). When `gr4ai.org` is shared on LinkedIn, WhatsApp, etc., that placeholder is what shows. Should be replaced with a proper 1200×630 social card.
-4. **No analytics.** Deliberately. If you ever want any, Cloudflare Web Analytics or Plausible (EU, GDPR-friendly) are good options.
+2. **Open Graph image is the original Carrd placeholder** (`assets/card.jpg`). When `gr4ai.org` is shared on LinkedIn, WhatsApp, etc., that placeholder is what shows. Should be replaced with a proper 1200×630 social card.
+3. **No analytics.** Deliberately. If you ever want any, Cloudflare Web Analytics or Plausible (EU, GDPR-friendly) are good options.
+4. **Manual deploys.** Drag-drop to Netlify works but is friction. Hooking up Netlify-to-GitHub auto-deploy (see "How the site goes from edit to live" above) would eliminate this once and for all.
 
 ---
 
@@ -154,9 +199,12 @@ These are placeholders waiting for real content or decisions:
 | Hosting (Netlify free tier) | €0 |
 | SSL | €0 |
 | Repo hosting (GitHub) | €0 |
+| Form handling (Web3Forms free tier) | €0 |
 | **Total** | **~€20/year** |
 
-Netlify's free tier limits: 100 GB bandwidth/month, 300 build minutes/month. The current site uses negligible bandwidth and zero build minutes (static HTML, no build step). The next tier ($19/month) is only needed if the site grows dramatically or starts handling real form traffic.
+**Free-tier limits, in case the site grows:**
+- Netlify: 100 GB bandwidth/month, 300 build minutes/month. The current site uses negligible bandwidth.
+- Web3Forms: unlimited submissions on the free plan. Some advanced features (CC/BCC emails, server-side API access, custom domains for the form action) are Pro-only at $14/month.
 
 ---
 
@@ -166,9 +214,11 @@ Netlify's free tier limits: 100 GB bandwidth/month, 300 build minutes/month. The
 |---|---|---|
 | Site loads but shows wrong content | Cache | Hard reload in browser (Cmd+Shift+R), or wait a few minutes |
 | Site doesn't load at all (`DNS_PROBE_FINISHED_NXDOMAIN`) | DNS broken | Check DNS records at united-domains haven't been deleted. Should match the table above. |
-| Site loads but "Not Secure" warning | SSL cert expired or mismatch | Netlify → Domain management → SSL/TLS → click Renew |
-| Recent change didn't show up | Either push didn't reach GitHub or Netlify build failed | Check [github.com/jaclbe/gr4ai/commits/main](https://github.com/jaclbe/gr4ai/commits/main), is your commit there? Then check Netlify's Deploys tab for a failed build. |
-| Forgot Netlify password / lost access | — | Email-reset via Netlify login page. Account email is the one Jan used at signup. |
+| Site loads but "Not Secure" warning | SSL cert expired or mismatch | Netlify → Domain management → SSL/TLS → click Verify DNS, then Renew |
+| Recent change didn't show up | Drag-drop deploy didn't actually upload | Check Netlify's Deploys tab — is the latest deploy timestamp recent? If not, drag `dist/` onto it again. |
+| Contact form: dashboard captures submissions but no email arrives | iCloud suppression list OR Web3Forms suppression list | See "Contact form" section above for the troubleshooting flow |
+| Contact form: "Something went wrong" shown in browser after Submit | Web3Forms is down, network error, or access key invalidated | Open browser DevTools → Network tab → submit again → click the request to `api.web3forms.com/submit` → check the Response JSON message |
+| Forgot Netlify or Web3Forms password / lost access | — | Email-reset via each service's login page. Account email is `jan.beger@me.com` for both. |
 
 **Total disaster recovery:** the site lives in three independent places (GitHub, Netlify, and the local Mac folder). Losing one is recoverable from the other two. Losing two would require re-uploading from the third. Losing all three would require rebuilding from scratch.
 
