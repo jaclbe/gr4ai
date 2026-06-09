@@ -11,6 +11,8 @@
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
 
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -589,6 +591,7 @@
   .panel h2{ font-size: clamp(26px, 3vw, 34px); margin: 0 0 18px; line-height: 1.05; }
 
   form.contact{ display: grid; gap: 12px; }
+  form.contact .hp{ position: absolute; left: -9999px; height: 0; overflow: hidden; }
   form.contact label{
     display: grid; gap: 6px;
     font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
@@ -918,25 +921,22 @@
           </div>
         </article>
 
-        <article class="member e placeholder">
-          <div class="avatar"><span class="initials">SS</span></div>
+        <article class="member e">
+          <div class="avatar"><img src="assets/susan-photo.jpg" alt="Susan Shelmerdine" loading="lazy"></div>
           <div>
             <h3>Susan Shelmerdine</h3>
-            <div class="role">Bio coming soon</div>
+            <div class="role">Consultant paediatric radiologist · NIHR Advanced Fellow</div>
           </div>
           <p class="bio">
-            More about Susan, and her role on the book, coming soon.
+            Consultant paediatric radiologist at Great Ormond Street Hospital and Associate Professor at UCL, where she holds an NIHR Advanced Fellowship. Founded the European Society of Paediatric Radiology AI Taskforce (2020–2025) and sits on the Royal College of Radiologists AI Advisory Group. Recently launched an AI Youth Council to bring youth voices into healthcare AI.
           </p>
-          <div class="followers">
-            <span class="follow">TBA</span>
-          </div>
         </article>
 
         <article class="member a">
           <div class="avatar"><img src="assets/jan-photo.jpg" alt="Jan Beger" loading="lazy"></div>
           <div>
             <h3>Jan Beger</h3>
-            <div class="role">Global AI advocate · Healthcare executive</div>
+            <div class="role">Global Healthcare AI thought leader</div>
           </div>
           <p class="bio">
             20+ years in healthcare and AI. Runs HelloAI, whose global education programs have trained 7,000 professionals in 70+ countries. Founded the Edison Accelerator at GE HealthCare with Telefónica’s Open Innovation Hub. Global Head of AI Advocacy at GE HealthCare.
@@ -1017,15 +1017,21 @@
     <div class="wrap">
       <div class="panel">
         <h2>You want to know more?<br/>Contact us.</h2>
-        <form class="contact" id="contactForm" novalidate>
+        <form class="contact" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="9a32c31f-2c0d-467f-bb09-365439ef6f22">
+          <input type="hidden" name="subject" value="New GR4AI message">
+          <input type="hidden" name="from_name" value="GR4AI Website">
+          <p class="hp" aria-hidden="true">
+            <label>Don’t fill this out if you’re human: <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" /></label>
+          </p>
           <label>Name
-            <input type="text" name="name" autocomplete="name" />
+            <input type="text" name="name" autocomplete="name" required />
           </label>
           <label>Email
-            <input type="email" name="email" autocomplete="email" />
+            <input type="email" name="email" autocomplete="email" required />
           </label>
           <label>Message
-            <textarea name="message" placeholder="If you’re a publisher who believes in education, equity, and early digital literacy, we’d love to hear from you."></textarea>
+            <textarea name="message" required placeholder="If you’re a publisher who believes in education, equity, and early digital literacy, we’d love to hear from you."></textarea>
           </label>
           <button type="submit">Submit</button>
           <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
@@ -1054,10 +1060,25 @@
 
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    status.textContent = 'Thanks. We’ll be in touch.';
-    form.reset();
+    status.textContent = 'Sending…';
+    const data = new FormData(form);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+      const json = await res.json().catch(() => ({}));
+      if (json.success) {
+        status.textContent = 'Thanks. We’ll be in touch.';
+        form.reset();
+      } else {
+        status.textContent = 'Something went wrong. Please email jan.beger@me.com instead.';
+      }
+    } catch {
+      status.textContent = 'Connection error. Please email jan.beger@me.com instead.';
+    }
   });
 </script>
 </body>

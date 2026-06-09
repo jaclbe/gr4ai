@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts / archives we don't want in version control
+dist.zip
+*.zip
+
+# Logs
+*.log
+
+# Local environment
+.env
+.env.local
+
+# Cowork / local launcher config (machine-specific absolute paths)
+.claude/
