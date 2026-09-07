@@ -1529,6 +1529,28 @@
   }
   .compare-item.is-physical{ background: #EAFBF9; }
   .compare-item.is-digital{ background: #FFE9E9; }
+  /* Each card says which world it belongs to. The two column headings only
+     work while they are on screen, and on a phone the table is a single
+     column — two cards in, the headings are gone. (They also can't carry the
+     distinction by colour: --green and --blue are the same hex in this
+     palette, and a rule above forces both headings to ink so they stay
+     legible on the teal section.) */
+  .compare-tag{
+    display: inline-block;
+    margin-right: 9px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    border: 1.5px solid var(--ink);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    white-space: nowrap;
+    vertical-align: 1px;
+  }
+  .compare-item.is-physical .compare-tag{ background: #8FE3D8; }
+  .compare-item.is-digital .compare-tag{ background: #FFB8B8; }
   .compare-icon{
     font-size: 44px;
     line-height: 1;
@@ -2326,42 +2348,42 @@
         <div class="compare-table">
           <div class="compare-item is-physical">
             <span class="compare-icon" aria-hidden="true">🌍</span>
-            <div><strong>Information</strong>: Ideen, Gedanken und Wissen teilen – durch Sprechen, Malen, Singen</div>
+            <div><span class="compare-tag">Physisch</span><strong>Information</strong>: Ideen, Gedanken und Wissen teilen – durch Sprechen, Malen, Singen</div>
           </div>
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><strong>Daten</strong>: Ideen, Gedanken und Wissen teilen – über elektronische Dateien</div>
+            <div><span class="compare-tag">Digital</span><strong>Daten</strong>: Ideen, Gedanken und Wissen teilen – über elektronische Dateien</div>
           </div>
 
           <div class="compare-item is-physical">
             <span class="compare-icon" aria-hidden="true">🌍</span>
-            <div><strong>Gehirn</strong>: der menschliche Prozessor für Ideen, Gedanken und Wissen – damit wir die physische Welt verstehen und neues Wissen schaffen</div>
+            <div><span class="compare-tag">Physisch</span><strong>Gehirn</strong>: der menschliche Prozessor für Ideen, Gedanken und Wissen – damit wir die physische Welt verstehen und neues Wissen schaffen</div>
           </div>
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><strong>Computer</strong>: ein digitaler Prozessor für Daten – damit wir komplizierte Zahlen verstehen</div>
+            <div><span class="compare-tag">Digital</span><strong>Computer</strong>: ein digitaler Prozessor für Daten – damit wir komplizierte Zahlen verstehen</div>
           </div>
 
           <div class="compare-item is-physical">
             <span class="compare-icon" aria-hidden="true">🌍</span>
-            <div><strong>Sätze/Wörter/Zahlen</strong>: so werden Informationen in der physischen Welt geteilt</div>
+            <div><span class="compare-tag">Physisch</span><strong>Sätze/Wörter/Zahlen</strong>: so werden Informationen in der physischen Welt geteilt</div>
           </div>
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><strong>Code/Zahlen</strong>: so werden Daten in der digitalen Welt geteilt</div>
+            <div><span class="compare-tag">Digital</span><strong>Code/Zahlen</strong>: so werden Daten in der digitalen Welt geteilt</div>
           </div>
 
           <div class="compare-item is-physical">
             <span class="compare-icon" aria-hidden="true">🌍</span>
-            <div><strong>Menschliche Intelligenz</strong>: die Fähigkeit von Menschen, zu lernen, zu verstehen und Neues zu erfinden</div>
+            <div><span class="compare-tag">Physisch</span><strong>Menschliche Intelligenz</strong>: die Fähigkeit von Menschen, zu lernen, zu verstehen und Neues zu erfinden</div>
           </div>
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><strong><a href="#glossary-artificial-intelligence-ai" class="glossary-link">Künstliche Intelligenz</a></strong>: die von Menschen gebaute Fähigkeit, zu lernen, zu verstehen und Neues zu erfinden</div>
+            <div><span class="compare-tag">Digital</span><strong><a href="#glossary-artificial-intelligence-ai" class="glossary-link">Künstliche Intelligenz</a></strong>: die von Menschen gebaute Fähigkeit, zu lernen, zu verstehen und Neues zu erfinden</div>
           </div>
         </div>
       </div>
