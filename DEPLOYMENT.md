@@ -20,12 +20,14 @@ Everything about how gr4ai.org is hosted, deployed, and kept alive. If you're ju
 
 ## How the site goes from edit to live
 
-The repo is flat: `index.html` and `assets/` live at the root, and the whole folder is the GitHub repo. There's no separate `dist/` build folder anymore. What's at the root is what gets deployed.
+The repo is flat: the HTML pages and `assets/` live at the root, and the whole folder is the GitHub repo. There's no separate `dist/` build folder. What's at the root is what gets deployed.
+
+The pages are `index.html` (the interactive guide, EN — the homepage), `guide-de.html` (the guide, DE), `about.html` (the project page, book, team and contact form) and `guide.html` (a redirect stub → `/`, kept so links shared before the guide moved to the homepage still work). `_redirects` carries the same rule at the Netlify level.
 
 The current deploy is **manual drag-drop** to Netlify:
 
 ```
-Edit index.html  →  git push (backup)  →  drag the project folder onto Netlify  →  gr4ai.org updates (~30s)
+Edit a page  →  git push (backup)  →  drag the project folder onto Netlify  →  gr4ai.org updates (~30s)
 ```
 
 Pushing to GitHub backs the change up but does not deploy it on its own. The drag-drop is the step that actually updates the live site.
@@ -65,7 +67,7 @@ Auto-handled by Netlify. They request a Let's Encrypt certificate once DNS is ve
 
 ### Change text or fix a typo
 
-1. Open `index.html`, find the text, change it, save.
+1. Open the page (`index.html`, `guide-de.html` or `about.html`), find the text, change it, save. A change to the English guide usually needs the same change in `guide-de.html`.
 2. Test locally: `python3 -m http.server 4173`, then open <http://localhost:4173>.
 3. Back up: `git add . && git commit -m "Fix typo" && git push origin main`.
 4. Deploy: drag the project folder onto Netlify's Deploys page. ~30s later it's live. (Or skip this step entirely once auto-deploy is on.)
@@ -78,13 +80,13 @@ Auto-handled by Netlify. They request a Let's Encrypt certificate once DNS is ve
    sips -c 500 500 new-photo.jpg --out new-photo-cropped.jpg
    ```
    Use `--cropOffset top left` for off-center crops.
-2. In `index.html`, update the matching `<img src="assets/...">`.
+2. In the page that uses it, update the matching `<img src="assets/...">`.
 3. Commit, push, deploy.
 
 ### Add a team member
 
 1. Add a square ~500×500 photo (<100 KB) to `assets/`.
-2. In `index.html`, find the `team-grid` section. Copy an existing `<article class="member ...">` block.
+2. In `about.html`, find the `team-grid` section. Copy an existing `<article class="member ...">` block.
 3. Update the class letter (`a`–`e` map to pink/yellow/green/blue/purple fallback backgrounds), image `src`, name, role, bio, and follower chip.
 4. If the count changes, update the "Five people. One shared idea." heading.
 5. Commit, push, deploy.
@@ -111,7 +113,7 @@ The form is wired to **Web3Forms**, a free hosted form handler.
 
 **Where things live:**
 - **Submissions dashboard:** [web3forms.com/dashboard](https://web3forms.com/dashboard), log in with the same email used to make the key.
-- **Access key:** a hidden `<input>` in `index.html` (currently `9a32c31f-2c0d-467f-bb09-365439ef6f22`). Web3Forms keys are meant to be public-readable. They're scoped to one destination email and have their own rate limiting and spam protection.
+- **Access key:** a hidden `<input>` in `about.html` (currently `9a32c31f-2c0d-467f-bb09-365439ef6f22`). Web3Forms keys are meant to be public-readable. They're scoped to one destination email and have their own rate limiting and spam protection.
 - **Sender name + subject** (what shows in the inbox): set in the Web3Forms dashboard, not in the HTML.
 
 **Spam protection:**

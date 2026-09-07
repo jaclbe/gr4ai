@@ -1,6 +1,15 @@
 # Contributing to GR4AI
 
-Welcome. This is a one-file static site, so contributing is refreshingly low-tech. You edit `index.html`, check it locally, and ship. No npm, no build, no compiler. This doc gets you from a fresh clone to a live change.
+Welcome. This is a plain static site, so contributing is refreshingly low-tech. You edit an HTML file, check it locally, and ship. No npm, no build, no compiler. This doc gets you from a fresh clone to a live change.
+
+There are four pages, and each one is self-contained (markup, CSS and JS all in the same file):
+
+- `index.html` — the interactive guide in English. **This is the homepage.**
+- `guide-de.html` — the same guide in German.
+- `about.html` — the project page: why the book exists, the chapters, the team, the contact form.
+- `guide.html` — a redirect stub that sends old `/guide.html` links to `/`.
+
+Anything you change in the English guide almost always needs the same change in `guide-de.html`.
 
 ---
 
@@ -27,7 +36,7 @@ cd gr4ai
 python3 -m http.server 4173
 ```
 
-Open <http://localhost:4173>. Leave that command running in its own terminal tab. Every time you save `index.html`, just refresh the browser.
+Open <http://localhost:4173>. Leave that command running in its own terminal tab. Every time you save an HTML file, just refresh the browser.
 
 Stop the server with `Ctrl+C` when you're done.
 
@@ -37,9 +46,13 @@ Stop the server with `Ctrl+C` when you're done.
 
 ## 3. Make a change
 
-Everything is in `index.html`: the markup, the CSS (in a `<style>` block in the `<head>`), and the small bit of JavaScript for the contact form (in a `<script>` block near the bottom). There are no separate `.css` or `.js` files to hunt for.
+Each page holds everything it needs: the markup, the CSS (in a `<style>` block in the `<head>`), and the JavaScript (in a `<script>` block near the bottom). There are no separate `.css` or `.js` files to hunt for.
 
-The page is organized into sections you can jump to with the in-page nav: `#why`, `#book`, `#chapters`, `#promise`, `#where`, `#team`, `#contact`. Search for those `id`s to find the right block.
+`about.html` is organized into sections you can jump to with the in-page nav: `#why`, `#book`, `#chapters`, `#promise`, `#where`, `#team`, `#contact`.
+
+The guides (`index.html`, `guide-de.html`) are organized by chapter: `#ch1` through `#ch15`, then `#guide-gallery`, `#guide-glossary`, `#guide-final-quiz` and `#guide-farewell`. Search for those `id`s to find the right block.
+
+**Editing the guide?** Make the change in `index.html` and the matching change in `guide-de.html`. The two files share the same structure and ids, so a diff between them should only ever show language.
 
 A few common edits:
 
@@ -53,13 +66,15 @@ Drop the new file into `assets/`. Team photos should be square, roughly 500×500
 sips -c 500 500 new-photo.jpg --out new-photo-cropped.jpg
 ```
 
-Then update the matching `<img src="assets/...">` in `index.html`.
+Then update the matching `<img src="assets/...">` in the page that uses it.
+
+Illustrations for the guide's flip cards (`daily-*`, `career-*`, `study-*`) are 1080×1080 JPEGs, quality ~86, roughly 200 KB each. Export new ones the same way — a 1.5 MB PNG in that set costs more than the whole rest of the page. Give every new `<img>` a `loading="lazy"` attribute.
 
 **Add a team member**
-Find the `team-grid` section. Copy one existing `<article class="member ...">` block, then update the image `src`, name, role, bio, and the follower chip. The class letters `a` through `e` map to coloured fallback backgrounds (pink, yellow, green, blue, purple) that show if the photo fails to load.
+In `about.html`, find the `team-grid` section. Copy one existing `<article class="member ...">` block, then update the image `src`, name, role, bio, and the follower chip. The class letters `a` through `e` map to coloured fallback backgrounds (pink, yellow, green, blue, purple) that show if the photo fails to load.
 
 **Update the timeline**
-Find the `timeline` section. Each `<div class="timeline-row">` is one milestone. Add the `done` class to a row to strike the title through and show a green check.
+In `about.html`, find the `timeline` section. Each `<div class="timeline-row">` is one milestone. Add the `done` class to a row to strike the title through and show a green check.
 
 More recipes are in [DEPLOYMENT.md](DEPLOYMENT.md#common-tasks).
 
@@ -67,12 +82,20 @@ More recipes are in [DEPLOYMENT.md](DEPLOYMENT.md#common-tasks).
 
 ## 4. Keep `assets/` clean
 
-Only images the live site actually uses belong in `assets/`. Source files, high-res originals, and anything experimental go in `archive/`. Before you commit, a quick sanity check that every file in `assets/` is referenced by `index.html`:
+Only images the live site actually uses belong in `assets/`. Source files, high-res originals, and anything experimental go in `archive/`. Before you commit, a quick sanity check that every file in `assets/` is referenced by one of the pages:
 
 ```bash
 for f in assets/*; do
   name=$(basename "$f")
-  grep -q "$name" index.html || echo "UNUSED: $name"
+  grep -q "$name" index.html guide-de.html about.html guide.html || echo "UNUSED: $name"
+done
+```
+
+And the other direction — every image a page asks for actually exists:
+
+```bash
+grep -ho 'assets/[A-Za-z0-9._-]*' *.html | sort -u | while read -r f; do
+  [ -e "$f" ] || echo "MISSING: $f"
 done
 ```
 
@@ -111,8 +134,8 @@ Read that file once before your first deploy. It also covers DNS, SSL, the conta
 
 ## Style notes
 
-- Keep it dependency-free. The whole appeal of this site is that it's one file with no toolchain. Don't add a framework or a build step without a strong reason.
+- Keep it dependency-free. The whole appeal of this site is a handful of files with no toolchain. Don't add a framework or a build step without a strong reason.
 - Test on a phone-width window before shipping. The layout is responsive and most visitors are on mobile.
 - Compress images before adding them. Large photos are the only thing that can slow this site down.
 
-Questions about the infrastructure go to Jan (jan.beger@me.com). Questions about the code are mostly answerable by reading `index.html` top to bottom, it's short.
+Questions about the infrastructure go to Jan (jan.beger@me.com). Questions about the code are mostly answerable by reading the page in question top to bottom.

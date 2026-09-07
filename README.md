@@ -4,7 +4,21 @@ The website for **GR4AI**, a non-profit book project that introduces kids ages 7
 
 **Live at [gr4ai.org](https://gr4ai.org).**
 
-This is a single-page static site. No framework, no build step, no backend. One HTML file, a folder of images, and a contact form wired to a hosted service. That's the whole thing, and that's on purpose: it's cheap to run, impossible to break in subtle ways, and anyone who can edit HTML can edit it.
+Static site. No framework, no build step, no backend — just HTML files, a folder of images, and a contact form wired to a hosted service. It's cheap to run, impossible to break in subtle ways, and anyone who can edit HTML can edit it.
+
+---
+
+## The pages
+
+| File | What it is | URL |
+|---|---|---|
+| `index.html` | **The interactive guide (English).** This is the homepage — 15 chapters, quizzes, flip cards, a glossary and a final quiz. | `gr4ai.org/` |
+| `guide-de.html` | The same guide in German. | `gr4ai.org/guide-de.html` |
+| `about.html` | The project page: why the book exists, the chapters, the team, the timeline and the contact form. | `gr4ai.org/about.html` |
+| `guide.html` | Redirect stub. The guide used to live here; it now sends visitors to `/` so older links and shares keep working. | `gr4ai.org/guide.html` |
+| `_redirects` | Netlify redirect rules (`/guide.html` and `/guide` → `/`). | — |
+
+The two guides link to each other through the EN/DE switch in the header, and both link back to `about.html` for the book, the team and the contact form.
 
 ---
 
@@ -12,31 +26,43 @@ This is a single-page static site. No framework, no build step, no backend. One 
 
 ```
 gr4ai/
-├── index.html              The entire page. One file, ~38 KB.
+├── index.html              The interactive guide (EN) — the homepage.
+├── guide-de.html           The interactive guide (DE).
+├── about.html              The project page: book, chapters, team, contact.
+├── guide.html              Redirect stub → /
+├── _redirects              Netlify redirect rules.
 ├── README.md               This file.
 ├── CONTRIBUTING.md         How to set up, edit, and ship changes.
 ├── DEPLOYMENT.md           The full operations manual: hosting, DNS, SSL, form, costs, troubleshooting.
 ├── LICENSE                 MIT (code only — see the note in the file about images).
 ├── .gitignore
 ├── assets/                 Every image the live site uses.
-│   ├── art.jpg                  Hero collage tile
-│   ├── card.jpg                 Social share image (Open Graph)
-│   ├── control-room.jpg         Hero collage tile
-│   ├── learning.jpg             Hero collage tile
-│   ├── puzzles.jpg              Hero collage tile
-│   ├── puzzles-portrait.jpg     Side image in "The book" section
 │   ├── favicon.svg              Browser tab icon
-│   ├── jan-photo.jpg            Team avatar
-│   ├── christina-photo.jpg      Team avatar
-│   ├── katerina-photo.jpg       Team avatar
-│   ├── manuel-photo.jpg         Team avatar
-│   └── susan-photo.jpg          Team avatar
+│   ├── card.jpg                 Social share image (Open Graph)
+│   │
+│   │   — used by the guide —
+│   ├── ai-cloud.png             The AI cloud character
+│   ├── brain-circuit.png        Chapter illustration
+│   ├── world-map.svg            "Where we are" map
+│   ├── gang-*.jpg               The eight kids + the professor line-up
+│   ├── prof-*.jpg               Professor portraits
+│   ├── katerina-quiz.jpg        Quiz host photo
+│   ├── daily-*.jpg              "AI in daily life" flip-card illustrations
+│   ├── career-*.jpg             "Jobs with AI" flip-card illustrations
+│   ├── study-*.jpg              "What to study" flip-card illustrations
+│   │
+│   │   — used by about.html —
+│   ├── art.jpg, control-room.jpg, learning.jpg, puzzles.jpg    Hero collage
+│   ├── puzzles-portrait.jpg     Side image in "The book"
+│   └── *-photo.jpg              Team avatars
 └── archive/
     └── source-images/      High-res originals, old Carrd illustrations, uncropped team
                             photos. Kept for reference. NOT used by the live site.
 ```
 
-If a file isn't referenced by `index.html`, it lives in `archive/`, not `assets/`. Keep that line clean so it's always obvious what actually ships.
+If a file isn't referenced by one of the four HTML pages, it lives in `archive/`, not `assets/`. Keep that line clean so it's always obvious what actually ships.
+
+**A note on the illustrations.** The `daily-*`, `career-*` and `study-*` pictures were originally 1080×1080 PNGs at roughly 1.5 MB each — about 40 MB for the set, which made the guide unusable on a phone. They're stored as quality-86 JPEGs instead, same dimensions, about 5 MB for the set. If you add another one, export it as a JPEG at a similar size, and give every new `<img>` a `loading="lazy"` attribute.
 
 ---
 
@@ -50,9 +76,7 @@ cd gr4ai
 python3 -m http.server 4173
 ```
 
-Open <http://localhost:4173>. Edit `index.html`, refresh, repeat.
-
-Opening `index.html` directly with a double-click works too, but the local server matches how the live site behaves (relative paths, the contact form, etc.), so prefer it.
+Open <http://localhost:4173>. Edit the HTML, refresh, repeat.
 
 Full setup, editing recipes, and the deploy steps are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
@@ -66,7 +90,7 @@ GitHub holds the source, Netlify hosts it for free with auto SSL, the domain is 
 
 ## The team
 
-In the order they appear on the page:
+In the order they appear on `about.html`:
 
 1. **Katerina Tapeinos** — student coauthor, age 8, the kids' voice
 2. **Christina Malamateniou** — Assoc. Professor, AI in medical education (City St George's, University of London)
