@@ -14,7 +14,7 @@ Static site. No framework, no build step, no backend — just HTML files, a fold
 |---|---|---|
 | `index.html` | **The interactive guide (English).** This is the homepage — 15 chapters, quizzes, flip cards, a glossary and a final quiz. | `gr4ai.org/` |
 | `guide-de.html` | The same guide in German. | `gr4ai.org/guide-de.html` |
-| `about.html` | The project page: why the book exists, the chapters, the team, the timeline and the contact form. | `gr4ai.org/about.html` |
+| `about.html` | The project page: why the book exists, the chapters, the team and the contact form. | `gr4ai.org/about.html` |
 | `guide.html` | Redirect stub. The guide used to live here; it now sends visitors to `/` so older links and shares keep working. | `gr4ai.org/guide.html` |
 | `_redirects` | Netlify redirect rules (`/guide.html` and `/guide` → `/`). | — |
 
@@ -43,7 +43,7 @@ gr4ai/
 │   │   — used by the guide —
 │   ├── ai-cloud.png             The AI cloud character
 │   ├── brain-circuit.png        Chapter illustration
-│   ├── world-map.svg            "Where we are" map
+│   ├── world-map.svg            World map in the guide
 │   ├── gang-*.jpg               The eight kids + the professor line-up
 │   ├── prof-*.jpg               Professor portraits
 │   ├── katerina-quiz.jpg        Quiz host photo

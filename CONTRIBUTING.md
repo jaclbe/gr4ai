@@ -48,7 +48,7 @@ Stop the server with `Ctrl+C` when you're done.
 
 Each page holds everything it needs: the markup, the CSS (in a `<style>` block in the `<head>`), and the JavaScript (in a `<script>` block near the bottom). There are no separate `.css` or `.js` files to hunt for.
 
-`about.html` is organized into sections you can jump to with the in-page nav: `#why`, `#book`, `#chapters`, `#promise`, `#where`, `#team`, `#contact`.
+`about.html` is organized into sections you can jump to with the in-page nav: `#why`, `#book`, `#chapters`, `#promise`, `#team`, `#contact`.
 
 The guides (`index.html`, `guide-de.html`) are organized by chapter: `#ch1` through `#ch15`, then `#guide-gallery`, `#guide-glossary`, `#guide-final-quiz` and `#guide-farewell`. Search for those `id`s to find the right block.
 
@@ -72,9 +72,6 @@ Illustrations for the guide's flip cards (`daily-*`, `career-*`, `study-*`) are 
 
 **Add a team member**
 In `about.html`, find the `team-grid` section. Copy one existing `<article class="member ...">` block, then update the image `src`, name, role, bio, and the follower chip. The class letters `a` through `e` map to coloured fallback backgrounds (pink, yellow, green, blue, purple) that show if the photo fails to load.
-
-**Update the timeline**
-In `about.html`, find the `timeline` section. Each `<div class="timeline-row">` is one milestone. Add the `done` class to a row to strike the title through and show a green check.
 
 More recipes are in [DEPLOYMENT.md](DEPLOYMENT.md#common-tasks).
 

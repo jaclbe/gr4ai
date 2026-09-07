@@ -229,15 +229,6 @@
   .btn-cta:hover .arrow{ transform: translateX(5px); }
   .btn-cta:active{ transform: translate(0,0); box-shadow: 3px 3px 0 var(--ink); }
   .hero-cta{ margin-top: 28px; }
-  .where-cta{
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    text-align: center;
-  }
-  .where-cta p{ margin: 0; font-size: 16px; color: var(--ink-soft); font-weight: 600; }
 
   /* Image collage built from the four panels */
   .collage{
@@ -520,98 +511,6 @@
     border: 1.5px solid var(--ink);
   }
 
-  /* ---------- Where we are / Timeline ---------- */
-  .where{ background: var(--bg-deep); }
-  .where-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-  }
-  @media (max-width: 900px){ .where-grid{ grid-template-columns: 1fr; } }
-  .where-card{
-    background: var(--paper);
-    border: 2px solid var(--ink);
-    border-radius: var(--radius);
-    padding: 32px;
-    box-shadow: 8px 8px 0 var(--green);
-  }
-  .where-card.b{ box-shadow: 8px 8px 0 var(--purple); }
-  .where-card h3{
-    font-family: "Fraunces", serif;
-    font-weight: 800;
-    font-size: 26px;
-    margin: 0 0 14px;
-    letter-spacing: -0.01em;
-  }
-  .where-card ul{
-    margin: 0; padding-left: 0; list-style: none;
-  }
-  .where-card li{
-    position: relative; padding: 12px 0 12px 30px;
-    border-top: 1px dashed rgba(20,23,26,0.18);
-    font-size: 15.5px;
-    color: var(--ink-soft);
-  }
-  .where-card li:first-child{ border-top: 0; }
-  .where-card li::before{
-    content: ""; position: absolute; left: 0; top: 18px;
-    width: 18px; height: 12px;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'><path d='M1 7 L7 11 L17 1' fill='none' stroke='%2315171A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
-  }
-
-  .timeline{
-    margin-top: 36px;
-    background: var(--paper);
-    border: 2px solid var(--ink);
-    border-radius: var(--radius);
-    padding: 0;
-    overflow: hidden;
-    box-shadow: 8px 8px 0 var(--ink);
-  }
-  .timeline-head{
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    padding: 14px 22px;
-    background: var(--ink);
-    color: var(--bg);
-    font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .timeline-row{
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    padding: 14px 22px;
-    border-top: 1px dashed rgba(20,23,26,0.18);
-    align-items: center;
-  }
-  .timeline-row:first-of-type{ border-top: 0; }
-  .timeline-row .ms{
-    font-family: "Fraunces", serif;
-    font-weight: 700;
-    font-size: 17px;
-    letter-spacing: -0.01em;
-  }
-  .timeline-row .date{
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .timeline-row .date::before{
-    content:""; width:10px; height:10px; border-radius:50%; background: var(--yellow); border: 1.5px solid var(--ink);
-  }
-  .timeline-row:nth-of-type(2) .date::before{ background: var(--pink); }
-  .timeline-row:nth-of-type(3) .date::before{ background: var(--purple); }
-  .timeline-row:nth-of-type(4) .date::before{ background: var(--blue); }
-  .timeline-row:nth-of-type(5) .date::before{ background: var(--ink); }
-  .timeline-row.done .ms{ color: var(--ink-soft); text-decoration: line-through; text-decoration-thickness: 1.5px; }
-  .timeline-row.done .date{ color: var(--green); font-weight: 700; }
-  .timeline-row.done .date::before{
-    content:""; width:16px; height:12px; border-radius:0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'><path d='M1 7 L7 11 L17 1' fill='none' stroke='%231FA059' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
-    border: 0;
-  }
-
   /* ---------- Contact ---------- */
   .actions{
     padding: 80px 0 0;
@@ -701,7 +600,6 @@
       <a href="#chapters">Chapters</a>
       <a href="#promise">Promise</a>
       <a href="#team">Team</a>
-      <a href="#where">Where we are</a>
       <a href="#contact">Contact</a>
     </nav>
     <span class="hashtag">#GR4AI</span>
@@ -985,76 +883,6 @@
             <span class="follow">77k LinkedIn</span>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Where we are -->
-  <section class="where" id="where">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="kicker">Where we are now</span>
-          <h2>Early R&amp;D. Moving fast, but deliberately.</h2>
-        </div>
-        <p class="intro">A passion project, backed by a team with experience in AI, education, and visual storytelling.</p>
-      </div>
-
-      <div class="where-grid">
-        <div class="where-card">
-          <h3>Right now, we’re focused on:</h3>
-          <ul>
-            <li>Structuring the content and chapters</li>
-            <li>Researching age-appropriate learning methods for complex topics like AI</li>
-            <li>Drafting initial text and visual concepts</li>
-          </ul>
-        </div>
-        <div class="where-card b">
-          <h3>What we’re looking for:</h3>
-          <ul>
-            <li>A publisher to print and distribute the book in English and German</li>
-            <li>Advice on timelines, formats, and educational publishing standards</li>
-            <li>Possibly co-funding or in-kind support (this is a non-profit project)</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline" aria-label="Draft timeline">
-        <div class="timeline-head">
-          <div>Milestone</div>
-          <div>Target date</div>
-        </div>
-        <div class="timeline-row done">
-          <div class="ms">Chapter outlines complete</div>
-          <div class="date">Done</div>
-        </div>
-        <div class="timeline-row">
-          <div class="ms">First draft (text + visuals)</div>
-          <div class="date">July 2026</div>
-        </div>
-        <div class="timeline-row">
-          <div class="ms">Feedback &amp; revisions</div>
-          <div class="date">August 2026</div>
-        </div>
-        <div class="timeline-row">
-          <div class="ms">Final manuscript + layout</div>
-          <div class="date">September 2026</div>
-        </div>
-        <div class="timeline-row">
-          <div class="ms">Print-ready</div>
-          <div class="date">November 2026</div>
-        </div>
-        <div class="timeline-row">
-          <div class="ms">Launch (print &amp; digital)</div>
-          <div class="date">December 2026 / January 2027</div>
-        </div>
-      </div>
-
-      <div class="where-cta">
-        <p>Check out the interactive guide here.</p>
-        <a href="index.html" class="btn-cta">
-          Let's get started! <span class="arrow" aria-hidden="true">→</span>
-        </a>
       </div>
     </div>
   </section>

@@ -95,10 +95,6 @@ Auto-handled by Netlify. They request a Let's Encrypt certificate once DNS is ve
 
 Delete the whole `<article class="member ...">` block, fix the heading count, commit, push, deploy.
 
-### Update the timeline
-
-Find the `timeline` section. Each `<div class="timeline-row">` is one milestone with a `.ms` title and `.date`. Add a `done` class to completed rows (strikes the title, shows a green check).
-
 ---
 
 ## Contact form (Web3Forms)
