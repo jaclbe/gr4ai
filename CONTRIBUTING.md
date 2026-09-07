@@ -6,10 +6,11 @@ There are four pages, and each one is self-contained (markup, CSS and JS all in 
 
 - `index.html` — the interactive guide in English. **This is the homepage.**
 - `guide-de.html` — the same guide in German.
+- `guide-fr.html` — the same guide in French.
 - `about.html` — the project page: why the book exists, the chapters, the team, the contact form.
 - `guide.html` — a redirect stub that sends old `/guide.html` links to `/`.
 
-Anything you change in the English guide almost always needs the same change in `guide-de.html`.
+Anything you change in the English guide almost always needs the same change in `guide-de.html` and `guide-fr.html`.
 
 ---
 
@@ -50,9 +51,11 @@ Each page holds everything it needs: the markup, the CSS (in a `<style>` block i
 
 `about.html` is organized into sections you can jump to with the in-page nav: `#why`, `#book`, `#chapters`, `#promise`, `#team`, `#contact`.
 
-The guides (`index.html`, `guide-de.html`) are organized by chapter: `#ch1` through `#ch15`, then `#guide-gallery`, `#guide-glossary`, `#guide-final-quiz` and `#guide-farewell`. Search for those `id`s to find the right block.
+The guides (`index.html`, `guide-de.html`, `guide-fr.html`) are organized by chapter: `#ch1` through `#ch15`, then `#guide-gallery`, `#guide-glossary`, `#guide-final-quiz` and `#guide-farewell`. Search for those `id`s to find the right block.
 
-**Editing the guide?** Make the change in `index.html` and the matching change in `guide-de.html`. The two files share the same structure and ids, so a diff between them should only ever show language.
+**Editing the guide?** Make the change in `index.html` and the matching change in `guide-de.html` and `guide-fr.html`. The three files share the same structure and ids, so a diff between them should only ever show language.
+
+The translated text lives in three places in each file: the markup, a handful of `alt` / `aria-label` attributes, and — near the bottom of the `<script>` block — the `FINAL_QUIZ_QUESTIONS` array plus the three result strings that build the score line and the review list. Miss the script block and the final quiz silently reverts to English.
 
 A few common edits:
 

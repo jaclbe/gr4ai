@@ -22,7 +22,7 @@ Everything about how gr4ai.org is hosted, deployed, and kept alive. If you're ju
 
 The repo is flat: the HTML pages and `assets/` live at the root, and the whole folder is the GitHub repo. There's no separate `dist/` build folder. What's at the root is what gets deployed.
 
-The pages are `index.html` (the interactive guide, EN — the homepage), `guide-de.html` (the guide, DE), `about.html` (the project page, book, team and contact form) and `guide.html` (a redirect stub → `/`, kept so links shared before the guide moved to the homepage still work). `_redirects` carries the same rule at the Netlify level.
+The pages are `index.html` (the interactive guide, EN — the homepage), `guide-de.html` (the guide, DE), `guide-fr.html` (the guide, FR), `about.html` (the project page, book, team and contact form) and `guide.html` (a redirect stub → `/`, kept so links shared before the guide moved to the homepage still work). `_redirects` carries the same rule at the Netlify level.
 
 The current deploy is **manual drag-drop** to Netlify:
 
@@ -67,7 +67,7 @@ Auto-handled by Netlify. They request a Let's Encrypt certificate once DNS is ve
 
 ### Change text or fix a typo
 
-1. Open the page (`index.html`, `guide-de.html` or `about.html`), find the text, change it, save. A change to the English guide usually needs the same change in `guide-de.html`.
+1. Open the page (`index.html`, `guide-de.html`, `guide-fr.html` or `about.html`), find the text, change it, save. A change to the English guide usually needs the same change in `guide-de.html` and `guide-fr.html`.
 2. Test locally: `python3 -m http.server 4173`, then open <http://localhost:4173>.
 3. Back up: `git add . && git commit -m "Fix typo" && git push origin main`.
 4. Deploy: drag the project folder onto Netlify's Deploys page. ~30s later it's live. (Or skip this step entirely once auto-deploy is on.)

@@ -14,11 +14,12 @@ Static site. No framework, no build step, no backend — just HTML files, a fold
 |---|---|---|
 | `index.html` | **The interactive guide (English).** This is the homepage — 15 chapters, quizzes, flip cards, a glossary and a final quiz. | `gr4ai.org/` |
 | `guide-de.html` | The same guide in German. | `gr4ai.org/guide-de.html` |
+| `guide-fr.html` | The same guide in French. | `gr4ai.org/guide-fr.html` |
 | `about.html` | The project page: why the book exists, the chapters, the team and the contact form. | `gr4ai.org/about.html` |
 | `guide.html` | Redirect stub. The guide used to live here; it now sends visitors to `/` so older links and shares keep working. | `gr4ai.org/guide.html` |
 | `_redirects` | Netlify redirect rules (`/guide.html` and `/guide` → `/`). | — |
 
-The two guides link to each other through the EN/DE switch in the header, and both link back to `about.html` for the book, the team and the contact form.
+The three guides link to each other through the EN/DE/FR switch in the header, and all of them link back to `about.html` for the book, the team and the contact form.
 
 ---
 
@@ -28,6 +29,7 @@ The two guides link to each other through the EN/DE switch in the header, and bo
 gr4ai/
 ├── index.html              The interactive guide (EN) — the homepage.
 ├── guide-de.html           The interactive guide (DE).
+├── guide-fr.html           The interactive guide (FR).
 ├── about.html              The project page: book, chapters, team, contact.
 ├── guide.html              Redirect stub → /
 ├── _redirects              Netlify redirect rules.
