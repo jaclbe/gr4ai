@@ -2038,6 +2038,139 @@
   }
   footer.site a{ color: var(--ink); text-decoration: none; margin-left: 18px; }
   footer.site a:hover{ text-decoration: underline; }
+
+  /* ==========================================================
+     Mobile polish
+     Appended last so these rules win over the base styles above.
+     ========================================================== */
+
+  /* Several elements animate in rotated or scaled (the quiz bubbles and
+     photos, the map pins). Their untransformed boxes stick out past the
+     viewport and gave the whole page a sideways scroll on every phone. */
+  html, body{ overflow-x: hidden; }
+  /* `clip` rather than `hidden` where it is supported: `hidden` leaves the
+     page programmatically scrollable, so focusing something near the edge
+     still slid the whole layout sideways. */
+  @supports (overflow: clip){ html, body{ overflow-x: clip; } }
+
+  /* Jumping to a chapter used to land with the heading tucked under the
+     sticky header. */
+  .chapter-block[id]{ scroll-margin-top: 130px; }
+
+  @media (max-width: 760px){
+    /* --- Header -------------------------------------------------------
+       At phone widths the brand, the "About the project" link, the
+       language pill and the #GR4AI chip all wanted the same row: the link
+       wrapped over the logo and the chip pushed the pill off-screen. The
+       chip is decoration, so it goes first. */
+    header.site{ padding-top: 12px; }
+    .nav{ padding-bottom: 12px; gap: 10px; }
+    .brand{ font-size: 19px; gap: 8px; }
+    .brand .dot{ width: 12px; height: 12px; box-shadow: 2px 2px 0 var(--ink); }
+    .menu{ gap: 12px; }
+    .menu a.back{ white-space: nowrap; font-size: 13px; }
+    .lang-switch{ padding: 2px; }
+    .lang-switch a{ min-width: 30px; padding: 5px 8px; font-size: 12px; }
+
+    .chapter-block[id]{ scroll-margin-top: 76px; }
+
+    /* --- Type ---------------------------------------------------------
+       A few labels sat at 11–12.5px, which is small for a 7-to-12 reader. */
+    .kicker{ font-size: 12.5px; }
+    .gang-card p{ font-size: 13px; line-height: 1.4; }
+    .flip-hint{ font-size: 13.5px; }
+
+    /* --- Tap targets --------------------------------------------------
+       The carousel dots are 12px squares; keep them looking that way but
+       give them a finger-sized hit area. */
+    .carousel-dot{ position: relative; }
+    .carousel-dot::after{
+      content: ""; position: absolute; inset: -14px; border-radius: 50%;
+    }
+    .carousel-dots{ gap: 4px; }
+  }
+
+  @media (max-width: 374px){
+    /* Narrow Androids and the small iPhone SE: buy back the last few
+       pixels so the About link and the language pill still share a row. */
+    header.site .wrap{ padding-left: 16px; padding-right: 16px; }
+    .brand{ font-size: 17px; gap: 6px; }
+    .menu{ gap: 8px; }
+    .menu a.back{ font-size: 12px; }
+    .lang-switch a{ min-width: 26px; padding: 5px 6px; font-size: 11.5px; }
+  }
+
+  @media (max-width: 339px){
+    /* Below this the About link cannot fit next to the pill in any
+       language. The hero button and the footer both link there. */
+    .menu a.back{ display: none; }
+  }
+
+  @media (max-width: 880px){
+    /* The #GR4AI chip ran off the right edge anywhere below ~880px, tablets
+       included — it is decoration, so it is the first thing to go. */
+    .hashtag{ display: none; }
+  }
+
+  @media (max-width: 800px){
+    /* --- Physical vs digital ------------------------------------------
+       Stacked one per row, the two column headings ended up as two lone
+       lines above the list. Side by side they read as the legend they are,
+       and the extra gap after each digital card keeps the pairs together. */
+    .compare-headings{ grid-template-columns: 1fr 1fr; gap: 10px; text-align: center; }
+    .compare-headings .compare-digital-h{ grid-column: 2; }
+    .compare-headings h4{ font-size: clamp(17px, 4.6vw, 24px); }
+    .compare-item.is-digital{ margin-bottom: 18px; }
+    /* "Sentences/Words/Numbers" has no break opportunity, so the card's
+       min-content width pushed it off a 320–360px screen. */
+    .compare-item{ grid-template-columns: 38px 1fr; gap: 12px; padding: 12px 14px; }
+    .compare-icon{ font-size: 36px; }
+    .compare-item > div{ min-width: 0; overflow-wrap: anywhere; }
+  }
+
+  @media (max-width: 700px){
+    /* --- World map ----------------------------------------------------
+       The popup is 240px wide and centred on its pin, so pins near either
+       edge opened a card that ran off the screen. On a phone it becomes a
+       sheet pinned to the bottom of the map instead. `transform: none` on
+       the dropped pin is what lets the popup escape it. */
+    .map-pin{ width: 30px; height: 30px; margin: -15px 0 0 -15px; }
+    .map-pin.is-dropped{ transform: none; }
+    .map-popup{
+      position: fixed;
+      left: 14px; right: 14px; bottom: 14px;
+      top: auto; width: auto;
+      transform: translateY(10px);
+      box-shadow: 0 -6px 40px -12px rgba(20,23,26,0.45), 5px 5px 0 var(--ink);
+    }
+    .map-pin:hover .map-popup,
+    .map-pin:focus-visible .map-popup,
+    .map-pin.is-active .map-popup{ transform: translateY(0); }
+    .map-popup img{ aspect-ratio: 16/7; }
+    /* Each section's .wrap is position:relative with z-index:2, which makes it
+       its own stacking context — so the sheet was painted under the section
+       that follows. Lift this one only while a pin is open. */
+    .wrap:has(.map-pin.is-active){ z-index: 60; }
+    .map-popup{ z-index: 60; }
+  }
+
+  @media (max-width: 480px){
+    /* --- Flip cards ---------------------------------------------------
+       Stacking a full-width square image above the text forced every card
+       to a 16/26 box, so the front of each card was mostly empty and six
+       of them made a very long scroll. A narrower centred image buys back
+       roughly a quarter of the height.
+       The ratios below are the tightest that still fit the longest card
+       back in all three languages — French runs longest, which is why the
+       narrow tier exists. Re-check with the longest card if you add copy. */
+    .flip-back.has-image .flip-back-img{ width: 52%; align-self: center; }
+    .flip-back.has-image{ gap: 12px; }
+    .flip-grid.has-image-cards .flip-card{ aspect-ratio: 16/19; }
+  }
+
+  @media (max-width: 343px){
+    .flip-grid.has-image-cards .flip-card{ aspect-ratio: 16/22; }
+  }
 </style>
 </head>
 <body>
@@ -2759,7 +2892,7 @@
       <div class="chapter-intro">
         <span class="chapter-num">06</span>
         <h3>De vraies personnes, de vrais métiers avec l’IA partout dans le monde !</h3>
-        <p>Rencontre 9 professionnels formidables qui utilisent l’IA tous les jours dans leur travail. Passe sur une épingle pour faire leur connaissance.</p>
+        <p>Rencontre 9 professionnels formidables qui utilisent l’IA tous les jours dans leur travail. Touche une épingle – ou survole-la – pour faire leur connaissance.</p>
       </div>
 
       <div class="worldmap-wrap">

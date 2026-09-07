@@ -584,6 +584,26 @@
   }
   footer.site a{ color: var(--ink); text-decoration: none; margin-left: 18px; }
   footer.site a:hover{ text-decoration: underline; }
+
+  /* ==========================================================
+     Mobile polish
+     Appended last so these rules win over the base styles above.
+     ========================================================== */
+
+  html, body{ overflow-x: hidden; }
+  @supports (overflow: clip){ html, body{ overflow-x: clip; } }
+
+  section[id]{ scroll-margin-top: 96px; }
+
+  @media (max-width: 760px){
+    header.site{ padding-top: 12px; }
+    .nav{ padding-bottom: 12px; }
+    section[id]{ scroll-margin-top: 72px; }
+    /* Labels that sat at 11–12px. */
+    .kicker{ font-size: 12.5px; }
+    .specs .label{ font-size: 12px; }
+    .follow{ font-size: 12.5px; }
+  }
 </style>
 </head>
 <body>

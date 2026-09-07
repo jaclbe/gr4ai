@@ -28,3 +28,6 @@ dist.zip
 
 # Clean folder + zip for the Netlify drag-drop deploy (generated, not source)
 /deploy/
+
+# Screenshots the desktop app drops here
+/Claude outputs/
