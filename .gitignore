@@ -25,3 +25,6 @@ dist.zip
 
 # Cowork / local launcher config (machine-specific absolute paths)
 .claude/
+
+# Clean folder + zip for the Netlify drag-drop deploy (generated, not source)
+/deploy/
