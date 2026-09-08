@@ -386,15 +386,77 @@
   @media (prefers-reduced-motion: reduce){
     .glossary-entry:target{ animation: none; background: var(--gold); }
   }
+  /* ---------- Glossary word cards ---------- */
   .glossary-link{
     color: inherit;
     text-decoration: underline;
     text-decoration-style: dotted;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(20,23,26,0.42);
+    text-underline-offset: 4px;
     cursor: pointer;
   }
-  .glossary-link:hover{ text-decoration-style: solid; }
+  .glossary-link:hover,
+  .glossary-link[aria-expanded="true"]{
+    text-decoration-color: var(--ink);
+    text-decoration-thickness: 2px;
+  }
+
+  .glossary-pop{
+    position: fixed;
+    z-index: 200;
+    width: min(320px, calc(100vw - 28px));
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    padding: 16px 18px 18px;
+    box-shadow: 6px 6px 0 var(--ink);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .14s ease, transform .14s ease;
+    text-align: left;
+  }
+  .glossary-pop.is-open{ opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .glossary-pop{ transition: none; transform: none; }
+  }
+  .glossary-pop h4{
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: 18px;
+    margin: 0 34px 6px 0;
+    line-height: 1.2;
+  }
+  .glossary-pop p{
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .glossary-pop-close{
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    background: none; border: 0; padding: 0;
+    font-size: 22px; line-height: 1;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .glossary-pop-close:hover{ background: rgba(20,23,26,0.07); color: var(--ink); }
+
+  @media (max-width: 700px){
+    /* a sheet at the bottom, the same shape the map pins use on a phone */
+    .glossary-pop{
+      width: auto;
+      left: 14px; right: 14px; bottom: 14px; top: auto !important;
+      transform: translateY(10px);
+      box-shadow: 0 -6px 40px -12px rgba(20,23,26,0.45), 5px 5px 0 var(--ink);
+    }
+    .glossary-pop.is-open{ transform: translateY(0); }
+  }
 
   /* ---------- Final Challenge quiz ---------- */
   .final-quiz{
@@ -4157,6 +4219,12 @@
   </div>
 </footer>
 
+<div class="glossary-pop" id="glossaryPop" role="dialog" aria-labelledby="glossaryPopTerm" hidden>
+  <button type="button" class="glossary-pop-close" aria-label="Fermer">&times;</button>
+  <h4 id="glossaryPopTerm"></h4>
+  <p></p>
+</div>
+
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -4844,6 +4912,97 @@
       showScreen('intro');
     });
   })();
-</script>
-</body>
+
+  // Glossary words open a card next to them instead of navigating to the glossary
+  // at the end of the page. The card's text comes from the .glossary-entry with
+  // the matching id, so the glossary stays the only place the wording lives.
+  (function(){
+    const pop = document.getElementById('glossaryPop');
+    if (!pop) return;
+    const termEl  = pop.querySelector('h4');
+    const defEl   = pop.querySelector('p');
+    const closeEl = pop.querySelector('.glossary-pop-close');
+    // only words that actually point at a glossary entry — the same styling is
+    // used on one ordinary link in the parents' note, which must still navigate
+    const links   = Array.from(document.querySelectorAll('a.glossary-link[href^="#glossary-"]'));
+    let current = null;
+
+    function place(){
+      if (!current) return;
+      if (window.matchMedia('(max-width: 700px)').matches) {
+        // bottom sheet: drop the inline offsets so the stylesheet positions it
+        pop.style.left = ''; pop.style.top = '';
+        return;
+      }
+      const r = current.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) { close(); return; }
+      const w = pop.offsetWidth, h = pop.offsetHeight, gap = 10, edge = 12;
+      let left = r.left + r.width / 2 - w / 2;
+      left = Math.max(edge, Math.min(left, window.innerWidth - w - edge));
+      let top = r.bottom + gap;
+      if (top + h > window.innerHeight - edge) {
+        const above = r.top - h - gap;
+        top = above >= edge ? above : Math.max(edge, window.innerHeight - h - edge);
+      }
+      pop.style.left = left + 'px';
+      pop.style.top  = top + 'px';
+    }
+
+    function open(link){
+      const id = (link.getAttribute('href') || '').replace(/^#/, '');
+      const entry = document.getElementById(id);
+      if (!entry) return false;
+      const dt = entry.querySelector('dt'), dd = entry.querySelector('dd');
+      if (!dt || !dd) return false;
+      if (current && current !== link) current.setAttribute('aria-expanded', 'false');
+      current = link;
+      link.setAttribute('aria-expanded', 'true');
+      termEl.textContent = dt.textContent.trim();
+      defEl.textContent  = dd.textContent.trim();
+      pop.hidden = false;
+      pop.style.left = '-9999px';           // measure before placing
+      place();
+      requestAnimationFrame(() => pop.classList.add('is-open'));
+      return true;
+    }
+
+    function close(){
+      if (!current) return;
+      pop.classList.remove('is-open');
+      current.setAttribute('aria-expanded', 'false');
+      const wasOpen = current;
+      current = null;
+      setTimeout(() => { if (!current) pop.hidden = true; }, 150);
+      return wasOpen;
+    }
+
+    links.forEach(link => {
+      link.setAttribute('aria-expanded', 'false');
+      link.addEventListener('click', e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;   // let people open it properly
+        if (current === link) { e.preventDefault(); close(); return; }
+        if (open(link)) e.preventDefault();
+      });
+    });
+
+    closeEl.addEventListener('click', () => { const l = close(); if (l) l.focus(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && current) { const l = close(); if (l) l.focus(); }
+    });
+    document.addEventListener('click', e => {
+      if (!current) return;
+      if (pop.contains(e.target) || e.target.closest('a.glossary-link')) return;
+      close();
+    });
+    let ticking = false;
+    function reposition(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; place(); });
+    }
+    window.addEventListener('scroll', reposition, { passive: true });
+    window.addEventListener('resize', reposition);
+  })();
+
+</script></body>
 </html>
