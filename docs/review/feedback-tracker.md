@@ -91,24 +91,24 @@ Everything marked done is done in **all three languages**.
 
 | # | Item | Status |
 |---|------|--------|
-| 7.1 | "This is Professor Ling again! Did you know that…?" | blocked on 6.4 |
-| 7.2 | "Click a card to flip it over. Click it again to flip it back." | queued |
-| 7.3 | More accurate 5-day forecasts, early flood and hurricane warnings | queued |
-| 7.4 | Make these cards flip like chapter 8's (they currently grow) | queued |
-| 7.5 | Glossary: CO₂, green AI, flu outbreaks, autocorrect | queued |
+| 7.1 | "This is Professor Ling again! Did you know that…?" | on hold with 6.4 |
+| 7.2 | "Click a card to flip it over. Click it again to flip it back." | **done** — "Click a card to flip it over. Click it again to flip it back." |
+| 7.3 | More accurate 5-day forecasts, early flood and hurricane warnings | **done** — "More accurate 5-day weather forecasts… early flood warnings" |
+| 7.4 | Make these cards flip like chapter 8's (they currently grow) | **done** — same flip component as chapter 8 now |
+| 7.5 | Glossary: CO₂, green AI, flu outbreaks, autocorrect | **done** — CO₂, green AI, flu outbreak and autocorrect all defined and linked |
 | 7.6 | An image for green AI — a scale that moves | asset |
 
 ## Chapter 8 — fashion, space and more
 
 | # | Item | Status |
 |---|------|--------|
-| 8.1 | "Fleur again here!" at the start | queued |
-| 8.2 | "Click a card to flip it over. Click it again to flip it back." | queued |
-| 8.3 | Education → "Answers some of your questions — but teachers are always the best ones to help you learn and grow" | queued |
-| 8.4 | Defence → add "but peace can only be achieved through human intelligence" | queued |
-| 8.5 | The 0.1-second scan fact → add "but only humans can understand the patient's history and decide on the diagnosis and treatment" | queued |
-| 8.6 | Glossary: scan, diagnosis, cyber-attacks, deforestation, personalised | queued |
-| 8.7 | Katerina: "one more question for you!" | queued |
+| 8.1 | "Fleur again here!" at the start | **done** — Fleur opens the chapter, and the photo is hers (it was Nallah's) |
+| 8.2 | "Click a card to flip it over. Click it again to flip it back." | **done** |
+| 8.3 | Education → "Answers some of your questions — but teachers are always the best ones to help you learn and grow" | **done** — "Answers some of your questions", plus "Teachers are still the best ones to help you learn and grow" |
+| 8.4 | Defence → add "but peace can only be achieved through human intelligence" | **done** — "But only people can make peace" |
+| 8.5 | The 0.1-second scan fact → add "but only humans can understand the patient's history and decide on the diagnosis and treatment" | **done** — the answer now ends with what only a doctor can do: put the scan together with the patient's history and decide the diagnosis and treatment |
+| 8.6 | Glossary: scan, diagnosis, cyber-attacks, deforestation, personalised | **done** — scan, diagnosis, cyber attack, deforestation and personalised |
+| 8.7 | Katerina: "one more question for you!" | **done** |
 
 ## Chapter 9 — the good side
 
