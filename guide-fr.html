@@ -1217,27 +1217,45 @@
   .hype-box p:last-child{ margin-bottom: 0; }
   .flow-diagram{
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 14px;
     margin-bottom: 18px;
   }
   .flow-step{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: var(--purple);
     color: #fff;
     font-weight: 700;
     font-size: 13px;
     letter-spacing: 0.06em;
-    padding: 10px 18px;
+    padding: 13px 22px;
     border-radius: 999px;
+    text-align: center;
   }
   .flow-arrow{
     display: inline-block;
+    align-self: center;
     color: #fff;
     font-weight: 700;
     font-size: 20px;
     animation: flow-slide 1.2s ease-in-out infinite;
+  }
+  /* the chain reads as a list on a phone, so no arrow is ever stranded at the
+     end of a wrapped line */
+  @media (min-width: 761px){
+    /* one line per label above phone width, so no chip breaks in half */
+    .flow-step{ white-space: nowrap; }
+    .flow-step small{ white-space: normal; }
+  }
+  @media (max-width: 760px){
+    .flow-diagram{ flex-direction: column; gap: 8px; }
+    .flow-step{ width: 100%; max-width: 320px; }
+    .flow-arrow{ transform: rotate(90deg); animation: none; font-size: 17px; }
   }
   @keyframes flow-slide{
     0%, 100%{ transform: translateX(0); opacity: 0.6; }
@@ -1258,7 +1276,7 @@
     background: var(--jet);
     color: #fff;
     border-radius: var(--radius);
-    padding: 26px 30px;
+    padding: 32px 34px 34px;
     margin-top: 56px;
   }
   .neural-box h4{
@@ -2263,8 +2281,16 @@
     font-size: 11.5px;
     letter-spacing: 0;
     text-transform: none;
-    opacity: .78;
-    margin-top: 2px;
+    opacity: .85;
+    margin-top: 5px;
+  }
+  /* the sentence under a diagram is a caption, not body copy */
+  .neural-box p.flow-caption{
+    margin: 26px 0 0;
+    max-width: 62ch;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
   }
 
   /* ---------- Dedication ---------- */
@@ -2782,11 +2808,11 @@
           </figure>
         </div>
         <div class="flow-diagram">
-          <span class="flow-step">COUCHE D’ENTRÉE</span>
+          <span class="flow-step"><span class="flow-label">COUCHE D’ENTRÉE</span></span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step">COUCHES CACHÉES</span>
+          <span class="flow-step"><span class="flow-label">COUCHES CACHÉES</span></span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step">COUCHE DE SORTIE</span>
+          <span class="flow-step"><span class="flow-label">COUCHE DE SORTIE</span></span>
         </div>
         <p style="margin-top:16px">Plus il y a de couches = apprentissage plus profond = « DEEP LEARNING », le type d’IA le plus puissant aujourd’hui !</p>
       </div>
@@ -2874,13 +2900,13 @@
       <div class="neural-box">
         <h4>Comment nous parlons aux ordinateurs :</h4>
         <div class="flow-diagram">
-          <span class="flow-step" style="background:var(--pink); color:var(--ink)">Langage humain<small>images, mots, textes, sons</small></span>
+          <span class="flow-step" style="background:var(--pink); color:var(--ink)"><span class="flow-label">Langage humain</span><small>images, mots, textes, sons</small></span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step" style="background:var(--teal); color:var(--ink)">Code de programmation</span>
+          <span class="flow-step" style="background:var(--teal); color:var(--ink)"><span class="flow-label">Code de programmation</span></span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step" style="background:var(--green); color:var(--ink)"><a href="#glossary-binary" class="glossary-link">Binaire</a> (des 0 et des 1)</span>
+          <span class="flow-step" style="background:var(--green); color:var(--ink)"><span class="flow-label"><a href="#glossary-binary" class="glossary-link">Binaire</a> (des 0 et des 1)</span></span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step" style="background:var(--orange); color:var(--ink)">Le courant passe ou ne passe pas</span>
+          <span class="flow-step" style="background:var(--orange); color:var(--ink)"><span class="flow-label">Le courant passe ou ne passe pas</span></span>
         </div>
         <p class="flow-caption">Chaque flèche veut dire <strong>« se transforme en »</strong>. Ce que tu dis se transforme en code, le code en 0 et en 1, et les 0 et les 1 en petites impulsions de courant — allumé, éteint, allumé, éteint.</p>
       </div>
