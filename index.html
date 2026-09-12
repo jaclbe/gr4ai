@@ -2266,6 +2266,47 @@
     opacity: .78;
     margin-top: 2px;
   }
+
+  /* ---------- Dedication ---------- */
+  .dedication{ background: var(--paper); padding: 56px 0 48px; }
+  .dedication .wrap{ max-width: 780px; text-align: center; }
+  .dedication-kicker{
+    font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 14px;
+  }
+  .dedication-text{
+    font-family: "Fraunces", serif; font-weight: 600;
+    font-size: clamp(18px, 2.4vw, 22px); line-height: 1.5;
+    color: var(--ink); margin: 0; text-wrap: balance;
+  }
+
+  /* ---------- Before you begin ---------- */
+  .before-start{ background: var(--paper); padding: 48px 0 8px; }
+  .cloud-intro{
+    display: grid; grid-template-columns: minmax(150px, 230px) 1fr;
+    gap: 10px; align-items: center; max-width: 780px; margin: 0 auto 32px;
+  }
+  .cloud-intro img{
+    width: 100%; height: auto;
+    animation: quiz-cloud-float 4.5s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce){ .cloud-intro img{ animation: none; } }
+  .cloud-intro-bubble{
+    position: relative; background: var(--paper); border: 3px solid var(--blue);
+    border-radius: 20px; padding: 18px 22px;
+  }
+  .cloud-intro-bubble::after{
+    content: ""; position: absolute; left: -14px; top: 50%; margin-top: -12px;
+    width: 0; height: 0; border: 12px solid transparent;
+    border-right-color: var(--blue); border-left: 0;
+  }
+  .cloud-intro-bubble p{ margin: 0; font-size: 17px; line-height: 1.5; }
+  @media (max-width: 560px){
+    .cloud-intro{ grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 0; }
+    .cloud-intro-bubble::after{ display: none; }
+  }
+  .before-start .info-callout{ max-width: 780px; margin-left: auto; margin-right: auto; }
+  .thanks-names{ max-width: 780px; margin: 0 0 8px; font-size: 17px; line-height: 1.6; color: var(--ink-soft); }
 </style>
 </head>
 <body>
@@ -2317,6 +2358,14 @@
       <a href="about.html" class="btn-cta btn-cta-teal">
         About the project &amp; team <span class="arrow" aria-hidden="true">→</span>
       </a>
+    </div>
+  </section>
+
+  <!-- Dedication -->
+  <section class="dedication">
+    <div class="wrap">
+      <p class="dedication-kicker">Dedication</p>
+      <p class="dedication-text">This book is dedicated to all grandparents — especially grandpa Georgios and grandma Keti — for all the love, the endless stories, the hugs, the fun games, the yummy food and the constant care that makes us all who we are: curious, responsible and kind.</p>
     </div>
   </section>
 
@@ -2378,6 +2427,25 @@
         <img src="assets/gang-prof-5.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <img src="assets/gang-prof-6.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <img src="assets/gang-prof-7.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Before you begin -->
+  <section class="before-start">
+    <div class="wrap">
+      <div class="cloud-intro">
+        <img src="assets/ai-cloud.png" alt="The AI cloud" loading="lazy" decoding="async" />
+        <div class="cloud-intro-bubble">
+          <p><strong>Hi, I’m the AI cloud!</strong> I’ll be with you all the way through this guide — usually popping up when there’s an answer to reveal.</p>
+        </div>
+      </div>
+      <div class="info-callout">
+        <p class="info-callout-kicker"><span class="emoji">🧭</span> How to use this website</p>
+        <p>You can explore this website on your own: scroll, tap, play. But it is even better with a grown-up nearby — a parent, a carer or a teacher. Some of the questions in here are big ones, and big questions are more fun to talk about than to wonder about alone.</p>
+        <p>Every tricky word is explained. If a word has a dotted line under it, tap it and a little card will tell you what it means.</p>
+        <p>To jump straight to a chapter, click the numbers at the top of the screen.</p>
+        <p>This website is free, for everyone.</p>
       </div>
     </div>
   </section>
@@ -2844,7 +2912,7 @@
           <span class="pill pill-red">Hug someone or hold their hand</span>
           <span class="pill pill-red">Raise a baby</span>
           <span class="pill pill-red">Teach people about the difference of "good" and "bad" in difficult situations</span>
-          <span class="pill pill-red">Clean a person</span>
+          <span class="pill pill-red">Help a person cross the street</span>
         </div>
       </div>
 
@@ -2904,6 +2972,15 @@
               </svg>
             </span>
             <p>Creating new toys</p>
+          </div>
+          <div class="help-card">
+            <span class="help-icon" style="background:var(--cyan)" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 1.9l.1.8h4.8l.1-.8c.1-.7.5-1.4 1.1-1.9A6 6 0 0 0 12 3z" />
+                <path d="M9.5 19.5h5M10.5 22h3" />
+              </svg>
+            </span>
+            <p>Developing new ideas</p>
           </div>
           <div class="help-card">
             <span class="help-icon" style="background:var(--jet)" aria-hidden="true">
@@ -2973,6 +3050,7 @@
       <div class="fact-banner" style="background:var(--paper)">
         <p class="fact-banner-kicker"><span class="emoji">👨‍👩‍👧</span> A note for parents &amp; guardians</p>
         <p>Please submit this on your child's behalf. We only ever ask for a first name, age and country — never a last name, email or exact location. Every picture is reviewed by a real person before it appears publicly, so nothing goes live automatically.</p>
+        <p>Please also make sure the photo shows nothing that could identify your child: no faces, no names written on the drawing, no school uniform, no house or street in the background.</p>
         <p style="font-size:13px; margin-top:10px">Want a picture removed? Just <a href="about.html#contact" class="glossary-link">let us know</a>.</p>
       </div>
 
@@ -2991,7 +3069,7 @@
       <div class="chapter-intro">
         <span class="chapter-num">06</span>
         <h3>Real People, Real AI Jobs Around the World!</h3>
-        <p>Meet 8 amazing professionals who use AI every day in their work. Tap or hover a pin to meet them.</p>
+        <p>Meet 8 amazing <a href="#glossary-professionals" class="glossary-link">professionals</a> who use AI every day in their work. Tap or hover a pin to meet them.</p>
       </div>
 
       <div class="worldmap-wrap">
@@ -3011,7 +3089,7 @@
           <span class="map-popup">
             <img src="assets/prof-callaghan.jpg" alt="Prof. Callaghan" loading="lazy" decoding="async" />
             <strong>Prof. Callaghan — Canada · AI &amp; Medicine</strong>
-            <p>Trains AI to read brain scans and spot early signs of Alzheimer's disease.</p>
+            <p>Trains AI to read brain scans and spot early signs of <a href="#glossary-alzheimers" class="glossary-link" onclick="event.stopPropagation()">Alzheimer’s disease</a>.</p>
           </span>
         </button>
 
@@ -4162,13 +4240,17 @@
       </div>
 
       <dl class="glossary-list">
+        <div class="glossary-entry" id="glossary-alzheimers">
+          <dt>Alzheimer’s disease</dt>
+          <dd>An illness that slowly damages the brain, usually in older people, so that remembering and thinking get harder. AI can help doctors spot it earlier.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-artificial-intelligence-ai">
           <dt>Artificial Intelligence (AI)</dt>
           <dd>A type of intelligence created by humans that helps computers learn, think and solve problems — like a very fast, very hardworking digital brain.</dd>
         </div>
         <div class="glossary-entry" id="glossary-bias">
           <dt>Bias</dt>
-          <dd>When AI is unfair to some people, because the examples it learned from were unfair too. The computer never notices — only a human can.</dd>
+          <dd>When AI treats some people unfairly — because of things like their gender, their skin colour, where they come from, their religion or a disability. Usually it is because the examples it learned from were unfair too. The computer never notices; only a human can.</dd>
         </div>
         <div class="glossary-entry" id="glossary-binary">
           <dt>Binary</dt>
@@ -4234,11 +4316,31 @@
           <dt>Privacy</dt>
           <dd>Your right to keep personal information — like your name, address or photos — safe and only shared with people you trust.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-professionals">
+          <dt>Professionals</dt>
+          <dd>People who are trained to do a particular job and are paid for it — a doctor, a pilot, a teacher, an engineer.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-software">
           <dt>Software</dt>
           <dd>The programmes that tell the hardware what to do. You cannot touch software — it is instructions, written as code.</dd>
         </div>
       </dl>
+    </div>
+  </section>
+
+  <section class="chapter-block" id="guide-thanks" style="background:var(--paper)">
+    <div class="wrap">
+      <div class="chapter-intro">
+        <span class="chapter-num"><span class="emoji">💛</span></span>
+        <h3>Thank you</h3>
+        <p>This book exists because a lot of people gave their time to it.</p>
+      </div>
+      <p class="thanks-names">Heath House Preparatory School and its consortium · the NIHR Youth Council · Nicola and Annika · Mr Stathidis · Mr Williams · Mrs Rokakis · Mrs Vatsitsis · Mr Pearce · Dr Tapeinos · Dr Erenstein and his children · Dr Adibi and her children · Mr Vitale and Mrs Rizic and their children · Morgan Stanley.</p>
+      <div class="info-callout">
+        <p class="info-callout-kicker"><span class="emoji">🛠️</span> How this book was made</p>
+        <p>Some of the pictures were made with openart.ai, from a lot of fun prompts by Katerina.</p>
+        <p>Some of the text was drafted with the help of Claude, an AI assistant, to make it clearer and friendlier for younger readers. Every word and every picture was checked by people before it went in.</p>
+      </div>
     </div>
   </section>
 

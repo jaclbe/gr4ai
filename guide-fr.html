@@ -2266,6 +2266,47 @@
     opacity: .78;
     margin-top: 2px;
   }
+
+  /* ---------- Dedication ---------- */
+  .dedication{ background: var(--paper); padding: 56px 0 48px; }
+  .dedication .wrap{ max-width: 780px; text-align: center; }
+  .dedication-kicker{
+    font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 14px;
+  }
+  .dedication-text{
+    font-family: "Fraunces", serif; font-weight: 600;
+    font-size: clamp(18px, 2.4vw, 22px); line-height: 1.5;
+    color: var(--ink); margin: 0; text-wrap: balance;
+  }
+
+  /* ---------- Before you begin ---------- */
+  .before-start{ background: var(--paper); padding: 48px 0 8px; }
+  .cloud-intro{
+    display: grid; grid-template-columns: minmax(150px, 230px) 1fr;
+    gap: 10px; align-items: center; max-width: 780px; margin: 0 auto 32px;
+  }
+  .cloud-intro img{
+    width: 100%; height: auto;
+    animation: quiz-cloud-float 4.5s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce){ .cloud-intro img{ animation: none; } }
+  .cloud-intro-bubble{
+    position: relative; background: var(--paper); border: 3px solid var(--blue);
+    border-radius: 20px; padding: 18px 22px;
+  }
+  .cloud-intro-bubble::after{
+    content: ""; position: absolute; left: -14px; top: 50%; margin-top: -12px;
+    width: 0; height: 0; border: 12px solid transparent;
+    border-right-color: var(--blue); border-left: 0;
+  }
+  .cloud-intro-bubble p{ margin: 0; font-size: 17px; line-height: 1.5; }
+  @media (max-width: 560px){
+    .cloud-intro{ grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 0; }
+    .cloud-intro-bubble::after{ display: none; }
+  }
+  .before-start .info-callout{ max-width: 780px; margin-left: auto; margin-right: auto; }
+  .thanks-names{ max-width: 780px; margin: 0 0 8px; font-size: 17px; line-height: 1.6; color: var(--ink-soft); }
 </style>
 </head>
 <body>
@@ -2317,6 +2358,14 @@
       <a href="about.html" class="btn-cta btn-cta-teal">
         Le projet et l’équipe <span class="arrow" aria-hidden="true">→</span>
       </a>
+    </div>
+  </section>
+
+  <!-- Dedication -->
+  <section class="dedication">
+    <div class="wrap">
+      <p class="dedication-kicker">Dédicace</p>
+      <p class="dedication-text">Ce livre est dédié à tous les grands-parents — et tout particulièrement à papi Georgios et à mamie Keti — pour tout l’amour, les histoires sans fin, les câlins, les jeux rigolos, les bons petits plats et l’attention de tous les jours qui font de nous ce que nous sommes : curieux, responsables et gentils.</p>
     </div>
   </section>
 
@@ -2378,6 +2427,25 @@
         <img src="assets/gang-prof-5.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <img src="assets/gang-prof-6.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <img src="assets/gang-prof-7.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Before you begin -->
+  <section class="before-start">
+    <div class="wrap">
+      <div class="cloud-intro">
+        <img src="assets/ai-cloud.png" alt="Le nuage IA" loading="lazy" decoding="async" />
+        <div class="cloud-intro-bubble">
+          <p><strong>Salut, je suis le nuage IA !</strong> Je t’accompagne tout au long de ce guide — le plus souvent, j’apparais quand il y a une réponse à découvrir.</p>
+        </div>
+      </div>
+      <div class="info-callout">
+        <p class="info-callout-kicker"><span class="emoji">🧭</span> Comment utiliser ce site</p>
+        <p>Tu peux explorer ce site tout seul : fais défiler, touche, essaie. Mais c’est encore mieux avec un adulte à côté de toi — un parent, une personne qui s’occupe de toi, ou ton enseignante ou ton enseignant. Certaines questions ici sont de grandes questions, et les grandes questions, c’est plus chouette d’en parler que d’y réfléchir tout seul.</p>
+        <p>Tous les mots difficiles sont expliqués. Si un mot est souligné en pointillés, touche-le : une petite carte t’explique ce qu’il veut dire.</p>
+        <p>Pour aller directement à un chapitre, clique sur les numéros en haut de l’écran.</p>
+        <p>Ce site est gratuit, pour tout le monde.</p>
       </div>
     </div>
   </section>
@@ -2844,7 +2912,7 @@
           <span class="pill pill-red">Faire un câlin ou tenir la main</span>
           <span class="pill pill-red">Élever un bébé</span>
           <span class="pill pill-red">Apprendre aux gens la différence entre « bien » et « mal » dans des situations difficiles</span>
-          <span class="pill pill-red">Laver quelqu’un</span>
+          <span class="pill pill-red">Aider quelqu’un à traverser la rue</span>
         </div>
       </div>
 
@@ -2904,6 +2972,15 @@
               </svg>
             </span>
             <p>Créer de nouveaux jouets</p>
+          </div>
+          <div class="help-card">
+            <span class="help-icon" style="background:var(--cyan)" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 1.9l.1.8h4.8l.1-.8c.1-.7.5-1.4 1.1-1.9A6 6 0 0 0 12 3z" />
+                <path d="M9.5 19.5h5M10.5 22h3" />
+              </svg>
+            </span>
+            <p>Inventer des idées nouvelles</p>
           </div>
           <div class="help-card">
             <span class="help-icon" style="background:var(--jet)" aria-hidden="true">
@@ -2973,6 +3050,7 @@
       <div class="fact-banner" style="background:var(--paper)">
         <p class="fact-banner-kicker"><span class="emoji">👨‍👩‍👧</span> Un mot pour les parents et les responsables</p>
         <p>Merci d’envoyer l’image au nom de votre enfant. Nous ne demandons jamais qu’un prénom, un âge et un pays — jamais de nom de famille, d’adresse e-mail ni de localisation précise. Chaque image est vérifiée par une personne avant d’être publiée : rien ne paraît automatiquement.</p>
+        <p>Merci de vérifier aussi que la photo ne montre rien qui permette de reconnaître votre enfant : pas de visage, pas de nom écrit sur le dessin, pas d’uniforme d’école, ni maison ni rue à l’arrière-plan.</p>
         <p style="font-size:13px; margin-top:10px">Vous souhaitez qu’une image soit retirée ? Il suffit de <a href="about.html#contact" class="glossary-link">nous le dire</a>.</p>
       </div>
 
@@ -2991,7 +3069,7 @@
       <div class="chapter-intro">
         <span class="chapter-num">06</span>
         <h3>De vraies personnes, de vrais métiers avec l’IA partout dans le monde !</h3>
-        <p>Rencontre 8 professionnels formidables qui utilisent l’IA tous les jours dans leur travail. Touche un point de la carte pour découvrir la personne qui travaille là-bas.</p>
+        <p>Rencontre 8 <a href="#glossary-professionals" class="glossary-link">professionnels</a> formidables qui utilisent l’IA tous les jours dans leur travail. Touche un point de la carte pour découvrir la personne qui travaille là-bas.</p>
       </div>
 
       <div class="worldmap-wrap">
@@ -3011,7 +3089,7 @@
           <span class="map-popup">
             <img src="assets/prof-callaghan.jpg" alt="Prof. Callaghan" loading="lazy" decoding="async" />
             <strong>Prof. Callaghan — Canada · IA et médecine</strong>
-            <p>Entraîne des IA à lire les images du cerveau et à repérer les premiers signes de la maladie d’Alzheimer.</p>
+            <p>Entraîne des IA à lire les images du cerveau et à repérer les premiers signes de la <a href="#glossary-alzheimers" class="glossary-link" onclick="event.stopPropagation()">maladie d’Alzheimer</a>.</p>
           </span>
         </button>
 
@@ -4168,7 +4246,7 @@
         </div>
         <div class="glossary-entry" id="glossary-bias">
           <dt>Biais</dt>
-          <dd>Quand une IA traite certaines personnes de façon injuste, parce que les exemples dont elle a appris étaient déjà injustes. L’ordinateur ne s’en rend pas compte : seul un humain peut le voir.</dd>
+          <dd>Quand une IA traite certaines personnes de façon injuste — à cause de leur genre, de leur couleur de peau, de leur origine, de leur religion ou d’un handicap. Le plus souvent, c’est parce que les exemples dont elle a appris étaient déjà injustes. L’ordinateur ne s’en rend pas compte : seul un humain peut le voir.</dd>
         </div>
         <div class="glossary-entry" id="glossary-binary">
           <dt>Binaire</dt>
@@ -4210,6 +4288,10 @@
           <dt>Logiciel (software)</dt>
           <dd>Les programmes qui disent au matériel quoi faire. Un logiciel ne se touche pas : ce sont des instructions, écrites sous forme de code.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-alzheimers">
+          <dt>Maladie d’Alzheimer</dt>
+          <dd>Une maladie qui abîme lentement le cerveau, le plus souvent chez les personnes âgées : se souvenir et réfléchir deviennent de plus en plus difficiles. L’IA peut aider les médecins à la repérer plus tôt.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-hardware">
           <dt>Matériel (hardware)</dt>
           <dd>Les parties d’un ordinateur que tu peux toucher : l’écran, le clavier, les puces à l’intérieur.</dd>
@@ -4226,6 +4308,10 @@
           <dt>Paramètres</dt>
           <dd>Les petits boutons de réglage à l’intérieur d’une IA, qu’elle ajuste pendant qu’elle apprend. Une grande IA en a des milliards, tournés chacun d’un tout petit peu jusqu’à ce que les réponses soient justes.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-professionals">
+          <dt>Professionnels</dt>
+          <dd>Des personnes formées pour faire un métier précis et payées pour cela : une médecin, un pilote, une enseignante, un ingénieur.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-humanities">
           <dt>Sciences humaines</dt>
           <dd>Des matières comme l’histoire, l’éthique et la philosophie, qui nous aident à comprendre les gens, la société et la différence entre le bien et le mal — des compétences que l’IA ne sait toujours pas vraiment remplacer.</dd>
@@ -4239,6 +4325,22 @@
           <dd>Ton droit à garder tes informations personnelles — comme ton nom, ton adresse ou tes photos — à l’abri, et à ne les partager qu’avec des personnes de confiance.</dd>
         </div>
       </dl>
+    </div>
+  </section>
+
+  <section class="chapter-block" id="guide-thanks" style="background:var(--paper)">
+    <div class="wrap">
+      <div class="chapter-intro">
+        <span class="chapter-num"><span class="emoji">💛</span></span>
+        <h3>Merci</h3>
+        <p>Ce livre existe parce que beaucoup de gens lui ont donné de leur temps.</p>
+      </div>
+      <p class="thanks-names">Heath House Preparatory School et son groupement · le NIHR Youth Council · Nicola et Annika · M. Stathidis · M. Williams · Mme Rokakis · Mme Vatsitsis · M. Pearce · Dr Tapeinos · Dr Erenstein et ses enfants · Dr Adibi et ses enfants · M. Vitale et Mme Rizic et leurs enfants · Morgan Stanley.</p>
+      <div class="info-callout">
+        <p class="info-callout-kicker"><span class="emoji">🛠️</span> Comment ce livre a été fait</p>
+        <p>Certaines images ont été créées avec openart.ai, à partir de plein de prompts rigolos de Katerina.</p>
+        <p>Certains textes ont été écrits avec l’aide de Claude, un assistant IA, pour qu’ils soient plus clairs et plus sympas pour les jeunes lecteurs et lectrices. Chaque mot et chaque image ont été vérifiés par des humains avant d’arriver ici.</p>
+      </div>
     </div>
   </section>
 
