@@ -2392,6 +2392,16 @@
     font-weight: 700;
     color: var(--ink-soft);
   }
+
+  .card-img-todo{
+    width: min(320px, 40%);
+    aspect-ratio: 1/1;
+    margin: 0 0 20px;
+    border-radius: 12px;
+  }
+  #ch12 .career-grid{ grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px){ #ch12 .career-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px){ #ch12 .career-grid{ grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -3840,11 +3850,13 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo teal" src="assets/gang-nallah.jpg" alt="Nallah" loading="lazy" decoding="async" />
         <div class="quiz-bubble teal">
+          <p><strong>Je m’appelle Nallah, et je veux te parler du métier que tu feras peut-être un jour !</strong></p>
+          <p>Beaucoup d’adultes ont peur que l’IA leur prenne leur travail.</p>
           <p>Les métiers de demain n’ont même pas encore été inventés ! Mais on sait qu’ils auront à voir avec l’IA. Voici des carrières passionnantes qui T’attendent !</p>
         </div>
       </div>
 
-      <p class="career-hint">↕ Continue à faire défiler pour parcourir les 8 métiers</p>
+      <p class="career-hint">↕ Continue à faire défiler pour parcourir les 9 métiers</p>
       <div class="career-stack" style="height: 3100px">
         <div class="career-stack-sticky">
         <div class="career-grid">
@@ -3941,8 +3953,25 @@
               <div class="career-card-back" style="background:var(--jet); color:#fff">
                 <img class="career-card-img" src="assets/career-ai-artist.jpg" alt="Illustration : artiste avec l’IA" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
                 <h4>Artiste avec l’IA</h4>
-                <p>Mêle la créativité humaine et les outils d’IA pour créer des œuvres, des musiques et des histoires à couper le souffle.</p>
+                <p>Mêle la <a href="#glossary-creativity" class="glossary-link" onclick="event.stopPropagation()">créativité</a> humaine et les outils d’IA pour créer des œuvres, des musiques et des histoires à couper le souffle.</p>
                 <p class="career-study">À étudier : arts + informatique créative</p>
+              </div>
+            </div>
+          </div>
+          <div class="career-card" data-index="8">
+            <div class="career-card-inner">
+              <div class="career-card-front" style="background:var(--cyan)">
+                <span class="emoji">🏦</span>
+                <h4>Banquier ou banquière IA</h4>
+              </div>
+              <div class="career-card-back" style="background:var(--cyan)">
+                <figure class="img-placeholder card-img-todo">
+                  <span class="emoji" aria-hidden="true">🏦</span>
+                  <span>Illustration : banque IA — image à venir</span>
+                </figure>
+                <h4>Banquier ou banquière IA</h4>
+                <p>Construit des IA qui repèrent une carte volée en une fraction de seconde et protègent l’argent des gens.</p>
+                <p class="career-study">À étudier : maths + économie + informatique</p>
               </div>
             </div>
           </div>
@@ -3975,8 +4004,9 @@
       </div>
 
       <div class="explain-card quiz-card">
-        <img class="quiz-photo" src="assets/gang-katerina.jpg" alt="Katerina" loading="lazy" decoding="async" />
+        <img class="quiz-photo" src="assets/gang-rebecca.jpg" alt="Rebecca" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Salut, c’est encore Rebecca !</strong></p>
           <p>Tu n’as pas à décider MAINTENANT — mais il n’est jamais trop tôt pour développer de belles compétences ! Voici ce qui t’aidera à travailler avec l’IA.</p>
         </div>
       </div>
@@ -4044,7 +4074,39 @@
             <div class="career-card-back" style="background:var(--gold)">
               <img class="career-card-img" src="assets/study-art-design.jpg" alt="Illustration sur les arts et le design" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
               <h4>Arts et design</h4>
-              <p>Pensée créative, résolution visuelle de problèmes, design d’interfaces, art et musique par IA.</p>
+              <p>Pensée créative, résolution visuelle de problèmes, <a href="#glossary-ui-ux-design" class="glossary-link" onclick="event.stopPropagation()">design d’interfaces</a>, art et musique par IA.</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-card is-dealt" data-index="6">
+          <div class="career-card-inner">
+            <div class="career-card-front" style="background:var(--coral)">
+              <span class="emoji">📈</span>
+              <h4>Économie</h4>
+            </div>
+            <div class="career-card-back" style="background:var(--coral)">
+              <figure class="img-placeholder card-img-todo">
+                <span class="emoji" aria-hidden="true">📈</span>
+                <span>Illustration : économie — image à venir</span>
+              </figure>
+              <h4>Économie</h4>
+              <p>Comment l’argent, le travail et les prix s’articulent : microéconomie, macroéconomie, théories économiques et mathématiques appliquées.</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-card is-dealt" data-index="7">
+          <div class="career-card-inner">
+            <div class="career-card-front" style="background:var(--teal)">
+              <span class="emoji">🧩</span>
+              <h4>Psychologie</h4>
+            </div>
+            <div class="career-card-back" style="background:var(--teal)">
+              <figure class="img-placeholder card-img-todo">
+                <span class="emoji" aria-hidden="true">🧩</span>
+                <span>Illustration : psychologie — image à venir</span>
+              </figure>
+              <h4>Psychologie</h4>
+              <p>Pourquoi les gens font ce qu’ils font : la motivation, la façon dont on décide, le comportement des foules et l’aide en situation de crise.</p>
             </div>
           </div>
         </div>
@@ -4103,6 +4165,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo teal" src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
         <div class="quiz-bubble teal">
+          <p><strong>C’est encore Anish, pour quelques dernières réflexions !</strong></p>
           <p>L’avenir avec l’IA pourrait être absolument incroyable — mais seulement si NOUS faisons dès maintenant les bons choix sur la façon de l’utiliser de manière responsable.</p>
         </div>
       </div>
@@ -4111,7 +4174,16 @@
         <button type="button" class="carousel-arrow carousel-arrow-left" aria-label="Carte précédente">‹</button>
         <div class="carousel-viewport">
           <div class="carousel-track">
-            <div class="concept-card" style="background:var(--jet); color:#fff">
+            <div class="concept-card" style="background:var(--green)">
+              <h4><span class="emoji">♻️</span> Écologie</h4>
+              <ul>
+                <li>Des économies durables</li>
+                <li>Des centres de données économes en énergie</li>
+                <li>Reboiser là où c’est nécessaire</li>
+                <li>Mieux recycler</li>
+              </ul>
+            </div>
+                        <div class="concept-card" style="background:var(--jet); color:#fff">
               <h4><span class="emoji">✈️</span> Aviation</h4>
               <ul>
                 <li>Des copilotes IA pour des vols plus sûrs</li>
@@ -4125,7 +4197,7 @@
               <ul>
                 <li>Modélisation du climat en temps réel</li>
                 <li>IA pour capter le carbone</li>
-                <li>Réseaux électriques intelligents</li>
+                <li><a href="#glossary-power-grid" class="glossary-link">Réseaux électriques</a> intelligents</li>
                 <li>Prévision des phénomènes extrêmes</li>
               </ul>
             </div>
@@ -4135,7 +4207,7 @@
                 <li>Alertes précoces en cas de pandémie</li>
                 <li>Traitements du cancer sur mesure</li>
                 <li>Vaccins conçus par IA en quelques jours</li>
-                <li>Robots d’écoute pour la santé mentale</li>
+                <li><a href="#glossary-bot" class="glossary-link">Robots</a> d’écoute pour la santé mentale</li>
               </ul>
             </div>
             <div class="concept-card" style="background:var(--gold)">
@@ -4200,7 +4272,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Réponse</strong>
-            <p>Les scientifiques pensent que l’IA pourrait nous aider à éliminer le paludisme, à réduire fortement la faim dans le monde et à freiner nettement le changement climatique, et tout ça pendant TA vie. L’avenir est entre TES mains — et l’IA est ton outil !</p>
+            <p>Les scientifiques pensent que l’IA pourrait nous aider à éliminer le <a href="#glossary-malaria" class="glossary-link">paludisme</a>, à réduire fortement la faim dans le monde et à freiner nettement le changement climatique, et tout ça pendant TA vie. L’avenir est entre TES mains — et l’IA est ton outil !</p>
           </div>
         </div>
       </div>
@@ -4241,14 +4313,14 @@
           <div class="principle-blob" style="background:var(--green)">
             <span class="emoji">📚</span>
             <strong>Continuer à apprendre</strong>
-            L’IA change sans arrêt. Ce sont les curieux, ceux qui apprennent toujours, qui mèneront l’avenir de l’IA.
+            L’IA change sans arrêt. Ce sont les <a href="#glossary-curiosity" class="glossary-link">curieux</a>, ceux qui apprennent toujours, qui mèneront l’avenir de l’IA.
           </div>
         </div>
         <div class="principle-row row2">
           <div class="principle-blob" style="background:var(--paper)">
             <span class="emoji">🤝</span>
             <strong>Penser aux autres</strong>
-            Est-ce que cette IA aide tout le monde pareil ? Et les personnes en situation de handicap, ou celles qui n’ont pas d’ordinateur ?
+            Est-ce que cette IA aide tout le monde pareil ? Et les personnes en situation de <a href="#glossary-disability" class="glossary-link">handicap</a>, ou celles qui n’ont pas d’ordinateur ?
           </div>
           <div class="principle-blob" style="background:var(--pink); color:var(--ink)">
             <span class="emoji">⚖️</span>
@@ -4288,7 +4360,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Réponse</strong>
-            <p>Une IA de recrutement a un jour écarté TOUTES les femmes des postes d’ingénieur, parce qu’elle avait été entraînée uniquement sur des CV d’ingénieurs hommes ! Des humains ont repéré l’erreur et l’ont corrigée. C’est exactement pour ça que des humains doivent TOUJOURS vérifier le travail d’une IA.</p>
+            <p>Une IA de recrutement a un jour écarté TOUTES les femmes des postes d’ingénieur, parce qu’elle avait été entraînée uniquement sur des <a href="#glossary-cv" class="glossary-link">CV</a> d’ingénieurs hommes ! Des humains ont repéré l’erreur et l’ont corrigée. C’est exactement pour ça que des humains doivent TOUJOURS vérifier le travail d’une IA.</p>
           </div>
         </div>
       </div>
@@ -4373,6 +4445,10 @@
           <dt>Binaire</dt>
           <dd>L’alphabet de l’ordinateur, avec seulement deux signes : 0 et 1. Chaque photo, chaque chanson et chaque message est rangé sous la forme d’une très longue suite de 0 et de 1.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-bot">
+          <dt>Bot</dt>
+          <dd>Un petit programme qui fait un seul travail, encore et encore, tout seul : répondre aux messages, publier, vérifier une page. C’est le diminutif de « robot », mais il n’y a rien à toucher.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-chatgpt">
           <dt>ChatGPT</dt>
           <dd>Un célèbre chatbot IA capable de répondre à des questions, d’écrire des histoires et de tenir une conversation en devinant les meilleurs mots à dire ensuite.</dd>
@@ -4380,6 +4456,18 @@
         <div class="glossary-entry" id="glossary-autocorrect">
           <dt>Correction automatique</dt>
           <dd>La fonction du téléphone ou de l’ordinateur qui remplace ce que tu as tapé par ce qu’elle croit que tu voulais écrire. C’est une IA qui devine — et elle se trompe assez souvent pour faire rire.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-creativity">
+          <dt>Créativité</dt>
+          <dd>Faire quelque chose qui n’existait pas avant : une histoire, un air de musique, une sortie de secours pour un problème. L’IA ne fait que réassembler ce qu’elle a vu ; décider de ce qui mérite d’exister, c’est toi.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-curiosity">
+          <dt>Curiosité</dt>
+          <dd>Vouloir savoir comment quelque chose marche, et poser des questions jusqu’à le comprendre. C’est le seul point commun entre tous les bons scientifiques, ingénieurs et artistes.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-cv">
+          <dt>CV</dt>
+          <dd>La feuille que les adultes envoient quand ils veulent un travail : ce qu’ils ont étudié, ce qu’ils ont fait, ce qu’ils savent bien faire.</dd>
         </div>
         <div class="glossary-entry" id="glossary-cyber-attack">
           <dt>Cyberattaque</dt>
@@ -4392,6 +4480,10 @@
         <div class="glossary-entry" id="glossary-deforestation">
           <dt>Déforestation</dt>
           <dd>Couper une forêt plus vite qu’elle ne repousse. Les satellites et l’IA le voient depuis l’espace, presque au moment où ça se produit.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-ui-ux-design">
+          <dt>Design d’interfaces (UI/UX)</dt>
+          <dd>Concevoir l’allure d’une application ou d’un site et la façon dont on s’en sert : où sont les boutons, ce qui se passe quand on appuie, et si l’ensemble est logique.</dd>
         </div>
         <div class="glossary-entry" id="glossary-diagnosis">
           <dt>Diagnostic</dt>
@@ -4424,6 +4516,10 @@
         <div class="glossary-entry" id="glossary-hallucination">
           <dt>Hallucination</dt>
           <dd>Quand une IA invente quelque chose et le dit comme si c’était vrai. Elle ne ment pas exprès : elle devine le mot suivant. Vérifie tout ce qui compte.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-disability">
+          <dt>Handicap</dt>
+          <dd>Quelque chose dans le corps ou l’esprit d’une personne qui rend certaines parties du monde plus difficiles à utiliser : ne pas voir un écran, ne pas entendre une voix, ne pas monter un escalier. Un bon design change le monde, pas la personne.</dd>
         </div>
         <div class="glossary-entry" id="glossary-green-ai">
           <dt>IA verte</dt>
@@ -4469,6 +4565,10 @@
           <dt>Motif</dt>
           <dd>Quelque chose qui revient tout le temps : la même forme, le même mot, la même couleur. Repérer des motifs, c’est ce que l’IA fait le mieux.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-malaria">
+          <dt>Paludisme (malaria)</dt>
+          <dd>Une maladie grave transmise par les piqûres de moustiques. Elle tue encore des centaines de milliers de personnes par an, surtout des enfants, surtout en Afrique.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-solar-panel">
           <dt>Panneau solaire</dt>
           <dd>Une plaque plate qui transforme la lumière du soleil en électricité. L’IA aide à trouver où les poser et quand les incliner vers le soleil.</dd>
@@ -4492,6 +4592,10 @@
         <div class="glossary-entry" id="glossary-repetitive">
           <dt>Répétitif</dt>
           <dd>Toujours la même chose, encore et encore. Les gens s’ennuient et finissent par faire des erreurs ; un ordinateur, lui, s’en moque complètement.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-power-grid">
+          <dt>Réseau électrique</dt>
+          <dd>La toile de câbles qui transporte l’électricité de là où on la fabrique jusqu’à chaque maison, école et hôpital. Un réseau « intelligent » se sert de l’IA pour envoyer le courant là où il manque.</dd>
         </div>
         <div class="glossary-entry" id="glossary-humanities">
           <dt>Sciences humaines</dt>

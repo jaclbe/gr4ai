@@ -139,32 +139,32 @@ Everything marked done is done in **all three languages**.
 
 | # | Item | Status |
 |---|------|--------|
-| 12.1 | Nallah's opening: "many people are worried AI will take away their jobs…" | queued |
-| 12.2 | Add AI banker | queued + asset — the other careers all have an illustration |
-| 12.3 | Bigger career pictures, three to a row | queued |
+| 12.1 | Nallah's opening: "many people are worried AI will take away their jobs…" | **done** |
+| 12.2 | Add AI banker | **done** — ninth career card, with a picture slot waiting for the artwork |
+| 12.3 | Bigger career pictures, three to a row | **done** — three to a row now, so the cards and their pictures are much bigger |
 
 ## Chapter 13 — what should I study
 
 | # | Item | Status |
 |---|------|--------|
-| 13.1 | Add economics and psychology, bringing it to 8 subjects | queued |
-| 13.2 | "Hi, Rebecca again!" | queued |
-| 13.3 | Glossary: UI/UX design, curiosity, creativity | queued |
+| 13.1 | Add economics and psychology, bringing it to 8 subjects | **done** — economics and psychology added, eight subjects, both with picture slots |
+| 13.2 | "Hi, Rebecca again!" | **done** — Rebecca opens the chapter (it was Katerina, so "again" now follows her chapter 9 opener) |
+| 13.3 | Glossary: UI/UX design, curiosity, creativity | **done** — UI/UX design, curiosity and creativity |
 
 ## Chapter 14 — the future
 
 | # | Item | Status |
 |---|------|--------|
-| 14.1 | "This is Anish again, for a few final thoughts!" | queued |
-| 14.2 | Add ecology to the sliding cards (sustainable economies, energy-efficient data centres, reforestation, better recycling) | queued |
-| 14.3 | Glossary: power grids, bots, malaria | queued |
+| 14.1 | "This is Anish again, for a few final thoughts!" | **done** |
+| 14.2 | Add ecology to the sliding cards (sustainable economies, energy-efficient data centres, reforestation, better recycling) | **done** — an Ecology card in the carousel |
+| 14.3 | Glossary: power grids, bots, malaria | **done** — power grid, bot and malaria |
 
 ## Chapter 15 — our responsibility
 
 | # | Item | Status |
 |---|------|--------|
-| 15.1 | "This is Anish again!" | ask — chapter 14 also opens with Anish. Two chapters in a row is odd; shall 15 be someone else, say Bembe or Nallah? |
-| 15.2 | Glossary: disabilities, CV | queued |
+| 15.1 | "This is Anish again!" | on hold — chapter 14 already opens with Anish, and chapter 15 is currently Bembe's only appearance besides chapter 4. Shall 15 stay with Bembe? |
+| 15.2 | Glossary: disabilities, CV | **done** — disability and CV |
 | 15.3 | List of other AI learning sites for the public | ask — your and Susie's picks. Starters I'd suggest: the Alan Turing Institute's Experience AI, Elements of AI, Code.org's AI lessons, Day of AI. |
 
 ## End matter

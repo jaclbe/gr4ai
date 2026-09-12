@@ -2393,6 +2393,16 @@
     font-weight: 700;
     color: var(--ink-soft);
   }
+
+  .card-img-todo{
+    width: min(320px, 40%);
+    aspect-ratio: 1/1;
+    margin: 0 0 20px;
+    border-radius: 12px;
+  }
+  #ch12 .career-grid{ grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px){ #ch12 .career-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px){ #ch12 .career-grid{ grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -3839,11 +3849,13 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo teal" src="assets/gang-nallah.jpg" alt="Nallah" loading="lazy" decoding="async" />
         <div class="quiz-bubble teal">
+          <p><strong>Ich bin Nallah, und ich möchte mit dir über die Arbeit sprechen, die du einmal machen könntest!</strong></p>
+          <p>Viele Erwachsene haben Angst, dass KI ihnen die Arbeit wegnimmt.</p>
           <p>Die Berufe der Zukunft gibt es noch gar nicht! Aber eins ist klar: KI gehört dazu. Hier sind ein paar spannende Berufe, die auf DICH warten!</p>
         </div>
       </div>
 
-      <p class="career-hint">↕ Scrolle weiter – so blätterst du durch alle 8 Berufe</p>
+      <p class="career-hint">↕ Scrolle weiter – so blätterst du durch alle 9 Berufe</p>
       <div class="career-stack" style="height: 3100px">
         <div class="career-stack-sticky">
         <div class="career-grid">
@@ -3940,8 +3952,25 @@
               <div class="career-card-back" style="background:var(--jet); color:#fff">
                 <img class="career-card-img" src="assets/career-ai-artist.jpg" alt="Illustration: KI-Künstlerin oder KI-Künstler" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
                 <h4>KI-Künstlerin oder KI-Künstler</h4>
-                <p>Verbindet menschliche Kreativität mit KI-Werkzeugen und macht atemberaubende Kunst, Musik und Geschichten.</p>
+                <p>Verbindet menschliche <a href="#glossary-creativity" class="glossary-link" onclick="event.stopPropagation()">Kreativität</a> mit KI-Werkzeugen und macht atemberaubende Kunst, Musik und Geschichten.</p>
                 <p class="career-study">Fächer: Kunst + Kreative Informatik</p>
+              </div>
+            </div>
+          </div>
+          <div class="career-card" data-index="8">
+            <div class="career-card-inner">
+              <div class="career-card-front" style="background:var(--cyan)">
+                <span class="emoji">🏦</span>
+                <h4>KI-Bankerin oder KI-Banker</h4>
+              </div>
+              <div class="career-card-back" style="background:var(--cyan)">
+                <figure class="img-placeholder card-img-todo">
+                  <span class="emoji" aria-hidden="true">🏦</span>
+                  <span>Illustration: KI-Bank – Bild folgt</span>
+                </figure>
+                <h4>KI-Bankerin oder KI-Banker</h4>
+                <p>Baut KI, die eine gestohlene Karte in Sekundenbruchteilen erkennt und das Geld der Menschen schützt.</p>
+                <p class="career-study">Fächer: Mathe + Wirtschaft + Informatik</p>
               </div>
             </div>
           </div>
@@ -3974,8 +4003,9 @@
       </div>
 
       <div class="explain-card quiz-card">
-        <img class="quiz-photo" src="assets/gang-katerina.jpg" alt="Katerina" loading="lazy" decoding="async" />
+        <img class="quiz-photo" src="assets/gang-rebecca.jpg" alt="Rebecca" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Hallo, hier ist wieder Rebecca!</strong></p>
           <p>Du musst dich JETZT noch nicht entscheiden – aber es ist nie zu früh, tolle Fähigkeiten zu sammeln! Das hier hilft dir beim Arbeiten mit KI.</p>
         </div>
       </div>
@@ -4043,7 +4073,39 @@
             <div class="career-card-back" style="background:var(--gold)">
               <img class="career-card-img" src="assets/study-art-design.jpg" alt="Illustration: Kunst &amp; Design" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
               <h4>Kunst &amp; Design</h4>
-              <p>Kreativ denken, Probleme mit Bildern lösen, UI/UX-Design, KI-Kunst und KI-Musik.</p>
+              <p>Kreativ denken, Probleme mit Bildern lösen, <a href="#glossary-ui-ux-design" class="glossary-link" onclick="event.stopPropagation()">UI/UX-Design</a>, KI-Kunst und KI-Musik.</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-card is-dealt" data-index="6">
+          <div class="career-card-inner">
+            <div class="career-card-front" style="background:var(--coral)">
+              <span class="emoji">📈</span>
+              <h4>Wirtschaft</h4>
+            </div>
+            <div class="career-card-back" style="background:var(--coral)">
+              <figure class="img-placeholder card-img-todo">
+                <span class="emoji" aria-hidden="true">📈</span>
+                <span>Illustration: Wirtschaft – Bild folgt</span>
+              </figure>
+              <h4>Wirtschaft</h4>
+              <p>Wie Geld, Arbeit und Preise zusammenhängen: Mikroökonomie, Makroökonomie, Wirtschaftstheorien und angewandte Mathematik.</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-card is-dealt" data-index="7">
+          <div class="career-card-inner">
+            <div class="career-card-front" style="background:var(--teal)">
+              <span class="emoji">🧩</span>
+              <h4>Psychologie</h4>
+            </div>
+            <div class="career-card-back" style="background:var(--teal)">
+              <figure class="img-placeholder card-img-todo">
+                <span class="emoji" aria-hidden="true">🧩</span>
+                <span>Illustration: Psychologie – Bild folgt</span>
+              </figure>
+              <h4>Psychologie</h4>
+              <p>Warum Menschen tun, was sie tun: Motivation, wie wir entscheiden, wie sich Menschenmengen verhalten und wie man in einer Krise hilft.</p>
             </div>
           </div>
         </div>
@@ -4102,6 +4164,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo teal" src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
         <div class="quiz-bubble teal">
+          <p><strong>Hier ist wieder Anish – mit ein paar letzten Gedanken!</strong></p>
           <p>Die Zukunft mit KI könnte absolut fantastisch werden – aber nur, wenn WIR jetzt gut entscheiden, wie wir sie verantwortungsvoll nutzen.</p>
         </div>
       </div>
@@ -4110,7 +4173,16 @@
         <button type="button" class="carousel-arrow carousel-arrow-left" aria-label="Vorherige Karte">‹</button>
         <div class="carousel-viewport">
           <div class="carousel-track">
-            <div class="concept-card" style="background:var(--jet); color:#fff">
+            <div class="concept-card" style="background:var(--green)">
+              <h4><span class="emoji">♻️</span> Ökologie</h4>
+              <ul>
+                <li>Nachhaltige Wirtschaft</li>
+                <li>Energiesparende Rechenzentren</li>
+                <li>Wieder aufforsten, wo es nötig ist</li>
+                <li>Besser recyceln</li>
+              </ul>
+            </div>
+                        <div class="concept-card" style="background:var(--jet); color:#fff">
               <h4><span class="emoji">✈️</span> Luftfahrt</h4>
               <ul>
                 <li>KI-Kopiloten für sicherere Flüge</li>
@@ -4124,7 +4196,7 @@
               <ul>
                 <li>Klimamodelle in Echtzeit</li>
                 <li>KI, die CO₂ einfängt</li>
-                <li>Schlaue Stromnetze</li>
+                <li>Schlaue <a href="#glossary-power-grid" class="glossary-link">Stromnetze</a></li>
                 <li>Extremwetter vorhersagen</li>
               </ul>
             </div>
@@ -4134,7 +4206,7 @@
                 <li>Frühwarnung vor Pandemien</li>
                 <li>Persönliche Heilmittel gegen Krebs</li>
                 <li>KI-Impfstoffe in wenigen Tagen</li>
-                <li>Bots für die seelische Gesundheit</li>
+                <li><a href="#glossary-bot" class="glossary-link">Bots</a> für die seelische Gesundheit</li>
               </ul>
             </div>
             <div class="concept-card" style="background:var(--gold)">
@@ -4199,7 +4271,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Antwort</strong>
-            <p>Forschende sagen voraus: Mit KI könnten wir Malaria besiegen, den Welthunger stark verringern und den Klimawandel deutlich bremsen – noch zu deinen Lebzeiten. Die Zukunft liegt in DEINEN Händen – und KI ist dein Werkzeug!</p>
+            <p>Forschende sagen voraus: Mit KI könnten wir <a href="#glossary-malaria" class="glossary-link">Malaria</a> besiegen, den Welthunger stark verringern und den Klimawandel deutlich bremsen – noch zu deinen Lebzeiten. Die Zukunft liegt in DEINEN Händen – und KI ist dein Werkzeug!</p>
           </div>
         </div>
       </div>
@@ -4240,14 +4312,14 @@
           <div class="principle-blob" style="background:var(--green)">
             <span class="emoji">📚</span>
             <strong>Lerne weiter</strong>
-            KI verändert sich ständig. Neugierige Menschen, die immer weiterlernen, gestalten die Zukunft der KI.
+            KI verändert sich ständig. <a href="#glossary-curiosity" class="glossary-link">Neugierige</a> Menschen, die immer weiterlernen, gestalten die Zukunft der KI.
           </div>
         </div>
         <div class="principle-row row2">
           <div class="principle-blob" style="background:var(--paper)">
             <span class="emoji">🤝</span>
             <strong>Denk an andere</strong>
-            Hilft diese KI wirklich allen gleich? Was ist mit Menschen mit Behinderung oder ohne Computer?
+            Hilft diese KI wirklich allen gleich? Was ist mit Menschen mit <a href="#glossary-disability" class="glossary-link">Behinderung</a> oder ohne Computer?
           </div>
           <div class="principle-blob" style="background:var(--pink); color:var(--ink)">
             <span class="emoji">⚖️</span>
@@ -4287,7 +4359,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Antwort</strong>
-            <p>Eine KI für Bewerbungen hat einmal ALLE Frauen für Ingenieurjobs abgelehnt – weil sie nur mit den Lebensläufen männlicher Ingenieure trainiert wurde! Menschen haben den Fehler entdeckt und behoben. Genau deshalb müssen Menschen die KI immer überwachen.</p>
+            <p>Eine KI für Bewerbungen hat einmal ALLE Frauen für Ingenieurjobs abgelehnt – weil sie nur mit den <a href="#glossary-cv" class="glossary-link">Lebensläufen</a> männlicher Ingenieure trainiert wurde! Menschen haben den Fehler entdeckt und behoben. Genau deshalb müssen Menschen die KI immer überwachen.</p>
           </div>
         </div>
       </div>
@@ -4363,9 +4435,17 @@
           <dt>Autokorrektur</dt>
           <dd>Die Funktion am Handy oder Computer, die aus dem, was du tippst, das macht, was sie für gemeint hält. Das ist eine KI beim Raten – und sie rät oft genug falsch, dass es lustig wird.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-disability">
+          <dt>Behinderung</dt>
+          <dd>Etwas am Körper oder am Denken eines Menschen, das Teile der Welt schwerer benutzbar macht – einen Bildschirm nicht sehen, eine Stimme nicht hören, keine Treppen steigen können. Gutes Design ändert die Welt, nicht den Menschen.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-binary">
           <dt>Binärcode</dt>
           <dd>Das eigene Alphabet des Computers – es hat nur zwei Zeichen: 0 und 1. Jedes Foto, jedes Lied und jede Nachricht wird als sehr lange Reihe davon gespeichert.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-bot">
+          <dt>Bot</dt>
+          <dd>Ein kleines Programm, das eine Aufgabe immer wieder allein erledigt – Nachrichten beantworten, etwas posten, eine Seite prüfen. Die Kurzform von „Roboter“, nur zum Anfassen gibt es nichts.</dd>
         </div>
         <div class="glossary-entry" id="glossary-chatgpt">
           <dt>ChatGPT</dt>
@@ -4435,13 +4515,25 @@
           <dt>Kohlendioxid (CO₂)</dt>
           <dd>Ein Gas, das in die Luft geht, wenn wir Brennstoffe verbrennen – in Autos, Flugzeugen, Kraftwerken. Zu viel davon heizt die ganze Erde auf.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-creativity">
+          <dt>Kreativität</dt>
+          <dd>Etwas machen, das es vorher nicht gab – eine Geschichte, eine Melodie, einen Ausweg aus einem Problem. KI kann nur neu zusammensetzen, was sie gesehen hat. Was es wert ist, gemacht zu werden, entscheidest du.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-artificial-intelligence-ai">
           <dt>Künstliche Intelligenz (KI)</dt>
           <dd>Eine von Menschen gemachte Intelligenz. Sie hilft Computern zu lernen, zu denken und Probleme zu lösen – wie ein sehr schnelles, sehr fleißiges digitales Gehirn.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-cv">
+          <dt>Lebenslauf</dt>
+          <dd>Das Blatt Papier, das Erwachsene schicken, wenn sie eine Stelle möchten: was sie gelernt haben, was sie gemacht haben, was sie gut können.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-mri">
           <dt>Magnetresonanztomografie (MRT)</dt>
           <dd>Eine Untersuchung, die Bilder aus dem Inneren deines Körpers macht. KI hilft Ärztinnen und Ärzten, MRT-Bilder schneller zu lesen und Krankheiten früher zu erkennen.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-malaria">
+          <dt>Malaria</dt>
+          <dd>Eine schwere Krankheit, die von Mückenstichen übertragen wird. Sie tötet immer noch jedes Jahr Hunderttausende Menschen – die meisten davon Kinder, die meisten in Afrika.</dd>
         </div>
         <div class="glossary-entry" id="glossary-manipulate">
           <dt>Manipulieren</dt>
@@ -4462,6 +4554,10 @@
         <div class="glossary-entry" id="glossary-innovate">
           <dt>Neues erfinden</dt>
           <dd>Etwas machen, das es vorher noch nicht gab – oder einen viel besseren Weg finden, etwas zu tun. Erfinden, verbessern, eine Idee ausprobieren, die noch niemand hatte.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-curiosity">
+          <dt>Neugier</dt>
+          <dd>Wissen wollen, wie etwas funktioniert – und so lange fragen, bis du es weißt. Das ist das Einzige, was alle guten Forschenden, Ingenieurinnen und Künstler gemeinsam haben.</dd>
         </div>
         <div class="glossary-entry" id="glossary-parameters">
           <dt>Parameter</dt>
@@ -4495,6 +4591,10 @@
           <dt>Solaranlage</dt>
           <dd>Eine flache Platte, die Sonnenlicht in Strom verwandelt. KI hilft dabei, herauszufinden, wo man sie aufstellt und wann man sie zur Sonne dreht.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-power-grid">
+          <dt>Stromnetz</dt>
+          <dd>Das Netz aus Kabeln, das Strom von dort, wo er gemacht wird, zu jedem Haus, jeder Schule und jedem Krankenhaus bringt. Ein „schlaues“ Netz schickt den Strom mit KI dorthin, wo er gebraucht wird.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-monitor">
           <dt>Überwachen</dt>
           <dd>Etwas ständig im Blick behalten, damit man merkt, wenn es sich verändert. Ein Gerät, das einen kranken Menschen überwacht, prüft die ganze Nacht Herzschlag und Atmung, ohne müde zu werden.</dd>
@@ -4502,6 +4602,10 @@
         <div class="glossary-entry" id="glossary-surveillance">
           <dt>Überwachung</dt>
           <dd>Menschen beobachten, um zu sehen, was sie tun – mit Kameras, Handys oder Computern. Heimlich zu beobachten, ohne zu fragen, ist die Art, die das Gesetz jetzt verbietet.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-ui-ux-design">
+          <dt>UI/UX-Design</dt>
+          <dd>Gestalten, wie eine App oder Website aussieht und wie sie sich benutzen lässt: wo die Knöpfe sind, was beim Antippen passiert und ob das Ganze Sinn ergibt.</dd>
         </div>
         <div class="glossary-entry" id="glossary-eco-friendly">
           <dt>Umweltfreundlich</dt>

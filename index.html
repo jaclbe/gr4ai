@@ -2392,6 +2392,16 @@
     font-weight: 700;
     color: var(--ink-soft);
   }
+
+  .card-img-todo{
+    width: min(320px, 40%);
+    aspect-ratio: 1/1;
+    margin: 0 0 20px;
+    border-radius: 12px;
+  }
+  #ch12 .career-grid{ grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px){ #ch12 .career-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px){ #ch12 .career-grid{ grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -3840,11 +3850,13 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo teal" src="assets/gang-nallah.jpg" alt="Nallah" loading="lazy" decoding="async" />
         <div class="quiz-bubble teal">
+          <p><strong>My name is Nallah, and I want to talk to you about the work you might do one day!</strong></p>
+          <p>A lot of grown-ups are worried that AI will take their jobs away.</p>
           <p>The jobs of the future haven't even been invented yet! But we know they'll involve AI. Here are some exciting careers waiting for YOU!</p>
         </div>
       </div>
 
-      <p class="career-hint">↕ Keep scrolling to shuffle through all 8 careers</p>
+      <p class="career-hint">↕ Keep scrolling to shuffle through all 9 careers</p>
       <div class="career-stack" style="height: 3100px">
         <div class="career-stack-sticky">
         <div class="career-grid">
@@ -3941,8 +3953,25 @@
               <div class="career-card-back" style="background:var(--jet); color:#fff">
                 <img class="career-card-img" src="assets/career-ai-artist.jpg" alt="AI Artist illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
                 <h4>AI Artist</h4>
-                <p>Combines human creativity with AI tools to make breathtaking art, music and stories.</p>
+                <p>Combines human <a href="#glossary-creativity" class="glossary-link" onclick="event.stopPropagation()">creativity</a> with AI tools to make breathtaking art, music and stories.</p>
                 <p class="career-study">Study: Art + Creative Computing</p>
+              </div>
+            </div>
+          </div>
+          <div class="career-card" data-index="8">
+            <div class="career-card-inner">
+              <div class="career-card-front" style="background:var(--cyan)">
+                <span class="emoji">🏦</span>
+                <h4>AI Banker</h4>
+              </div>
+              <div class="career-card-back" style="background:var(--cyan)">
+                <figure class="img-placeholder card-img-todo">
+                  <span class="emoji" aria-hidden="true">🏦</span>
+                  <span>AI Banker illustration — picture to come</span>
+                </figure>
+                <h4>AI Banker</h4>
+                <p>Builds AI that spots a stolen card in a split second and keeps people’s money safe.</p>
+                <p class="career-study">Study: Maths + Economics + Computer Science</p>
               </div>
             </div>
           </div>
@@ -3975,8 +4004,9 @@
       </div>
 
       <div class="explain-card quiz-card">
-        <img class="quiz-photo" src="assets/gang-katerina.jpg" alt="Katerina" loading="lazy" decoding="async" />
+        <img class="quiz-photo" src="assets/gang-rebecca.jpg" alt="Rebecca" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Hi, Rebecca again!</strong></p>
           <p>You don't have to decide NOW — but it's never too early to start building brilliant skills! Here's what will help you work with AI.</p>
         </div>
       </div>
@@ -4044,7 +4074,39 @@
             <div class="career-card-back" style="background:var(--gold)">
               <img class="career-card-img" src="assets/study-art-design.jpg" alt="Art &amp; Design illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
               <h4>Art &amp; Design</h4>
-              <p>Creative thinking, visual problem solving, UI/UX design, AI art and music.</p>
+              <p>Creative thinking, visual problem solving, <a href="#glossary-ui-ux-design" class="glossary-link" onclick="event.stopPropagation()">UI/UX design</a>, AI art and music.</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-card is-dealt" data-index="6">
+          <div class="career-card-inner">
+            <div class="career-card-front" style="background:var(--coral)">
+              <span class="emoji">📈</span>
+              <h4>Economics</h4>
+            </div>
+            <div class="career-card-back" style="background:var(--coral)">
+              <figure class="img-placeholder card-img-todo">
+                <span class="emoji" aria-hidden="true">📈</span>
+                <span>Economics illustration — picture to come</span>
+              </figure>
+              <h4>Economics</h4>
+              <p>How money, work and prices fit together: microeconomics, macroeconomics, economic theories and applied maths.</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-card is-dealt" data-index="7">
+          <div class="career-card-inner">
+            <div class="career-card-front" style="background:var(--teal)">
+              <span class="emoji">🧩</span>
+              <h4>Psychology</h4>
+            </div>
+            <div class="career-card-back" style="background:var(--teal)">
+              <figure class="img-placeholder card-img-todo">
+                <span class="emoji" aria-hidden="true">🧩</span>
+                <span>Psychology illustration — picture to come</span>
+              </figure>
+              <h4>Psychology</h4>
+              <p>Why people do what they do: motivation, how we make decisions, how crowds behave, and how to help in a crisis.</p>
             </div>
           </div>
         </div>
@@ -4103,6 +4165,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo teal" src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
         <div class="quiz-bubble teal">
+          <p><strong>This is Anish again, for a few final thoughts!</strong></p>
           <p>The future with AI could be absolutely incredible — but only if WE make good choices now about how to use it responsibly.</p>
         </div>
       </div>
@@ -4111,7 +4174,16 @@
         <button type="button" class="carousel-arrow carousel-arrow-left" aria-label="Previous card">‹</button>
         <div class="carousel-viewport">
           <div class="carousel-track">
-            <div class="concept-card" style="background:var(--jet); color:#fff">
+            <div class="concept-card" style="background:var(--green)">
+              <h4><span class="emoji">♻️</span> Ecology</h4>
+              <ul>
+                <li>Sustainable economies</li>
+                <li>Energy-efficient data centres</li>
+                <li>Reforestation where it is needed</li>
+                <li>Better recycling</li>
+              </ul>
+            </div>
+                        <div class="concept-card" style="background:var(--jet); color:#fff">
               <h4><span class="emoji">✈️</span> Aviation</h4>
               <ul>
                 <li>AI co-pilots for safer flights</li>
@@ -4125,7 +4197,7 @@
               <ul>
                 <li>Real-time climate modelling</li>
                 <li>Carbon capture AI</li>
-                <li>Smart power grids</li>
+                <li>Smart <a href="#glossary-power-grid" class="glossary-link">power grids</a></li>
                 <li>Predicting extreme weather</li>
               </ul>
             </div>
@@ -4135,7 +4207,7 @@
                 <li>Pandemic early warnings</li>
                 <li>Personalised cancer cures</li>
                 <li>AI-designed vaccines in days</li>
-                <li>Mental health support bots</li>
+                <li>Mental health support <a href="#glossary-bot" class="glossary-link">bots</a></li>
               </ul>
             </div>
             <div class="concept-card" style="background:var(--gold)">
@@ -4200,7 +4272,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Answer</strong>
-            <p>Scientists predict AI could help us end malaria, significantly reduce world hunger and dramatically slow climate change within your lifetime. The future is in YOUR hands — and AI is your tool!</p>
+            <p>Scientists predict AI could help us end <a href="#glossary-malaria" class="glossary-link">malaria</a>, significantly reduce world hunger and dramatically slow climate change within your lifetime. The future is in YOUR hands — and AI is your tool!</p>
           </div>
         </div>
       </div>
@@ -4241,14 +4313,14 @@
           <div class="principle-blob" style="background:var(--green)">
             <span class="emoji">📚</span>
             <strong>Keep Learning</strong>
-            AI is always changing. Curious, always-learning people will lead the AI future.
+            AI is always changing. <a href="#glossary-curiosity" class="glossary-link">Curious</a>, always-learning people will lead the AI future.
           </div>
         </div>
         <div class="principle-row row2">
           <div class="principle-blob" style="background:var(--paper)">
             <span class="emoji">🤝</span>
             <strong>Think of Others</strong>
-            Does this AI help everyone equally? What about people with disabilities, or without computers?
+            Does this AI help everyone equally? What about people with <a href="#glossary-disability" class="glossary-link">disabilities</a>, or without computers?
           </div>
           <div class="principle-blob" style="background:var(--pink); color:var(--ink)">
             <span class="emoji">⚖️</span>
@@ -4288,7 +4360,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Answer</strong>
-            <p>An AI hiring system once rejected ALL women for engineering jobs because it was trained only on male engineers' CVs! Humans caught the mistake and fixed it. This is exactly why human oversight of AI is non-negotiable.</p>
+            <p>An AI hiring system once rejected ALL women for engineering jobs because it was trained only on male engineers' <a href="#glossary-cv" class="glossary-link">CVs</a>! Humans caught the mistake and fixed it. This is exactly why human oversight of AI is non-negotiable.</p>
           </div>
         </div>
       </div>
@@ -4381,6 +4453,10 @@
           <dt>Binary</dt>
           <dd>The computer’s own alphabet, made of just two signs: 0 and 1. Every photo, song and message is stored as a very long line of them.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-bot">
+          <dt>Bot</dt>
+          <dd>A small program that does one job over and over on its own — answering messages, posting, checking a page. Short for "robot", but there is nothing to touch.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-co2">
           <dt>Carbon dioxide (CO₂)</dt>
           <dd>A gas that goes into the air whenever we burn fuel — in cars, planes, power stations. Too much of it warms the whole planet up.</dd>
@@ -4388,6 +4464,18 @@
         <div class="glossary-entry" id="glossary-chatgpt">
           <dt>ChatGPT</dt>
           <dd>A famous AI chatbot that can answer questions, write stories and hold conversations by predicting the best next words to say.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-creativity">
+          <dt>Creativity</dt>
+          <dd>Making something that was not there before — a story, a tune, a way out of a problem. AI can rearrange what it has seen; deciding what is worth making is yours.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-curiosity">
+          <dt>Curiosity</dt>
+          <dd>Wanting to know how something works, and asking until you do. It is the one thing every good scientist, engineer and artist has in common.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-cv">
+          <dt>CV</dt>
+          <dd>The sheet of paper grown-ups send when they want a job: what they have studied, what they have done, what they are good at.</dd>
         </div>
         <div class="glossary-entry" id="glossary-cyber-attack">
           <dt>Cyber attack</dt>
@@ -4408,6 +4496,10 @@
         <div class="glossary-entry" id="glossary-diagnosis">
           <dt>Diagnosis</dt>
           <dd>Working out which illness someone actually has. A machine can spot something odd in a picture; naming the illness and deciding what to do is a doctor’s job.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-disability">
+          <dt>Disability</dt>
+          <dd>Something about a person’s body or mind that makes parts of the world harder to use — not being able to see a screen, hear a voice, or climb stairs. Good design fixes the world, not the person.</dd>
         </div>
         <div class="glossary-entry" id="glossary-eco-friendly">
           <dt>Eco-friendly</dt>
@@ -4457,6 +4549,10 @@
           <dt>Magnetic Resonance Imaging (MRI)</dt>
           <dd>A medical scan that takes pictures inside your body. AI helps doctors read MRIs faster and spot diseases earlier.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-malaria">
+          <dt>Malaria</dt>
+          <dd>A serious illness carried by mosquito bites. It still kills hundreds of thousands of people a year, most of them children, and most of them in Africa.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-manipulate">
           <dt>Manipulate</dt>
           <dd>To push somebody into doing something without them noticing they are being pushed. That is why a computer is not allowed to do it to children.</dd>
@@ -4484,6 +4580,10 @@
         <div class="glossary-entry" id="glossary-personalised">
           <dt>Personalised</dt>
           <dd>Made to fit one person. A personalised lesson goes slower where you find it hard and faster where you don’t.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-power-grid">
+          <dt>Power grid</dt>
+          <dd>The web of cables that carries electricity from where it is made to every house, school and hospital. A "smart" grid uses AI to send power where it is needed.</dd>
         </div>
         <div class="glossary-entry" id="glossary-privacy">
           <dt>Privacy</dt>
@@ -4516,6 +4616,10 @@
         <div class="glossary-entry" id="glossary-surveillance">
           <dt>Surveillance</dt>
           <dd>Watching people to see what they do — with cameras, phones or computers. Watching in secret, without asking, is the kind the law now forbids.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-ui-ux-design">
+          <dt>UI/UX design</dt>
+          <dd>Designing how an app or website looks and how it feels to use — where the buttons go, what happens when you tap one, and whether the whole thing makes sense.</dd>
         </div>
       </dl>
     </div>
