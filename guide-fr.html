@@ -2307,6 +2307,40 @@
   }
   .before-start .info-callout{ max-width: 780px; margin-left: auto; margin-right: auto; }
   .thanks-names{ max-width: 780px; margin: 0 0 8px; font-size: 17px; line-height: 1.6; color: var(--ink-soft); }
+
+  /* ---------- Placeholder for a picture we don't have yet ---------- */
+  .img-placeholder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed var(--ink);
+    border-radius: 16px;
+    background:
+      repeating-linear-gradient(45deg, rgba(20,23,26,0.05) 0 9px, transparent 9px 18px),
+      var(--paper);
+  }
+  .img-placeholder .emoji{ font-size: 30px; line-height: 1; }
+  .img-placeholder span:last-child{
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 26ch;
+  }
+  .img-pair{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 0 0 18px;
+  }
+  .img-pair .img-placeholder{ aspect-ratio: 4 / 3; }
+  @media (max-width: 560px){ .img-pair{ grid-template-columns: 1fr; } }
+  .img-wide{ aspect-ratio: 16 / 5; max-width: 760px; margin: 24px auto 0; }
 </style>
 </head>
 <body>
@@ -2737,6 +2771,16 @@
       <div class="neural-box">
         <h4>🧠 Réseaux de neurones : comment fonctionne l’apprentissage profond</h4>
         <p>Tout comme TON cerveau a des milliards de neurones reliés entre eux, qui t’aident à apprendre et à comprendre le monde, l’IA utilise des réseaux de neurones artificiels pour apprendre à partir des informations qu’on lui donne. Ces neurones artificiels sont reliés en couches.</p>
+        <div class="img-pair">
+          <figure class="img-placeholder">
+            <span class="emoji" aria-hidden="true">🕸️</span>
+            <span>Schéma d’un réseau de neurones artificiels — image à venir</span>
+          </figure>
+          <figure class="img-placeholder">
+            <span class="emoji" aria-hidden="true">🧠</span>
+            <span>Un cerveau et ses neurones — image à venir</span>
+          </figure>
+        </div>
         <div class="flow-diagram">
           <span class="flow-step">COUCHE D’ENTRÉE</span>
           <span class="flow-arrow">→</span>
@@ -3252,6 +3296,10 @@
         <p class="fact-banner-kicker"><span class="emoji">💡</span> Le savais-tu ?</p>
         <p>En un an, l’IA consomme autant d’électricité que certains petits pays ! Entraîner un seul gros modèle d’IA peut produire autant de CO₂ que 700 000 km en voiture. C’est pour ça que des scientifiques travaillent sur une « IA verte » !</p>
       </div>
+      <figure class="img-placeholder img-wide">
+            <span class="emoji" aria-hidden="true">⚖️</span>
+            <span>IA verte : une balance entre ce que l’IA coûte à la planète et ce qu’elle fait économiser — image à venir</span>
+          </figure>
     </div>
   </section>
 

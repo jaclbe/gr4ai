@@ -2308,6 +2308,40 @@
   }
   .before-start .info-callout{ max-width: 780px; margin-left: auto; margin-right: auto; }
   .thanks-names{ max-width: 780px; margin: 0 0 8px; font-size: 17px; line-height: 1.6; color: var(--ink-soft); }
+
+  /* ---------- Placeholder for a picture we don't have yet ---------- */
+  .img-placeholder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed var(--ink);
+    border-radius: 16px;
+    background:
+      repeating-linear-gradient(45deg, rgba(20,23,26,0.05) 0 9px, transparent 9px 18px),
+      var(--paper);
+  }
+  .img-placeholder .emoji{ font-size: 30px; line-height: 1; }
+  .img-placeholder span:last-child{
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 26ch;
+  }
+  .img-pair{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 0 0 18px;
+  }
+  .img-pair .img-placeholder{ aspect-ratio: 4 / 3; }
+  @media (max-width: 560px){ .img-pair{ grid-template-columns: 1fr; } }
+  .img-wide{ aspect-ratio: 16 / 5; max-width: 760px; margin: 24px auto 0; }
 </style>
 </head>
 <body>
@@ -2738,6 +2772,16 @@
       <div class="neural-box">
         <h4>🧠 Neuronale Netze: So funktioniert Deep Learning</h4>
         <p>So wie DEIN Gehirn Milliarden verbundene Neuronen hat, die dir beim Lernen helfen und dir die Welt erklären, nutzt eine KI künstliche neuronale Netze, um aus den Informationen zu lernen, die wir ihr geben. Diese künstlichen Neuronen sind in Schichten miteinander verbunden.</p>
+        <div class="img-pair">
+          <figure class="img-placeholder">
+            <span class="emoji" aria-hidden="true">🕸️</span>
+            <span>Schaubild eines künstlichen neuronalen Netzes – Bild folgt</span>
+          </figure>
+          <figure class="img-placeholder">
+            <span class="emoji" aria-hidden="true">🧠</span>
+            <span>Ein Gehirn mit seinen Neuronen – Bild folgt</span>
+          </figure>
+        </div>
         <div class="flow-diagram">
           <span class="flow-step">EINGABE-SCHICHT</span>
           <span class="flow-arrow">→</span>
@@ -3251,6 +3295,10 @@
         <p class="fact-banner-kicker"><span class="emoji">💡</span> Wusstest du schon?</p>
         <p>KI verbraucht in einem Jahr so viel Strom wie manche kleinen Länder! Das Training eines großen KI-Modells kann so viel CO₂ erzeugen wie eine Autofahrt über 700.000 km. Deshalb arbeiten Forscherinnen und Forscher an „grüner KI“!</p>
       </div>
+      <figure class="img-placeholder img-wide">
+            <span class="emoji" aria-hidden="true">⚖️</span>
+            <span>Grüne KI: eine Waage zwischen dem, was KI die Umwelt kostet, und dem, was sie einspart – Bild folgt</span>
+          </figure>
     </div>
   </section>
 
