@@ -393,12 +393,13 @@
     text-decoration-style: dotted;
     text-decoration-thickness: 1px;
     text-decoration-color: rgba(20,23,26,0.42);
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
     text-underline-offset: 4px;
     cursor: pointer;
   }
   .glossary-link:hover,
   .glossary-link[aria-expanded="true"]{
-    text-decoration-color: var(--ink);
+    text-decoration-color: currentColor;
     text-decoration-thickness: 2px;
   }
 
@@ -2255,6 +2256,16 @@
   @media (max-width: 343px){
     .flip-grid.has-image-cards .flip-card{ aspect-ratio: 16/22; }
   }
+
+  .flow-step small{
+    display: block;
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0;
+    text-transform: none;
+    opacity: .78;
+    margin-top: 2px;
+  }
 </style>
 </head>
 <body>
@@ -2329,7 +2340,7 @@
         <div class="gang-card">
           <img src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
           <span class="gang-tag" style="background:var(--gold); color:var(--ink)">Anish</span>
-          <p>9 ans, crack en maths et fan de cricket</p>
+          <p>7 ans et demi, crack en maths et fan de cricket</p>
         </div>
         <div class="gang-card">
           <img src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
@@ -2439,7 +2450,7 @@
 
           <div class="compare-item is-physical">
             <span class="compare-icon" aria-hidden="true">🌍</span>
-            <div><span class="compare-tag">Physique</span><strong>Intelligence humaine</strong> : la capacité humaine d’apprendre, de comprendre et d’innover</div>
+            <div><span class="compare-tag">Physique</span><strong>Intelligence humaine</strong> : la capacité humaine d’apprendre, de comprendre et d’<a href="#glossary-innovate" class="glossary-link">innover</a></div>
           </div>
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
@@ -2503,9 +2514,10 @@
         <div class="concept-card" style="background:var(--teal)">
           <h4><span class="emoji">🧠</span> Cerveau humain</h4>
           <ul>
-            <li>Apprend par l’expérience</li>
+            <li>Apprend par l’<strong>EXPÉRIENCE</strong></li>
             <li>Reconnaît les visages</li>
             <li>Comprend le langage</li>
+            <li>Comprend le contexte</li>
             <li>Prend des décisions</li>
             <li>Se fatigue et a besoin de dormir</li>
           </ul>
@@ -2516,6 +2528,7 @@
             <li>Apprend à partir de DONNÉES</li>
             <li>Reconnaît les visages aussi !</li>
             <li>Comprend le langage</li>
+            <li>Ne comprend PAS le contexte</li>
             <li>Prend des décisions plus vite</li>
             <li>N’a jamais besoin de dormir !</li>
           </ul>
@@ -2534,7 +2547,7 @@
 
       <div class="fact-banner">
         <p class="fact-banner-kicker"><span class="emoji">💡</span> Le savais-tu ?</p>
-        <p>Le mot « artificielle » veut dire « fabriquée par les humains », et « intelligence » veut dire « la capacité d’apprendre et de comprendre ». Ensemble = des ordinateurs intelligents fabriqués par des gens !</p>
+        <p>Le mot « artificielle » veut dire « fabriquée par les humains », et « intelligence » veut dire « la capacité d’apprendre et de comprendre ». Ensemble = des outils intelligents fabriqués par des gens, pour nous aider à mieux apprendre et à mieux comprendre !</p>
       </div>
 
       <div class="hype-box">
@@ -2582,7 +2595,7 @@
           </svg>
         </div>
 
-        <p>Le « cycle du hype de Gartner » montre comment une nouvelle technologie passe par des pics d’enthousiasme, puis par des doutes, puis par une utilité tranquille. L’IA est passée par TOUTES ces étapes avant de devenir la technologie formidable que nous avons aujourd’hui. Regarde la courbe au-dessus – tu vois le moment où tout le monde s’emballe ?</p>
+        <p>Le « cycle du hype de Gartner » montre comment une nouvelle technologie passe par des pics d’enthousiasme, puis par des doutes, puis par le moment où elle devient vraiment utile : pour résoudre de vrais problèmes et faire du bien aux gens. L’IA est passée par TOUTES ces étapes avant de devenir la technologie formidable que nous avons aujourd’hui. Regarde la courbe au-dessus – tu vois le moment où tout le monde s’emballe ?</p>
       </div>
     </div>
   </section>
@@ -2598,7 +2611,8 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo purple" src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
         <div class="quiz-bubble purple">
-          <p>Imagine : tu apprends à un tout-petit à reconnaître un chat. Tu lui montres PLEIN de chats.</p>
+          <p><strong>Salut, moi c’est Anish.</strong></p>
+          <p>Imagine : tu apprends à un tout-petit à reconnaître un chat. Tu lui montres PLEIN de chats.</p>
           <p>C’est exactement comme ça que l’IA apprend ! On appelle ça l’<a href="#glossary-machine-learning" class="glossary-link">APPRENTISSAGE AUTOMATIQUE</a>.</p>
         </div>
       </div>
@@ -2618,7 +2632,7 @@
         </div>
         <div class="concept-card" style="background:var(--cyan)">
           <h4><span class="emoji">✅</span> 4. Tester le modèle</h4>
-          <ul><li>On l’essaie sur des données NOUVELLES, qu’elle n’a jamais vues</li></ul>
+          <ul><li>On l’essaie sur des données NOUVELLES, qu’elle n’a encore jamais vues</li></ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">🚀</span> 5. Déployer !</h4>
@@ -2647,14 +2661,14 @@
           <h4><span class="emoji">🎮</span> Apprentissage par renforcement</h4>
           <ul>
             <li>L’IA essaie des choses et reçoit une récompense quand elle vise juste.</li>
-            <li>Comme quand tu montes de niveau dans un jeu !</li>
+            <li>Comme quand tu montes de niveau dans un jeu vidéo !</li>
           </ul>
         </div>
       </div>
 
       <div class="neural-box">
         <h4>🧠 Réseaux de neurones : comment fonctionne l’apprentissage profond</h4>
-        <p>Tout comme TON cerveau a des milliards de neurones reliés entre eux, l’IA a des neurones artificiels reliés en couches !</p>
+        <p>Tout comme TON cerveau a des milliards de neurones reliés entre eux, qui t’aident à apprendre et à comprendre le monde, l’IA utilise des réseaux de neurones artificiels pour apprendre à partir des informations qu’on lui donne. Ces neurones artificiels sont reliés en couches.</p>
         <div class="flow-diagram">
           <span class="flow-step">COUCHE D’ENTRÉE</span>
           <span class="flow-arrow">→</span>
@@ -2671,15 +2685,15 @@
           <img class="quiz-photo purple" src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
           <div class="quiz-bubble purple">
             <p><strong>Coucou, c’est Ronan — une petite question pour toi !</strong></p>
-            <p>Sais-tu combien de « paramètres » GPT-4 (l’IA derrière <a href="#glossary-chatgpt" class="glossary-link">ChatGPT</a>) a appris à régler ?</p>
+            <p>Sais-tu combien de « <a href="#glossary-parameters" class="glossary-link">paramètres</a> » GPT-4 (l’IA derrière <a href="#glossary-chatgpt" class="glossary-link">ChatGPT</a>) a appris à régler ?</p>
             <p class="quiz-hint">Clique sur une réponse pour découvrir la bonne en dessous.</p>
           </div>
         </div>
 
         <div class="quiz-options" role="group" aria-label="Réponses du quiz">
-          <button type="button" class="quiz-option" data-correct="false">Environ 1,8 million</button>
-          <button type="button" class="quiz-option" data-correct="true">Environ 1,8 billion</button>
-          <button type="button" class="quiz-option" data-correct="false">Environ 1,8 milliard</button>
+          <button type="button" class="quiz-option" data-correct="false">Environ 1,8 million (1 800 000)</button>
+          <button type="button" class="quiz-option" data-correct="true">Environ 1,8 billion (1 800 000 000 000)</button>
+          <button type="button" class="quiz-option" data-correct="false">Environ 1,8 milliard (1 800 000 000)</button>
         </div>
 
         <div class="quiz-answer" hidden>
@@ -2709,7 +2723,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-bembe.jpg" alt="Bembe" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
-          <p>Avant de parler d’IA, comprenons l’ordinateur ! Un ordinateur a du MATÉRIEL (les pièces physiques) et des LOGICIELS (les programmes).</p>
+          <p>Avant de parler d’IA, comprenons l’ordinateur ! Un ordinateur a du <a href="#glossary-hardware" class="glossary-link">MATÉRIEL</a> (les pièces physiques) et des <a href="#glossary-software" class="glossary-link">LOGICIELS</a> (les programmes).</p>
         </div>
       </div>
 
@@ -2748,14 +2762,15 @@
       <div class="neural-box">
         <h4>Comment nous parlons aux ordinateurs :</h4>
         <div class="flow-diagram">
-          <span class="flow-step" style="background:var(--pink); color:var(--ink)">Langage humain</span>
+          <span class="flow-step" style="background:var(--pink); color:var(--ink)">Langage humain<small>images, mots, textes, sons</small></span>
           <span class="flow-arrow">→</span>
           <span class="flow-step" style="background:var(--teal); color:var(--ink)">Code de programmation</span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step" style="background:var(--green); color:var(--ink)">Binaire (des 0 et des 1)</span>
+          <span class="flow-step" style="background:var(--green); color:var(--ink)"><a href="#glossary-binary" class="glossary-link">Binaire</a> (des 0 et des 1)</span>
           <span class="flow-arrow">→</span>
           <span class="flow-step" style="background:var(--orange); color:var(--ink)">Le courant passe ou ne passe pas</span>
         </div>
+        <p class="flow-caption">Chaque flèche veut dire <strong>« se transforme en »</strong>. Ce que tu dis se transforme en code, le code en 0 et en 1, et les 0 et les 1 en petites impulsions de courant — allumé, éteint, allumé, éteint.</p>
       </div>
 
       <div class="fact-banner" style="background:#BFE3F5; margin-top:40px">
@@ -2763,7 +2778,7 @@
         <p><strong>Les <a href="#glossary-hallucination" class="glossary-link">hallucinations</a> :</strong> l’IA invente parfois des faits qui sonnent vrai mais qui sont faux ! Vérifie toujours.</p>
         <p><strong>Les erreurs de calcul :</strong> l’IA peut se tromper même sur des additions toutes simples. Ne compte pas sur elle pour tes devoirs !</p>
         <p><strong>La confusion d’images :</strong> une IA a déjà pris un chihuahua pour un muffin aux myrtilles ! (Si, si, c’est vrai !)</p>
-        <p><strong>Les fautes d’orthographe :</strong> l’IA peut écrire un mot de travers en ayant l’air très sûre d’elle. Vérifie tout !</p>
+        <p><strong>Les fautes d’orthographe :</strong> l’IA peut écrire un mot de travers. Vérifie tout !</p>
       </div>
 
       <!-- Quiz: real content, drawn straight from the book's "Fun fact!" box. -->
@@ -4155,6 +4170,10 @@
           <dt>Biais</dt>
           <dd>Quand une IA traite certaines personnes de façon injuste, parce que les exemples dont elle a appris étaient déjà injustes. L’ordinateur ne s’en rend pas compte : seul un humain peut le voir.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-binary">
+          <dt>Binaire</dt>
+          <dd>L’alphabet de l’ordinateur, avec seulement deux signes : 0 et 1. Chaque photo, chaque chanson et chaque message est rangé sous la forme d’une très longue suite de 0 et de 1.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-chatgpt">
           <dt>ChatGPT</dt>
           <dd>Un célèbre chatbot IA capable de répondre à des questions, d’écrire des histoires et de tenir une conversation en devinant les meilleurs mots à dire ensuite.</dd>
@@ -4179,9 +4198,21 @@
           <dt>Imagerie par résonance magnétique (IRM)</dt>
           <dd>Un examen médical qui prend des images de l’intérieur de ton corps. L’IA aide les médecins à lire les IRM plus vite et à repérer les maladies plus tôt.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-innovate">
+          <dt>Innover</dt>
+          <dd>Faire quelque chose qui n’existait pas avant, ou trouver une bien meilleure façon de faire. Inventer, améliorer, essayer l’idée que personne n’a encore essayée.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-artificial-intelligence-ai">
           <dt>Intelligence artificielle (IA)</dt>
           <dd>Un type d’intelligence créé par les humains, qui aide les ordinateurs à apprendre, à réfléchir et à résoudre des problèmes — comme un cerveau numérique très rapide et très travailleur.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-software">
+          <dt>Logiciel (software)</dt>
+          <dd>Les programmes qui disent au matériel quoi faire. Un logiciel ne se touche pas : ce sont des instructions, écrites sous forme de code.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-hardware">
+          <dt>Matériel (hardware)</dt>
+          <dd>Les parties d’un ordinateur que tu peux toucher : l’écran, le clavier, les puces à l’intérieur.</dd>
         </div>
         <div class="glossary-entry" id="glossary-model">
           <dt>Modèle</dt>
@@ -4190,6 +4221,10 @@
         <div class="glossary-entry" id="glossary-pattern">
           <dt>Motif</dt>
           <dd>Quelque chose qui revient tout le temps : la même forme, le même mot, la même couleur. Repérer des motifs, c’est ce que l’IA fait le mieux.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-parameters">
+          <dt>Paramètres</dt>
+          <dd>Les petits boutons de réglage à l’intérieur d’une IA, qu’elle ajuste pendant qu’elle apprend. Une grande IA en a des milliards, tournés chacun d’un tout petit peu jusqu’à ce que les réponses soient justes.</dd>
         </div>
         <div class="glossary-entry" id="glossary-humanities">
           <dt>Sciences humaines</dt>

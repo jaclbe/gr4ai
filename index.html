@@ -393,12 +393,13 @@
     text-decoration-style: dotted;
     text-decoration-thickness: 1px;
     text-decoration-color: rgba(20,23,26,0.42);
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
     text-underline-offset: 4px;
     cursor: pointer;
   }
   .glossary-link:hover,
   .glossary-link[aria-expanded="true"]{
-    text-decoration-color: var(--ink);
+    text-decoration-color: currentColor;
     text-decoration-thickness: 2px;
   }
 
@@ -2255,6 +2256,16 @@
   @media (max-width: 343px){
     .flip-grid.has-image-cards .flip-card{ aspect-ratio: 16/22; }
   }
+
+  .flow-step small{
+    display: block;
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0;
+    text-transform: none;
+    opacity: .78;
+    margin-top: 2px;
+  }
 </style>
 </head>
 <body>
@@ -2329,7 +2340,7 @@
         <div class="gang-card">
           <img src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
           <span class="gang-tag" style="background:var(--gold); color:var(--ink)">Anish</span>
-          <p>Age 9, maths whiz &amp; cricket fan</p>
+          <p>Age 7.5, maths whiz &amp; cricket fan</p>
         </div>
         <div class="gang-card">
           <img src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
@@ -2439,7 +2450,7 @@
 
           <div class="compare-item is-physical">
             <span class="compare-icon" aria-hidden="true">🌍</span>
-            <div><span class="compare-tag">Physical</span><strong>Human Intelligence</strong>: the human ability to learn, understand and innovate</div>
+            <div><span class="compare-tag">Physical</span><strong>Human Intelligence</strong>: the human ability to learn, understand and <a href="#glossary-innovate" class="glossary-link">innovate</a></div>
           </div>
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
@@ -2503,9 +2514,10 @@
         <div class="concept-card" style="background:var(--teal)">
           <h4><span class="emoji">🧠</span> Human Brain</h4>
           <ul>
-            <li>Learns from experience</li>
+            <li>Learns from <strong>EXPERIENCE</strong></li>
             <li>Recognises faces</li>
             <li>Understands language</li>
+            <li>Understands context</li>
             <li>Makes decisions</li>
             <li>Gets tired &amp; needs sleep</li>
           </ul>
@@ -2516,6 +2528,7 @@
             <li>Learns from DATA</li>
             <li>Recognises faces too!</li>
             <li>Understands language</li>
+            <li>Does NOT understand context</li>
             <li>Makes decisions faster</li>
             <li>Never needs sleep!</li>
           </ul>
@@ -2534,7 +2547,7 @@
 
       <div class="fact-banner">
         <p class="fact-banner-kicker"><span class="emoji">💡</span> Fun fact!</p>
-        <p>The word "Artificial" means "made by humans" and "Intelligence" means "the ability to learn and understand." Together = smart computers made by people!</p>
+        <p>The word "Artificial" means "made by humans" and "Intelligence" means "the ability to learn and understand." Together = smart tools made by people, to help us learn and understand better!</p>
       </div>
 
       <div class="hype-box">
@@ -2582,7 +2595,7 @@
           </svg>
         </div>
 
-        <p>The "Gartner Hype Cycle" shows how new tech goes through peaks of excitement, then doubt, then steady usefulness. AI went through ALL of these stages before becoming the amazing technology we have today. Look at the curve above — can you find the bit where everyone gets excited?</p>
+        <p>The "Gartner Hype Cycle" shows how new tech goes through peaks of excitement, then doubt, and then the point where it becomes truly useful — solving real problems and doing good for people. AI went through ALL of these stages before becoming the amazing technology we have today. Look at the curve above — can you find the bit where everyone gets excited?</p>
       </div>
     </div>
   </section>
@@ -2598,6 +2611,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo purple" src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
         <div class="quiz-bubble purple">
+          <p><strong>Hi, my name is Anish.</strong></p>
           <p>Imagine teaching a toddler to recognise a cat. You show them LOTS of cats.</p>
           <p>That's exactly how AI learns! It's called <a href="#glossary-machine-learning" class="glossary-link">MACHINE LEARNING</a>.</p>
         </div>
@@ -2618,7 +2632,7 @@
         </div>
         <div class="concept-card" style="background:var(--cyan)">
           <h4><span class="emoji">✅</span> 4. Test Model</h4>
-          <ul><li>Try it on NEW data it hasn't seen</li></ul>
+          <ul><li>Try it on NEW data it hasn't seen YET</li></ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">🚀</span> 5. Deploy!</h4>
@@ -2647,14 +2661,14 @@
           <h4><span class="emoji">🎮</span> Reinforcement Learning</h4>
           <ul>
             <li>AI tries things, gets rewarded for good moves.</li>
-            <li>Like levelling up in a game!</li>
+            <li>Like levelling up in a video game!</li>
           </ul>
         </div>
       </div>
 
       <div class="neural-box">
         <h4>🧠 Neural Networks: How Deep Learning Works</h4>
-        <p>Just like YOUR brain has billions of connected neurons, AI has artificial neurons connected in layers!</p>
+        <p>Just like YOUR brain has billions of connected neurons that help you learn and make sense of the world, AI uses artificial neural networks to learn from the information we give it. These artificial neurons are connected in layers.</p>
         <div class="flow-diagram">
           <span class="flow-step">INPUT LAYER</span>
           <span class="flow-arrow">→</span>
@@ -2671,15 +2685,15 @@
           <img class="quiz-photo purple" src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
           <div class="quiz-bubble purple">
             <p><strong>Hey, it's Ronan — quick question for you!</strong></p>
-            <p>Do you know how many "parameters" GPT-4 (the AI behind <a href="#glossary-chatgpt" class="glossary-link">ChatGPT</a>) learned to adjust?</p>
+            <p>Do you know how many "<a href="#glossary-parameters" class="glossary-link">parameters</a>" GPT-4 (the AI behind <a href="#glossary-chatgpt" class="glossary-link">ChatGPT</a>) learned to adjust?</p>
             <p class="quiz-hint">Click an answer to reveal the right one below.</p>
           </div>
         </div>
 
         <div class="quiz-options" role="group" aria-label="Quiz answers">
-          <button type="button" class="quiz-option" data-correct="false">About 1.8 million</button>
-          <button type="button" class="quiz-option" data-correct="true">About 1.8 trillion</button>
-          <button type="button" class="quiz-option" data-correct="false">About 1.8 billion</button>
+          <button type="button" class="quiz-option" data-correct="false">About 1.8 million (1,800,000)</button>
+          <button type="button" class="quiz-option" data-correct="true">About 1.8 trillion (1,800,000,000,000)</button>
+          <button type="button" class="quiz-option" data-correct="false">About 1.8 billion (1,800,000,000)</button>
         </div>
 
         <div class="quiz-answer" hidden>
@@ -2709,7 +2723,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-bembe.jpg" alt="Bembe" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
-          <p>Before AI, let's understand computers! A computer has HARDWARE (the physical parts) and SOFTWARE (the programmes).</p>
+          <p>Before AI, let's understand computers! A computer has <a href="#glossary-hardware" class="glossary-link">HARDWARE</a> (the physical parts) and <a href="#glossary-software" class="glossary-link">SOFTWARE</a> (the programmes).</p>
         </div>
       </div>
 
@@ -2748,14 +2762,15 @@
       <div class="neural-box">
         <h4>How we talk to computers:</h4>
         <div class="flow-diagram">
-          <span class="flow-step" style="background:var(--pink); color:var(--ink)">Human Language</span>
+          <span class="flow-step" style="background:var(--pink); color:var(--ink)">Human Language<small>images, words, text, sounds</small></span>
           <span class="flow-arrow">→</span>
           <span class="flow-step" style="background:var(--teal); color:var(--ink)">Programming Code</span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step" style="background:var(--green); color:var(--ink)">Binary (0s &amp; 1s)</span>
+          <span class="flow-step" style="background:var(--green); color:var(--ink)"><a href="#glossary-binary" class="glossary-link">Binary</a> (0s &amp; 1s)</span>
           <span class="flow-arrow">→</span>
           <span class="flow-step" style="background:var(--orange); color:var(--ink)">Electricity On/Off</span>
         </div>
+        <p class="flow-caption">Each arrow means <strong>“gets turned into”</strong>. What you say gets turned into code, the code into 0s and 1s, and those into tiny bursts of electricity — on, off, on, off.</p>
       </div>
 
       <div class="fact-banner" style="background:#BFE3F5; margin-top:40px">
@@ -2763,7 +2778,7 @@
         <p><strong><a href="#glossary-hallucination" class="glossary-link">Hallucinations</a>:</strong> AI sometimes makes up facts that sound true but aren't! Always double-check.</p>
         <p><strong>Maths errors:</strong> AI can miscalculate even simple sums. Don't trust it for your homework!</p>
         <p><strong>Image confusion:</strong> AI once thought a chihuahua was a blueberry muffin! (Yes, really!)</p>
-        <p><strong>Spelling slip-ups:</strong> AI can confidently spell words incorrectly. Check everything!</p>
+        <p><strong>Spelling slip-ups:</strong> AI can spell words incorrectly. Check everything!</p>
       </div>
 
       <!-- Quiz: real content, drawn straight from the book's "Fun fact!" box. -->
@@ -4155,6 +4170,10 @@
           <dt>Bias</dt>
           <dd>When AI is unfair to some people, because the examples it learned from were unfair too. The computer never notices — only a human can.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-binary">
+          <dt>Binary</dt>
+          <dd>The computer’s own alphabet, made of just two signs: 0 and 1. Every photo, song and message is stored as a very long line of them.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-chatgpt">
           <dt>ChatGPT</dt>
           <dd>A famous AI chatbot that can answer questions, write stories and hold conversations by predicting the best next words to say.</dd>
@@ -4175,9 +4194,17 @@
           <dt>Hallucination</dt>
           <dd>When AI makes something up and says it as if it were true. It is not lying on purpose — it is guessing the next words. Check anything that matters.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-hardware">
+          <dt>Hardware</dt>
+          <dd>The parts of a computer you can actually touch: the screen, the keyboard, the chips inside.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-humanities">
           <dt>Humanities</dt>
           <dd>Subjects like history, ethics and philosophy that help us understand people, society and right from wrong — skills AI still can't fully replace.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-innovate">
+          <dt>Innovate</dt>
+          <dd>To make something that did not exist before, or find a much better way of doing something. Inventing, improving, trying the idea nobody has tried yet.</dd>
         </div>
         <div class="glossary-entry" id="glossary-machine-learning">
           <dt>Machine Learning</dt>
@@ -4195,6 +4222,10 @@
           <dt>Over-Reliance</dt>
           <dd>Depending on AI so much that you stop thinking for yourself. Always use your own brain too!</dd>
         </div>
+        <div class="glossary-entry" id="glossary-parameters">
+          <dt>Parameters</dt>
+          <dd>The little dials inside an AI that it adjusts while it learns. A big AI has billions of them, each nudged a tiny bit until the answers come out right.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-pattern">
           <dt>Pattern</dt>
           <dd>Something that keeps coming back: the same shape, the same word, the same colour. Finding patterns is the thing AI is best at.</dd>
@@ -4202,6 +4233,10 @@
         <div class="glossary-entry" id="glossary-privacy">
           <dt>Privacy</dt>
           <dd>Your right to keep personal information — like your name, address or photos — safe and only shared with people you trust.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-software">
+          <dt>Software</dt>
+          <dd>The programmes that tell the hardware what to do. You cannot touch software — it is instructions, written as code.</dd>
         </div>
       </dl>
     </div>

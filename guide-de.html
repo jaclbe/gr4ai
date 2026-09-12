@@ -394,12 +394,13 @@
     text-decoration-style: dotted;
     text-decoration-thickness: 1px;
     text-decoration-color: rgba(20,23,26,0.42);
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
     text-underline-offset: 4px;
     cursor: pointer;
   }
   .glossary-link:hover,
   .glossary-link[aria-expanded="true"]{
-    text-decoration-color: var(--ink);
+    text-decoration-color: currentColor;
     text-decoration-thickness: 2px;
   }
 
@@ -2256,6 +2257,16 @@
   @media (max-width: 343px){
     .flip-grid.has-image-cards .flip-card{ aspect-ratio: 16/22; }
   }
+
+  .flow-step small{
+    display: block;
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0;
+    text-transform: none;
+    opacity: .78;
+    margin-top: 2px;
+  }
 </style>
 </head>
 <body>
@@ -2330,7 +2341,7 @@
         <div class="gang-card">
           <img src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
           <span class="gang-tag" style="background:var(--gold); color:var(--ink)">Anish</span>
-          <p>9 Jahre, Mathe-Ass &amp; Cricket-Fan</p>
+          <p>7,5 Jahre, Mathe-Ass &amp; Cricket-Fan</p>
         </div>
         <div class="gang-card">
           <img src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
@@ -2440,7 +2451,7 @@
 
           <div class="compare-item is-physical">
             <span class="compare-icon" aria-hidden="true">🌍</span>
-            <div><span class="compare-tag">Physisch</span><strong>Menschliche Intelligenz</strong>: die Fähigkeit von Menschen, zu lernen, zu verstehen und Neues zu erfinden</div>
+            <div><span class="compare-tag">Physisch</span><strong>Menschliche Intelligenz</strong>: die Fähigkeit von Menschen, zu lernen, zu verstehen und <a href="#glossary-innovate" class="glossary-link">Neues zu erfinden</a></div>
           </div>
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
@@ -2504,9 +2515,10 @@
         <div class="concept-card" style="background:var(--teal)">
           <h4><span class="emoji">🧠</span> Menschliches Gehirn</h4>
           <ul>
-            <li>Lernt aus Erfahrung</li>
+            <li>Lernt aus <strong>ERFAHRUNG</strong></li>
             <li>Erkennt Gesichter</li>
             <li>Versteht Sprache</li>
+            <li>Versteht den Zusammenhang</li>
             <li>Trifft Entscheidungen</li>
             <li>Wird müde &amp; braucht Schlaf</li>
           </ul>
@@ -2517,6 +2529,7 @@
             <li>Lernt aus DATEN</li>
             <li>Erkennt auch Gesichter!</li>
             <li>Versteht Sprache</li>
+            <li>Versteht den Zusammenhang NICHT</li>
             <li>Entscheidet schneller</li>
             <li>Braucht nie Schlaf!</li>
           </ul>
@@ -2535,7 +2548,7 @@
 
       <div class="fact-banner">
         <p class="fact-banner-kicker"><span class="emoji">💡</span> Wusstest du schon?</p>
-        <p>Das Wort „künstlich“ bedeutet „von Menschen gemacht“, und „Intelligenz“ bedeutet „die Fähigkeit, zu lernen und zu verstehen“. Zusammen = schlaue Computer, von Menschen gemacht!</p>
+        <p>Das Wort „künstlich“ bedeutet „von Menschen gemacht“, und „Intelligenz“ bedeutet „die Fähigkeit, zu lernen und zu verstehen“. Zusammen = schlaue Werkzeuge, von Menschen gemacht, damit wir besser lernen und verstehen!</p>
       </div>
 
       <div class="hype-box">
@@ -2583,7 +2596,7 @@
           </svg>
         </div>
 
-        <p>Der „Gartner Hype Cycle“ zeigt, wie neue Technik erst gefeiert wird, dann angezweifelt und am Ende einfach nützlich ist. Die KI hat ALLE diese Phasen durchlaufen, bevor sie zu der tollen Technologie wurde, die wir heute haben. Schau dir die Kurve oben an – findest du die Stelle, an der alle begeistert sind?</p>
+        <p>Der „Gartner Hype Cycle“ zeigt, wie neue Technik erst gefeiert wird, dann angezweifelt – und am Ende wirklich nützlich wird: für echte Probleme und für das Gute für uns alle. Die KI hat ALLE diese Phasen durchlaufen, bevor sie zu der tollen Technologie wurde, die wir heute haben. Schau dir die Kurve oben an – findest du die Stelle, an der alle begeistert sind?</p>
       </div>
     </div>
   </section>
@@ -2599,6 +2612,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo purple" src="assets/gang-anish.jpg" alt="Anish" loading="lazy" decoding="async" />
         <div class="quiz-bubble purple">
+          <p><strong>Hallo, ich bin Anish.</strong></p>
           <p>Stell dir vor, du bringst einem kleinen Kind bei, eine Katze zu erkennen. Du zeigst ihm GANZ VIELE Katzen.</p>
           <p>Genau so lernt eine KI! Das heißt <a href="#glossary-machine-learning" class="glossary-link">MASCHINELLES LERNEN</a>.</p>
         </div>
@@ -2619,7 +2633,7 @@
         </div>
         <div class="concept-card" style="background:var(--cyan)">
           <h4><span class="emoji">✅</span> 4. Modell testen</h4>
-          <ul><li>Mit NEUEN Daten testen, die es nicht kennt</li></ul>
+          <ul><li>Mit NEUEN Daten testen, die es noch nicht kennt</li></ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">🚀</span> 5. Einsetzen!</h4>
@@ -2648,14 +2662,14 @@
           <h4><span class="emoji">🎮</span> Bestärkendes Lernen</h4>
           <ul>
             <li>Die KI probiert Dinge aus und wird für gute Züge belohnt.</li>
-            <li>Wie ein Level-Aufstieg im Spiel!</li>
+            <li>Wie ein Level-Aufstieg in einem Videospiel!</li>
           </ul>
         </div>
       </div>
 
       <div class="neural-box">
         <h4>🧠 Neuronale Netze: So funktioniert Deep Learning</h4>
-        <p>So wie DEIN Gehirn Milliarden verbundene Neuronen hat, hat eine KI künstliche Neuronen, die in Schichten verbunden sind!</p>
+        <p>So wie DEIN Gehirn Milliarden verbundene Neuronen hat, die dir beim Lernen helfen und dir die Welt erklären, nutzt eine KI künstliche neuronale Netze, um aus den Informationen zu lernen, die wir ihr geben. Diese künstlichen Neuronen sind in Schichten miteinander verbunden.</p>
         <div class="flow-diagram">
           <span class="flow-step">EINGABE-SCHICHT</span>
           <span class="flow-arrow">→</span>
@@ -2672,15 +2686,15 @@
           <img class="quiz-photo purple" src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
           <div class="quiz-bubble purple">
             <p><strong>Hallo, hier ist Ronan – eine kurze Frage an dich!</strong></p>
-            <p>Weißt du, wie viele „Parameter“ GPT-4 (die KI hinter <a href="#glossary-chatgpt" class="glossary-link">ChatGPT</a>) einstellen gelernt hat?</p>
+            <p>Weißt du, wie viele „<a href="#glossary-parameters" class="glossary-link">Parameter</a>“ GPT-4 (die KI hinter <a href="#glossary-chatgpt" class="glossary-link">ChatGPT</a>) einstellen gelernt hat?</p>
             <p class="quiz-hint">Klicke auf eine Antwort – die richtige erscheint darunter.</p>
           </div>
         </div>
 
         <div class="quiz-options" role="group" aria-label="Quiz-Antworten">
-          <button type="button" class="quiz-option" data-correct="false">Etwa 1,8 Millionen</button>
-          <button type="button" class="quiz-option" data-correct="true">Etwa 1,8 Billionen</button>
-          <button type="button" class="quiz-option" data-correct="false">Etwa 1,8 Milliarden</button>
+          <button type="button" class="quiz-option" data-correct="false">Etwa 1,8 Millionen (1.800.000)</button>
+          <button type="button" class="quiz-option" data-correct="true">Etwa 1,8 Billionen (1.800.000.000.000)</button>
+          <button type="button" class="quiz-option" data-correct="false">Etwa 1,8 Milliarden (1.800.000.000)</button>
         </div>
 
         <div class="quiz-answer" hidden>
@@ -2708,7 +2722,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-bembe.jpg" alt="Bembe" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
-          <p>Bevor wir zur KI kommen, schauen wir uns Computer an! Ein Computer hat HARDWARE (die Teile zum Anfassen) und SOFTWARE (die Programme).</p>
+          <p>Bevor wir zur KI kommen, schauen wir uns Computer an! Ein Computer hat <a href="#glossary-hardware" class="glossary-link">HARDWARE</a> (die Teile zum Anfassen) und <a href="#glossary-software" class="glossary-link">SOFTWARE</a> (die Programme).</p>
         </div>
       </div>
 
@@ -2747,14 +2761,15 @@
       <div class="neural-box">
         <h4>So sprechen wir mit Computern:</h4>
         <div class="flow-diagram">
-          <span class="flow-step" style="background:var(--pink); color:var(--ink)">Menschliche Sprache</span>
+          <span class="flow-step" style="background:var(--pink); color:var(--ink)">Menschliche Sprache<small>Bilder, Wörter, Text, Töne</small></span>
           <span class="flow-arrow">→</span>
           <span class="flow-step" style="background:var(--teal); color:var(--ink)">Programmiercode</span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step" style="background:var(--green); color:var(--ink)">Binär (Nullen &amp; Einsen)</span>
+          <span class="flow-step" style="background:var(--green); color:var(--ink)"><a href="#glossary-binary" class="glossary-link">Binär</a> (Nullen &amp; Einsen)</span>
           <span class="flow-arrow">→</span>
           <span class="flow-step" style="background:var(--orange); color:var(--ink)">Strom an/aus</span>
         </div>
+        <p class="flow-caption">Jeder Pfeil bedeutet <strong>„wird umgewandelt in“</strong>. Was du sagst, wird zu Code, der Code wird zu Nullen und Einsen, und die werden zu winzigen Stromstößen – an, aus, an, aus.</p>
       </div>
 
       <div class="fact-banner" style="background:#BFE3F5; margin-top:40px">
@@ -2762,7 +2777,7 @@
         <p><strong><a href="#glossary-hallucination" class="glossary-link">Halluzinationen</a>:</strong> KI erfindet manchmal Dinge, die wahr klingen, es aber nicht sind! Prüfe immer nach.</p>
         <p><strong>Rechenfehler:</strong> KI kann sich sogar bei einfachen Aufgaben verrechnen. Verlass dich bei den Hausaufgaben nicht auf sie!</p>
         <p><strong>Bild-Verwechslungen:</strong> Eine KI hielt einen Chihuahua einmal für einen Blaubeermuffin! (Ja, wirklich!)</p>
-        <p><strong>Rechtschreib-Patzer:</strong> KI kann Wörter ganz selbstbewusst falsch schreiben. Prüfe alles nach!</p>
+        <p><strong>Rechtschreib-Patzer:</strong> KI kann Wörter falsch schreiben. Prüfe alles nach!</p>
       </div>
 
       <!-- Quiz: real content, drawn straight from the book's "Fun fact!" box. -->
@@ -4145,6 +4160,10 @@
       </div>
 
       <dl class="glossary-list">
+        <div class="glossary-entry" id="glossary-binary">
+          <dt>Binärcode</dt>
+          <dd>Das eigene Alphabet des Computers – es hat nur zwei Zeichen: 0 und 1. Jedes Foto, jedes Lied und jede Nachricht wird als sehr lange Reihe davon gespeichert.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-chatgpt">
           <dt>ChatGPT</dt>
           <dd>Ein berühmter KI-Chatbot. Er beantwortet Fragen, schreibt Geschichten und unterhält sich mit dir – indem er vorhersagt, welches Wort als Nächstes am besten passt.</dd>
@@ -4173,6 +4192,10 @@
           <dt>Halluzination</dt>
           <dd>Wenn eine KI etwas erfindet und es so sagt, als wäre es wahr. Sie lügt nicht mit Absicht – sie rät einfach das nächste Wort. Prüfe alles nach, was wichtig ist.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-hardware">
+          <dt>Hardware</dt>
+          <dd>Die Teile eines Computers, die du anfassen kannst: der Bildschirm, die Tastatur, die Chips im Inneren.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-artificial-intelligence-ai">
           <dt>Künstliche Intelligenz (KI)</dt>
           <dd>Eine von Menschen gemachte Intelligenz. Sie hilft Computern zu lernen, zu denken und Probleme zu lösen – wie ein sehr schnelles, sehr fleißiges digitales Gehirn.</dd>
@@ -4193,6 +4216,14 @@
           <dt>Muster</dt>
           <dd>Etwas, das immer wiederkommt: dieselbe Form, dasselbe Wort, dieselbe Farbe. Muster zu finden ist das, was KI am besten kann.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-innovate">
+          <dt>Neues erfinden</dt>
+          <dd>Etwas machen, das es vorher noch nicht gab – oder einen viel besseren Weg finden, etwas zu tun. Erfinden, verbessern, eine Idee ausprobieren, die noch niemand hatte.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-parameters">
+          <dt>Parameter</dt>
+          <dd>Die kleinen Regler in einer KI, die sie beim Lernen einstellt. Eine große KI hat Milliarden davon – jeder wird ein winziges bisschen gedreht, bis die Antworten stimmen.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-privacy">
           <dt>Privatsphäre</dt>
           <dd>Dein Recht, persönliche Informationen – deinen Namen, deine Adresse, deine Fotos – zu schützen und nur mit Menschen zu teilen, denen du vertraust.</dd>
@@ -4200,6 +4231,10 @@
         <div class="glossary-entry" id="glossary-over-reliance">
           <dt>Sich zu sehr auf KI verlassen</dt>
           <dd>Wenn du dich so sehr auf KI verlässt, dass du selbst nicht mehr mitdenkst. Benutz immer auch dein eigenes Gehirn!</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-software">
+          <dt>Software</dt>
+          <dd>Die Programme, die der Hardware sagen, was sie tun soll. Software kannst du nicht anfassen – sie besteht aus Anweisungen, geschrieben als Code.</dd>
         </div>
       </dl>
     </div>
