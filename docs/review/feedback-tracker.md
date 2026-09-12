@@ -15,14 +15,14 @@ Everything marked done is done in **all three languages**.
 
 | # | Item | Status |
 |---|------|--------|
-| F1 | Dedication ("to all grandparents, especially grandpa Georgios and grandma Keti…") | queued — I'll place it as a quiet block between the hero and Meet the gang |
+| F1 | Dedication ("to all grandparents, especially grandpa Georgios and grandma Keti…") | **done** — a quiet block between the hero and Meet the gang |
 | F2 | Anish is 7.5, so the gang covers the whole 7–12 range | **done** |
 | F3 | Name the professors in the intro + "you'll meet them properly in chapter 6" | ask — there are 8 professors in chapter 6 but only 7 photos in the intro row. Which one is missing a picture? |
-| F4 | Give the AI cloud a name and let it introduce itself | ask — it needs a name. Suggestions: **Nimbus**, **Cirrus**, **Pip**, **Bit**. Or yours. |
-| F5 | "How to navigate this website" block (read it with a grown-up first, click the numbers at the top, glossary explains the hard words) | queued |
-| F6 | …including the link for anonymous feedback | ask — which link? The Padlet, or a form? |
-| F7 | …including the downloadable file for people who prefer paper | ask — where is the PDF? I need the file or a URL. |
-| F8 | Count visits and countries | build — needs a third-party counter. On a children's site I'd only use a cookieless one (GoatCounter or Plausible); both are privacy-safe but Plausible is paid. Your call, and it's a GDPR decision. |
+| F4 | Give the AI cloud a name and let it introduce itself | **done** — it is called "the AI cloud" and now says hello before chapter 1 |
+| F5 | "How to navigate this website" block (read it with a grown-up first, click the numbers at the top, glossary explains the hard words) | **done** — read it with a grown-up, dotted words open a card, numbers at the top jump to a chapter, the site is free. Feedback link and PDF left out while they are on hold |
+| F6 | …including the link for anonymous feedback | on hold |
+| F7 | …including the downloadable file for people who prefer paper | on hold |
+| F8 | Count visits and countries | proposal sent — count it ourselves at the Netlify edge, aggregate only, no cookies |
 | F9 | Share anonymous testimonials from parents, teachers, children | build + ask — we need somewhere to collect them and the first few to show. |
 
 ## Chapter 1 — physical vs digital
@@ -71,21 +71,21 @@ Everything marked done is done in **all three languages**.
 | # | Item | Status |
 |---|------|--------|
 | 5.1 | Remove "Detect illness from x-rays and MRI scans" from the *cannot* list | **done** (earlier this week) |
-| 5.2 | "Clean a person" → "help a person cross the street" | queued |
-| 5.3 | Add "Developing new ideas" with a lamp icon | queued |
-| 5.4 | Gallery: "upload it below with your first name, age and country ONLY" | **ask — this reverses a change from earlier this week.** The page used to say "upload it below" while the note underneath said a parent must submit it, so I changed it to "ask a grown-up to upload it for you". Your new parent note covers the photo, but not who does the uploading. Which do you want the child to read? |
-| 5.5 | Parent note: no faces, no personal or identifiable information in the photo | queued |
+| 5.2 | "Clean a person" → "help a person cross the street" | **done** |
+| 5.3 | Add "Developing new ideas" with a lamp icon | **done** — a lightbulb card, eight cards now |
+| 5.4 | Gallery: "upload it below with your first name, age and country ONLY" | on hold — the page still says "ask a grown-up to upload it for you" |
+| 5.5 | Parent note: no faces, no personal or identifiable information in the photo | **done** — no faces, no names on the drawing, no uniform, no house or street |
 | 5.6 | Rosa, 8, Netherlands — a version of the picture without the child's face | asset |
 
 ## Chapter 6 — real people, real AI jobs
 
 | # | Item | Status |
 |---|------|--------|
-| 6.1 | Glossary: professionals | queued |
-| 6.2 | Glossary: Alzheimer's disease | queued |
-| 6.3 | Glossary: biases (gender, ethnicity, race, religion, ability) | queued — "bias" went in this week; I'll widen the definition to name those |
-| 6.4 | Add Professor Ling — Beijing, AI and finance, online payments | ask — Ling is also one of the eight children (age 12). Two Lings will confuse a 7-year-old. New name for the professor? And she needs a photo. |
-| 6.5 | Professor Crooke is not in the UK | ask — which country? |
+| 6.1 | Glossary: professionals | **done** |
+| 6.2 | Glossary: Alzheimer's disease | **done** |
+| 6.3 | Glossary: biases (gender, ethnicity, race, religion, ability) | **done** — now names gender, skin colour, origin, religion and disability |
+| 6.4 | Add Professor Ling — Beijing, AI and finance, online payments | on hold |
+| 6.5 | Professor Crooke is not in the UK | on hold |
 
 ## Chapter 7 — AI in daily life
 
@@ -171,19 +171,21 @@ Everything marked done is done in **all three languages**.
 
 | # | Item | Status |
 |---|------|--------|
-| E1 | Acknowledgements (Heath House prep school and consortium, NIHR youth council, Jan's daughters, Mr Stathidis, Mr Williams, Mrs Rokakis, Mrs Vatsitsis, Mr Pearce, Dr Tapeinos, Dr Erenstein and his kids, Dr Adibi and her kids, Mr Vitale and Mrs Rizic and their kids, Morgan Stanley) | ask — I need your daughters' names, and confirmation that everyone here is happy to be named on a public page |
-| E2 | AI-use disclaimer (openart.ai images from Katerina's prompts; some text drafted with Claude) | queued |
+| E1 | Acknowledgements (Heath House prep school and consortium, NIHR youth council, Jan's daughters, Mr Stathidis, Mr Williams, Mrs Rokakis, Mrs Vatsitsis, Mr Pearce, Dr Tapeinos, Dr Erenstein and his kids, Dr Adibi and her kids, Mr Vitale and Mrs Rizic and their kids, Morgan Stanley) | **done** — Nicola and Annika included. Still worth checking everyone is happy to be named publicly |
+| E2 | AI-use disclaimer (openart.ai images from Katerina's prompts; some text drafted with Claude) | **done** |
 
 ---
 
 ## What I need from you to unblock the rest
 
-1. A name for the AI cloud (F4).
-2. The feedback link and the PDF (F6, F7).
-3. Chapter 5 gallery: who uploads — the child or the grown-up? (5.4)
-4. The Beijing professor's name, since Ling is taken, and Prof Crooke's country (6.4, 6.5).
-5. Your daughters' names for the acknowledgements (E1).
-6. Whether to add a visitor counter at all, given it's a children's site (F8).
+Answered on 12 September: the cloud is simply "the AI cloud"; the daughters are
+Nicola and Annika. On hold: the feedback link and PDF (F6, F7), who uploads to
+the gallery (5.4), the Beijing professor and Prof Crooke's country (6.4, 6.5).
+
+Still open:
+
+1. Confirmation that everyone in the acknowledgements is happy to be named (E1).
+2. Sign-off on the visitor counter proposal (F8).
 
 Images needed: neural network + brain (3.5), Rosa without a face (5.6), green AI scale
 (7.6), the Beijing professor (6.4), AI banker (12.2).
