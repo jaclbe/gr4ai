@@ -18,7 +18,7 @@ Everything marked done is done in **all three languages**.
 | F1 | Dedication ("to all grandparents, especially grandpa Georgios and grandma Keti…") | **done** — a quiet block between the hero and Meet the gang |
 | F2 | Anish is 7.5, so the gang covers the whole 7–12 range | **done** |
 | F3 | Name the professors in the intro + "you'll meet them properly in chapter 6" | ask — there are 8 professors in chapter 6 but only 7 photos in the intro row. Which one is missing a picture? |
-| F4 | Give the AI cloud a name and let it introduce itself | **done** — it is called "the AI cloud" and now says hello before chapter 1 |
+| F4 | Give the AI cloud a name and let it introduce itself | **done** — the cloud is called **GR4AI** and introduces itself before chapter 1, explaining what the name stands for |
 | F5 | "How to navigate this website" block (read it with a grown-up first, click the numbers at the top, glossary explains the hard words) | **done** — read it with a grown-up, dotted words open a card, numbers at the top jump to a chapter, the site is free. Feedback link and PDF left out while they are on hold |
 | F6 | …including the link for anonymous feedback | on hold |
 | F7 | …including the downloadable file for people who prefer paper | on hold |
