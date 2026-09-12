@@ -988,6 +988,7 @@
   .flip-back.has-image .flip-back-text{ flex: 1 1 52%; min-width: 0; }
   .flip-back.has-image .flip-back-text h4{ font-size: 17px; margin-bottom: 8px; }
   .flip-back.has-image .flip-back-text ul{ font-size: 14.5px; line-height: 1.45; }
+  .flip-back.has-image .flip-back-text p{ margin: 0; font-size: 14.5px; line-height: 1.45; }
   .flip-back.has-image .flip-back-img{
     flex: 0 0 46%;
     width: 46%;
@@ -3246,82 +3247,94 @@
       </div>
 
       <p class="flip-hint career-hint">👆 Click a card to flip it over</p>
-      <div class="career-grid study-grid">
-        <div class="career-card is-dealt" data-index="0">
-          <div class="career-card-inner">
-            <div class="career-card-front" style="background:var(--pink)">
-              <span class="emoji">🏥</span>
+      <div class="flip-grid has-image-cards">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:var(--pink)">
+              <span class="flip-emoji">🏥</span>
               <h4 style="color:var(--ink)">Healthcare</h4>
             </div>
-            <div class="career-card-back" style="background:var(--pink); color:var(--ink)">
-              <img class="career-card-img" src="assets/daily-science.jpg" alt="Healthcare illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
-              <h4>Healthcare</h4>
-              <p>Spots cancer in X-rays, designs new medicines, predicts flu outbreaks, AI doctors' assistants.</p>
+            <div class="flip-back has-image" style="background:var(--pink); color:var(--ink)">
+              <div class="flip-back-text">
+                <h4>Healthcare</h4>
+                <p>Spots cancer in X-rays, designs new medicines, predicts flu outbreaks, AI doctors' assistants.</p>
+              </div>
+              <img class="flip-back-img" src="assets/daily-science.jpg" alt="Healthcare illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
-        <div class="career-card is-dealt" data-index="1">
-          <div class="career-card-inner">
-            <div class="career-card-front" style="background:var(--blue)">
-              <span class="emoji">🚗</span>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:var(--blue)">
+              <span class="flip-emoji">🚗</span>
               <h4>Transport</h4>
             </div>
-            <div class="career-card-back" style="background:var(--blue)">
-              <img class="career-card-img" src="assets/daily-transport.jpg" alt="Transport illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
-              <h4>Transport</h4>
-              <p>Self-driving cars, traffic light control, flight auto-pilot, train safety systems.</p>
+            <div class="flip-back has-image" style="background:var(--blue)">
+              <div class="flip-back-text">
+                <h4>Transport</h4>
+                <p>Self-driving cars, traffic light control, flight auto-pilot, train safety systems.</p>
+              </div>
+              <img class="flip-back-img" src="assets/daily-transport.jpg" alt="Transport illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
-        <div class="career-card is-dealt" data-index="2">
-          <div class="career-card-inner">
-            <div class="career-card-front" style="background:var(--green)">
-              <span class="emoji">🎬</span>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:var(--green)">
+              <span class="flip-emoji">🎬</span>
               <h4>Entertainment</h4>
             </div>
-            <div class="career-card-back" style="background:var(--green)">
-              <img class="career-card-img" src="assets/daily-entertainment.jpg" alt="Entertainment illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
-              <h4>Entertainment</h4>
-              <p>Netflix recommends shows, Spotify finds your songs, video game opponents, movie special effects.</p>
+            <div class="flip-back has-image" style="background:var(--green)">
+              <div class="flip-back-text">
+                <h4>Entertainment</h4>
+                <p>Netflix recommends shows, Spotify finds your songs, video game opponents, movie special effects.</p>
+              </div>
+              <img class="flip-back-img" src="assets/daily-entertainment.jpg" alt="Entertainment illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
-        <div class="career-card is-dealt" data-index="3">
-          <div class="career-card-inner">
-            <div class="career-card-front" style="background:var(--orange)">
-              <span class="emoji">📱</span>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:var(--orange)">
+              <span class="flip-emoji">📱</span>
               <h4>Smartphones</h4>
             </div>
-            <div class="career-card-back" style="background:var(--orange)">
-              <img class="career-card-img" src="assets/daily-smartphones.jpg" alt="Smartphones illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
-              <h4>Smartphones</h4>
-              <p>Face unlock on phones, voice assistants (Siri!), smart autocorrect, photo improvements.</p>
+            <div class="flip-back has-image" style="background:var(--orange)">
+              <div class="flip-back-text">
+                <h4>Smartphones</h4>
+                <p>Face unlock on phones, voice assistants (Siri!), smart autocorrect, photo improvements.</p>
+              </div>
+              <img class="flip-back-img" src="assets/daily-smartphones.jpg" alt="Smartphones illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
-        <div class="career-card is-dealt" data-index="4">
-          <div class="career-card-inner">
-            <div class="career-card-front" style="background:var(--teal)">
-              <span class="emoji">⛅</span>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:var(--teal)">
+              <span class="flip-emoji">⛅</span>
               <h4>Weather</h4>
             </div>
-            <div class="career-card-back" style="background:var(--teal)">
-              <img class="career-card-img" src="assets/daily-weather.jpg" alt="Weather illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
-              <h4>Weather</h4>
-              <p>5-day forecasts, hurricane prediction, climate monitoring, flood early warnings.</p>
+            <div class="flip-back has-image" style="background:var(--teal)">
+              <div class="flip-back-text">
+                <h4>Weather</h4>
+                <p>5-day forecasts, hurricane prediction, climate monitoring, flood early warnings.</p>
+              </div>
+              <img class="flip-back-img" src="assets/daily-weather.jpg" alt="Weather illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
-        <div class="career-card is-dealt" data-index="5">
-          <div class="career-card-inner">
-            <div class="career-card-front" style="background:var(--purple); color:#fff">
-              <span class="emoji">🍕</span>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:var(--purple); color:#fff">
+              <span class="flip-emoji">🍕</span>
               <h4>Food</h4>
             </div>
-            <div class="career-card-back" style="background:var(--purple); color:#fff">
-              <img class="career-card-img" src="assets/daily-food.jpg" alt="Food illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
-              <h4>Food</h4>
-              <p>Robot pizza makers, food waste reduction, recipe suggestions, crop monitoring.</p>
+            <div class="flip-back has-image" style="background:var(--purple); color:#fff">
+              <div class="flip-back-text">
+                <h4>Food</h4>
+                <p>Robot pizza makers, food waste reduction, recipe suggestions, crop monitoring.</p>
+              </div>
+              <img class="flip-back-img" src="assets/daily-food.jpg" alt="Food illustration" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
