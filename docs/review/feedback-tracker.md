@@ -114,26 +114,26 @@ Everything marked done is done in **all three languages**.
 
 | # | Item | Status |
 |---|------|--------|
-| 9.1 | "This is Rebecca. Are you enjoying it so far?" | queued |
-| 9.2 | Glossary: monitors, accessible, solar panels, eco-friendly, proteins, gene, repetitive | queued |
+| 9.1 | "This is Rebecca. Are you enjoying it so far?" | **done** |
+| 9.2 | Glossary: monitors, accessible, solar panels, eco-friendly, proteins, gene, repetitive | **done** — monitor, accessible, solar panel, eco-friendly, protein, gene and repetitive |
 
 ## Chapter 10 — the tricky side
 
 | # | Item | Status |
 |---|------|--------|
-| 10.1 | "Back to me, Ronan!" | queued |
-| 10.2 | "wrong info" → "wrong information" | queued |
+| 10.1 | "Back to me, Ronan!" | **done** |
+| 10.2 | "wrong info" → "wrong information" | **done** |
 | 10.3 | Glossary: biased | **done** (earlier this week, linked on "biased data") |
 
 ## Chapter 11 — responsible AI
 
 | # | Item | Status |
 |---|------|--------|
-| 11.1 | "This is Fleur again, did you miss me!?" | queued |
-| 11.2 | "Keep scrolling to see the 5 principles" | queued |
-| 11.3 | Glossary: European Union, manipulates, surveillance | queued |
-| 11.4 | Link to the EU AI Act | queued — I'll use the Commission's own page, which is the stable one |
-| 11.5 | "Governments are working hard to keep AI responsible and people safe" | queued |
+| 11.1 | "This is Fleur again, did you miss me!?" | **done** — Fleur already opened this chapter, so "again" now follows her chapter 8 opener |
+| 11.2 | "Keep scrolling to see the 5 principles" | **done** — "Keep scrolling to see all five!" |
+| 11.3 | Glossary: European Union, manipulates, surveillance | **done** — European Union, manipulate and surveillance |
+| 11.4 | Link to the EU AI Act | **done** — links to the European Commission's own AI Act page, opens in a new tab |
+| 11.5 | "Governments are working hard to keep AI responsible and people safe" | **done** — "…to keep AI responsible and people safe" |
 
 ## Chapter 12 — careers
 

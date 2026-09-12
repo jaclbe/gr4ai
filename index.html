@@ -2377,6 +2377,21 @@
   .img-pair .img-placeholder{ aspect-ratio: 4 / 3; }
   @media (max-width: 560px){ .img-pair{ grid-template-columns: 1fr; } }
   .img-wide{ aspect-ratio: 16 / 5; max-width: 760px; margin: 24px auto 0; }
+
+  .ext-link{
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .ext-link .ext-mark{ font-size: 0.8em; margin-left: 2px; }
+  .keep-scrolling{
+    margin: -8px 0 22px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
 </style>
 </head>
 <body>
@@ -3532,6 +3547,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo green" src="assets/gang-rebecca.jpg" alt="Rebecca" loading="lazy" decoding="async" />
         <div class="quiz-bubble green">
+          <p><strong>This is Rebecca. Are you enjoying it so far?</strong></p>
           <p>AI can do so many AMAZING things to help people and make the world a better place. Let me show you some!</p>
         </div>
       </div>
@@ -3543,7 +3559,7 @@
             <li>Detects cancer early</li>
             <li>Finds rare diseases faster</li>
             <li>Speeds up drug discovery</li>
-            <li>Monitors patients 24/7</li>
+            <li><a href="#glossary-monitor" class="glossary-link">Monitors</a> patients 24/7</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--coral)">
@@ -3552,16 +3568,16 @@
             <li>Reads text aloud for blind</li>
             <li>Translates sign language</li>
             <li>Helps speech difficulties</li>
-            <li>Makes tech accessible</li>
+            <li>Makes tech <a href="#glossary-accessible" class="glossary-link">accessible</a></li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--gold)">
           <h4><span class="emoji">🌍</span> Helps the Planet</h4>
           <ul>
             <li>Tracks climate change</li>
-            <li>Makes solar panels smarter</li>
+            <li>Makes <a href="#glossary-solar-panel" class="glossary-link">solar panels</a> smarter</li>
             <li>Reduces food waste</li>
-            <li>Plans eco-friendly routes</li>
+            <li>Plans <a href="#glossary-eco-friendly" class="glossary-link">eco-friendly</a> routes</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--coral)">
@@ -3576,16 +3592,16 @@
         <div class="concept-card" style="background:var(--gold)">
           <h4><span class="emoji">🔬</span> Science Booster</h4>
           <ul>
-            <li>Discovers new proteins</li>
+            <li>Discovers new <a href="#glossary-protein" class="glossary-link">proteins</a></li>
             <li>Models weather patterns</li>
-            <li>Analyses gene data</li>
+            <li>Analyses <a href="#glossary-gene" class="glossary-link">gene</a> data</li>
             <li>Accelerates research</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">⏰</span> Saves Time</h4>
           <ul>
-            <li>Does repetitive tasks</li>
+            <li>Does <a href="#glossary-repetitive" class="glossary-link">repetitive</a> tasks</li>
             <li>Answers questions fast</li>
             <li>Organises information</li>
             <li>Frees humans to be creative!</li>
@@ -3632,6 +3648,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Back to me, Ronan!</strong></p>
           <p>AI is powerful — but that means we need to be careful! Here are some real risks we need to think about and talk about.</p>
         </div>
       </div>
@@ -3642,7 +3659,7 @@
           <ul>
             <li>AI can make fake videos</li>
             <li>Real people saying fake things</li>
-            <li>Can spread wrong info</li>
+            <li>Can spread wrong information</li>
             <li>ALWAYS check sources!</li>
           </ul>
         </div>
@@ -3740,6 +3757,7 @@
       <div class="principle-stack-sticky">
       <div class="principle-deal-group">
       <h4 class="section-subhead" style="margin-top:0">The 5 Principles of Responsible AI</h4>
+      <p class="keep-scrolling">Keep scrolling to see all five!</p>
       <div class="principle-blobs">
         <div class="principle-row row1">
           <div class="principle-blob" style="background:var(--jet); color:#fff">
@@ -3804,7 +3822,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Answer</strong>
-            <p>The European Union passed its landmark AI Act in 2024 — the world's first major AI safety law! It bans AI that manipulates children or uses secret surveillance. Governments are working hard to keep AI safe!</p>
+            <p>The <a href="#glossary-european-union" class="glossary-link">European Union</a> passed its landmark <a class="ext-link" href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener">AI Act<span class="ext-mark" aria-hidden="true">↗</span></a> in 2024 — the world's first major AI safety law! It bans AI that <a href="#glossary-manipulate" class="glossary-link">manipulates</a> children or uses secret <a href="#glossary-surveillance" class="glossary-link">surveillance</a>. Governments are working hard to keep AI responsible and people safe!</p>
           </div>
         </div>
       </div>
@@ -4339,6 +4357,10 @@
       </div>
 
       <dl class="glossary-list">
+        <div class="glossary-entry" id="glossary-accessible">
+          <dt>Accessible</dt>
+          <dd>Made so that everybody can use it, including people who cannot see, hear or move the way most people do.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-alzheimers">
           <dt>Alzheimer’s disease</dt>
           <dd>An illness that slowly damages the brain, usually in older people, so that remembering and thinking get harder. AI can help doctors spot it earlier.</dd>
@@ -4387,6 +4409,14 @@
           <dt>Diagnosis</dt>
           <dd>Working out which illness someone actually has. A machine can spot something odd in a picture; naming the illness and deciding what to do is a doctor’s job.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-eco-friendly">
+          <dt>Eco-friendly</dt>
+          <dd>Kind to the planet: using less energy, making less rubbish, doing less harm to animals, plants and air.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-european-union">
+          <dt>European Union</dt>
+          <dd>A group of 27 countries in Europe that make some rules together, so the same law applies in all of them. The AI Act is one of those rules.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-fake-news">
           <dt>Fake News</dt>
           <dd>False information made to look true, sometimes written or spread by AI. That's why checking your sources matters!</dd>
@@ -4394,6 +4424,10 @@
         <div class="glossary-entry" id="glossary-flu-outbreak">
           <dt>Flu outbreak</dt>
           <dd>When a lot of people in the same place catch flu at the same time. Spotting one early gives hospitals time to get ready.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-gene">
+          <dt>Gene</dt>
+          <dd>A tiny instruction inside your body that helps decide things like your eye colour. You have about 20,000 of them, half from each parent.</dd>
         </div>
         <div class="glossary-entry" id="glossary-green-ai">
           <dt>Green AI</dt>
@@ -4423,9 +4457,17 @@
           <dt>Magnetic Resonance Imaging (MRI)</dt>
           <dd>A medical scan that takes pictures inside your body. AI helps doctors read MRIs faster and spot diseases earlier.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-manipulate">
+          <dt>Manipulate</dt>
+          <dd>To push somebody into doing something without them noticing they are being pushed. That is why a computer is not allowed to do it to children.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-model">
           <dt>Model</dt>
           <dd>What an AI has become after training — the part that does the answering, spotting or predicting. Like a recipe someone has learnt by heart.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-monitor">
+          <dt>Monitor</dt>
+          <dd>To keep watching something so you notice the moment it changes. A machine that monitors a patient checks their heartbeat and breathing all night without getting tired.</dd>
         </div>
         <div class="glossary-entry" id="glossary-over-reliance">
           <dt>Over-Reliance</dt>
@@ -4451,6 +4493,14 @@
           <dt>Professionals</dt>
           <dd>People who are trained to do a particular job and are paid for it — a doctor, a pilot, a teacher, an engineer.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-protein">
+          <dt>Protein</dt>
+          <dd>A tiny machine inside every living thing. Proteins build your muscles, carry oxygen and fight germs. AI can now guess their shape, which helps make new medicines.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-repetitive">
+          <dt>Repetitive</dt>
+          <dd>The same thing over and over again. People get bored and start making mistakes; a computer does not mind at all.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-scan">
           <dt>Scan</dt>
           <dd>A picture of the inside of a body, taken by a machine instead of a camera — an x-ray, an MRI, an ultrasound.</dd>
@@ -4458,6 +4508,14 @@
         <div class="glossary-entry" id="glossary-software">
           <dt>Software</dt>
           <dd>The programmes that tell the hardware what to do. You cannot touch software — it is instructions, written as code.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-solar-panel">
+          <dt>Solar panel</dt>
+          <dd>A flat panel that turns sunlight into electricity. AI helps work out where to put them and when to tilt them at the sun.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-surveillance">
+          <dt>Surveillance</dt>
+          <dd>Watching people to see what they do — with cameras, phones or computers. Watching in secret, without asking, is the kind the law now forbids.</dd>
         </div>
       </dl>
     </div>

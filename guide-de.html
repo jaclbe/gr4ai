@@ -2378,6 +2378,21 @@
   .img-pair .img-placeholder{ aspect-ratio: 4 / 3; }
   @media (max-width: 560px){ .img-pair{ grid-template-columns: 1fr; } }
   .img-wide{ aspect-ratio: 16 / 5; max-width: 760px; margin: 24px auto 0; }
+
+  .ext-link{
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .ext-link .ext-mark{ font-size: 0.8em; margin-left: 2px; }
+  .keep-scrolling{
+    margin: -8px 0 22px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
 </style>
 </head>
 <body>
@@ -3531,6 +3546,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo green" src="assets/gang-rebecca.jpg" alt="Rebecca" loading="lazy" decoding="async" />
         <div class="quiz-bubble green">
+          <p><strong>Hier ist Rebecca. Gefällt es dir bisher?</strong></p>
           <p>KI kann so viele TOLLE Dinge tun, um Menschen zu helfen und die Welt besser zu machen. Ich zeige dir ein paar davon!</p>
         </div>
       </div>
@@ -3542,7 +3558,7 @@
             <li>Erkennt Krebs früh</li>
             <li>Findet seltene Krankheiten schneller</li>
             <li>Beschleunigt die Suche nach Medikamenten</li>
-            <li>Überwacht Patientinnen und Patienten rund um die Uhr</li>
+            <li><a href="#glossary-monitor" class="glossary-link">Überwacht</a> Patientinnen und Patienten rund um die Uhr</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--coral)">
@@ -3551,16 +3567,16 @@
             <li>Liest blinden Menschen Texte vor</li>
             <li>Übersetzt Gebärdensprache</li>
             <li>Hilft bei Sprachproblemen</li>
-            <li>Macht Technik zugänglich</li>
+            <li>Macht Technik <a href="#glossary-accessible" class="glossary-link">zugänglich</a></li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--gold)">
           <h4><span class="emoji">🌍</span> Hilft dem Planeten</h4>
           <ul>
             <li>Verfolgt den Klimawandel</li>
-            <li>Macht Solaranlagen schlauer</li>
+            <li>Macht <a href="#glossary-solar-panel" class="glossary-link">Solaranlagen</a> schlauer</li>
             <li>Verringert Essensverschwendung</li>
-            <li>Plant umweltfreundliche Routen</li>
+            <li>Plant <a href="#glossary-eco-friendly" class="glossary-link">umweltfreundliche</a> Routen</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--coral)">
@@ -3575,16 +3591,16 @@
         <div class="concept-card" style="background:var(--gold)">
           <h4><span class="emoji">🔬</span> Turbo für die Wissenschaft</h4>
           <ul>
-            <li>Entdeckt neue Proteine</li>
+            <li>Entdeckt neue <a href="#glossary-protein" class="glossary-link">Proteine</a></li>
             <li>Berechnet Wettermuster</li>
-            <li>Analysiert Gendaten</li>
+            <li>Analysiert <a href="#glossary-gene" class="glossary-link">Gendaten</a></li>
             <li>Beschleunigt die Forschung</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">⏰</span> Spart Zeit</h4>
           <ul>
-            <li>Übernimmt Routineaufgaben</li>
+            <li>Übernimmt <a href="#glossary-repetitive" class="glossary-link">Routineaufgaben</a></li>
             <li>Beantwortet Fragen schnell</li>
             <li>Ordnet Informationen</li>
             <li>Lässt Menschen kreativ sein!</li>
@@ -3631,6 +3647,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Und weiter geht’s mit mir, Ronan!</strong></p>
           <p>KI ist mächtig – und genau deshalb müssen wir aufpassen! Hier sind echte Risiken, über die wir nachdenken und reden sollten.</p>
         </div>
       </div>
@@ -3641,7 +3658,7 @@
           <ul>
             <li>KI kann Videos fälschen</li>
             <li>Echte Menschen sagen Dinge, die sie nie gesagt haben</li>
-            <li>Können falsche Infos verbreiten</li>
+            <li>Können falsche Informationen verbreiten</li>
             <li>Prüfe IMMER die Quelle!</li>
           </ul>
         </div>
@@ -3739,6 +3756,7 @@
       <div class="principle-stack-sticky">
       <div class="principle-deal-group">
       <h4 class="section-subhead" style="margin-top:0">Die 5 Prinzipien verantwortungsvoller KI</h4>
+      <p class="keep-scrolling">Scrolle weiter, dann siehst du alle fünf!</p>
       <div class="principle-blobs">
         <div class="principle-row row1">
           <div class="principle-blob" style="background:var(--jet); color:#fff">
@@ -3803,7 +3821,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Antwort</strong>
-            <p>Die Europäische Union hat 2024 ihren wegweisenden AI Act beschlossen – das erste große KI-Sicherheitsgesetz der Welt! Er verbietet KI, die Kinder manipuliert oder heimlich überwacht. Regierungen arbeiten hart daran, KI sicher zu machen!</p>
+            <p>Die <a href="#glossary-european-union" class="glossary-link">Europäische Union</a> hat 2024 ihren wegweisenden <a class="ext-link" href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener">AI Act<span class="ext-mark" aria-hidden="true">↗</span></a> beschlossen – das erste große KI-Sicherheitsgesetz der Welt! Er verbietet KI, die Kinder <a href="#glossary-manipulate" class="glossary-link">manipuliert</a> oder heimlich <a href="#glossary-surveillance" class="glossary-link">überwacht</a>. Regierungen arbeiten hart daran, KI verantwortungsvoll und Menschen sicher zu halten!</p>
           </div>
         </div>
       </div>
@@ -4373,6 +4391,14 @@
           <dt>Einseitigkeit (Bias)</dt>
           <dd>Wenn eine KI manche Menschen unfair behandelt – zum Beispiel wegen ihres Geschlechts, ihrer Hautfarbe, ihrer Herkunft, ihrer Religion oder einer Behinderung. Meistens liegt es daran, dass schon die Beispiele unfair waren, aus denen sie gelernt hat. Der Computer merkt das nicht – das kann nur ein Mensch.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-repetitive">
+          <dt>Eintönig (immer dasselbe)</dt>
+          <dd>Immer wieder dasselbe. Menschen langweilen sich dabei und machen Fehler – einem Computer macht das gar nichts aus.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-european-union">
+          <dt>Europäische Union</dt>
+          <dd>Eine Gruppe von 27 Ländern in Europa, die manche Regeln gemeinsam beschließen, damit in allen dasselbe Gesetz gilt. Der AI Act ist eine dieser Regeln.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-professionals">
           <dt>Fachleute</dt>
           <dd>Menschen, die für einen bestimmten Beruf ausgebildet sind und dafür bezahlt werden – eine Ärztin, ein Pilot, eine Lehrerin, ein Ingenieur.</dd>
@@ -4384,6 +4410,10 @@
         <div class="glossary-entry" id="glossary-humanities">
           <dt>Geisteswissenschaften</dt>
           <dd>Fächer wie Geschichte, Ethik und Philosophie. Sie helfen uns, Menschen und Gesellschaft zu verstehen und Richtig von Falsch zu unterscheiden – etwas, das KI immer noch nicht wirklich kann.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-gene">
+          <dt>Gen</dt>
+          <dd>Eine winzige Anweisung in deinem Körper, die zum Beispiel mitbestimmt, welche Augenfarbe du hast. Du hast ungefähr 20.000 davon – die Hälfte von jedem Elternteil.</dd>
         </div>
         <div class="glossary-entry" id="glossary-flu-outbreak">
           <dt>Grippewelle</dt>
@@ -4413,6 +4443,10 @@
           <dt>Magnetresonanztomografie (MRT)</dt>
           <dd>Eine Untersuchung, die Bilder aus dem Inneren deines Körpers macht. KI hilft Ärztinnen und Ärzten, MRT-Bilder schneller zu lesen und Krankheiten früher zu erkennen.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-manipulate">
+          <dt>Manipulieren</dt>
+          <dd>Jemanden zu etwas bringen, ohne dass die Person merkt, dass sie gelenkt wird. Genau deshalb darf ein Computer das bei Kindern nicht tun.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-machine-learning">
           <dt>Maschinelles Lernen</dt>
           <dd>So lernt eine KI. Niemand schreibt ihr die Regeln auf: Sie schaut sich tausende Beispiele an und findet die Regeln selbst heraus.</dd>
@@ -4441,6 +4475,10 @@
           <dt>Privatsphäre</dt>
           <dd>Dein Recht, persönliche Informationen – deinen Namen, deine Adresse, deine Fotos – zu schützen und nur mit Menschen zu teilen, denen du vertraust.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-protein">
+          <dt>Protein (Eiweiß)</dt>
+          <dd>Eine winzige Maschine in jedem Lebewesen. Proteine bauen deine Muskeln, transportieren Sauerstoff und bekämpfen Krankheitserreger. KI kann heute ihre Form vorhersagen – das hilft, neue Medikamente zu finden.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-scan">
           <dt>Scan</dt>
           <dd>Ein Bild vom Inneren eines Körpers, aufgenommen von einem Gerät statt von einer Kamera – ein Röntgenbild, ein MRT, ein Ultraschall.</dd>
@@ -4453,9 +4491,29 @@
           <dt>Software</dt>
           <dd>Die Programme, die der Hardware sagen, was sie tun soll. Software kannst du nicht anfassen – sie besteht aus Anweisungen, geschrieben als Code.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-solar-panel">
+          <dt>Solaranlage</dt>
+          <dd>Eine flache Platte, die Sonnenlicht in Strom verwandelt. KI hilft dabei, herauszufinden, wo man sie aufstellt und wann man sie zur Sonne dreht.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-monitor">
+          <dt>Überwachen</dt>
+          <dd>Etwas ständig im Blick behalten, damit man merkt, wenn es sich verändert. Ein Gerät, das einen kranken Menschen überwacht, prüft die ganze Nacht Herzschlag und Atmung, ohne müde zu werden.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-surveillance">
+          <dt>Überwachung</dt>
+          <dd>Menschen beobachten, um zu sehen, was sie tun – mit Kameras, Handys oder Computern. Heimlich zu beobachten, ohne zu fragen, ist die Art, die das Gesetz jetzt verbietet.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-eco-friendly">
+          <dt>Umweltfreundlich</dt>
+          <dd>Gut für die Erde: weniger Energie verbrauchen, weniger Müll machen, Tieren, Pflanzen und Luft weniger schaden.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-deforestation">
           <dt>Waldrodung</dt>
           <dd>Einen Wald schneller abholzen, als er nachwachsen kann. Satelliten und KI sehen das aus dem Weltall – fast in dem Moment, in dem es passiert.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-accessible">
+          <dt>Zugänglich (barrierefrei)</dt>
+          <dd>So gemacht, dass alle es benutzen können – auch Menschen, die nicht sehen, nicht hören oder sich anders bewegen als die meisten.</dd>
         </div>
       </dl>
     </div>

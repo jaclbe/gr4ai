@@ -2377,6 +2377,21 @@
   .img-pair .img-placeholder{ aspect-ratio: 4 / 3; }
   @media (max-width: 560px){ .img-pair{ grid-template-columns: 1fr; } }
   .img-wide{ aspect-ratio: 16 / 5; max-width: 760px; margin: 24px auto 0; }
+
+  .ext-link{
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .ext-link .ext-mark{ font-size: 0.8em; margin-left: 2px; }
+  .keep-scrolling{
+    margin: -8px 0 22px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
 </style>
 </head>
 <body>
@@ -3532,6 +3547,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo green" src="assets/gang-rebecca.jpg" alt="Rebecca" loading="lazy" decoding="async" />
         <div class="quiz-bubble green">
+          <p><strong>C’est Rebecca. Ça te plaît jusqu’ici ?</strong></p>
           <p>L’IA sait faire une foule de choses FORMIDABLES pour aider les gens et rendre le monde meilleur. Je vais t’en montrer quelques-unes !</p>
         </div>
       </div>
@@ -3543,7 +3559,7 @@
             <li>Détecte les cancers tôt</li>
             <li>Trouve les maladies rares plus vite</li>
             <li>Accélère la découverte de médicaments</li>
-            <li>Surveille les patients 24 h/24</li>
+            <li><a href="#glossary-monitor" class="glossary-link">Surveille</a> les patients 24 h/24</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--coral)">
@@ -3552,16 +3568,16 @@
             <li>Lit les textes à voix haute pour les personnes aveugles</li>
             <li>Traduit la langue des signes</li>
             <li>Aide en cas de troubles de la parole</li>
-            <li>Rend la technologie accessible</li>
+            <li>Rend la technologie <a href="#glossary-accessible" class="glossary-link">accessible</a></li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--gold)">
           <h4><span class="emoji">🌍</span> Aide la planète</h4>
           <ul>
             <li>Suit le changement climatique</li>
-            <li>Rend les panneaux solaires plus malins</li>
+            <li>Rend les <a href="#glossary-solar-panel" class="glossary-link">panneaux solaires</a> plus malins</li>
             <li>Réduit le gaspillage alimentaire</li>
-            <li>Calcule des trajets écologiques</li>
+            <li>Calcule des trajets <a href="#glossary-eco-friendly" class="glossary-link">écologiques</a></li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--coral)">
@@ -3576,16 +3592,16 @@
         <div class="concept-card" style="background:var(--gold)">
           <h4><span class="emoji">🔬</span> Coup de pouce à la science</h4>
           <ul>
-            <li>Découvre de nouvelles protéines</li>
+            <li>Découvre de nouvelles <a href="#glossary-protein" class="glossary-link">protéines</a></li>
             <li>Modélise la météo</li>
-            <li>Analyse les données des gènes</li>
+            <li>Analyse les données des <a href="#glossary-gene" class="glossary-link">gènes</a></li>
             <li>Accélère la recherche</li>
           </ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">⏰</span> Fait gagner du temps</h4>
           <ul>
-            <li>S’occupe des tâches répétitives</li>
+            <li>S’occupe des tâches <a href="#glossary-repetitive" class="glossary-link">répétitives</a></li>
             <li>Répond vite aux questions</li>
             <li>Organise l’information</li>
             <li>Laisse aux humains le temps de créer !</li>
@@ -3632,6 +3648,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-ronan.jpg" alt="Ronan" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>On se retrouve, c’est Ronan !</strong></p>
           <p>L’IA est puissante — et c’est justement pour ça qu’il faut faire attention ! Voici de vrais risques auxquels il faut penser et dont il faut parler.</p>
         </div>
       </div>
@@ -3740,6 +3757,7 @@
       <div class="principle-stack-sticky">
       <div class="principle-deal-group">
       <h4 class="section-subhead" style="margin-top:0">Les 5 principes d’une IA responsable</h4>
+      <p class="keep-scrolling">Continue à faire défiler pour les voir tous les cinq !</p>
       <div class="principle-blobs">
         <div class="principle-row row1">
           <div class="principle-blob" style="background:var(--jet); color:#fff">
@@ -3804,7 +3822,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Réponse</strong>
-            <p>L’Union européenne a adopté son AI Act en 2024 — la première grande loi au monde sur la sécurité de l’IA ! Elle interdit les IA qui manipulent les enfants ou pratiquent la surveillance en secret. Les gouvernements travaillent dur pour que l’IA reste sûre !</p>
+            <p>L’<a href="#glossary-european-union" class="glossary-link">Union européenne</a> a adopté son <a class="ext-link" href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener">AI Act<span class="ext-mark" aria-hidden="true">↗</span></a> en 2024 — la première grande loi au monde sur la sécurité de l’IA ! Elle interdit les IA qui <a href="#glossary-manipulate" class="glossary-link">manipulent</a> les enfants ou pratiquent la <a href="#glossary-surveillance" class="glossary-link">surveillance</a> en secret. Les gouvernements travaillent dur pour que l’IA reste responsable et les gens en sécurité !</p>
           </div>
         </div>
       </div>
@@ -4339,6 +4357,10 @@
       </div>
 
       <dl class="glossary-list">
+        <div class="glossary-entry" id="glossary-accessible">
+          <dt>Accessible</dt>
+          <dd>Fait pour que tout le monde puisse s’en servir, y compris les personnes qui ne voient pas, n’entendent pas ou ne bougent pas comme la plupart des gens.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-machine-learning">
           <dt>Apprentissage automatique</dt>
           <dd>La façon dont l’IA apprend. Personne ne lui écrit les règles : elle regarde des milliers d’exemples et trouve les règles toute seule.</dd>
@@ -4383,6 +4405,10 @@
           <dt>Données</dt>
           <dd>Tout ce dont une IA apprend : des photos, des mots, des nombres, des sons. De bonnes données font une bonne IA, de mauvaises données une mauvaise.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-eco-friendly">
+          <dt>Écologique</dt>
+          <dd>Gentil avec la planète : utiliser moins d’énergie, faire moins de déchets, abîmer moins les animaux, les plantes et l’air.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-flu-outbreak">
           <dt>Épidémie de grippe</dt>
           <dd>Quand beaucoup de gens au même endroit attrapent la grippe en même temps. La repérer tôt laisse aux hôpitaux le temps de se préparer.</dd>
@@ -4390,6 +4416,10 @@
         <div class="glossary-entry" id="glossary-fake-news">
           <dt>Fausses informations</dt>
           <dd>Une information fausse présentée comme vraie, parfois écrite ou diffusée par une IA. Voilà pourquoi il faut vérifier ses sources !</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-gene">
+          <dt>Gène</dt>
+          <dd>Une minuscule instruction à l’intérieur de ton corps, qui aide à décider des choses comme la couleur de tes yeux. Tu en as environ 20 000, la moitié de chaque parent.</dd>
         </div>
         <div class="glossary-entry" id="glossary-hallucination">
           <dt>Hallucination</dt>
@@ -4423,6 +4453,10 @@
           <dt>Maladie d’Alzheimer</dt>
           <dd>Une maladie qui abîme lentement le cerveau, le plus souvent chez les personnes âgées : se souvenir et réfléchir deviennent de plus en plus difficiles. L’IA peut aider les médecins à la repérer plus tôt.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-manipulate">
+          <dt>Manipuler</dt>
+          <dd>Pousser quelqu’un à faire quelque chose sans qu’il s’aperçoive qu’on le pousse. C’est exactement pour ça qu’un ordinateur n’a pas le droit de le faire avec des enfants.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-hardware">
           <dt>Matériel (hardware)</dt>
           <dd>Les parties d’un ordinateur que tu peux toucher : l’écran, le clavier, les puces à l’intérieur.</dd>
@@ -4434,6 +4468,10 @@
         <div class="glossary-entry" id="glossary-pattern">
           <dt>Motif</dt>
           <dd>Quelque chose qui revient tout le temps : la même forme, le même mot, la même couleur. Repérer des motifs, c’est ce que l’IA fait le mieux.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-solar-panel">
+          <dt>Panneau solaire</dt>
+          <dd>Une plaque plate qui transforme la lumière du soleil en électricité. L’IA aide à trouver où les poser et quand les incliner vers le soleil.</dd>
         </div>
         <div class="glossary-entry" id="glossary-parameters">
           <dt>Paramètres</dt>
@@ -4447,13 +4485,33 @@
           <dt>Professionnels</dt>
           <dd>Des personnes formées pour faire un métier précis et payées pour cela : une médecin, un pilote, une enseignante, un ingénieur.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-protein">
+          <dt>Protéine</dt>
+          <dd>Une minuscule machine présente dans tout être vivant. Les protéines construisent tes muscles, transportent l’oxygène et combattent les microbes. L’IA sait maintenant deviner leur forme, ce qui aide à créer de nouveaux médicaments.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-repetitive">
+          <dt>Répétitif</dt>
+          <dd>Toujours la même chose, encore et encore. Les gens s’ennuient et finissent par faire des erreurs ; un ordinateur, lui, s’en moque complètement.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-humanities">
           <dt>Sciences humaines</dt>
           <dd>Des matières comme l’histoire, l’éthique et la philosophie, qui nous aident à comprendre les gens, la société et la différence entre le bien et le mal — des compétences que l’IA ne sait toujours pas vraiment remplacer.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-surveillance">
+          <dt>Surveillance</dt>
+          <dd>Observer les gens pour voir ce qu’ils font — avec des caméras, des téléphones ou des ordinateurs. Observer en secret, sans demander, c’est ce que la loi interdit désormais.</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-monitor">
+          <dt>Surveiller</dt>
+          <dd>Regarder quelque chose en continu pour remarquer le moment où ça change. Une machine qui surveille un patient vérifie son cœur et sa respiration toute la nuit sans jamais se fatiguer.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-over-reliance">
           <dt>Trop compter sur l’IA</dt>
           <dd>Compter tellement sur l’IA qu’on arrête de réfléchir par soi-même. Sers-toi aussi de ta propre tête !</dd>
+        </div>
+        <div class="glossary-entry" id="glossary-european-union">
+          <dt>Union européenne</dt>
+          <dd>Un groupe de 27 pays d’Europe qui décident certaines règles ensemble, pour que la même loi s’applique partout chez eux. L’AI Act est l’une de ces règles.</dd>
         </div>
         <div class="glossary-entry" id="glossary-privacy">
           <dt>Vie privée</dt>
