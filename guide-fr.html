@@ -2053,7 +2053,10 @@
   }
   .map-pin.is-dropped{
     opacity: 1;
-    transform: translateY(0) scale(1);
+    /* none, not translateY(0) scale(1): a transform on the pin would make the
+       pin the containing block for the fixed card inside it, which is how the
+       card ended up positioned against a pin instead of the screen. */
+    transform: none;
   }
   @media (prefers-reduced-motion: reduce){
     .map-pin{ opacity: 1; transform: none; transition: none; }
@@ -2081,12 +2084,16 @@
   .map-pin:hover .pin-dot, .map-pin:focus-visible .pin-dot, .map-pin.is-active .pin-dot{
     transform: rotate(-45deg) scale(1.15);
   }
+  /* The card is placed by script (see the map-pin block at the end of the page)
+     so that a pin near an edge can never push it off the screen. Fixed, rather
+     than anchored to the pin, is what makes that possible. */
   .map-popup{
-    position: absolute;
-    left: 50%;
-    bottom: calc(100% + 14px);
-    transform: translateX(-50%) translateY(6px);
-    width: 240px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateY(6px);
+    width: 270px;
+    max-width: calc(100vw - 28px);
     background: var(--paper);
     border: 2px solid var(--ink);
     border-radius: 16px;
@@ -2101,8 +2108,13 @@
   .map-pin:hover .map-popup, .map-pin:focus-visible .map-popup, .map-pin.is-active .map-popup{
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
+  /* Each section's .wrap is its own stacking context, so an open card would be
+     painted under the section that follows. Lift this one while it is open. */
+  .wrap:has(.map-pin.is-active),
+  .wrap:has(.map-pin:hover),
+  .wrap:has(.map-pin:focus-visible){ z-index: 60; }
   .map-popup img{
     width: 100%;
     aspect-ratio: 16/10;
@@ -2117,10 +2129,7 @@
     font-size: 15px;
     margin-bottom: 6px;
   }
-  .map-popup p{ margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; }
-  @media (max-width: 700px){
-    .map-popup{ width: 200px; }
-  }
+  .map-popup-text{ display: block; font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
 
   /* ---------- Closing CTA ---------- */
   .guide-end{ text-align:center; padding: 90px 0 100px; }
@@ -3150,7 +3159,7 @@
           <span class="map-popup">
             <img src="assets/prof-chris.jpg" alt="Professeur Chris" loading="lazy" decoding="async" />
             <strong>Professeur Chris — États-Unis · Sécurité de l’IA</strong>
-            <p>Teste les systèmes d’IA pour trouver les bugs et les biais avant qu’ils n’arrivent chez le grand public.</p>
+            <span class="map-popup-text">Teste les systèmes d’IA pour trouver les bugs et les biais avant qu’ils n’arrivent chez le grand public.</span>
           </span>
         </button>
 
@@ -3159,7 +3168,7 @@
           <span class="map-popup">
             <img src="assets/prof-callaghan.jpg" alt="Prof. Callaghan" loading="lazy" decoding="async" />
             <strong>Prof. Callaghan — Canada · IA et médecine</strong>
-            <p>Entraîne des IA à lire les images du cerveau et à repérer les premiers signes de la <a href="#glossary-alzheimers" class="glossary-link" onclick="event.stopPropagation()">maladie d’Alzheimer</a>.</p>
+            <span class="map-popup-text">Entraîne des IA à lire les images du cerveau et à repérer les premiers signes de la <a href="#glossary-alzheimers" class="glossary-link" onclick="event.stopPropagation()">maladie d’Alzheimer</a>.</span>
           </span>
         </button>
 
@@ -3168,7 +3177,7 @@
           <span class="map-popup">
             <img src="assets/prof-alfredo.jpg" alt="Prof. Alfredo" loading="lazy" decoding="async" />
             <strong>Prof. Alfredo — Brésil · IA et environnement</strong>
-            <p>Utilise des satellites équipés d’IA pour surveiller la forêt amazonienne et protéger les animaux sauvages.</p>
+            <span class="map-popup-text">Utilise des satellites équipés d’IA pour surveiller la forêt amazonienne et protéger les animaux sauvages.</span>
           </span>
         </button>
 
@@ -3177,7 +3186,7 @@
           <span class="map-popup">
             <img src="assets/prof-crooke.jpg" alt="Prof. Crooke" loading="lazy" decoding="async" />
             <strong>Prof. Crooke — Royaume-Uni · Éthique de l’IA</strong>
-            <p>Veille à ce que les systèmes d’IA soient justes et ne discriminent personne.</p>
+            <span class="map-popup-text">Veille à ce que les systèmes d’IA soient justes et ne discriminent personne.</span>
           </span>
         </button>
 
@@ -3186,7 +3195,7 @@
           <span class="map-popup">
             <img src="assets/prof-bernard.jpg" alt="Prof. Bernard" loading="lazy" decoding="async" />
             <strong>Prof. Bernard — Ghana · L’IA à l’école</strong>
-            <p>Aide les enseignants à utiliser l’IA pour adapter les leçons à chaque enfant en Afrique.</p>
+            <span class="map-popup-text">Aide les enseignants à utiliser l’IA pour adapter les leçons à chaque enfant en Afrique.</span>
           </span>
         </button>
 
@@ -3195,7 +3204,7 @@
           <span class="map-popup">
             <img src="assets/prof-merab.jpg" alt="Prof. Merab" loading="lazy" decoding="async" />
             <strong>Prof. Merab — Émirats arabes unis · IA et langues</strong>
-            <p>Construit des outils de traduction par IA pour que les personnes qui parlent des langues rares ne soient pas laissées de côté.</p>
+            <span class="map-popup-text">Construit des outils de traduction par IA pour que les personnes qui parlent des langues rares ne soient pas laissées de côté.</span>
           </span>
         </button>
 
@@ -3205,7 +3214,7 @@
           <span class="map-popup">
             <img src="assets/prof-shyjeans.jpg" alt="Prof. Shy Jeans" loading="lazy" decoding="async" />
             <strong>Prof. Shy Jeans — Japon · IA, art et culture</strong>
-            <p>Explore comment l’IA change la créativité et ce que voudra dire « créer » demain.</p>
+            <span class="map-popup-text">Explore comment l’IA change la créativité et ce que voudra dire « créer » demain.</span>
           </span>
         </button>
 
@@ -3214,7 +3223,7 @@
           <span class="map-popup">
             <img src="assets/prof-goldilocks.jpg" alt="Prof. Goldilocks" loading="lazy" decoding="async" />
             <strong>Prof. Goldilocks — Nouvelle-Zélande · IA et chimie</strong>
-            <p>Utilise l’IA pour concevoir de nouveaux médicaments 100 fois plus vite qu’avec les méthodes classiques.</p>
+            <span class="map-popup-text">Utilise l’IA pour concevoir de nouveaux médicaments 100 fois plus vite qu’avec les méthodes classiques.</span>
           </span>
         </button>
       </div>
@@ -5222,6 +5231,53 @@
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => { ticking = false; place(); });
+    }
+    window.addEventListener('scroll', reposition, { passive: true });
+    window.addEventListener('resize', reposition);
+  })();
+
+
+  // Map pins: the card is positioned here rather than in CSS, because anchoring
+  // it to the pin sent it off the edge of the screen for any pin near a border.
+  // On a phone it is a sheet pinned to the bottom, so we leave it to the CSS.
+  (function(){
+    const pins = Array.from(document.querySelectorAll('.map-pin'));
+    if (!pins.length) return;
+    const isSheet = () => window.matchMedia('(max-width: 700px)').matches;
+    let hovered = null;
+
+    function place(pin){
+      const pop = pin.querySelector('.map-popup');
+      if (!pop) return;
+      if (isSheet()) { pop.style.left = ''; pop.style.top = ''; return; }
+      const r = pin.getBoundingClientRect();
+      const w = pop.offsetWidth, h = pop.offsetHeight, gap = 14, edge = 12;
+      let left = r.left + r.width / 2 - w / 2;
+      left = Math.max(edge, Math.min(left, window.innerWidth - w - edge));
+      let top = r.top - h - gap;                    // above the pin if it fits
+      if (top < edge) top = r.bottom + gap;         // otherwise below it
+      top = Math.max(edge, Math.min(top, window.innerHeight - h - edge));
+      pop.style.left = left + 'px';
+      pop.style.top  = top + 'px';
+    }
+
+    pins.forEach(pin => {
+      ['mouseenter', 'focus', 'click'].forEach(ev =>
+        pin.addEventListener(ev, () => { hovered = pin; place(pin); }));
+      pin.addEventListener('mouseleave', () => {
+        if (hovered === pin && !pin.classList.contains('is-active')) hovered = null;
+      });
+    });
+
+    let ticking = false;
+    function reposition(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const open = document.querySelector('.map-pin.is-active') || hovered;
+        if (open) place(open);
+      });
     }
     window.addEventListener('scroll', reposition, { passive: true });
     window.addEventListener('resize', reposition);

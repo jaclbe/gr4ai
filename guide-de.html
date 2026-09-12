@@ -2054,7 +2054,10 @@
   }
   .map-pin.is-dropped{
     opacity: 1;
-    transform: translateY(0) scale(1);
+    /* none, not translateY(0) scale(1): a transform on the pin would make the
+       pin the containing block for the fixed card inside it, which is how the
+       card ended up positioned against a pin instead of the screen. */
+    transform: none;
   }
   @media (prefers-reduced-motion: reduce){
     .map-pin{ opacity: 1; transform: none; transition: none; }
@@ -2082,12 +2085,16 @@
   .map-pin:hover .pin-dot, .map-pin:focus-visible .pin-dot, .map-pin.is-active .pin-dot{
     transform: rotate(-45deg) scale(1.15);
   }
+  /* The card is placed by script (see the map-pin block at the end of the page)
+     so that a pin near an edge can never push it off the screen. Fixed, rather
+     than anchored to the pin, is what makes that possible. */
   .map-popup{
-    position: absolute;
-    left: 50%;
-    bottom: calc(100% + 14px);
-    transform: translateX(-50%) translateY(6px);
-    width: 240px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateY(6px);
+    width: 270px;
+    max-width: calc(100vw - 28px);
     background: var(--paper);
     border: 2px solid var(--ink);
     border-radius: 16px;
@@ -2102,8 +2109,13 @@
   .map-pin:hover .map-popup, .map-pin:focus-visible .map-popup, .map-pin.is-active .map-popup{
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
+  /* Each section's .wrap is its own stacking context, so an open card would be
+     painted under the section that follows. Lift this one while it is open. */
+  .wrap:has(.map-pin.is-active),
+  .wrap:has(.map-pin:hover),
+  .wrap:has(.map-pin:focus-visible){ z-index: 60; }
   .map-popup img{
     width: 100%;
     aspect-ratio: 16/10;
@@ -2118,10 +2130,7 @@
     font-size: 15px;
     margin-bottom: 6px;
   }
-  .map-popup p{ margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; }
-  @media (max-width: 700px){
-    .map-popup{ width: 200px; }
-  }
+  .map-popup-text{ display: block; font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
 
   /* ---------- Closing CTA ---------- */
   .guide-end{ text-align:center; padding: 90px 0 100px; }
@@ -3149,7 +3158,7 @@
           <span class="map-popup">
             <img src="assets/prof-chris.jpg" alt="Professor Chris" loading="lazy" decoding="async" />
             <strong>Professor Chris – USA · KI-Sicherheit</strong>
-            <p>Testet KI-Systeme und findet Fehler und Voreingenommenheit, bevor sie an die Öffentlichkeit kommen.</p>
+            <span class="map-popup-text">Testet KI-Systeme und findet Fehler und Voreingenommenheit, bevor sie an die Öffentlichkeit kommen.</span>
           </span>
         </button>
 
@@ -3158,7 +3167,7 @@
           <span class="map-popup">
             <img src="assets/prof-callaghan.jpg" alt="Prof. Callaghan" loading="lazy" decoding="async" />
             <strong>Prof. Callaghan – Kanada · KI &amp; Medizin</strong>
-            <p>Trainiert KI, damit sie Gehirnscans liest und frühe Anzeichen von <a href="#glossary-alzheimers" class="glossary-link" onclick="event.stopPropagation()">Alzheimer</a> erkennt.</p>
+            <span class="map-popup-text">Trainiert KI, damit sie Gehirnscans liest und frühe Anzeichen von <a href="#glossary-alzheimers" class="glossary-link" onclick="event.stopPropagation()">Alzheimer</a> erkennt.</span>
           </span>
         </button>
 
@@ -3167,7 +3176,7 @@
           <span class="map-popup">
             <img src="assets/prof-alfredo.jpg" alt="Prof. Alfredo" loading="lazy" decoding="async" />
             <strong>Prof. Alfredo – Brasilien · KI &amp; Umwelt</strong>
-            <p>Nutzt KI-Satelliten, um den Amazonas-Regenwald zu überwachen und Tiere zu schützen.</p>
+            <span class="map-popup-text">Nutzt KI-Satelliten, um den Amazonas-Regenwald zu überwachen und Tiere zu schützen.</span>
           </span>
         </button>
 
@@ -3176,7 +3185,7 @@
           <span class="map-popup">
             <img src="assets/prof-crooke.jpg" alt="Prof. Crooke" loading="lazy" decoding="async" />
             <strong>Prof. Crooke – Großbritannien · KI-Ethik</strong>
-            <p>Sorgt dafür, dass KI-Systeme fair sind und niemanden benachteiligen.</p>
+            <span class="map-popup-text">Sorgt dafür, dass KI-Systeme fair sind und niemanden benachteiligen.</span>
           </span>
         </button>
 
@@ -3185,7 +3194,7 @@
           <span class="map-popup">
             <img src="assets/prof-bernard.jpg" alt="Prof. Bernard" loading="lazy" decoding="async" />
             <strong>Prof. Bernard – Ghana · KI in der Bildung</strong>
-            <p>Hilft Lehrerinnen und Lehrern, mit KI den Unterricht für jedes Kind in Afrika passend zu machen.</p>
+            <span class="map-popup-text">Hilft Lehrerinnen und Lehrern, mit KI den Unterricht für jedes Kind in Afrika passend zu machen.</span>
           </span>
         </button>
 
@@ -3194,7 +3203,7 @@
           <span class="map-popup">
             <img src="assets/prof-merab.jpg" alt="Prof. Merab" loading="lazy" decoding="async" />
             <strong>Prof. Merab – Vereinigte Arabische Emirate · KI &amp; Sprache</strong>
-            <p>Baut KI-Übersetzer, damit Menschen, die seltene Sprachen sprechen, nicht abgehängt werden.</p>
+            <span class="map-popup-text">Baut KI-Übersetzer, damit Menschen, die seltene Sprachen sprechen, nicht abgehängt werden.</span>
           </span>
         </button>
 
@@ -3204,7 +3213,7 @@
           <span class="map-popup">
             <img src="assets/prof-shyjeans.jpg" alt="Prof. Shy Jeans" loading="lazy" decoding="async" />
             <strong>Prof. Shy Jeans – Japan · KI-Kunst &amp; Kultur</strong>
-            <p>Erforscht, wie KI die Kreativität verändert und was es heißt, in Zukunft Kunst zu machen.</p>
+            <span class="map-popup-text">Erforscht, wie KI die Kreativität verändert und was es heißt, in Zukunft Kunst zu machen.</span>
           </span>
         </button>
 
@@ -3213,7 +3222,7 @@
           <span class="map-popup">
             <img src="assets/prof-goldilocks.jpg" alt="Prof. Goldilocks" loading="lazy" decoding="async" />
             <strong>Prof. Goldilocks – Neuseeland · KI-Chemie</strong>
-            <p>Entwickelt mit KI neue Medikamente – 100-mal schneller als mit alten Methoden.</p>
+            <span class="map-popup-text">Entwickelt mit KI neue Medikamente – 100-mal schneller als mit alten Methoden.</span>
           </span>
         </button>
       </div>
@@ -5218,6 +5227,53 @@
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => { ticking = false; place(); });
+    }
+    window.addEventListener('scroll', reposition, { passive: true });
+    window.addEventListener('resize', reposition);
+  })();
+
+
+  // Map pins: the card is positioned here rather than in CSS, because anchoring
+  // it to the pin sent it off the edge of the screen for any pin near a border.
+  // On a phone it is a sheet pinned to the bottom, so we leave it to the CSS.
+  (function(){
+    const pins = Array.from(document.querySelectorAll('.map-pin'));
+    if (!pins.length) return;
+    const isSheet = () => window.matchMedia('(max-width: 700px)').matches;
+    let hovered = null;
+
+    function place(pin){
+      const pop = pin.querySelector('.map-popup');
+      if (!pop) return;
+      if (isSheet()) { pop.style.left = ''; pop.style.top = ''; return; }
+      const r = pin.getBoundingClientRect();
+      const w = pop.offsetWidth, h = pop.offsetHeight, gap = 14, edge = 12;
+      let left = r.left + r.width / 2 - w / 2;
+      left = Math.max(edge, Math.min(left, window.innerWidth - w - edge));
+      let top = r.top - h - gap;                    // above the pin if it fits
+      if (top < edge) top = r.bottom + gap;         // otherwise below it
+      top = Math.max(edge, Math.min(top, window.innerHeight - h - edge));
+      pop.style.left = left + 'px';
+      pop.style.top  = top + 'px';
+    }
+
+    pins.forEach(pin => {
+      ['mouseenter', 'focus', 'click'].forEach(ev =>
+        pin.addEventListener(ev, () => { hovered = pin; place(pin); }));
+      pin.addEventListener('mouseleave', () => {
+        if (hovered === pin && !pin.classList.contains('is-active')) hovered = null;
+      });
+    });
+
+    let ticking = false;
+    function reposition(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const open = document.querySelector('.map-pin.is-active') || hovered;
+        if (open) place(open);
+      });
     }
     window.addEventListener('scroll', reposition, { passive: true });
     window.addEventListener('resize', reposition);
