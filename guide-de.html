@@ -2405,6 +2405,9 @@
   @media (max-width: 620px){ #ch12 .career-grid{ grid-template-columns: 1fr; } }
 
   /* ---------- Sprach-Globus (lg-*) ---------- */
+  /* Weiche Blende beim Sprachwechsel; Browser ohne Unterstützung navigieren normal. */
+  @view-transition{ navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root){ animation-duration: .3s; }
   .lg-ask{
     position: fixed; inset: 0; z-index: 200;
     display: grid; place-items: center; padding: 26px 20px;
@@ -2437,7 +2440,10 @@
   .lg-stage::before{
     content: ""; position: absolute; inset: 3%; border-radius: 50%;
     background: var(--ink); transform: translate(7px, 7px); z-index: 0;
+    transition: opacity .25s ease;
   }
+  .lg-stage.lg-flying{ z-index: 5; will-change: transform; }
+  .lg-stage.lg-flying::before{ opacity: 0; }
   .lg-stage canvas{ position: relative; z-index: 1; width: 100%; height: 100%; display: block; }
   .lg-stage:focus-visible{ outline: 3px solid var(--jet); outline-offset: 8px; border-radius: 50%; }
   .lg-pins{ position: absolute; inset: 0; z-index: 2; pointer-events: none; }
@@ -5816,6 +5822,7 @@
     b.querySelector(".lg-lbl").textContent = lbl;
     b.setAttribute("aria-label", lbl);
     if(m.soon) b.tabIndex = -1;
+    if(!m.soon) b.addEventListener("pointerenter", function(){ prefetch(m.lang); });
     b.addEventListener("click", function(e){
       e.stopPropagation();
       spinTo(i);
@@ -5824,6 +5831,15 @@
     pinBox.appendChild(b);
     return b;
   });
+
+  var pre = {};
+  function prefetch(lang){
+    if(lang === PAGE || pre[lang] || !HREF[lang]) return;
+    pre[lang] = 1;
+    var l = document.createElement("link");
+    l.rel = "prefetch"; l.href = HREF[lang]; l.as = "document";
+    document.head.appendChild(l);
+  }
 
   var active = null, strong = null;
   function setActive(i, z){
@@ -5880,7 +5896,7 @@
   }
 
   /* ---- Schleife: läuft nur, wenn etwas zu bewegen ist ---- */
-  var running = false, open = false;
+  var running = false, open = false, flying = 0;
   function kick(){ if(!running){ running = true; requestAnimationFrame(loop); } }
   function loop(){
     var busy = false;
@@ -5891,6 +5907,9 @@
         rot = tween.r0 + tween.dr * e; tilt = tween.p0 + tween.dp * e;
         if(t >= 1) tween = null;
         busy = true;
+      } else if(flying){
+        flying = Math.min(0.055, flying * 1.16 + 0.0015);
+        rot -= flying; mRot = rot; mTilt = tilt; busy = true;
       } else if(Math.abs(vel) > 0.00004){
         rot += vel; vel *= 0.955; busy = true;
       } else if(!dragging && !reduce){
@@ -5937,16 +5956,79 @@
   });
 
   /* ---- Auswahl ---- */
+  function chrome(){ return ask.querySelectorAll(".lg-inner > *:not(.lg-stage)"); }
+
+  var anims = [];
+  function run(el, frames, opts){
+    if(!el || !el.animate) return null;
+    var a = el.animate(frames, opts);
+    anims.push(a);
+    return a;
+  }
+
+  function fadeChrome(){
+    var els = chrome(), i;
+    for(i = 0; i < els.length; i++){
+      run(els[i], [{ opacity: 1 }, { opacity: 0, transform: "translateY(6px)" }],
+          { duration: 180, easing: "ease-in", fill: "forwards" });
+    }
+    run(pinBox, [{ opacity: 1 }, { opacity: 0 }], { duration: 160, fill: "forwards" });
+  }
+
+  /* Die Kugel schrumpft an ihren Platz im Menü — das Kind sieht, wo sie wohnt. */
+  function flyHome(done){
+    var btn = document.getElementById("lg-head");
+    var dst = btn && btn.querySelector("canvas");
+    var from = stage.getBoundingClientRect();
+    var to = dst ? dst.getBoundingClientRect() : null;
+    if(reduce || !to || !to.width || !stage.animate){ done(); return; }
+
+    fadeChrome();
+    var s = to.width / from.width;
+    var dx = (to.left + to.width / 2) - (from.left + from.width / 2);
+    var dy = (to.top + to.height / 2) - (from.top + from.height / 2);
+    stage.classList.add("lg-flying");
+    flying = 0.002; kick();
+
+    var fly = run(stage,
+      [{ transform: "translate(0,0) scale(1)" },
+       { transform: "translate(" + dx + "px," + dy + "px) scale(" + s + ")" }],
+      { duration: 560, delay: 110, easing: "cubic-bezier(.62,.02,.3,1)", fill: "forwards" });
+    run(ask, [{ opacity: 1 }, { opacity: 0 }],
+      { duration: 300, delay: 340, easing: "ease-in", fill: "forwards" });
+    if(!fly){ flying = 0; stage.classList.remove("lg-flying"); done(); return; }
+
+    fly.onfinish = function(){
+      flying = 0;
+      stage.classList.remove("lg-flying");
+      if(dst.animate) dst.animate(
+        [{ transform: "scale(.7)" }, { transform: "scale(1.18)" }, { transform: "scale(1)" }],
+        { duration: 320, easing: "ease-out" });
+      done();
+    };
+  }
+
   function commit(lang){
     store.set(lang);
     if(lang !== PAGE){
-      window.location.href = HREF[lang] + (window.location.hash || "");
+      var url = HREF[lang] + (window.location.hash || "");
+      /* Für die seitenübergreifende Blende muss der Name eindeutig sein:
+         er wandert vom Menü-Knopf auf die große Kugel, die drüben wieder
+         im Menü landet. */
+      var btn = document.getElementById("lg-head");
+      try {
+        if(btn) btn.style.viewTransitionName = "";
+        stage.style.viewTransitionName = "lg-globe";
+      } catch(e){}
+      fadeChrome();
+      setTimeout(function(){ window.location.href = url; }, 190);
       return;
     }
-    close();
-    setHead(lang);
+    flyHome(function(){ close(); setHead(lang); });
   }
   document.querySelectorAll("#lg-cards button").forEach(function(b){
+    b.addEventListener("pointerenter", function(){ prefetch(b.dataset.lang); });
+    b.addEventListener("focus", function(){ prefetch(b.dataset.lang); });
     b.addEventListener("click", function(){
       var lang = b.dataset.lang;
       spinTo(firstIndexOf(lang));
@@ -5957,9 +6039,18 @@
 
   /* ---- Öffnen / Schließen ---- */
   var lastFocus = null;
+  function clearAnims(){
+    for(var i = 0; i < anims.length; i++){ try { anims[i].cancel(); } catch(e){} }
+    anims.length = 0;
+    stage.classList.remove("lg-flying");
+    stage.style.transform = "";
+    stage.style.opacity = "";
+  }
+
   function open_(){
     lastFocus = document.activeElement;
     ask.hidden = false;
+    clearAnims();
     measure();
     open = true; kick();
     requestAnimationFrame(function(){
@@ -5969,7 +6060,7 @@
     });
   }
   function close(){
-    open = false;
+    open = false; flying = 0;
     ask.classList.remove("is-open");
     document.body.classList.remove("lg-locked");
     setTimeout(function(){ if(!open) ask.hidden = true; }, 360);
@@ -6005,6 +6096,7 @@
       miniCv = btn.querySelector("canvas"); miniCtx = miniCv.getContext("2d");
     }
     btn.querySelector("span").textContent = lang.toUpperCase();
+    try { btn.style.viewTransitionName = "lg-globe"; } catch(e){}
     btn.setAttribute("aria-label", STR[lang].pick);
     btn.title = STR[lang].pick;
     var t = targetFor(MARK[firstIndexOf(lang)]);
