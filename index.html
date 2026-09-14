@@ -2342,7 +2342,48 @@
     .cloud-intro-bubble::after{ display: none; }
   }
   .before-start .info-callout{ max-width: 780px; margin-left: auto; margin-right: auto; }
-  .thanks-names{ max-width: 780px; margin: 0 0 8px; font-size: 17px; line-height: 1.6; color: var(--ink-soft); }
+  /* ---------- Danke-Abschnitt ---------- */
+  #guide-thanks .thanks-card{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 40px 44px 40px;
+    max-width: 940px;
+  }
+  #guide-thanks .chapter-intro{ margin: 0 0 24px; max-width: 58ch; }
+  #guide-thanks .thanks-list{
+    list-style: none; margin: 0; padding: 24px 0 0;
+    border-top: 2px solid rgba(20,23,26,0.10);
+    columns: 3; column-gap: 40px;
+    font-size: 16.5px; line-height: 1.45;
+  }
+  #guide-thanks .thanks-list li{
+    break-inside: avoid; position: relative;
+    padding: 0 0 13px 18px; color: var(--ink);
+  }
+  #guide-thanks .thanks-list li::before{
+    content: ""; position: absolute; left: 0; top: 0.5em;
+    width: 7px; height: 7px; border-radius: 50%; background: var(--coral);
+  }
+  /* Der Hinweis steht mit in der Karte — Dank und Entstehung gehoeren auf
+     dieselbe Seite, wie das Impressum eines Buches. Eine Linie trennt sie,
+     die Schrift ist kleiner: gelesen werden soll er trotzdem. */
+  #guide-thanks .info-callout{
+    background: none; border: 0; border-radius: 0; box-shadow: none;
+    border-top: 2px solid rgba(20,23,26,0.10);
+    padding: 24px 0 0; margin: 30px 0 0; max-width: 66ch;
+  }
+  #guide-thanks .info-callout p{ font-size: 16px; }
+  #guide-thanks .info-callout-kicker{ font-size: 18px; }
+  #guide-thanks .info-callout p:last-child{ margin-bottom: 0; }
+  @media (max-width: 900px){
+    #guide-thanks .thanks-list{ columns: 2; }
+    #guide-thanks .thanks-card{ padding: 30px 26px 26px; }
+  }
+  @media (max-width: 560px){
+    #guide-thanks .thanks-list{ columns: 1; }
+  }
 
   /* ---------- Placeholder for a picture we don't have yet ---------- */
   .img-placeholder{
@@ -4758,18 +4799,34 @@
     </div>
   </section>
 
-  <section class="chapter-block" id="guide-thanks" style="background:var(--paper)">
+  <section class="chapter-block" id="guide-thanks" style="background:var(--bg-deep)">
     <div class="wrap">
-      <div class="chapter-intro">
-        <span class="chapter-num"><span class="emoji">💛</span></span>
-        <h3>Thank you</h3>
-        <p>This book exists because a lot of people gave their time to it.</p>
-      </div>
-      <p class="thanks-names">Heath House Preparatory School and its consortium · the NIHR Youth Council · Nicola and Annika · Mr Stathidis · Mr Williams · Mrs Rokakis · Mrs Vatsitsis · Mr Pearce · Dr Tapeinos · Dr Erenstein and his children · Dr Adibi and her children · Mr Vitale and Mrs Rizic and their children · Morgan Stanley.</p>
-      <div class="info-callout">
-        <p class="info-callout-kicker"><span class="emoji">🛠️</span> How this book was made</p>
-        <p>Some of the pictures were made with openart.ai, from a lot of fun prompts by Katerina.</p>
-        <p>Some of the text was drafted with the help of Claude, an AI assistant, to make it clearer and friendlier for younger readers. Every word and every picture was checked by people before it went in.</p>
+      <div class="thanks-card">
+        <div class="chapter-intro">
+          <span class="chapter-num"><span class="emoji">💛</span></span>
+          <h3>Thank you</h3>
+          <p>This book exists because a lot of people gave their time to it.</p>
+        </div>
+        <ul class="thanks-list">
+          <li>Heath House Preparatory School and its consortium</li>
+          <li>the NIHR Youth Council</li>
+          <li>Nicola and Annika</li>
+          <li>Mr Stathidis</li>
+          <li>Mr Williams</li>
+          <li>Mrs Rokakis</li>
+          <li>Mrs Vatsitsis</li>
+          <li>Mr Pearce</li>
+          <li>Dr Tapeinos</li>
+          <li>Dr Erenstein and his children</li>
+          <li>Dr Adibi and her children</li>
+          <li>Mr Vitale and Mrs Rizic and their children</li>
+          <li>Morgan Stanley</li>
+        </ul>
+        <div class="info-callout">
+          <p class="info-callout-kicker"><span class="emoji">🛠️</span> How this book was made</p>
+          <p>Some of the pictures were made with openart.ai, from a lot of fun prompts by Katerina.</p>
+          <p>Some of the text was drafted with the help of Claude, an AI assistant, to make it clearer and friendlier for younger readers. Every word and every picture was checked by people before it went in.</p>
+        </div>
       </div>
     </div>
   </section>
