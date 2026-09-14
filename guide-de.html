@@ -17,6 +17,7 @@
 <link rel="alternate" hreflang="en" href="https://gr4ai.org/" />
 <link rel="alternate" hreflang="fr" href="https://gr4ai.org/guide-fr.html" />
 <link rel="alternate" hreflang="de" href="https://gr4ai.org/guide-de.html" />
+<link rel="alternate" hreflang="es" href="https://gr4ai.org/guide-es.html" />
 <link rel="alternate" hreflang="x-default" href="https://gr4ai.org/" />
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -2610,6 +2611,7 @@
         <a href="index.html" hreflang="en" lang="en">EN</a>
         <a href="guide-de.html" aria-current="true" hreflang="de" lang="de">DE</a>
         <a href="guide-fr.html" hreflang="fr" lang="fr">FR</a>
+              <a href="guide-es.html" hreflang="es" lang="es">ES</a>
       </span>
     </nav>
     <span class="hashtag">#GR4AI</span>
@@ -5698,6 +5700,7 @@
       <button type="button" data-lang="de" aria-pressed="false"><span class="lg-hi">Hallo!</span><span class="lg-nm">Deutsch</span></button>
       <button type="button" data-lang="en" aria-pressed="false"><span class="lg-hi">Hello!</span><span class="lg-nm">English</span></button>
       <button type="button" data-lang="fr" aria-pressed="false"><span class="lg-hi">Salut&#8239;!</span><span class="lg-nm">Français</span></button>
+      <button type="button" data-lang="es" aria-pressed="false"><span class="lg-hi">¡Hola!</span><span class="lg-nm">Español</span></button>
     </div>
     <button type="button" class="lg-later" id="lg-later">Später entscheiden</button>
   </div>
@@ -5712,7 +5715,7 @@
   "use strict";
 
   var PAGE = "de";
-  var HREF = { de: "guide-de.html", en: "index.html", fr: "guide-fr.html" };
+  var HREF = { de: "guide-de.html", en: "index.html", fr: "guide-fr.html", es: "guide-es.html" };
   var KEY  = "gr4ai-lang";
 
   var STR = {
@@ -5727,7 +5730,11 @@
     fr: { q:"D’où viens-tu ?", name:"Français", pick:"Choisir la langue",
           idle:"Fais tourner le globe jusqu’à ton pays — ou touche ta langue.",
           on:"Ton pays est devant — touche Français.", later:"Plus tard",
-          spin:"Faire tourner le globe" }
+          spin:"Faire tourner le globe" },
+    es: { q:"¿De dónde eres?", name:"Español", pick:"Elegir idioma",
+          idle:"Gira el globo hasta tu país, o toca tu idioma directamente.",
+          on:"Tu país está delante: toca Español.", later:"Decidir más tarde",
+          spin:"Girar el globo" }
   };
 
   var store = {
@@ -5840,7 +5847,8 @@
     { lang:"fr", label:"Français", lon:  2.50, lat: 46.60 },
     { lang:"en", label:"English",  lon: -2.20, lat: 53.00 },
     { lang:"en", label:"English",  lon:-98.50, lat: 39.50 },
-    { soon:1, lon: -4.45, lat: 40.18 }, { soon:1, lon: 12.63, lat: 43.09 },
+    { lang:"es", label:"Español",  lon: -3.70, lat: 40.42 },
+    { lang:"es", label:"Español",  lon:-102.5, lat: 23.00 }, { soon:1, lon: 12.63, lat: 43.09 },
     { soon:1, lon: 21.50, lat: 52.20 }, { soon:1, lon:-53.00, lat:-10.50 },
     { soon:1, lon: 79.00, lat: 22.00 }, { soon:1, lon:138.00, lat: 36.50 },
     { soon:1, lon: 31.20, lat: 27.00 }, { soon:1, lon: 24.72, lat:-28.60 },
