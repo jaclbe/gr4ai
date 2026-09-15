@@ -2490,7 +2490,7 @@
   .lg-alt{ margin: 0; font-size: 13px; color: var(--ink-soft); }
 
   .lg-stage{
-    position: relative; width: clamp(210px, 44vw, 310px); aspect-ratio: 1;
+    position: relative; width: clamp(210px, 46vw, 344px); aspect-ratio: 1;
     touch-action: none; cursor: grab;
   }
   .lg-stage:active{ cursor: grabbing; }
@@ -2505,19 +2505,30 @@
   .lg-stage:focus-visible{ outline: 3px solid var(--jet); outline-offset: 8px; border-radius: 50%; }
   .lg-pins{ position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 
+  /* Der Knopf ist groesser als der Punkt, damit ein Kinderfinger ihn trifft;
+     zu sehen ist nur der Punkt in seiner Mitte. */
   .lg-pin{
     position: absolute; left: 0; top: 0; transform-origin: center;
+    width: 26px; height: 26px; display: grid; place-items: center;
     background: none; border: 0; padding: 0; margin: 0; line-height: 0;
     cursor: pointer; pointer-events: auto; will-change: transform;
   }
   .lg-pin .lg-dot{
-    display: block; width: 20px; height: 20px; border-radius: 50%;
-    background: var(--coral); border: 2px solid var(--ink);
-    box-shadow: 2px 2px 0 var(--ink);
-    transition: background .18s ease, transform .18s ease;
+    display: block; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--paper); border: 2px solid var(--ink); box-shadow: none;
+    transition: background .18s ease, transform .18s ease, box-shadow .18s ease,
+                width .18s ease, height .18s ease;
   }
+  /* Der Anker jeder Sprache ist etwas groesser — auf ihn dreht die Sprachkarte. */
+  .lg-pin.lg-main .lg-dot{ width: 14px; height: 14px; }
+  /* Alle Laender einer Sprache leuchten gemeinsam auf. Das ist der Punkt:
+     eine Sprache gehoert nicht zu einem einzigen Land. */
+  .lg-pin.is-lang .lg-dot{
+    width: 13px; height: 13px; background: var(--coral); box-shadow: 1px 1px 0 var(--ink);
+  }
+  .lg-pin.is-lang.lg-main .lg-dot{ width: 17px; height: 17px; box-shadow: 2px 2px 0 var(--ink); }
   .lg-pin .lg-lbl{
-    position: absolute; left: 28px; top: 50%;
+    position: absolute; left: 25px; top: 50%;
     transform: translateY(-50%) scale(.8); transform-origin: left center; opacity: 0;
     background: var(--paper); color: var(--ink); border: 2px solid var(--ink);
     border-radius: 999px; padding: 5px 13px;
@@ -2525,25 +2536,26 @@
     white-space: nowrap; pointer-events: none;
     transition: opacity .18s ease, transform .18s ease;
   }
-  .lg-pin.lg-flip .lg-lbl{ left: auto; right: 28px; transform-origin: right center; }
+  .lg-pin.lg-flip .lg-lbl{ left: auto; right: 25px; transform-origin: right center; }
   .lg-pin:hover .lg-lbl, .lg-pin:focus-visible .lg-lbl, .lg-pin.is-on .lg-lbl{
     opacity: 1; transform: translateY(-50%) scale(1);
   }
-  .lg-pin.is-on .lg-dot{ background: var(--gold); transform: scale(1.15); }
+  .lg-pin.is-on .lg-dot{ background: var(--gold); transform: scale(1.45); box-shadow: 2px 2px 0 var(--ink); }
   .lg-pin.is-on .lg-lbl{ background: var(--gold); }
   .lg-pin.is-on{ z-index: 60; }
   .lg-pin:focus-visible{ outline: 3px solid var(--jet); outline-offset: 4px; border-radius: 50%; }
   .lg-pin.lg-soon .lg-dot{
-    width: 11px; height: 11px; background: var(--paper);
-    border: 1.5px solid rgba(21,23,26,0.5); box-shadow: none;
+    width: 6px; height: 6px; background: var(--paper);
+    border: 1.5px solid rgba(21,23,26,0.32); box-shadow: none;
   }
   .lg-pin.lg-soon .lg-lbl{
-    left: 17px; padding: 3px 9px; font-size: 10.5px; font-weight: 600;
+    left: 23px; padding: 3px 9px; font-size: 10.5px; font-weight: 600;
     color: var(--ink-soft); border-width: 1.5px; border-color: rgba(21,23,26,0.35); box-shadow: none;
   }
-  .lg-pin.lg-soon.lg-flip .lg-lbl{ left: auto; right: 17px; }
+  .lg-pin.lg-soon.lg-flip .lg-lbl{ left: auto; right: 23px; }
 
-  .lg-hint{ margin: 0; font-size: 13px; color: var(--ink-soft); min-height: 1.5em; max-width: 34ch; }
+  .lg-hint{ margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-soft);
+    min-height: 3em; max-width: 42ch; }
 
   .lg-cards{ display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .lg-cards button{
@@ -5868,23 +5880,28 @@
   var STR = {
     de: { q:"Woher kommst du?", name:"Deutsch",  pick:"Sprache wählen",
           idle:"Dreh die Kugel zu deinem Land — oder tippe auf deine Sprache.",
-          on:"Dein Land steht vorne — tippe auf Deutsch.", later:"Später entscheiden",
+          on:"{n} Länder leuchten rot — dort spricht man Deutsch. Tippe auf dein Land.",
+          later:"Später entscheiden",
           spin:"Globus drehen" },
     en: { q:"Where are you from?", name:"English", pick:"Choose language",
           idle:"Spin the globe to your country — or just tap your language.",
-          on:"Your country is at the front — tap English.", later:"Decide later",
+          on:"{n} countries glow red — English is spoken there. Tap your country.",
+          later:"Decide later",
           spin:"Spin the globe" },
     fr: { q:"D’où viens-tu ?", name:"Français", pick:"Choisir la langue",
           idle:"Fais tourner le globe jusqu’à ton pays — ou touche ta langue.",
-          on:"Ton pays est devant — touche Français.", later:"Plus tard",
+          on:"{n} pays brillent en rouge — on y parle français. Touche ton pays.",
+          later:"Plus tard",
           spin:"Faire tourner le globe" },
     es: { q:"¿De dónde eres?", name:"Español", pick:"Elegir idioma",
           idle:"Gira el globo hasta tu país, o toca tu idioma directamente.",
-          on:"Tu país está delante: toca Español.", later:"Decidir más tarde",
+          on:"{n} países brillan en rojo — allí se habla español. Toca tu país.",
+          later:"Decidir más tarde",
           spin:"Girar el globo" },
     el: { q:"Από πού είσαι;", name:"Ελληνικά", pick:"Επιλογή γλώσσας",
           idle:"Γύρισε την υδρόγειο στη χώρα σου — ή πάτησε απευθείας τη γλώσσα σου.",
-          on:"Η χώρα σου είναι μπροστά — πάτησε Ελληνικά.", later:"Θα αποφασίσω αργότερα",
+          on:"{n} χώρες λάμπουν κόκκινες — εκεί μιλούν ελληνικά. Πάτησε τη χώρα σου.",
+          later:"Θα αποφασίσω αργότερα",
           spin:"Περιστροφή της υδρογείου" }
   };
 
@@ -5993,19 +6010,108 @@
   }
 
   /* ---- Marker ---- */
+  /* Ein Punkt je Land, in dem die Sprache zu Hause ist. Die Mittelpunkte
+     stammen aus Natural Earth (110m) und wurden auf die Zeichnung dieser Seite
+     gezogen, damit kein Punkt im Wasser steht. `main` ist der Anker, auf den
+     die Sprachkarten drehen; die weissen Punkte warten auf ihre Uebersetzung. */
   var MARK = [
-    { lang:"de", label:"Deutsch",  lon: 10.69, lat: 51.04 },
-    { lang:"fr", label:"Français", lon:  2.50, lat: 46.60 },
-    { lang:"en", label:"English",  lon: -2.20, lat: 53.00 },
-    { lang:"en", label:"English",  lon:-98.50, lat: 39.50 },
-    { lang:"es", label:"Español",  lon: -3.70, lat: 40.42 },
-    { lang:"es", label:"Español",  lon:-102.5, lat: 23.00 },
-    { lang:"el", label:"Ελληνικά", lon: 23.73, lat: 37.98 },
-    { lang:"el", label:"Ελληνικά", lon: 33.20, lat: 35.05 }, { soon:1, lon: 12.63, lat: 43.09 },
-    { soon:1, lon: 21.50, lat: 52.20 }, { soon:1, lon:-53.00, lat:-10.50 },
-    { soon:1, lon: 79.00, lat: 22.00 }, { soon:1, lon:138.00, lat: 36.50 },
-    { soon:1, lon: 31.20, lat: 27.00 }, { soon:1, lon: 24.72, lat:-28.60 },
-    { soon:1, lon:134.00, lat:-25.00 }, { soon:1, lon:116.00, lat: 36.00 }
+    /* Deutsch — 4 Länder */
+    { lang:"de", label:"Deutsch",  lon:   10.29, lat:  51.13, main:1 }, // Germany
+    { lang:"de", label:"Deutsch",  lon:   14.08, lat:  47.61 },  // Austria
+    { lang:"de", label:"Deutsch",  lon:    5.97, lat:  49.77 },  // Luxembourg
+    { lang:"de", label:"Deutsch",  lon:    8.12, lat:  46.79 },  // Switzerland
+    /* English — 22 Länder */
+    { lang:"en", label:"English",  lon:   -2.66, lat:  53.88, main:1 }, // United Kingdom
+    { lang:"en", label:"English",  lon:  134.38, lat: -25.56 },  // Australia
+    { lang:"en", label:"English",  lon:   23.77, lat: -22.10 },  // Botswana
+    { lang:"en", label:"English",  lon: -101.57, lat:  57.75 },  // Canada
+    { lang:"en", label:"English",  lon:   -1.24, lat:   7.93 },  // Ghana
+    { lang:"en", label:"English",  lon:   79.59, lat:  22.92 },  // India
+    { lang:"en", label:"English",  lon:   -8.01, lat:  53.18 },  // Ireland
+    { lang:"en", label:"English",  lon:  -77.32, lat:  18.39 },  // Jamaica
+    { lang:"en", label:"English",  lon:   37.79, lat:   0.60 },  // Kenya
+    { lang:"en", label:"English",  lon:  114.68, lat:   3.55 },  // Malaysia
+    { lang:"en", label:"English",  lon:   17.16, lat: -22.10 },  // Namibia
+    { lang:"en", label:"English",  lon:  166.60, lat: -41.00 },  // New Zealand
+    { lang:"en", label:"English",  lon:    8.00, lat:   9.55 },  // Nigeria
+    { lang:"en", label:"English",  lon:   69.41, lat:  29.97 },  // Pakistan
+    { lang:"en", label:"English",  lon:  144.33, lat:  -6.65 },  // Papua New Guinea
+    { lang:"en", label:"English",  lon:  121.54, lat:  15.75 },  // Philippines
+    { lang:"en", label:"English",  lon:   25.12, lat: -28.96 },  // South Africa
+    { lang:"en", label:"English",  lon:   34.75, lat:  -6.26 },  // Tanzania
+    { lang:"en", label:"English",  lon:   32.36, lat:   1.30 },  // Uganda
+    { lang:"en", label:"English",  lon:  -99.06, lat:  39.50 },  // United States of America
+    { lang:"en", label:"English",  lon:   27.73, lat: -13.40 },  // Zambia
+    { lang:"en", label:"English",  lon:   29.79, lat: -18.91 },  // Zimbabwe
+    /* Français — 21 Länder */
+    { lang:"fr", label:"Français", lon:    2.34, lat:  46.61, main:1 }, // France
+    { lang:"fr", label:"Français", lon:    4.58, lat:  50.65 },  // Belgium
+    { lang:"fr", label:"Français", lon:    2.34, lat:   9.65 },  // Benin
+    { lang:"fr", label:"Français", lon:   -1.78, lat:  12.31 },  // Burkina Faso
+    { lang:"fr", label:"Français", lon:   29.91, lat:  -3.38 },  // Burundi
+    { lang:"fr", label:"Français", lon:   12.61, lat:   5.66 },  // Cameroon
+    { lang:"fr", label:"Français", lon:   20.37, lat:   6.54 },  // Central African Rep.
+    { lang:"fr", label:"Français", lon:   18.58, lat:  15.33 },  // Chad
+    { lang:"fr", label:"Français", lon:   15.13, lat:  -0.84 },  // Congo
+    { lang:"fr", label:"Français", lon:   -5.61, lat:   7.55 },  // Côte d'Ivoire
+    { lang:"fr", label:"Français", lon:   23.58, lat:  -2.85 },  // Dem. Rep. Congo
+    { lang:"fr", label:"Français", lon:   11.69, lat:  -0.65 },  // Gabon
+    { lang:"fr", label:"Français", lon:  -11.06, lat:  10.45 },  // Guinea
+    { lang:"fr", label:"Français", lon:  -72.66, lat:  18.90 },  // Haiti
+    { lang:"fr", label:"Français", lon:   46.69, lat: -19.36 },  // Madagascar
+    { lang:"fr", label:"Français", lon:   -3.54, lat:  17.27 },  // Mali
+    { lang:"fr", label:"Français", lon:    9.33, lat:  17.35 },  // Niger
+    { lang:"fr", label:"Français", lon:  -71.50, lat:  47.40 },  // Québec
+    { lang:"fr", label:"Français", lon:   29.92, lat:  -2.01 },  // Rwanda
+    { lang:"fr", label:"Français", lon:  -14.51, lat:  14.35 },  // Senegal
+    { lang:"fr", label:"Français", lon:    1.00, lat:   8.44 },  // Togo
+    /* Español — 20 Länder */
+    { lang:"es", label:"Español",  lon:   -3.62, lat:  40.35, main:1 }, // Spain
+    { lang:"es", label:"Español",  lon:  -65.15, lat: -35.22 },  // Argentina
+    { lang:"es", label:"Español",  lon:  -64.64, lat: -16.73 },  // Bolivia
+    { lang:"es", label:"Español",  lon:  -71.17, lat: -37.34 },  // Chile
+    { lang:"es", label:"Español",  lon:  -73.08, lat:   3.93 },  // Colombia
+    { lang:"es", label:"Español",  lon:  -84.18, lat:   9.97 },  // Costa Rica
+    { lang:"es", label:"Español",  lon:  -78.96, lat:  21.63 },  // Cuba
+    { lang:"es", label:"Español",  lon:  -70.71, lat:  18.88 },  // Dominican Rep.
+    { lang:"es", label:"Español",  lon:  -78.38, lat:  -1.46 },  // Ecuador
+    { lang:"es", label:"Español",  lon:  -88.87, lat:  13.73 },  // El Salvador
+    { lang:"es", label:"Español",  lon:   10.37, lat:   1.65 },  // Eq. Guinea
+    { lang:"es", label:"Español",  lon:  -90.37, lat:  15.70 },  // Guatemala
+    { lang:"es", label:"Español",  lon:  -87.09, lat:  14.32 },  // Honduras
+    { lang:"es", label:"Español",  lon: -102.58, lat:  23.94 },  // Mexico
+    { lang:"es", label:"Español",  lon:  -85.02, lat:  12.85 },  // Nicaragua
+    { lang:"es", label:"Español",  lon:  -80.11, lat:   8.53 },  // Panama
+    { lang:"es", label:"Español",  lon:  -58.39, lat: -23.25 },  // Paraguay
+    { lang:"es", label:"Español",  lon:  -74.39, lat:  -9.19 },  // Peru
+    { lang:"es", label:"Español",  lon:  -56.00, lat: -32.78 },  // Uruguay
+    { lang:"es", label:"Español",  lon:  -66.16, lat:   7.16 },  // Venezuela
+    /* Ελληνικά — 2 Länder */
+    { lang:"el", label:"Ελληνικά", lon:   22.31, lat:  39.34, main:1 }, // Greece
+    { lang:"el", label:"Ελληνικά", lon:   33.04, lat:  34.91 },  // Cyprus
+    /* Noch nicht übersetzt — 22 Länder */
+    { soon:1, lon:    2.60, lat:  28.19 },                       // Algeria
+    { soon:1, lon:   17.50, lat: -12.29 },                       // Angola
+    { soon:1, lon:  -53.05, lat: -10.81 },                       // Brazil
+    { soon:1, lon:  103.87, lat:  36.61 },                       // China
+    { soon:1, lon:   29.84, lat:  26.51 },                       // Egypt
+    { soon:1, lon:   39.55, lat:   8.65 },                       // Ethiopia
+    { soon:1, lon:  114.02, lat:  -0.25 },                       // Indonesia
+    { soon:1, lon:   54.29, lat:  32.52 },                       // Iran
+    { soon:1, lon:   12.22, lat:  43.47 },                       // Italy
+    { soon:1, lon:  134.38, lat:  35.52 },                       // Japan
+    { soon:1, lon:   -8.42, lat:  29.89 },                       // Morocco
+    { soon:1, lon:    5.51, lat:  52.30 },                       // Netherlands
+    { soon:1, lon:   19.31, lat:  52.15 },                       // Poland
+    { soon:1, lon:   -8.06, lat:  39.63 },                       // Portugal
+    { soon:1, lon:   95.00, lat:  62.00 },                       // Russia
+    { soon:1, lon:   44.52, lat:  24.12 },                       // Saudi Arabia
+    { soon:1, lon:  127.82, lat:  35.93 },                       // South Korea
+    { soon:1, lon:   16.60, lat:  62.81 },                       // Sweden
+    { soon:1, lon:  101.01, lat:  15.02 },                       // Thailand
+    { soon:1, lon:   35.39, lat:  38.99 },                       // Turkey
+    { soon:1, lon:   31.23, lat:  49.15 },                       // Ukraine
+    { soon:1, lon:  106.29, lat:  16.66 },                       // Vietnam
   ];
   MARK.forEach(function(m){
     var la = m.lat * D2R, lo = m.lon * D2R, c = Math.cos(la);
@@ -6014,10 +6120,18 @@
   function targetFor(m){
     return { rot: m.lon * D2R - Math.PI / 2, tilt: Math.max(-0.62, Math.min(0.62, m.lat * D2R * 0.72)) };
   }
+  /* Der Anker einer Sprache ist ihr `main`-Land — dorthin dreht die Kugel,
+     wenn jemand unten auf die Sprachkarte tippt. */
   function firstIndexOf(lang){
-    for(var i = 0; i < MARK.length; i++) if(MARK[i].lang === lang) return i;
+    var i;
+    for(i = 0; i < MARK.length; i++) if(MARK[i].lang === lang && MARK[i].main) return i;
+    for(i = 0; i < MARK.length; i++) if(MARK[i].lang === lang) return i;
     return 0;
   }
+
+  /* Wie viele Länder sprechen welche Sprache? Die Zahl steht im Hinweis. */
+  var COUNT = {};
+  MARK.forEach(function(m){ if(m.lang) COUNT[m.lang] = (COUNT[m.lang] || 0) + 1; });
 
   /* Startsprache: gemerkt, sonst Browsersprache, sonst diese Seite */
   function guess(){
@@ -6031,15 +6145,18 @@
   var mRot = st0.rot, mTilt = st0.tilt, miniHot = false;
 
   var soonLabel = { de:"bald", en:"soon", fr:"bientôt", es:"pronto", el:"σύντομα" };
+  /* In der Tab-Reihenfolge liegt nur der Anker jeder Sprache. Die übrigen
+     Länder sagen mit der Tastatur nichts Neues — sie führen zur selben Sprache,
+     und die großen Karten unter dem Globus bleiben der Weg ohne Maus. */
   var pinEls = MARK.map(function(m, i){
     var b = document.createElement("button");
     b.type = "button";
-    b.className = "lg-pin" + (m.soon ? " lg-soon" : "");
+    b.className = "lg-pin" + (m.soon ? " lg-soon" : "") + (m.main ? " lg-main" : "");
     var lbl = m.soon ? (soonLabel[PAGE] || "soon") : m.label;
     b.innerHTML = '<span class="lg-dot"></span><span class="lg-lbl"></span>';
     b.querySelector(".lg-lbl").textContent = lbl;
-    b.setAttribute("aria-label", lbl);
-    if(m.soon) b.tabIndex = -1;
+    if(m.main){ b.setAttribute("aria-label", lbl); }
+    else { b.tabIndex = -1; b.setAttribute("aria-hidden", "true"); }
     if(!m.soon) b.addEventListener("pointerenter", function(){ prefetch(m.lang); });
     b.addEventListener("click", function(e){
       e.stopPropagation();
@@ -6059,18 +6176,27 @@
     document.head.appendChild(l);
   }
 
-  var active = null, strong = null;
+  var LANGS = Object.keys(HREF);
+  var active = null, strong = null, onIdx = -1;
   function setActive(i, z){
-    for(var k = 0; k < pinEls.length; k++) pinEls[k].classList.toggle("is-on", k === i && z > 0.55);
+    var on = i >= 0 && z > 0.55;
+    if(onIdx >= 0 && onIdx !== i) pinEls[onIdx].classList.remove("is-on");
+    if(i >= 0) pinEls[i].classList.toggle("is-on", on);
+    onIdx = i;
     if(i < 0) return;
-    var lang = MARK[i].lang, on = z > 0.55;
+    var lang = MARK[i].lang;
     if(lang === active && on === strong) return;
+    /* Nicht nur der vorderste Punkt leuchtet, sondern jedes Land, in dem
+       dieselbe Sprache gesprochen wird. */
+    if(lang !== active)
+      for(var k = 0; k < pinEls.length; k++)
+        pinEls[k].classList.toggle("is-lang", MARK[k].lang === lang);
     active = lang; strong = on;
     var S = STR[lang];
     qEl.textContent = S.q;
-    altEl.textContent = ["de","en","fr"].filter(function(k){ return k !== lang; })
+    altEl.textContent = LANGS.filter(function(k){ return k !== lang; })
       .map(function(k){ return STR[k].q; }).join(" · ");
-    hintEl.textContent = on ? S.on : S.idle;
+    hintEl.textContent = on ? S.on.replace("{n}", COUNT[lang]) : S.idle;
     laterEl.textContent = S.later;
     stage.setAttribute("aria-label", S.spin);
     var cards = document.querySelectorAll("#lg-cards button");
@@ -6089,13 +6215,21 @@
       var m = MARK[k], el = pinEls[k];
       var mx = m.x * cr + m.z * sr, z2 = -m.x * sr + m.z * cr;
       var mz = m.y * st + z2 * ct, my = m.y * ct - z2 * st;
-      if(mz <= 0.03){ el.style.visibility = "hidden"; continue; }
-      el.style.visibility = "visible";
+      /* Bei rund neunzig Punkten lohnt es sich, nur zu schreiben, was sich
+         wirklich geändert hat — die Verschiebung selbst ausgenommen. */
+      if(mz <= 0.03){
+        if(el._v !== 0){ el.style.visibility = "hidden"; el._v = 0; }
+        continue;
+      }
+      if(el._v !== 1){ el.style.visibility = "visible"; el._v = 1; }
       var px = (c0 - mx * R) * sc, py = (c0 - my * R) * sc, s = 0.68 + 0.32 * mz;
       el.style.transform = "translate(" + px.toFixed(1) + "px," + py.toFixed(1) + "px) translate(-50%,-50%) scale(" + s.toFixed(3) + ")";
-      el.style.opacity = (0.4 + 0.6 * mz).toFixed(2);
-      el.style.zIndex = String(10 + Math.round(mz * 20));
-      el.classList.toggle("lg-flip", mx < -0.12);
+      var op = (0.5 + 0.5 * mz).toFixed(2);
+      if(el._o !== op){ el.style.opacity = op; el._o = op; }
+      var zi = String(10 + Math.round(mz * 20) + (m.soon ? -9 : 0) + (m.main ? 30 : 0) + (k === onIdx ? 60 : 0));
+      if(el._z !== zi){ el.style.zIndex = zi; el._z = zi; }
+      var fl = mx < -0.12;
+      if(el._f !== fl){ el.classList.toggle("lg-flip", fl); el._f = fl; }
       var sco = mz + (k === preferred ? 0.05 : 0);
       if(!m.soon && sco > bz){ bz = sco; best = k; }
     }
