@@ -22,7 +22,7 @@ Everything about how gr4ai.org is hosted, deployed, and kept alive. If you're ju
 
 The repo is flat: the HTML pages and `assets/` live at the root, and the whole folder is the GitHub repo. There's no separate `dist/` build folder. What's at the root is what gets deployed.
 
-The pages are `index.html` (the interactive guide, EN — the homepage), `guide-de.html` (the guide, DE), `guide-fr.html` (the guide, FR), `guide-es.html` (the guide, ES), `about.html` (the project page, book, team and contact form) and `guide.html` (a redirect stub → `/`, kept so links shared before the guide moved to the homepage still work). `_redirects` carries the same rule at the Netlify level.
+The pages are `index.html` (the interactive guide, EN — the homepage), `guide-de.html` (the guide, DE), `guide-fr.html` (the guide, FR), `guide-es.html` (the guide, ES), `guide-el.html` (the guide, EL), `about.html` (the project page, book, team and contact form) and `guide.html` (a redirect stub → `/`, kept so links shared before the guide moved to the homepage still work). `_redirects` carries the same rule at the Netlify level.
 
 The current deploy is **manual drag-drop** to Netlify:
 
