@@ -2537,12 +2537,14 @@
     transition: opacity .18s ease, transform .18s ease;
   }
   .lg-pin.lg-flip .lg-lbl{ left: auto; right: 25px; transform-origin: right center; }
-  .lg-pin:hover .lg-lbl, .lg-pin:focus-visible .lg-lbl, .lg-pin.is-on .lg-lbl{
+  .lg-pin:hover .lg-lbl, .lg-pin:focus-visible .lg-lbl,
+  .lg-pins:not(:hover) .lg-pin.is-on .lg-lbl{
     opacity: 1; transform: translateY(-50%) scale(1);
   }
   .lg-pin.is-on .lg-dot{ background: var(--gold); transform: scale(1.45); box-shadow: 2px 2px 0 var(--ink); }
   .lg-pin.is-on .lg-lbl{ background: var(--gold); }
-  .lg-pin.is-on{ z-index: 60; }
+  /* Die Ebene der Punkte setzt das Skript je Bild; eine Regel hier haette
+     keine Wirkung, weil ein style-Attribut immer gewinnt. */
   .lg-pin:focus-visible{ outline: 3px solid var(--jet); outline-offset: 4px; border-radius: 50%; }
   .lg-pin.lg-soon .lg-dot{
     width: 6px; height: 6px; background: var(--paper);
@@ -6148,6 +6150,7 @@
   /* In der Tab-Reihenfolge liegt nur der Anker jeder Sprache. Die übrigen
      Länder sagen mit der Tastatur nichts Neues — sie führen zur selben Sprache,
      und die großen Karten unter dem Globus bleiben der Weg ohne Maus. */
+  var hoverIdx = -1;
   var pinEls = MARK.map(function(m, i){
     var b = document.createElement("button");
     b.type = "button";
@@ -6157,7 +6160,13 @@
     b.querySelector(".lg-lbl").textContent = lbl;
     if(m.main){ b.setAttribute("aria-label", lbl); }
     else { b.tabIndex = -1; b.setAttribute("aria-hidden", "true"); }
-    if(!m.soon) b.addEventListener("pointerenter", function(){ prefetch(m.lang); });
+    b._dot = b.querySelector(".lg-dot");
+    /* Wer auf einen Punkt zeigt oder springt mit der Tastatur darauf, will sein
+       Schild lesen. Also nach ganz vorne, sonst schneiden die Nachbarn hinein. */
+    b.addEventListener("pointerenter", function(){ hoverIdx = i; if(!m.soon) prefetch(m.lang); kick(); });
+    b.addEventListener("pointerleave", function(){ if(hoverIdx === i) hoverIdx = -1; kick(); });
+    b.addEventListener("focus", function(){ hoverIdx = i; kick(); });
+    b.addEventListener("blur", function(){ if(hoverIdx === i) hoverIdx = -1; kick(); });
     b.addEventListener("click", function(e){
       e.stopPropagation();
       spinTo(i);
@@ -6224,9 +6233,12 @@
       if(el._v !== 1){ el.style.visibility = "visible"; el._v = 1; }
       var px = (c0 - mx * R) * sc, py = (c0 - my * R) * sc, s = 0.68 + 0.32 * mz;
       el.style.transform = "translate(" + px.toFixed(1) + "px," + py.toFixed(1) + "px) translate(-50%,-50%) scale(" + s.toFixed(3) + ")";
-      var op = (0.5 + 0.5 * mz).toFixed(2);
-      if(el._o !== op){ el.style.opacity = op; el._o = op; }
-      var zi = String(10 + Math.round(mz * 20) + (m.soon ? -9 : 0) + (m.main ? 30 : 0) + (k === onIdx ? 60 : 0));
+      /* Der Tiefenschleier liegt auf dem Punkt, nicht auf dem Knopf — sonst
+         wird auch das Schild durchsichtig. */
+      var op = k === hoverIdx ? "1" : (0.5 + 0.5 * mz).toFixed(2);
+      if(el._o !== op){ el._dot.style.opacity = op; el._o = op; }
+      var zi = String(10 + Math.round(mz * 20) + (m.soon ? -9 : 0) + (m.main ? 30 : 0)
+                      + (k === onIdx ? 60 : 0) + (k === hoverIdx ? 400 : 0));
       if(el._z !== zi){ el.style.zIndex = zi; el._z = zi; }
       var fl = mx < -0.12;
       if(el._f !== fl){ el.classList.toggle("lg-flip", fl); el._f = fl; }
