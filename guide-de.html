@@ -2593,6 +2593,112 @@
   @media (prefers-reduced-motion: reduce){
     .lg-ask, .lg-pin .lg-dot, .lg-pin .lg-lbl, .lg-cards button{ transition-duration: .01ms !important; }
   }
+
+  /* ---------- Wörtersammlung (gw-*) ----------
+     Ohne JavaScript bleibt das Glossar die Liste, die es war. Erst das Skript
+     setzt .gw-album auf die <dl> und macht daraus die Sammelkarten. */
+  .gw-bar{
+    max-width: 1180px; margin: 0 0 22px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px;
+  }
+  .gw-count{
+    margin: 0; font-size: 17px; font-weight: 600; color: var(--ink);
+    flex: 1 1 260px; min-width: 0;
+  }
+  .gw-count b{ font-family: "Fraunces", serif; font-weight: 900; font-size: 19px; }
+  .gw-track{
+    flex: 1 1 200px; height: 18px; border: 2px solid var(--ink);
+    border-radius: 999px; background: var(--paper); overflow: hidden;
+  }
+  .gw-fill{
+    display: block; height: 100%; width: 0;
+    background: var(--gold); border-right: 2px solid var(--ink);
+    transition: width .45s cubic-bezier(.4,0,.2,1);
+  }
+  .gw-fill.is-full{ background: var(--teal); border-right: 0; }
+  .gw-tools{ display: flex; gap: 10px; flex: 0 0 auto; }
+  .gw-search{
+    font: 400 15.5px/1 "Inter", sans-serif; color: var(--ink);
+    background: var(--paper); border: 2px solid var(--ink);
+    border-radius: 999px; padding: 9px 16px; width: 190px; max-width: 46vw;
+  }
+  .gw-search::placeholder{ color: var(--ink-soft); }
+  .gw-search:focus-visible, .gw-all:focus-visible{ outline: 3px solid var(--jet); outline-offset: 2px; }
+  .gw-all{
+    font: 700 14px/1 "Inter", sans-serif; cursor: pointer;
+    background: var(--paper); color: var(--ink); border: 2px solid var(--ink);
+    border-radius: 999px; padding: 9px 16px; white-space: nowrap;
+  }
+  .gw-all:hover{ background: var(--gold); }
+
+  .glossary-list.gw-album{
+    max-width: none; margin: 0; background: none; border: 0; box-shadow: none;
+    border-radius: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+    gap: 14px; align-items: start; grid-auto-flow: dense;
+  }
+  .gw-album .glossary-entry{
+    position: relative; padding: 0; margin: 0; border-bottom: 0;
+    border-radius: 16px; background: var(--paper);
+    border: 2px dashed rgba(20,23,26,0.30);
+    transition: border-color .18s ease, box-shadow .18s ease;
+  }
+  .gw-album .glossary-entry.gw-have{
+    border-style: solid; border-color: var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .gw-album .glossary-entry.is-open{ grid-column: span 2; }
+  @media (max-width: 560px){
+    .gw-album .glossary-entry.is-open{ grid-column: auto; }
+  }
+  .gw-album .glossary-entry.gw-hide{ display: none; }
+
+  .gw-album .glossary-entry dt{ margin: 0; padding: 0; }
+  .gw-word{
+    display: block; width: 100%; text-align: left; cursor: pointer;
+    background: none; border: 0; border-radius: 16px;
+    font-family: "Fraunces", serif; font-weight: 800; font-size: 17px;
+    line-height: 1.25; color: var(--ink-soft);
+    padding: 14px 44px 15px 15px;
+  }
+  .gw-album .glossary-entry.gw-have .gw-word{ color: var(--ink); }
+  .gw-word:focus-visible{ outline: 3px solid var(--jet); outline-offset: -3px; }
+  /* Dieselbe gepunktete Unterstreichung wie bei den Wörtern im Text — so ist
+     auf einen Blick klar, dass die Karte sich öffnen lässt. */
+  .gw-word span{
+    text-decoration: underline; text-decoration-style: dotted;
+    text-decoration-thickness: 1px; text-underline-offset: 3px;
+    text-decoration-color: rgba(20,23,26,0.45);
+  }
+  .gw-album .glossary-entry.gw-have .gw-word span{ text-decoration-color: var(--ink); }
+  .gw-word:hover span, .gw-word:focus-visible span{ text-decoration-thickness: 2px; }
+
+  .gw-say{
+    position: absolute; top: 10px; right: 10px;
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--paper); border: 1.5px solid rgba(20,23,26,0.28);
+    font-size: 13px; line-height: 1; padding: 0;
+  }
+  .gw-album .glossary-entry.gw-have .gw-say{ border-color: var(--ink); }
+  .gw-say:hover{ background: var(--gold); }
+  .gw-say:focus-visible{ outline: 3px solid var(--jet); outline-offset: 2px; }
+  .gw-say.is-speaking{ background: var(--gold); }
+
+  .gw-album .glossary-entry dd{
+    display: none; margin: 0; padding: 0 15px 15px;
+    font-size: 17px; line-height: 1.5; color: var(--ink-soft);
+  }
+  .gw-album .glossary-entry.is-open dd,
+  .gw-album .glossary-entry:target dd{ display: block; }
+  .gw-album .glossary-entry:target{ border-style: solid; border-color: var(--ink); }
+
+  .gw-empty{
+    margin: 18px 0 0; font-size: 15.5px; color: var(--ink-soft);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .gw-fill{ transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -6196,6 +6302,197 @@
   window.addEventListener("resize", measure);
 
   if(!chosen && !store.snoozed()) open_();
+})();
+</script>
+
+
+<script>
+/* Wörtersammlung.
+   Das Glossar bleibt die einzige Stelle, an der die Wortlaute stehen — das
+   Skript baut nur Karten darum. Ohne JavaScript steht die Liste wie zuvor da,
+   und die Sprechblasen im Text lesen weiterhin dt und dd aus den Einträgen. */
+(function(){
+  "use strict";
+
+  var PAGE = "de";
+  var KEY = "gr4ai-words";
+
+  var STR = {
+    de: { none:"Noch kein Wort gesammelt. Tippe auf eine Karte — oder finde die Wörter in den Kapiteln.",
+          some:"Du hast <b>{n} von {t}</b> Wörtern gesammelt.",
+          all:"Alle {t} Wörter gesammelt! 🎉",
+          search:"Wort suchen", open:"Alle Erklärungen zeigen", shut:"Erklärungen zuklappen",
+          say:"Wort vorlesen", nothing:"Kein Wort gefunden.", voice:"de-DE" },
+    en: { none:"No word collected yet. Tap a card — or find the words in the chapters.",
+          some:"You have collected <b>{n} of {t}</b> words.",
+          all:"All {t} words collected! 🎉",
+          search:"Find a word", open:"Show all explanations", shut:"Hide explanations",
+          say:"Read the word aloud", nothing:"No word found.", voice:"en-GB" },
+    fr: { none:"Aucun mot récolté pour l’instant. Touche une carte — ou trouve les mots dans les chapitres.",
+          some:"Tu as récolté <b>{n} mots sur {t}</b>.",
+          all:"Les {t} mots sont récoltés ! 🎉",
+          search:"Chercher un mot", open:"Montrer toutes les explications", shut:"Masquer les explications",
+          say:"Lire le mot à voix haute", nothing:"Aucun mot trouvé.", voice:"fr-FR" },
+    es: { none:"Todavía no has reunido ninguna palabra. Toca una tarjeta o búscalas en los capítulos.",
+          some:"Has reunido <b>{n} de {t}</b> palabras.",
+          all:"¡Has reunido las {t} palabras! 🎉",
+          search:"Buscar una palabra", open:"Mostrar todas las explicaciones", shut:"Ocultar las explicaciones",
+          say:"Leer la palabra en voz alta", nothing:"No se encontró ninguna palabra.", voice:"es-ES" },
+    el: { none:"Δεν έχεις μαζέψει ακόμα καμία λέξη. Πάτησε μια κάρτα — ή βρες τις λέξεις στα κεφάλαια.",
+          some:"Έχεις μαζέψει <b>{n} από {t}</b> λέξεις.",
+          all:"Μάζεψες και τις {t} λέξεις! 🎉",
+          search:"Βρες μια λέξη", open:"Δείξε όλες τις εξηγήσεις", shut:"Κρύψε τις εξηγήσεις",
+          say:"Διάβασε τη λέξη δυνατά", nothing:"Δεν βρέθηκε καμία λέξη.", voice:"el-GR" }
+  };
+  var T = STR[PAGE] || STR.en;
+
+  var list = document.querySelector(".glossary-list");
+  if(!list) return;
+  var entries = Array.prototype.slice.call(list.querySelectorAll(".glossary-entry"));
+  if(entries.length < 5) return;
+
+  /* ---- Sammlung: gilt über alle Sprachen, die IDs sind überall dieselben ---- */
+  var have = {};
+  try {
+    (JSON.parse(localStorage.getItem(KEY) || "[]") || []).forEach(function(id){ have[id] = 1; });
+  } catch(e){}
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(Object.keys(have))); } catch(e){}
+  }
+
+  /* ---- Kopfzeile ---- */
+  var bar = document.createElement("div");
+  bar.className = "gw-bar";
+  bar.innerHTML =
+    '<p class="gw-count" id="gw-count" aria-live="polite"></p>' +
+    '<span class="gw-track"><span class="gw-fill" id="gw-fill"></span></span>' +
+    '<span class="gw-tools">' +
+      '<input class="gw-search" id="gw-search" type="search" autocomplete="off">' +
+      '<button class="gw-all" id="gw-all" type="button"></button>' +
+    '</span>';
+  list.parentNode.insertBefore(bar, list);
+
+  var countEl = bar.querySelector("#gw-count");
+  var fillEl = bar.querySelector("#gw-fill");
+  var searchEl = bar.querySelector("#gw-search");
+  var allEl = bar.querySelector("#gw-all");
+  searchEl.placeholder = T.search;
+  searchEl.setAttribute("aria-label", T.search);
+  allEl.textContent = T.open;
+
+  var empty = document.createElement("p");
+  empty.className = "gw-empty";
+  empty.hidden = true;
+  empty.textContent = T.nothing;
+  list.parentNode.insertBefore(empty, list.nextSibling);
+
+  /* ---- Vorlesen: der Browser kann das selbst, sonst fällt der Knopf weg ---- */
+  var canSpeak = "speechSynthesis" in window && typeof SpeechSynthesisUtterance === "function";
+  function say(text, btn){
+    if(!canSpeak) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = T.voice; u.rate = 0.9;
+      if(btn){
+        btn.classList.add("is-speaking");
+        u.onend = u.onerror = function(){ btn.classList.remove("is-speaking"); };
+      }
+      window.speechSynthesis.speak(u);
+    } catch(e){}
+  }
+
+  /* ---- Karten bauen ---- */
+  list.classList.add("gw-album");
+  var total = entries.length;
+
+  entries.forEach(function(entry){
+    var dt = entry.querySelector("dt"), dd = entry.querySelector("dd");
+    if(!dt || !dd) return;
+    var word = dt.textContent.trim();
+
+    /* Der Knopf trägt nur das Wort, damit dt.textContent sauber bleibt —
+       die Sprechblasen im Text lesen genau diesen Wortlaut aus. */
+    var btn = document.createElement("button");
+    btn.type = "button"; btn.className = "gw-word";
+    btn.innerHTML = "";
+    var wspan = document.createElement("span");
+    wspan.textContent = word;
+    btn.appendChild(wspan);
+    btn.setAttribute("aria-expanded", "false");
+    dt.textContent = "";
+    dt.appendChild(btn);
+
+    if(!dd.id) dd.id = entry.id + "-def";
+    btn.setAttribute("aria-controls", dd.id);
+
+    if(canSpeak){
+      var sp = document.createElement("button");
+      sp.type = "button"; sp.className = "gw-say";
+      sp.textContent = "🔊";
+      sp.setAttribute("aria-label", T.say + ": " + word);
+      sp.addEventListener("click", function(e){
+        e.stopPropagation();
+        say(entry.classList.contains("is-open") ? word + ". " + dd.textContent.trim() : word, sp);
+      });
+      entry.appendChild(sp);
+    }
+
+    btn.addEventListener("click", function(){
+      var open = !entry.classList.contains("is-open");
+      entry.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      if(open) collect(entry.id);
+    });
+
+    if(have[entry.id]) entry.classList.add("gw-have");
+  });
+
+  function collect(id){
+    if(!id || have[id]) return;
+    have[id] = 1; save();
+    var el = document.getElementById(id);
+    if(el) el.classList.add("gw-have");
+    render();
+  }
+
+  function render(){
+    var n = entries.filter(function(e){ return have[e.id]; }).length;
+    var txt = n === 0 ? T.none : (n >= total ? T.all : T.some);
+    countEl.innerHTML = txt.replace("{n}", n).replace("{t}", total);
+    fillEl.style.width = Math.round(n / total * 100) + "%";
+    fillEl.classList.toggle("is-full", n >= total);
+  }
+  render();
+
+  /* ---- Ein angetipptes Wort im Kapitel wandert in die Sammlung ---- */
+  document.addEventListener("click", function(e){
+    var a = e.target && e.target.closest && e.target.closest('a.glossary-link[href^="#glossary-"]');
+    if(a) collect(a.getAttribute("href").replace(/^#/, ""));
+  });
+
+  /* ---- Suchen ---- */
+  searchEl.addEventListener("input", function(){
+    var q = searchEl.value.trim().toLowerCase();
+    var shown = 0;
+    entries.forEach(function(entry){
+      var hit = !q || entry.textContent.toLowerCase().indexOf(q) !== -1;
+      entry.classList.toggle("gw-hide", !hit);
+      if(hit) shown++;
+    });
+    empty.hidden = shown !== 0;
+  });
+
+  /* ---- Alles auf- und zuklappen (fürs Nachschlagen) ---- */
+  allEl.addEventListener("click", function(){
+    var open = allEl.textContent !== T.shut;
+    entries.forEach(function(entry){
+      entry.classList.toggle("is-open", open);
+      var b = entry.querySelector(".gw-word");
+      if(b) b.setAttribute("aria-expanded", String(open));
+    });
+    allEl.textContent = open ? T.shut : T.open;
+  });
 })();
 </script>
 
