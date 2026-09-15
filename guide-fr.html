@@ -2692,6 +2692,30 @@
   .gw-album .glossary-entry:target dd{ display: block; }
   .gw-album .glossary-entry:target{ border-style: solid; border-color: var(--ink); }
 
+  /* ---- Gruppen nach Kapiteln ---- */
+  .gw-groups{ display: flex; flex-direction: column; gap: 30px; }
+  .gw-head{
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin: 0 0 14px; line-height: 1.2;
+  }
+  .gw-head .chapter-num{
+    width: 34px; height: 34px; font-size: 15px; margin: 0; flex: none;
+  }
+  .gw-head .gw-title{
+    font-family: "Fraunces", serif; font-weight: 800; font-size: 19px;
+    color: var(--ink); line-height: 1.2;
+  }
+  .gw-head .gw-score{
+    font: 700 13px/1 "Inter", sans-serif; color: var(--ink-soft);
+    border: 1.5px solid rgba(20,23,26,0.28); border-radius: 999px;
+    padding: 5px 10px; white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  .gw-group.is-done .gw-score{
+    background: var(--teal); border-color: var(--ink); color: var(--ink);
+  }
+  .gw-group.is-done .chapter-num{ background: var(--teal); }
+  .gw-group.gw-hide{ display: none; }
+
   .gw-empty{
     margin: 18px 0 0; font-size: 15.5px; color: var(--ink-soft);
   }
@@ -6310,6 +6334,8 @@
 </script>
 
 
+
+
 <script>
 /* Wörtersammlung.
    Das Glossar bleibt die einzige Stelle, an der die Wortlaute stehen — das
@@ -6326,27 +6352,37 @@
           some:"Du hast <b>{n} von {t}</b> Wörtern gesammelt.",
           all:"Alle {t} Wörter gesammelt! 🎉",
           search:"Wort suchen", open:"Alle Erklärungen zeigen", shut:"Erklärungen zuklappen",
-          say:"Wort vorlesen", nothing:"Kein Wort gefunden.", voice:"de-DE" },
+          say:"Wort vorlesen", nothing:"Kein Wort gefunden.", voice:"de-DE",
+          chap:"Kapitel {n}", rest:"Weitere Wörter",
+          lede:"Jedes schwierige Wort aus dem Buch — in der Reihenfolge, in der du ihm begegnet bist." },
     en: { none:"No word collected yet. Tap a card — or find the words in the chapters.",
           some:"You have collected <b>{n} of {t}</b> words.",
           all:"All {t} words collected! 🎉",
           search:"Find a word", open:"Show all explanations", shut:"Hide explanations",
-          say:"Read the word aloud", nothing:"No word found.", voice:"en-GB" },
+          say:"Read the word aloud", nothing:"No word found.", voice:"en-GB",
+          chap:"Chapter {n}", rest:"More words",
+          lede:"Every tricky word from the book, in the order you met it." },
     fr: { none:"Aucun mot récolté pour l’instant. Touche une carte — ou trouve les mots dans les chapitres.",
           some:"Tu as récolté <b>{n} mots sur {t}</b>.",
           all:"Les {t} mots sont récoltés ! 🎉",
           search:"Chercher un mot", open:"Montrer toutes les explications", shut:"Masquer les explications",
-          say:"Lire le mot à voix haute", nothing:"Aucun mot trouvé.", voice:"fr-FR" },
+          say:"Lire le mot à voix haute", nothing:"Aucun mot trouvé.", voice:"fr-FR",
+          chap:"Chapitre {n}", rest:"Autres mots",
+          lede:"Chaque mot difficile du livre, dans l’ordre où tu l’as rencontré." },
     es: { none:"Todavía no has reunido ninguna palabra. Toca una tarjeta o búscalas en los capítulos.",
           some:"Has reunido <b>{n} de {t}</b> palabras.",
           all:"¡Has reunido las {t} palabras! 🎉",
           search:"Buscar una palabra", open:"Mostrar todas las explicaciones", shut:"Ocultar las explicaciones",
-          say:"Leer la palabra en voz alta", nothing:"No se encontró ninguna palabra.", voice:"es-ES" },
+          say:"Leer la palabra en voz alta", nothing:"No se encontró ninguna palabra.", voice:"es-ES",
+          chap:"Capítulo {n}", rest:"Más palabras",
+          lede:"Cada palabra difícil del libro, en el orden en que la encontraste." },
     el: { none:"Δεν έχεις μαζέψει ακόμα καμία λέξη. Πάτησε μια κάρτα — ή βρες τις λέξεις στα κεφάλαια.",
           some:"Έχεις μαζέψει <b>{n} από {t}</b> λέξεις.",
           all:"Μάζεψες και τις {t} λέξεις! 🎉",
           search:"Βρες μια λέξη", open:"Δείξε όλες τις εξηγήσεις", shut:"Κρύψε τις εξηγήσεις",
-          say:"Διάβασε τη λέξη δυνατά", nothing:"Δεν βρέθηκε καμία λέξη.", voice:"el-GR" }
+          say:"Διάβασε τη λέξη δυνατά", nothing:"Δεν βρέθηκε καμία λέξη.", voice:"el-GR",
+          chap:"Κεφάλαιο {n}", rest:"Κι άλλες λέξεις",
+          lede:"Κάθε δύσκολη λέξη του βιβλίου, με τη σειρά που τη συνάντησες." }
   };
   var T = STR[PAGE] || STR.en;
 
@@ -6363,6 +6399,12 @@
   function save(){
     try { localStorage.setItem(KEY, JSON.stringify(Object.keys(have))); } catch(e){}
   }
+
+  /* ---- Die Zeile unter der Überschrift stimmte nicht: von 48 Wörtern sind
+         nur etwa 15 KI-Wörter, der Rest kommt aus Medizin, Natur, Gesellschaft. ---- */
+  var sec = list.closest("section");
+  var lede = sec && sec.querySelector(".chapter-intro p");
+  if(lede && T.lede) lede.textContent = T.lede;
 
   /* ---- Kopfzeile ---- */
   var bar = document.createElement("div");
@@ -6452,6 +6494,82 @@
     if(have[entry.id]) entry.classList.add("gw-have");
   });
 
+  /* ---- Nach Kapiteln gruppieren.
+         Die Zuordnung wird aus der Seite selbst gelesen: ein Wort gehört in das
+         Kapitel, in dem es zum ersten Mal verlinkt ist. Nichts zu pflegen. ---- */
+  function groupByChapter(){
+    var home = {};
+    var links = document.querySelectorAll('a.glossary-link[href^="#glossary-"]');
+    for(var i = 0; i < links.length; i++){
+      var a = links[i];
+      if(a.closest(".glossary-list")) continue;          /* Verweise im Glossar zählen nicht */
+      var s = a.closest("section[id]");
+      if(!s || !/^ch\d+$/.test(s.id)) continue;
+      var id = a.getAttribute("href").replace(/^#/, "");
+      if(!home[id]) home[id] = s.id;
+    }
+
+    var chapters = [];
+    var all = document.querySelectorAll("section[id]");
+    for(var k = 0; k < all.length; k++){
+      var m = /^ch(\d+)$/.exec(all[k].id);
+      if(m) chapters.push({ id: all[k].id, no: m[1], el: all[k] });
+    }
+
+    var wrap = document.createElement("div");
+    wrap.className = "gw-groups";
+    list.parentNode.insertBefore(wrap, list);
+    var groups = [];
+
+    function addGroup(no, title, items){
+      if(!items.length) return;
+      /* bewusst ein div: <section> erbt die grosszuegigen Kapitel-Abstaende der Seite */
+      var g = document.createElement("div");
+      g.className = "gw-group";
+      var head = document.createElement("h4");
+      head.className = "gw-head";
+      if(no){
+        var num = document.createElement("span");
+        num.className = "chapter-num";
+        num.setAttribute("aria-hidden", "true");
+        num.textContent = no.length < 2 ? "0" + no : no;
+        head.appendChild(num);
+      }
+      var t = document.createElement("span");
+      t.className = "gw-title";
+      t.textContent = title;
+      head.appendChild(t);
+      var sc = document.createElement("span");
+      sc.className = "gw-score";
+      head.appendChild(sc);
+      g.appendChild(head);
+      var dl = document.createElement("dl");
+      dl.className = "glossary-list gw-album";
+      items.forEach(function(e){ dl.appendChild(e); });
+      g.appendChild(dl);
+      wrap.appendChild(g);
+      groups.push({ el: g, score: sc, items: items });
+    }
+
+    var used = {};
+    chapters.forEach(function(c){
+      var items = entries.filter(function(e){ return home[e.id] === c.id; });
+      items.forEach(function(e){ used[e.id] = 1; });
+      /* Nur die eigene Kapiteluberschrift. Kapitel 4 hat keine — dort steht ein
+         ganzer Satz als h3, der als Gruppentitel nicht taugt. */
+      var h3 = c.el.querySelector(".chapter-intro h3");
+      var title = h3 ? h3.textContent.trim() : T.chap.replace("{n}", c.no);
+      addGroup(c.no, title, items);
+    });
+    var restItems = entries.filter(function(e){ return !used[e.id]; });
+    addGroup("", T.rest, restItems);
+
+    if(!list.children.length) list.parentNode.removeChild(list);
+    return groups;
+  }
+
+  var GROUPS = groupByChapter();
+
   function collect(id){
     if(!id || have[id]) return;
     have[id] = 1; save();
@@ -6466,6 +6584,11 @@
     countEl.innerHTML = txt.replace("{n}", n).replace("{t}", total);
     fillEl.style.width = Math.round(n / total * 100) + "%";
     fillEl.classList.toggle("is-full", n >= total);
+    GROUPS.forEach(function(g){
+      var got = g.items.filter(function(e){ return have[e.id]; }).length;
+      g.score.textContent = got + "/" + g.items.length;
+      g.el.classList.toggle("is-done", got === g.items.length);
+    });
   }
   render();
 
@@ -6483,6 +6606,10 @@
       var hit = !q || entry.textContent.toLowerCase().indexOf(q) !== -1;
       entry.classList.toggle("gw-hide", !hit);
       if(hit) shown++;
+    });
+    GROUPS.forEach(function(g){
+      var any = g.items.some(function(e){ return !e.classList.contains("gw-hide"); });
+      g.el.classList.toggle("gw-hide", !any);
     });
     empty.hidden = shown !== 0;
   });
