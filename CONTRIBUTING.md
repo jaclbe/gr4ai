@@ -2,17 +2,18 @@
 
 Welcome. This is a plain static site, so contributing is refreshingly low-tech. You edit an HTML file, check it locally, and ship. No npm, no build, no compiler. This doc gets you from a fresh clone to a live change.
 
-There are six pages, and each one is self-contained (markup, CSS and JS all in the same file):
+There are eight pages, and each one is self-contained (markup, CSS and JS all in the same file):
 
 - `index.html` — the interactive guide in English. **This is the homepage.**
 - `guide-de.html` — the same guide in German.
 - `guide-fr.html` — the same guide in French.
 - `guide-es.html` — the same guide in Spanish.
 - `guide-el.html` — the same guide in Greek.
+- `guide-pt.html` — the same guide in Portuguese (Brazilian).
 - `about.html` — the project page: why the book exists, the chapters, the team, the contact form.
 - `guide.html` — a redirect stub that sends old `/guide.html` links to `/`.
 
-Anything you change in the English guide almost always needs the same change in `guide-de.html`, `guide-fr.html`, `guide-es.html` and `guide-el.html`.
+Anything you change in the English guide almost always needs the same change in `guide-de.html`, `guide-fr.html`, `guide-es.html`, `guide-el.html` and `guide-pt.html`.
 
 ---
 

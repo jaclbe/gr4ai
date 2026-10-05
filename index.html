@@ -18,6 +18,7 @@
 <link rel="alternate" hreflang="de" href="https://gr4ai.org/guide-de.html" />
 <link rel="alternate" hreflang="es" href="https://gr4ai.org/guide-es.html" />
 <link rel="alternate" hreflang="el" href="https://gr4ai.org/guide-el.html" />
+<link rel="alternate" hreflang="pt" href="https://gr4ai.org/guide-pt.html" />
 <link rel="alternate" hreflang="x-default" href="https://gr4ai.org/" />
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -2769,8 +2770,9 @@
         <a href="index.html" aria-current="true" hreflang="en" lang="en">EN</a>
         <a href="guide-de.html" hreflang="de" lang="de">DE</a>
         <a href="guide-fr.html" hreflang="fr" lang="fr">FR</a>
-              <a href="guide-es.html" hreflang="es" lang="es">ES</a>
-              <a href="guide-el.html" hreflang="el" lang="el">EL</a>
+        <a href="guide-es.html" hreflang="es" lang="es">ES</a>
+        <a href="guide-el.html" hreflang="el" lang="el">EL</a>
+        <a href="guide-pt.html" hreflang="pt" lang="pt">PT</a>
       </span>
     </nav>
     <span class="hashtag">#GR4AI</span>
@@ -5865,6 +5867,7 @@
       <button type="button" data-lang="fr" aria-pressed="false"><span class="lg-hi">Salut&#8239;!</span><span class="lg-nm">Français</span></button>
       <button type="button" data-lang="es" aria-pressed="false"><span class="lg-hi">¡Hola!</span><span class="lg-nm">Español</span></button>
       <button type="button" data-lang="el" aria-pressed="false"><span class="lg-hi">Γεια σου!</span><span class="lg-nm">Ελληνικά</span></button>
+      <button type="button" data-lang="pt" aria-pressed="false"><span class="lg-hi">Oi!</span><span class="lg-nm">Português</span></button>
     </div>
     <button type="button" class="lg-later" id="lg-later">Später entscheiden</button>
   </div>
@@ -5879,7 +5882,7 @@
   "use strict";
 
   var PAGE = "en";
-  var HREF = { de: "guide-de.html", en: "index.html", fr: "guide-fr.html", es: "guide-es.html", el: "guide-el.html" };
+  var HREF = { de: "guide-de.html", en: "index.html", fr: "guide-fr.html", es: "guide-es.html", el: "guide-el.html", pt: "guide-pt.html" };
   var KEY  = "gr4ai-lang";
 
   var STR = {
@@ -5907,7 +5910,12 @@
           idle:"Γύρισε την υδρόγειο στη χώρα σου — ή πάτησε απευθείας τη γλώσσα σου.",
           on:"{n} χώρες λάμπουν κόκκινες — εκεί μιλούν ελληνικά. Πάτησε τη χώρα σου.",
           later:"Θα αποφασίσω αργότερα",
-          spin:"Περιστροφή της υδρογείου" }
+          spin:"Περιστροφή της υδρογείου" },
+    pt: { q:"De onde você é?", name:"Português", pick:"Escolher idioma",
+          idle:"Gire o globo até o seu país — ou toque direto no seu idioma.",
+          on:"{n} países brilham em vermelho — é lá que se fala português. Toque no seu país.",
+          later:"Decidir depois",
+          spin:"Girar o globo" }
   };
 
   var store = {
@@ -6094,10 +6102,15 @@
     /* Ελληνικά — 2 Länder */
     { lang:"el", label:"Ελληνικά", lon:   22.31, lat:  39.34, main:1 }, // Greece
     { lang:"el", label:"Ελληνικά", lon:   33.04, lat:  34.91 },  // Cyprus
-    /* Noch nicht übersetzt — 22 Länder */
+    /* Português — 6 Länder */
+    { lang:"pt", label:"Português", lon:  -53.05, lat: -10.81, main:1 }, // Brazil
+    { lang:"pt", label:"Português", lon:   17.50, lat: -12.29 },  // Angola
+    { lang:"pt", label:"Português", lon:  -14.95, lat:  12.05 },  // Guinea-Bissau
+    { lang:"pt", label:"Português", lon:   35.53, lat: -17.27 },  // Mozambique
+    { lang:"pt", label:"Português", lon:   -8.06, lat:  39.63 },  // Portugal
+    { lang:"pt", label:"Português", lon:  125.90, lat:  -8.80 },  // Timor-Leste
+    /* Noch nicht übersetzt — 19 Länder */
     { soon:1, lon:    2.60, lat:  28.19 },                       // Algeria
-    { soon:1, lon:   17.50, lat: -12.29 },                       // Angola
-    { soon:1, lon:  -53.05, lat: -10.81 },                       // Brazil
     { soon:1, lon:  103.87, lat:  36.61 },                       // China
     { soon:1, lon:   29.84, lat:  26.51 },                       // Egypt
     { soon:1, lon:   39.55, lat:   8.65 },                       // Ethiopia
@@ -6108,7 +6121,6 @@
     { soon:1, lon:   -8.42, lat:  29.89 },                       // Morocco
     { soon:1, lon:    5.51, lat:  52.30 },                       // Netherlands
     { soon:1, lon:   19.31, lat:  52.15 },                       // Poland
-    { soon:1, lon:   -8.06, lat:  39.63 },                       // Portugal
     { soon:1, lon:   95.00, lat:  62.00 },                       // Russia
     { soon:1, lon:   44.52, lat:  24.12 },                       // Saudi Arabia
     { soon:1, lon:  127.82, lat:  35.93 },                       // South Korea
@@ -6149,7 +6161,7 @@
   var rot = st0.rot, tilt = st0.tilt, vel = 0, idle = 0, tween = null, preferred = startIdx;
   var mRot = st0.rot, mTilt = st0.tilt, miniHot = false;
 
-  var soonLabel = { de:"bald", en:"soon", fr:"bientôt", es:"pronto", el:"σύντομα" };
+  var soonLabel = { de:"bald", en:"soon", fr:"bientôt", es:"pronto", el:"σύντομα", pt:"em breve" };
   /* In der Tab-Reihenfolge liegt nur der Anker jeder Sprache. Die übrigen
      Länder sagen mit der Tastatur nichts Neues — sie führen zur selben Sprache,
      und die großen Karten unter dem Globus bleiben der Weg ohne Maus. */
@@ -6527,7 +6539,14 @@
           search:"Βρες μια λέξη", open:"Δείξε όλες τις εξηγήσεις", shut:"Κρύψε τις εξηγήσεις",
           say:"Διάβασε τη λέξη δυνατά", nothing:"Δεν βρέθηκε καμία λέξη.", voice:"el-GR",
           chap:"Κεφάλαιο {n}", rest:"Κι άλλες λέξεις",
-          lede:"Κάθε δύσκολη λέξη του βιβλίου, με τη σειρά που τη συνάντησες." }
+          lede:"Κάθε δύσκολη λέξη του βιβλίου, με τη σειρά που τη συνάντησες." },
+    pt: { none:"Você ainda não juntou nenhuma palavra. Toque num cartão — ou procure as palavras nos capítulos.",
+          some:"Você já juntou <b>{n} de {t}</b> palavras.",
+          all:"Você juntou todas as {t} palavras! 🎉",
+          search:"Procurar uma palavra", open:"Mostrar todas as explicações", shut:"Esconder as explicações",
+          say:"Ler a palavra em voz alta", nothing:"Nenhuma palavra encontrada.", voice:"pt-BR",
+          chap:"Capítulo {n}", rest:"Mais palavras",
+          lede:"Cada palavra difícil do livro, na ordem em que você a encontrou." }
   };
   var T = STR[PAGE] || STR.en;
 
