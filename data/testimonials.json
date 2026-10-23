@@ -1,0 +1,29 @@
+[
+  {
+    "quote": "What a brilliant resource for introducing children to the world of AI! The site is bright, colourful, and interactive, with a layout that's super easy to navigate. Instead of overwhelming children with wall-to-wall text, the information is broken down into quick, easy-to-read bites. The quizzes and questions sprinkled throughout are spot-on for locking in what they've just learned. The graphics and images are genuinely cool, children are going to love spending time on here.",
+    "name": "Mr Williams",
+    "role": "Teacher in year 5 and 6",
+    "location": "London, UK",
+    "language": "en",
+    "featured": true,
+    "date_added": "2026-10-23"
+  },
+  {
+    "quote": "It does a fantastic job of covering all the big questions while making AI chat feel totally accessible for young minds. Best of all, it doesn't just hype up the cool stuff, it highlights the positives while opening up essential conversations that parents and teachers need to talk about.",
+    "name": "Damian",
+    "role": "Rosie's dad",
+    "location": "London, UK",
+    "language": "en",
+    "featured": true,
+    "date_added": "2026-10-23"
+  },
+  {
+    "quote": "Having a discussion with my pupils and my 17 year old son about challenges of a modern era, I found out that although young people know how to use modern technology and of course AI, they face difficulties in understanding its function and sometimes its proper use. This amazing e-book has come to meet this need and the most important fact about it is that it achieves this goal in a way that makes it very interesting – I would say enticing – for kids and very easily used by adults, even if they are not so accustomed to what we call Artificial Intelligence. It helps them learn together with their children. Last but not least, it helps the reader make the distinction between real life and virtual - digital world, something that is absolutely necessary for the new generations, for kids who \"grow up in front of a screen\"…. As a teacher and a mother of a teenager, I want to thank everyone in this team for this pedagogical tool they provided us with.",
+    "name": "Mrs Asimina Vatsitsi",
+    "role": "Teacher in 4th grade of Primary School",
+    "location": "Pireaus, Greece",
+    "language": "en",
+    "featured": true,
+    "date_added": "2026-10-23"
+  }
+]

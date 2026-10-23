@@ -87,6 +87,35 @@ If a file isn't referenced by one of the HTML pages, it lives in `archive/`, not
 
 ---
 
+## How to add a testimonial
+
+The "What teachers and parents say" cards near the top of every guide are drawn from one file, `data/testimonials.json`. Adding a quote never touches the HTML.
+
+1. Open `data/testimonials.json` and add a block at the end of the list (mind the comma between blocks):
+   ```json
+   {
+     "quote": "The quote, copied exactly as it was sent. Keep the original wording, spelling and punctuation.",
+     "name": "Mrs Example",
+     "role": "Teacher in year 4",
+     "location": "Athens, Greece",
+     "language": "en",
+     "featured": true,
+     "date_added": "2026-11-20"
+   }
+   ```
+2. Fields:
+   - `quote`: verbatim. Do not correct it; if something looks like a typo, ask whoever supplied it. A `"` inside the quote is written `\"`.
+   - `name`, `role`, `location`: shown as one line under the quote: "**name**, role, location". Leave `role` or `location` as `""` if there is none.
+   - `language`: the language the quote is **written** in (`en`, `de`, `fr`, `es`, `el`, `pt`). Quotes are not translated; this tells browsers and screen readers how to read it.
+   - `featured`: `true` puts it before the others. Within each group, the newest `date_added` comes first.
+   - `date_added`: `YYYY-MM-DD`.
+3. **Children:** first name and age only, e.g. `"name": "Sofia, age 10"` with `role` and `location` left empty or just the country. Never a surname, school or photo. Adults can be named as they supplied it.
+4. Check it locally (`python3 -m http.server 4173`), commit, deploy. A JSON typo makes the whole section disappear rather than break the page, so if the cards vanish, run `python3 -m json.tool data/testimonials.json` to find the mistake.
+
+Quotes longer than about 320 characters show their first ~250 characters with a **Read more** button. The section's heading and button labels are in each guide's markup (`<section id="testimonials" data-read-more=… data-read-less=…>`), one set per language.
+
+---
+
 ## Quick start
 
 You need nothing but a browser to view it, and Python (already on every Mac) to serve it properly.
