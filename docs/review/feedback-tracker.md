@@ -171,7 +171,7 @@ Everything marked done is done in **all three languages**.
 
 | # | Item | Status |
 |---|------|--------|
-| E1 | Acknowledgements (Heath House prep school and consortium, NIHR youth council, Jan's daughters, Mr Stathidis, Mr Williams, Mrs Rokakis, Mrs Vatsitsis, Mr Pearce, Dr Tapeinos, Dr Erenstein and his kids, Dr Adibi and her kids, Mr Vitale and Mrs Rizic and their kids, Morgan Stanley) | **done** — Nicola and Annika included. Still worth checking everyone is happy to be named publicly |
+| E1 | Acknowledgements (Heath House prep school and consortium, NIHR youth council, Jan's daughters, Mr Stathidis, Mr Williams, Mrs Rokakis, Mrs Vatsitsis, Mr Pearce, Dr Tapeinos, Dr Erenstein and his kids, Dr Adibi and her kids, Mr Vitale and Mrs Svetlic and their kids, Morgan Stanley) | **done** — Nicola and Annika included. Still worth checking everyone is happy to be named publicly |
 | E2 | AI-use disclaimer (openart.ai images from Katerina's prompts; some text drafted with Claude) | **done** |
 
 ---
