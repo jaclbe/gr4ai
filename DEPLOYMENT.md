@@ -13,6 +13,7 @@ Everything about how gr4ai.org is hosted, deployed, and kept alive. If you're ju
 | Hosting + CDN + SSL | [Netlify](https://app.netlify.com) | Account: Jan, project `candid-fox-ab3037` | Free tier |
 | SSL certificate | Let's Encrypt (auto, via Netlify) | — | Free, auto-renewed |
 | Contact form handler | [Web3Forms](https://web3forms.com) | Access key tied to `jan.beger@me.com` | Free, unlimited |
+| Visitor counting | [GoatCounter](https://www.goatcounter.com) | Account: Jan (code goes in `assets/stats.js`) | Free for non-commercial use |
 
 **Netlify project:** `candid-fox-ab3037`, also reachable directly at [candid-fox-ab3037.netlify.app](https://candid-fox-ab3037.netlify.app). Handy if the custom domain ever breaks.
 
@@ -132,8 +133,32 @@ Web3Forms dashboard → the key/form → settings → **Recipient Emails** → a
 
 1. **Susan Shelmerdine's bio.** Card still says "Bio coming soon". Swap in like any team update when it arrives.
 2. **Open Graph image is a placeholder** (`assets/card.jpg`, the original Carrd image). It's what shows when gr4ai.org is shared on LinkedIn, WhatsApp, etc. Should be replaced with a proper 1200×630 social card.
-3. **No analytics**, deliberately. If you ever want some, Cloudflare Web Analytics or Plausible (EU, GDPR-friendly) are good, lightweight options.
+3. **Visitor counting is built in but switched off** until the GoatCounter code is entered — see [Visitor counting](#visitor-counting-goatcounter).
 4. **Manual deploys.** Drag-drop works but is friction. Turning on Netlify-to-GitHub auto-deploy ([above](#recommended-switch-on-automatic-deploys)) removes it.
+
+---
+
+## Visitor counting (GoatCounter)
+
+GoatCounter counts page views and the visitor's country, sets no cookies and stores nothing about who the visitor is, so no consent banner is needed. Google Analytics is not an option on a children's site.
+
+**Switching it on:** create the account at goatcounter.com (e.g. code `gr4ai`, dashboard at `gr4ai.goatcounter.com`), then in `assets/stats.js` set `var CODE = "gr4ai";`, commit and deploy. Every page already loads that file. GoatCounter's own script is kept in the repo (`assets/goatcounter-count-2.7.0.js`), so no outside script is loaded; only the count itself goes to goatcounter.com.
+
+**Events** (GoatCounter dashboard → each shows as its own "path", marked as an event; `xx` is the page language):
+
+| Event | When |
+|---|---|
+| `quiz-completed-xx` | the final quiz reached the results screen |
+| `certificate-xx` | a certificate PDF was made |
+| `language-xx` | a language was chosen on the globe, or a language link on an about page was clicked (`xx` = the chosen language) |
+| `download-pdf-xx` | any link to a `.pdf` was clicked (there is none yet; it works as soon as one is added) |
+| `gallery-open-xx` | the Padlet gallery was opened in a new tab |
+
+Drawings submitted to the gallery cannot be counted from the site, because the upload happens inside Padlet's own frame. Padlet's dashboard shows submissions.
+
+Visits from `localhost` are never counted, so testing locally doesn't skew the numbers. A page fires an event with `document.dispatchEvent(new CustomEvent('gr4ai:count', { detail: 'event-name' }))`.
+
+**Sharing the numbers:** in GoatCounter's settings the dashboard can be made publicly viewable (read-only, no login), or Christina can be added as a user with view-only access. Check the exact menu in the account once it exists.
 
 ---
 
