@@ -2903,36 +2903,6 @@
     .gw-fill{ transition: none; }
   }
 
-  /* ---------- Testimonials (quotes live in data/testimonials.json) ---------- */
-  .testimonials{ background: var(--paper); padding: 72px 0 84px; }
-  .testimonials .kicker{ display: flex; justify-content: center; }
-  .testimonials h2{ text-align: center; }
-  .tm-grid{
-    list-style: none; margin: 40px 0 0; padding: 0;
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: start;
-  }
-  @media (max-width: 1000px){ .tm-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 680px){ .tm-grid{ grid-template-columns: 1fr; gap: 22px; } .testimonials{ padding: 56px 0 64px; } }
-  .tm-card{
-    background: var(--gold); color: var(--ink);
-    border: 2px solid var(--ink); border-radius: var(--radius);
-    box-shadow: 6px 6px 0 var(--ink);
-    padding: 22px 26px 20px; margin: 0;
-  }
-  .tm-card.tm-c1{ background: var(--cyan); }
-  .tm-card.tm-c2{ background: var(--coral); }
-  .tm-mark{ font-family: "Fraunces", serif; font-weight: 900; font-size: 64px; line-height: .8; display: block; height: 34px; }
-  .tm-card blockquote{ margin: 0; }
-  .tm-quote{ margin: 0; font-size: 18px; line-height: 1.55; overflow-wrap: anywhere; }
-  .tm-more{
-    background: none; border: 0; padding: 10px 0; margin: 4px 0 0; min-height: 44px;
-    font: inherit; font-size: 16px; font-weight: 700; color: var(--ink);
-    text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
-  }
-  .tm-more:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
-  .tm-who{ margin: 12px 0 0; padding-top: 12px; border-top: 2px solid rgba(21,23,26,.25); font-size: 15.5px; line-height: 1.45; }
-  .tm-who strong{ font-weight: 700; }
-
   /* ---------- Mobile fixes (pre-check 23.10.2026) ----------
      B1 the farewell card's inline two-column grid beat the one-column phone rule
      B2 search box + "show all" button could not shrink and ran off the screen
@@ -3018,15 +2988,6 @@
       <a href="about.html" class="btn-cta btn-cta-teal">
         About the project &amp; team <span class="arrow" aria-hidden="true">→</span>
       </a>
-    </div>
-  </section>
-
-  <!-- Testimonials: cards are drawn from data/testimonials.json (see README) -->
-  <section class="testimonials" id="testimonials" aria-labelledby="testimonials-h" data-read-more="Read more" data-read-less="Show less" hidden>
-    <div class="wrap">
-      <span class="kicker">What grown-ups say</span>
-      <h2 id="testimonials-h">What teachers and parents say</h2>
-      <ul class="tm-grid" id="tm-grid"></ul>
     </div>
   </section>
 
@@ -7635,85 +7596,6 @@
   } else { visible = true; go(); }
   document.addEventListener('visibilitychange', function(){ if (!document.hidden) go(); });
   drawBoth();
-})();
-</script>
-
-<script>
-/* Testimonials: read data/testimonials.json and draw one card per quote.
-   Featured quotes first, newest first. Long quotes show the first ~250
-   characters and a button that opens the full text. Quotes stay in the
-   language they were written in (lang attribute from the data file). */
-(function(){
-  var sec = document.getElementById("testimonials");
-  var list = document.getElementById("tm-grid");
-  if (!sec || !list || !window.fetch) return;
-  var MORE = sec.getAttribute("data-read-more"), LESS = sec.getAttribute("data-read-less");
-  var LIMIT = 250, SLACK = 70;   // quotes up to 320 characters are shown whole
-
-  function cut(t){
-    if (t.length <= LIMIT + SLACK) return null;
-    var s = t.slice(0, LIMIT), sp = s.lastIndexOf(" ");
-    if (sp > LIMIT - 60) s = s.slice(0, sp);
-    return s.replace(/[\s,;:.\u2013\u2014-]+$/, "") + "\u2026";
-  }
-  function el(tag, cls, text){
-    var e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-  }
-
-  fetch("data/testimonials.json", { cache: "no-cache" })
-    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(items){
-      items = (items || []).filter(function(t){ return t && t.quote && t.name; });
-      if (!items.length) return;
-      items.sort(function(a, b){
-        if (!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
-        return String(b.date_added || "").localeCompare(String(a.date_added || ""));
-      });
-      items.forEach(function(t, i){
-        var li = el("li", "tm-card tm-c" + (i % 3));
-        if (t.language) li.lang = t.language;
-        var mark = el("span", "tm-mark", "\u201C"); mark.setAttribute("aria-hidden", "true");
-        var bq = el("blockquote");
-        var p = el("p", "tm-quote");
-        var short = cut(t.quote);
-        var full = el("span", "tm-full", t.quote);
-        full.id = "tm-full-" + i;
-        if (short) {
-          var sh = el("span", "tm-short", short);
-          full.hidden = true;
-          p.appendChild(sh); p.appendChild(full);
-        } else {
-          p.appendChild(full);
-        }
-        bq.appendChild(p);
-        li.appendChild(mark); li.appendChild(bq);
-        if (short) {
-          var btn = el("button", "tm-more", MORE);
-          btn.type = "button";
-          btn.setAttribute("aria-expanded", "false");
-          btn.setAttribute("aria-controls", full.id);
-          btn.lang = document.documentElement.lang;
-          btn.addEventListener("click", function(){
-            var open = btn.getAttribute("aria-expanded") === "true";
-            btn.setAttribute("aria-expanded", open ? "false" : "true");
-            full.hidden = open; sh.hidden = !open;
-            btn.textContent = open ? MORE : LESS;
-          });
-          li.appendChild(btn);
-        }
-        var who = el("p", "tm-who");
-        who.appendChild(el("strong", null, t.name));
-        var rest = [t.role, t.location].filter(Boolean).join(", ");
-        if (rest) who.appendChild(document.createTextNode(", " + rest));
-        li.appendChild(who);
-        list.appendChild(li);
-      });
-      sec.hidden = false;
-    })
-    .catch(function(){ /* no data, no section */ });
 })();
 </script>
 </body>

@@ -699,6 +699,17 @@
   form.contact input, form.contact textarea{ font-size: 16px; }
   .lang-switch a{ position: relative; }
   .lang-switch a::after{ content: ""; position: absolute; inset: -9px 0; }
+
+  /* Testimonials drawn from data/testimonials.json: paragraphs, "Read more" */
+  .testimonial blockquote p{ margin: 0 0 .6em; }
+  .testimonial blockquote p:last-child{ margin-bottom: 0; }
+  .testimonial .tm-more{
+    align-self: flex-start; margin: -8px 0 0; padding: 10px 0; min-height: 44px;
+    background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: 15px; font-weight: 700; color: var(--ink);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .testimonial .tm-more:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
 </style>
 <script src="assets/stats.js" defer></script>
 </head>
@@ -1011,6 +1022,21 @@
     </div>
   </section>
 
+  <!-- Reader testimonials (Manuel's design). The cards are drawn from data/testimonials.json, see README -->
+  <!-- TODO-TRANSLATE (de): testimonials.readMore (data-read-more), testimonials.readLess (data-read-less) -->
+  <section id="testimonials" data-read-more="Read more" data-read-less="Show less" hidden>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Stimmen zum Buch</span>
+          <h2>Das sagen Leserinnen und Leser.</h2>
+        </div>
+      </div>
+
+      <div class="testimonial-grid" id="tm-grid"></div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="actions" id="contact">
     <div class="wrap">
@@ -1094,6 +1120,90 @@
       status.textContent = 'Verbindungsfehler. Bitte schreiben Sie stattdessen an jan.beger@me.com.';
     }
   });
+</script>
+
+<script>
+/* Reader testimonials: one card per entry in data/testimonials.json, in
+   Manuel's card design. Featured first, newest first. Quotes over ~320
+   characters show the first ~250 and a "Read more" button. Paragraph breaks
+   in a quote are blank lines in the data file. Quotes keep their own
+   language (lang attribute). No data, no section. */
+(function(){
+  var sec = document.getElementById("testimonials");
+  var grid = document.getElementById("tm-grid");
+  if (!sec || !grid || !window.fetch) return;
+  var MORE = sec.getAttribute("data-read-more"), LESS = sec.getAttribute("data-read-less");
+  var LIMIT = 250, SLACK = 70;
+  var HONORIFIC = /^(mr|mrs|ms|miss|dr|prof)\.?$/i;
+
+  function el(tag, cls, text){
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function paras(t){ return String(t).split(/\n\s*\n/).map(function(s){ return s.trim(); }).filter(Boolean); }
+  function cut(t){
+    var flat = paras(t).join(" ");
+    if (flat.length <= LIMIT + SLACK) return null;
+    var s = flat.slice(0, LIMIT), sp = s.lastIndexOf(" ");
+    if (sp > LIMIT - 60) s = s.slice(0, sp);
+    return s.replace(/[\s,;:.\u2013\u2014-]+$/, "") + "\u2026";
+  }
+  function initials(name){
+    var w = String(name).split(/[\s,]+/).filter(function(x){ return x && !HONORIFIC.test(x) && /^\p{L}/u.test(x); });
+    return w.slice(0, 1).concat(w.length > 1 ? w.slice(-1) : []).map(function(x){ return x.charAt(0).toUpperCase(); }).join("");
+  }
+
+  fetch("data/testimonials.json", { cache: "no-cache" })
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(items){
+      items = (items || []).filter(function(t){ return t && t.quote && t.name; });
+      if (!items.length) return;
+      items.sort(function(a, b){
+        if (!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
+        return String(b.date_added || "").localeCompare(String(a.date_added || ""));
+      });
+      items.forEach(function(t, i){
+        var fig = el("figure", "testimonial");
+        var bq = el("blockquote");
+        if (t.language) bq.lang = t.language;
+        var full = el("div"); full.id = "tm-full-" + i;
+        paras(t.quote).forEach(function(p){ full.appendChild(el("p", null, p)); });
+        var short = cut(t.quote), sh = null;
+        if (short) { sh = el("p", null, short); full.hidden = true; bq.appendChild(sh); }
+        bq.appendChild(full);
+        fig.appendChild(bq);
+        if (short) {
+          var btn = el("button", "tm-more", MORE);
+          btn.type = "button";
+          btn.setAttribute("aria-expanded", "false");
+          btn.setAttribute("aria-controls", full.id);
+          btn.addEventListener("click", function(){
+            var open = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", open ? "false" : "true");
+            full.hidden = open; sh.hidden = !open;
+            btn.textContent = open ? MORE : LESS;
+          });
+          fig.appendChild(btn);
+        }
+        var cap = el("figcaption");
+        if (t.language) cap.lang = t.language;
+        var ph = el("div", "t-photo"); ph.setAttribute("aria-hidden", "true");
+        if (t.photo) { var im = el("img"); im.src = t.photo; im.alt = ""; im.loading = "lazy"; ph.appendChild(im); }
+        else ph.textContent = initials(t.name);
+        var who = el("div");
+        who.appendChild(el("div", "t-name", t.name));
+        var role = [t.role, t.location].filter(Boolean).join(" \u00b7 ");
+        if (role) who.appendChild(el("div", "t-role", role));
+        cap.appendChild(ph); cap.appendChild(who);
+        fig.appendChild(cap);
+        grid.appendChild(fig);
+      });
+      sec.hidden = false;
+    })
+    .catch(function(){ /* no data, no section */ });
+})();
 </script>
 </body>
 </html>
