@@ -56,9 +56,9 @@ Each page holds everything it needs: the markup, the CSS (in a `<style>` block i
 
 The guides (`index.html`, `guide-de.html`, `guide-fr.html`) are organized by chapter: `#ch1` through `#ch15`, then `#guide-gallery`, `#guide-glossary`, `#guide-final-quiz` and `#guide-farewell`. Search for those `id`s to find the right block.
 
-**Editing the guide?** Make the change in `index.html` and the matching change in `guide-de.html` and `guide-fr.html`. The three files share the same structure and ids, so a diff between them should only ever show language.
+**Editing the guide?** Make the change in `index.html` and the matching change in `guide-de.html`, `guide-fr.html`, `guide-es.html`, `guide-pt.html` and `guide-el.html`. The six files share the same structure and ids, so a diff between them should only ever show language. The same goes for `about.html` and the five `about-xx.html` pages.
 
-The translated text lives in three places in each file: the markup, a handful of `alt` / `aria-label` attributes, and — near the bottom of the `<script>` block — the `FINAL_QUIZ_QUESTIONS` array plus the three result strings that build the score line and the review list. Miss the script block and the final quiz silently reverts to English.
+The translated text lives in three places in each file: the markup, a handful of `alt` / `aria-label` attributes, and — near the bottom of the `<script>` block — the `FINAL_QUIZ_QUESTIONS` array plus the three result strings that build the score line and the review list, and the `TXT` block that holds the wording of the printable certificate. Miss the script block and the final quiz silently reverts to English.
 
 A few common edits:
 

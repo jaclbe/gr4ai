@@ -15,11 +15,15 @@ Static site. No framework, no build step, no backend — just HTML files, a fold
 | `index.html` | **The interactive guide (English).** This is the homepage — 15 chapters, quizzes, flip cards, a glossary and a final quiz. | `gr4ai.org/` |
 | `guide-de.html` | The same guide in German. | `gr4ai.org/guide-de.html` |
 | `guide-fr.html` | The same guide in French. | `gr4ai.org/guide-fr.html` |
-| `about.html` | The project page: why the book exists, the chapters, the team and the contact form. | `gr4ai.org/about.html` |
+| `guide-es.html` | The same guide in Spanish. | `gr4ai.org/guide-es.html` |
+| `guide-pt.html` | The same guide in Portuguese (Brazilian). | `gr4ai.org/guide-pt.html` |
+| `guide-el.html` | The same guide in Greek. | `gr4ai.org/guide-el.html` |
+| `about.html` | The project page (English): why the book exists, the chapters, the team and the contact form. | `gr4ai.org/about.html` |
+| `about-de.html`, `about-fr.html`, `about-es.html`, `about-pt.html`, `about-el.html` | The project page in German, French, Spanish, Portuguese and Greek. | `gr4ai.org/about-de.html` … |
 | `guide.html` | Redirect stub. The guide used to live here; it now sends visitors to `/` so older links and shares keep working. | `gr4ai.org/guide.html` |
 | `_redirects` | Netlify redirect rules (`/guide.html` and `/guide` → `/`). | — |
 
-The three guides link to each other through the EN/DE/FR switch in the header, and all of them link back to `about.html` for the book, the team and the contact form.
+The six guides link to each other through the EN/DE/FR/ES/EL/PT switch in the header. Each guide links to the about page **in its own language** (`about-xx.html`) for the book, the team and the contact form, and each about page has the same language switch and a button back to its guide.
 
 ---
 
@@ -30,7 +34,11 @@ gr4ai/
 ├── index.html              The interactive guide (EN) — the homepage.
 ├── guide-de.html           The interactive guide (DE).
 ├── guide-fr.html           The interactive guide (FR).
-├── about.html              The project page: book, chapters, team, contact.
+├── guide-es.html           The interactive guide (ES).
+├── guide-pt.html           The interactive guide (PT).
+├── guide-el.html           The interactive guide (EL).
+├── about.html              The project page (EN): book, chapters, team, contact.
+├── about-de.html …         The project page in DE, FR, ES, PT and EL (about-xx.html).
 ├── guide.html              Redirect stub → /
 ├── _redirects              Netlify redirect rules.
 ├── README.md               This file.
@@ -47,7 +55,10 @@ gr4ai/
 │   ├── brain-circuit.png        Chapter illustration
 │   ├── world-map.svg            World map in the guide
 │   ├── gang-*.jpg               The eight kids + the professor line-up
-│   ├── prof-*.jpg               Professor portraits
+│   ├── prof-*.jpg               Professor portraits (also used on the world-map pins)
+│   ├── brain-neurons.webp       Fallback picture for the brain animation in the "Neural Networks" box
+│   ├── economics-finance.webp   Used for the "AI Banker" and "Economics" cards
+│   ├── study-psychology.webp    "Psychology" card
 │   ├── katerina-quiz.jpg        Quiz host photo
 │   ├── daily-*.jpg              "AI in daily life" flip-card illustrations
 │   ├── career-*.jpg             "Jobs with AI" flip-card illustrations
@@ -62,7 +73,15 @@ gr4ai/
                             photos. Kept for reference. NOT used by the live site.
 ```
 
-If a file isn't referenced by one of the four HTML pages, it lives in `archive/`, not `assets/`. Keep that line clean so it's always obvious what actually ships.
+If a file isn't referenced by one of the HTML pages, it lives in `archive/`, not `assets/`. Keep that line clean so it's always obvious what actually ships.
+
+## Things the guide does that are worth knowing
+
+- **Glossary words.** Underlined words show their meaning on hover (a mouse) or tap (a phone). The definitions live only in the glossary at the end of the page; a word becomes a tooltip by being written as `<a href="#glossary-xxx" class="glossary-link">…</a>`.
+- **Green AI scale (chapter 7).** A slider that tips a scale; its wording is in the page, one block per language.
+- **Final quiz certificate.** After the quiz a child can type a name and get a one-page PDF certificate. It is made in the browser; the name is never stored or sent anywhere. All certificate wording is in one `TXT` block in each guide's script.
+- **Enlarging pictures.** Career-card pictures open larger when clicked and close again on scroll.
+- **"Neural Networks" box.** The two pictures are small animations drawn on a canvas: glowing brain cells that fire one after another (tap a cell to fire it), and data packets flowing through an artificial neural network. They only run while the box is on screen. If the script cannot run, or a visitor asked their device for less motion, the brain animation is replaced by the picture `assets/brain-neurons.webp`, and the data flow shows one still frame. The code is the `<script>` at the very end of each guide.
 
 **A note on the illustrations.** The `daily-*`, `career-*` and `study-*` pictures were originally 1080×1080 PNGs at roughly 1.5 MB each — about 40 MB for the set, which made the guide unusable on a phone. They're stored as quality-86 JPEGs instead, same dimensions, about 5 MB for the set. If you add another one, export it as a JPEG at a similar size, and give every new `<img>` a `loading="lazy"` attribute.
 
@@ -92,12 +111,12 @@ GitHub holds the source, Netlify hosts it for free with auto SSL, the domain is 
 
 ## The team
 
-In the order they appear on `about.html`:
+In the order they appear on the about pages (a "What teachers think" section was prepared and then taken out again for now):
 
-1. **Katerina Tapeinos** — student coauthor, age 8, the kids' voice
+1. **Katerina Tapeinos** — student coauthor, age 9.5, the kids' voice
 2. **Christina Malamateniou** — Assoc. Professor, AI in medical education (City St George's, University of London)
 3. **Manuel Recker** — health economist and visual storyteller
-4. **Susan Shelmerdine** — bio coming soon
+4. **Susan Shelmerdine** — consultant paediatric radiologist (Great Ormond Street Hospital, UCL)
 5. **Jan Beger** — global AI advocate, healthcare executive (HelloAI, GE HealthCare)
 
 ---

@@ -463,6 +463,119 @@
     .glossary-pop.is-open{ transform: translateY(0); }
   }
 
+  /* ---------- Green AI scale ---------- */
+  .eco-scale{
+    margin: 28px 0 0;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 22px;
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 24px 20px 22px;
+    text-align: center;
+  }
+  .eco-stage{ position: relative; height: 230px; max-width: 560px; margin: 0 auto; }
+  .eco-post{
+    position: absolute; left: 50%; top: 36px; bottom: 14px; width: 8px; margin-left: -4px;
+    background: var(--ink); border-radius: 4px;
+  }
+  .eco-base{
+    position: absolute; left: 50%; bottom: 0; width: 120px; height: 16px; margin-left: -60px;
+    background: var(--ink); border-radius: 8px;
+  }
+  .eco-beam{
+    --tilt: 0deg;
+    position: absolute; left: 4%; right: 4%; top: 36px; height: 8px;
+    background: var(--ink); border-radius: 4px;
+    transform: rotate(var(--tilt));
+    transform-origin: 50% 50%;
+    transition: transform .9s cubic-bezier(.34,1.4,.5,1);
+  }
+  .eco-pan{
+    position: absolute; top: 4px; width: 150px; margin-left: -75px;
+    display: flex; flex-direction: column; align-items: center;
+    transform: rotate(calc(var(--tilt) * -1));
+    transform-origin: 50% 0;
+    transition: transform .9s cubic-bezier(.34,1.4,.5,1);
+  }
+  .eco-pan-l{ left: 6%; }
+  .eco-pan-r{ left: 94%; }
+  .eco-pan::before{
+    content: ""; width: 2px; height: 46px; background: var(--ink);
+  }
+  .eco-load{
+    width: 100%; min-height: 46px; box-sizing: border-box;
+    font-size: 24px; line-height: 1.1; padding: 6px 6px 0;
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+    background: var(--yellow);
+    border: 2px solid var(--ink); border-bottom: 0; border-radius: 12px 12px 0 0;
+  }
+  .eco-pan-r .eco-load{ background: #CDEFD3; }
+  .eco-tag{
+    display: block; width: 100%; box-sizing: border-box;
+    background: var(--yellow); border: 2px solid var(--ink); border-top: 0; border-radius: 0 0 18px 18px;
+    padding: 4px 8px 7px; font-size: 12.5px; font-weight: 700; line-height: 1.2; color: var(--ink);
+  }
+  .eco-pan-r .eco-tag{ background: #CDEFD3; }
+  .eco-controls{ max-width: 560px; margin: 18px auto 14px; }
+  .eco-ends{
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: end;
+    font-size: 14px; font-weight: 700; line-height: 1.25; margin-bottom: 8px;
+  }
+  .eco-ends span:first-child{ text-align: left; }
+  .eco-ends span:last-child{ text-align: right; }
+  .eco-mid{ text-align: center; color: var(--ink-soft); font-size: 12.5px; }
+  .eco-slider{
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 14px; border-radius: 999px; margin: 0;
+    background: linear-gradient(90deg, var(--yellow), #CDEFD3);
+    border: 2px solid var(--ink); cursor: pointer;
+  }
+  .eco-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; appearance: none;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--ink); border: 3px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--ink), 3px 3px 0 var(--ink);
+  }
+  .eco-slider::-moz-range-thumb{
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--ink); border: 3px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--ink), 3px 3px 0 var(--ink);
+  }
+  .eco-hint{
+    margin: 4px 0 10px; text-align: center;
+    font-weight: 800; font-size: 16px; color: var(--ink);
+    transition: opacity .4s ease, max-height .4s ease, margin .4s ease;
+    max-height: 3em; overflow: hidden;
+  }
+  .eco-hint.is-calm .eco-hand{ animation: none; }
+  .eco-hand{ display: inline-block; animation: eco-sway 1.4s ease-in-out infinite; }
+  @keyframes eco-sway{
+    0%, 100%{ transform: translateX(-14px) rotate(-12deg); }
+    50%{ transform: translateX(14px) rotate(12deg); }
+  }
+  .eco-attract::-webkit-slider-thumb{ animation: eco-pulse 1.3s ease-out infinite; }
+  .eco-attract::-moz-range-thumb{ animation: eco-pulse 1.3s ease-out infinite; }
+  @keyframes eco-pulse{
+    0%{ box-shadow: 0 0 0 2px var(--ink), 3px 3px 0 var(--ink), 0 0 0 2px rgba(242,214,58,.9); }
+    100%{ box-shadow: 0 0 0 2px var(--ink), 3px 3px 0 var(--ink), 0 0 0 16px rgba(242,214,58,0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .eco-hand, .eco-attract::-webkit-slider-thumb, .eco-attract::-moz-range-thumb{ animation: none; }
+  }
+  .eco-slider:focus-visible{ outline: 3px solid var(--ink); outline-offset: 4px; }
+  .eco-scale figcaption{ font-size: 17px; line-height: 1.5; color: var(--ink-soft); max-width: 560px; margin: 0 auto; min-height: 4.6em; }
+  @media (max-width: 520px){
+    .eco-pan{ width: 112px; margin-left: -56px; }
+    .eco-load{ font-size: 19px; }
+    .eco-tag{ font-size: 11px; }
+    .eco-stage{ height: 215px; }
+    .eco-pan-l{ left: 17%; }
+    .eco-pan-r{ left: 83%; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .eco-beam, .eco-pan{ transition: none; }
+  }
+
   /* ---------- Final Challenge quiz ---------- */
   .final-quiz{
     max-width: 700px;
@@ -528,6 +641,26 @@
   }
   #finalQuizOptions{ max-width: 100%; margin: 0; }
   @media (min-width: 700px){ #finalQuizOptions{ margin-left: 0; } }
+  /* ---------- Certificate ---------- */
+  .cert-form{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 var(--ink);
+    padding: 18px 20px 20px;
+    margin: 0 0 24px;
+    color: var(--ink);
+  }
+  .cert-form h5{ font-family: "Fraunces", serif; font-weight: 800; font-size: 20px; margin: 0 0 6px; }
+  .cert-form p{ margin: 0 0 14px; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+  .cert-row{ display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .cert-label{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .cert-input{
+    flex: 1 1 200px; min-width: 0;
+    font: inherit; font-size: 17px; padding: 12px 14px;
+    border: 2px solid var(--ink); border-radius: 12px; background: #fff; color: var(--ink);
+  }
+  .cert-input.is-needed{ border-color: #d6336c; box-shadow: 0 0 0 3px rgba(214,51,108,.25); }
   .final-quiz-medal{
     font-size: 72px;
     text-align: center;
@@ -1025,7 +1158,7 @@
     font-size: 17px;
     line-height: 1.6;
   }
-  .flip-hint{ text-align: center; font-size: 13px; color: var(--ink-soft); margin: -28px 0 32px; }
+  .flip-hint{ text-align: center; font-size: 18px; font-weight: 700; line-height: 1.4; color: var(--ink-soft); margin: -28px 0 32px; }
   @media (prefers-reduced-motion: reduce){ .flip-inner{ transition: none; } }
 
   /* ---------- Flashcards (hardware/software/binary) ---------- */
@@ -1324,8 +1457,8 @@
   .principle-blob{
     position: relative;
     flex: 0 0 auto;
-    width: 260px;
-    height: 260px;
+    width: 310px;
+    height: 310px;
     border-radius: 50%;
     border: 3px solid var(--ink);
     box-shadow: 6px 6px 0 var(--ink);
@@ -1335,8 +1468,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 30px;
-    font-size: 14px;
+    padding: 48px 42px;
+    font-size: 14.5px;
     line-height: 1.4;
     opacity: 0;
     transform: translate(var(--dx, 0px), var(--dy, -40px)) scale(0.45) rotate(-10deg);
@@ -1360,14 +1493,15 @@
     margin-bottom: 8px;
   }
   @media (max-width: 950px){
-    .principle-blob{ width: 200px; height: 200px; padding: 20px; font-size: 12.5px; }
+    .principle-blob{ width: 260px; height: 260px; padding: 38px 32px; font-size: 13px; }
     .principle-blob .emoji{ font-size: 34px; margin-bottom: 6px; }
-    .principle-blob strong{ font-size: 16px; }
-    .principle-row{ gap: 22px; }
+    .principle-blob strong{ font-size: 17px; margin-bottom: 6px; }
+    .principle-row{ gap: 22px; flex-wrap: wrap; }
     .principle-blobs{ gap: 22px; }
   }
   @media (max-width: 640px){
     .principle-row{ flex-direction: column; align-items: center; }
+    .principle-blob{ width: 290px; height: 290px; padding: 42px 36px; font-size: 13.5px; }
   }
 
   .career-stack{
@@ -1527,7 +1661,7 @@
   }
   .career-card-back p{ margin: 0 0 14px; font-size: 21px; line-height: 1.62; max-width: 620px; }
   .career-card-back .career-study{ font-size: 17px; font-style: italic; opacity: 0.85; margin: 0; }
-  .career-hint{ text-align: center; font-size: 13px; color: var(--ink-soft); margin: 0 0 28px; }
+  .career-hint{ text-align: center; font-size: 18px; font-weight: 700; line-height: 1.4; color: var(--ink-soft); margin: 0 0 28px; }
 
   /* ---------- Lightbox (full-size image view) ---------- */
   .lightbox-overlay{
@@ -1555,6 +1689,14 @@
     border: 3px solid var(--paper);
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
+
+  .lightbox-node{ display: none; }
+  .lightbox-overlay.has-node > img{ display: none; }
+  .lightbox-overlay.has-node .lightbox-node{ display: block; width: min(92vw, 980px); max-height: 92vh; }
+  .lightbox-node .img-cap{ cursor: zoom-out; box-shadow: 0 20px 60px rgba(0,0,0,0.5); border-radius: 16px; }
+  .lightbox-node .diagram-fig{ background: #fff; }
+  .lightbox-node .diagram-photo img{ height: auto; }
+  .lightbox-node .img-caption{ font-size: clamp(16px, 2.4vw, 24px); padding: 14px 18px; }
 
   /* ---------- Chapter 1: physical vs digital + quiz ---------- */
   .chapter-intro{ max-width: 74ch; margin: 0 0 48px; }
@@ -1782,7 +1924,7 @@
   }
   .quiz-bubble p{ margin: 0 0 10px; font-size: 18.5px; color: var(--ink); }
   .quiz-bubble p:last-child{ margin-bottom: 0; }
-  .quiz-bubble .quiz-hint{ color: var(--ink-soft); font-size: 14px; font-style: italic; }
+  .quiz-bubble .quiz-hint{ color: var(--ink-soft); font-size: 16px; font-style: italic; }
 
   .quiz-options{
     display: grid;
@@ -2195,7 +2337,7 @@
        A few labels sat at 11–12.5px, which is small for a 7-to-12 reader. */
     .kicker{ font-size: 12.5px; }
     .gang-card p{ font-size: 13px; line-height: 1.4; }
-    .flip-hint{ font-size: 13.5px; }
+    .flip-hint, .career-hint{ font-size: 16.5px; }
 
     /* --- Tap targets --------------------------------------------------
        The carousel dots are 12px squares; keep them looking that way but
@@ -2308,8 +2450,10 @@
   }
 
   /* ---------- Dedication ---------- */
-  .dedication{ background: var(--paper); padding: 56px 0 48px; }
-  .dedication .wrap{ max-width: 780px; text-align: center; }
+  .thanks-dedication{
+    max-width: 720px; margin: 8px auto 28px; padding: 26px 8px 4px;
+    border-top: 2px dashed rgba(20,23,26,0.25); text-align: center;
+  }
   .dedication-kicker{
     font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
     color: var(--ink-soft); margin: 0 0 14px;
@@ -2419,6 +2563,27 @@
     gap: 14px;
     margin: 0 0 18px;
   }
+  /* "Neural Networks" box: the two pictures are small animations, each with its caption laid over the bottom */
+  .img-pair .img-cap{ display: block; }
+  .pic{ position: relative; }
+  .anim-frame{
+    margin: 0; position: relative; overflow: hidden; height: 400px;
+    background: var(--paper); border: 2px solid var(--ink); border-radius: 16px;
+  }
+  .anim-frame.dark{ background: #0d1226; }
+  .anim-frame canvas{ position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* the brain picture is shown whenever the animation does not run (no script, or less motion asked for) */
+  .anim-fallback{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .anim-frame.is-live .anim-fallback{ display: none; }
+  .img-caption{
+    position: absolute; left: 2px; right: 2px; bottom: 2px;
+    margin: 0; padding: 10px 14px;
+    background: rgba(255,255,255,0.92); color: var(--ink) !important;
+    border-top: 2px solid var(--ink); border-radius: 0 0 14px 14px;
+    font-size: 15.5px; font-weight: 700; line-height: 1.35; text-align: center;
+  }
+  .neural-box p.below{ margin: 12px 0 0; font-weight: 400; font-size: 17px; line-height: 1.55; }
+  @media (max-width: 560px){ .anim-frame{ height: 340px; } }
   .img-pair .img-placeholder{ aspect-ratio: 4 / 3; }
   @media (max-width: 560px){ .img-pair{ grid-template-columns: 1fr; } }
   .img-wide{ aspect-ratio: 16 / 5; max-width: 760px; margin: 24px auto 0; }
@@ -2766,7 +2931,7 @@
         <a href="#ch14">14</a>
         <a href="#ch15">15</a>
       </span>
-      <a href="about.html" class="back">Über das Projekt</a>
+      <a href="about-de.html" class="back">Über das Projekt</a>
       <span class="lang-switch" role="group" aria-label="Sprache / Language">
         <a href="index.html" hreflang="en" lang="en">EN</a>
         <a href="guide-de.html" aria-current="true" hreflang="de" lang="de">DE</a>
@@ -2789,17 +2954,9 @@
       <h1 class="title title-brand">Get Ready For AI</h1>
       <p class="lede lede-sub">Ein interaktiver Guide über KI für Kinder</p>
       <p class="lede">Ein erster Blick ins Buch: wie jedes Kapitel Kindern von 7 bis 12 Jahren hilft, KI zu verstehen – eine Idee nach der anderen.</p>
-      <a href="about.html" class="btn-cta btn-cta-teal">
+      <a href="about-de.html" class="btn-cta btn-cta-teal">
         Über das Projekt &amp; Team <span class="arrow" aria-hidden="true">→</span>
       </a>
-    </div>
-  </section>
-
-  <!-- Dedication -->
-  <section class="dedication">
-    <div class="wrap">
-      <p class="dedication-kicker">Widmung</p>
-      <p class="dedication-text">Dieses Buch ist allen Großeltern gewidmet – besonders Opa Georgios und Oma Keti – für all die Liebe, die endlosen Geschichten, die Umarmungen, die lustigen Spiele, das leckere Essen und die ständige Fürsorge, die uns alle zu dem machen, was wir sind: neugierig, verantwortungsvoll und freundlich.</p>
     </div>
   </section>
 
@@ -2854,6 +3011,7 @@
 
       <p class="gang-profs-lede">…und begleitet von großartigen Professorinnen und Professoren aus aller Welt!</p>
       <div class="gang-profs">
+        <img src="assets/gang-prof-8.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <img src="assets/gang-prof-1.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <img src="assets/gang-prof-2.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <img src="assets/gang-prof-3.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
@@ -2927,7 +3085,7 @@
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><span class="compare-tag">Digital</span><strong>Daten</strong>: Ideen, Gedanken und Wissen teilen – über elektronische Dateien</div>
+            <div><span class="compare-tag">Digital</span><strong><a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a></strong>: Ideen, Gedanken und Wissen teilen – über elektronische Dateien</div>
           </div>
 
           <div class="compare-item is-physical">
@@ -2937,7 +3095,7 @@
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><span class="compare-tag">Digital</span><strong>Computer</strong>: ein digitaler Prozessor für Daten – damit wir komplizierte Zahlen verstehen</div>
+            <div><span class="compare-tag">Digital</span><strong>Computer</strong>: ein digitaler Prozessor für <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> – damit wir komplizierte Zahlen verstehen</div>
           </div>
 
           <div class="compare-item is-physical">
@@ -2947,7 +3105,7 @@
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><span class="compare-tag">Digital</span><strong>Code/Zahlen</strong>: so werden Daten in der digitalen Welt geteilt</div>
+            <div><span class="compare-tag">Digital</span><strong>Code/Zahlen</strong>: so werden <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> in der digitalen Welt geteilt</div>
           </div>
 
           <div class="compare-item is-physical">
@@ -2957,7 +3115,7 @@
           <div class="compare-arrow" aria-hidden="true">→</div>
           <div class="compare-item is-digital">
             <span class="compare-icon" aria-hidden="true">🤖</span>
-            <div><span class="compare-tag">Digital</span><strong><a href="#glossary-artificial-intelligence-ai" class="glossary-link">Künstliche Intelligenz</a></strong>: die von Menschen gebaute Fähigkeit, zu lernen, zu verstehen und Neues zu erfinden</div>
+            <div><span class="compare-tag">Digital</span><strong><a href="#glossary-artificial-intelligence-ai" class="glossary-link">Künstliche Intelligenz</a></strong>: die von Menschen gebaute Fähigkeit, zu lernen, zu verstehen und <a href="#glossary-innovate" class="glossary-link" onclick="event.stopPropagation()">Neues zu erfinden</a></div>
           </div>
         </div>
       </div>
@@ -3003,6 +3161,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo teal" src="assets/gang-rebecca.jpg" alt="Rebecca" loading="lazy" decoding="async" />
         <div class="quiz-bubble teal">
+          <p><strong>Hallo, ich bin Rebecca.</strong></p>
           <p>KI steht für <a href="#glossary-artificial-intelligence-ai" class="glossary-link">Künstliche Intelligenz</a>. Das heißt: Computer werden so schlau, dass sie lernen und Probleme lösen können – genau wie wir!</p>
         </div>
       </div>
@@ -3027,7 +3186,7 @@
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">💻</span> KI-Computer</h4>
           <ul>
-            <li>Lernt aus DATEN</li>
+            <li>Lernt aus <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">DATEN</a></li>
             <li>Erkennt auch Gesichter!</li>
             <li>Versteht Sprache</li>
             <li>Versteht den Zusammenhang NICHT</li>
@@ -3038,8 +3197,8 @@
         <div class="concept-card" style="background:var(--green)">
           <h4><span class="emoji">📈</span> So lernt KI</h4>
           <ol>
-            <li>Sie mit ganz VIELEN Daten füttern</li>
-            <li>Sie findet Muster</li>
+            <li>Sie mit ganz VIELEN <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> füttern</li>
+            <li>Sie findet <a href="#glossary-pattern" class="glossary-link" onclick="event.stopPropagation()">Muster</a></li>
             <li>Sie rät Antworten</li>
             <li>Wir korrigieren Fehler</li>
             <li>Sie wird schlauer! 🎉</li>
@@ -3121,20 +3280,20 @@
 
       <div class="concept-grid">
         <div class="concept-card" style="background:var(--jet); color:#fff">
-          <h4><span class="emoji">📊</span> 1. Daten sammeln</h4>
+          <h4><span class="emoji">📊</span> 1. <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> sammeln</h4>
           <ul><li>Millionen Beispiele (Fotos, Wörter, Zahlen)</li></ul>
         </div>
         <div class="concept-card" style="background:var(--coral)">
-          <h4><span class="emoji">🏷️</span> 2. Daten beschriften</h4>
+          <h4><span class="emoji">🏷️</span> 2. <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> beschriften</h4>
           <ul><li>Menschen markieren, WAS jedes Beispiel ist</li></ul>
         </div>
         <div class="concept-card" style="background:var(--cyan)">
           <h4><span class="emoji">🏋️</span> 3. <a href="#glossary-model" class="glossary-link">Modell</a> trainieren</h4>
-          <ul><li>Die KI findet Muster in allen Beispielen</li></ul>
+          <ul><li>Die KI findet <a href="#glossary-pattern" class="glossary-link" onclick="event.stopPropagation()">Muster</a> in allen Beispielen</li></ul>
         </div>
         <div class="concept-card" style="background:var(--cyan)">
           <h4><span class="emoji">✅</span> 4. Modell testen</h4>
-          <ul><li>Mit NEUEN Daten testen, die es noch nicht kennt</li></ul>
+          <ul><li>Mit NEUEN <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> testen, die es noch nicht kennt</li></ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">🚀</span> 5. Einsetzen!</h4>
@@ -3157,7 +3316,7 @@
         </div>
         <div class="concept-card" style="background:var(--cyan)">
           <h4><span class="emoji">🔍</span> Unüberwachtes Lernen</h4>
-          <ul><li>Die KI findet Muster, ohne dass man ihr sagt, wonach sie suchen soll.</li></ul>
+          <ul><li>Die KI findet <a href="#glossary-pattern" class="glossary-link" onclick="event.stopPropagation()">Muster</a>, ohne dass man ihr sagt, wonach sie suchen soll.</li></ul>
         </div>
         <div class="concept-card" style="background:var(--jet); color:#fff">
           <h4><span class="emoji">🎮</span> Bestärkendes Lernen</h4>
@@ -3172,14 +3331,25 @@
         <h4>🧠 Neuronale Netze: So funktioniert Deep Learning</h4>
         <p>So wie DEIN Gehirn Milliarden verbundene Neuronen hat, die dir beim Lernen helfen und dir die Welt erklären, nutzt eine KI künstliche neuronale Netze, um aus den Informationen zu lernen, die wir ihr geben. Diese künstlichen Neuronen sind in Schichten miteinander verbunden.</p>
         <div class="img-pair">
-          <figure class="img-placeholder">
-            <span class="emoji" aria-hidden="true">🕸️</span>
-            <span>Schaubild eines künstlichen neuronalen Netzes – Bild folgt</span>
-          </figure>
-          <figure class="img-placeholder">
-            <span class="emoji" aria-hidden="true">🧠</span>
-            <span>Ein Gehirn mit seinen Neuronen – Bild folgt</span>
-          </figure>
+          <div class="img-cap">
+            <div class="pic">
+              <figure class="anim-frame dark">
+                <img class="anim-fallback" src="assets/brain-neurons.webp" alt="Leuchtende Gehirnzellen (Neuronen), die durch dünne Verzweigungen miteinander verbunden sind" loading="lazy" decoding="async" />
+                <canvas id="brainAnim" aria-hidden="true" data-label="Animation: leuchtende Gehirnzellen, die in einem Netz verbunden sind. Eine Zelle feuert und weckt die Zellen neben ihr auf, und das Signal breitet sich über das ganze Netz aus."></canvas>
+              </figure>
+              <p class="img-caption">So überträgt das Gehirn Informationen.</p>
+            </div>
+            <p class="below">Gehirnzellen senden winzige elektrische Signale an ihre Nachbarn, und Nachrichten sausen los!</p>
+          </div>
+          <div class="img-cap">
+            <div class="pic">
+              <figure class="anim-frame">
+                <canvas id="netAnim" role="img" aria-label="Animation: kleine Datenpakete fließen in einem künstlichen neuronalen Netz von der Eingabe-Schicht durch die versteckte Schicht zur Ausgabe-Schicht."></canvas>
+              </figure>
+              <p class="img-caption">So verarbeitet KI Daten.</p>
+            </div>
+            <p class="below">Mehr Schichten = tieferes Lernen = „DEEP LEARNING“ – die stärkste Art von KI, die es heute gibt!</p>
+          </div>
         </div>
         <div class="flow-diagram">
           <span class="flow-step"><span class="flow-label">EINGABE-SCHICHT</span></span>
@@ -3188,7 +3358,6 @@
           <span class="flow-arrow">→</span>
           <span class="flow-step"><span class="flow-label">AUSGABE-SCHICHT</span></span>
         </div>
-        <p style="margin-top:16px">Mehr Schichten = tieferes Lernen = „DEEP LEARNING“ – die stärkste Art von KI, die es heute gibt!</p>
       </div>
 
       <!-- Quiz: real content, drawn straight from the book's "Fun fact!" box. -->
@@ -3233,6 +3402,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-bembe.jpg" alt="Bembe" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Hallo, ich bin Bembe.</strong></p>
           <p>Bevor wir zur KI kommen, schauen wir uns Computer an! Ein Computer hat <a href="#glossary-hardware" class="glossary-link">HARDWARE</a> (die Teile zum Anfassen) und <a href="#glossary-software" class="glossary-link">SOFTWARE</a> (die Programme).</p>
         </div>
       </div>
@@ -3240,28 +3410,28 @@
       <div class="flashcard-grid">
         <div class="flashcard" style="background:var(--cyan)">
           <div class="flashcard-icon">🔧</div>
-          <h4>Hardware</h4>
+          <h4><a href="#glossary-hardware" class="glossary-link" onclick="event.stopPropagation()">Hardware</a></h4>
           <ul>
-            <li>CPU – das Gehirn</li>
-            <li>RAM – Kurzzeitgedächtnis</li>
+            <li><a href="#glossary-cpu" class="glossary-link" onclick="event.stopPropagation()">CPU</a> – das Gehirn</li>
+            <li><a href="#glossary-ram" class="glossary-link" onclick="event.stopPropagation()">RAM</a> – Kurzzeitgedächtnis</li>
             <li>Speicher – Langzeitgedächtnis</li>
             <li>Bildschirm, Tastatur, Maus, Lautsprecher</li>
           </ul>
         </div>
         <div class="flashcard" style="background:var(--gold)">
           <div class="flashcard-icon">💾</div>
-          <h4>Software</h4>
+          <h4><a href="#glossary-software" class="glossary-link" onclick="event.stopPropagation()">Software</a></h4>
           <ul>
             <li>Betriebssystem (Windows / Mac / Linux)</li>
             <li>Apps &amp; Programme</li>
-            <li>Der CODE, der der Hardware sagt, was sie tun soll</li>
+            <li>Der CODE, der der <a href="#glossary-hardware" class="glossary-link" onclick="event.stopPropagation()">Hardware</a> sagt, was sie tun soll</li>
           </ul>
         </div>
         <div class="flashcard" style="background:var(--coral)">
           <div class="flashcard-icon">🔢</div>
-          <h4>Binär &amp; Bits</h4>
+          <h4><a href="#glossary-binary" class="glossary-link" onclick="event.stopPropagation()">Binär</a> &amp; Bits</h4>
           <ul>
-            <li>Alle Daten = Nullen und Einsen</li>
+            <li>Alle <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> = Nullen und Einsen</li>
             <li>1 Bit = eine 0 oder 1</li>
             <li>8 Bit = 1 Byte</li>
             <li>Dein Foto = Millionen Bits!</li>
@@ -3331,10 +3501,10 @@
         <h4 class="capability-head can-do">Was kann KI?</h4>
         <div class="pill-list">
           <span class="pill pill-green">Blitzschnell rechnen</span>
-          <span class="pill pill-green">Muster in Daten finden</span>
+          <span class="pill pill-green"><a href="#glossary-pattern" class="glossary-link" onclick="event.stopPropagation()">Muster</a> in <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> finden</span>
           <span class="pill pill-green">Gesichter in einer Menge erkennen</span>
           <span class="pill pill-green">Das Wetter genauer vorhersagen</span>
-          <span class="pill pill-green">Krankheiten auf Röntgen- und <a href="#glossary-mri" class="glossary-link">MRT</a>-Bildern erkennen</span>
+          <span class="pill pill-green">Krankheiten auf Röntgen- und <a href="#glossary-mri" class="glossary-link">MRT</a>-<a href="#glossary-scan" class="glossary-link" onclick="event.stopPropagation()">Bildern</a> erkennen</span>
           <span class="pill pill-green">Sehr schnell schöne Bilder gestalten</span>
           <span class="pill pill-green">Bei neuen Medikamenten wie Antibiotika helfen</span>
           <span class="pill pill-green">Die Weltraumforschung unterstützen</span>
@@ -3493,7 +3663,7 @@
         <p class="fact-banner-kicker"><span class="emoji">👨‍👩‍👧</span> Ein Hinweis für Eltern &amp; Erziehungsberechtigte</p>
         <p>Bitte reichen Sie das Bild für Ihr Kind ein. Wir fragen immer nur nach Vorname, Alter und Land – nie nach Nachname, E-Mail oder genauem Wohnort. Jedes Bild wird von einem echten Menschen geprüft, bevor es öffentlich erscheint. Nichts geht also automatisch online.</p>
         <p>Bitte achten Sie außerdem darauf, dass auf dem Foto nichts zu sehen ist, woran man Ihr Kind erkennen könnte: keine Gesichter, keine Namen auf dem Bild, keine Schulkleidung, kein Haus und keine Straße im Hintergrund.</p>
-        <p style="font-size:13px; margin-top:10px">Soll ein Bild wieder verschwinden? <a href="about.html#contact" class="glossary-link">Sagen Sie uns einfach Bescheid</a>.</p>
+        <p style="font-size:13px; margin-top:10px">Soll ein Bild wieder verschwinden? <a href="about-de.html#contact" class="glossary-link">Sagen Sie uns einfach Bescheid</a>.</p>
       </div>
 
       <div class="padlet-embed">
@@ -3511,7 +3681,7 @@
       <div class="chapter-intro">
         <span class="chapter-num">06</span>
         <h3>Echte Menschen, echte KI-Berufe rund um die Welt!</h3>
-        <p>Lerne 8 tolle <a href="#glossary-professionals" class="glossary-link">Fachleute</a> kennen, die jeden Tag mit KI arbeiten. Tippe auf eine Stecknadel – oder fahre mit der Maus darüber –, um sie kennenzulernen.</p>
+        <p>Lerne 9 tolle <a href="#glossary-professionals" class="glossary-link">Fachleute</a> kennen, die jeden Tag mit KI arbeiten. Tippe auf eine Stecknadel – oder fahre mit der Maus darüber –, um sie kennenzulernen.</p>
       </div>
 
       <div class="worldmap-wrap">
@@ -3544,7 +3714,7 @@
           </span>
         </button>
 
-        <button type="button" class="map-pin" style="left:42%; top:26%">
+        <button type="button" class="map-pin" style="left:42%; top:17%">
           <span class="pin-dot"></span>
           <span class="map-popup">
             <img src="assets/prof-crooke.jpg" alt="Prof. Crooke" loading="lazy" decoding="async" />
@@ -3571,6 +3741,15 @@
           </span>
         </button>
 
+
+        <button type="button" class="map-pin" style="left:82%; top:34%">
+          <span class="pin-dot"></span>
+          <span class="map-popup">
+            <img src="assets/prof-xing.jpg" alt="Prof. Xing" loading="lazy" decoding="async" />
+            <strong>Prof. Xing – China (Peking) · KI &amp; Finanzen</strong>
+            <span class="map-popup-text">Entwickelt neue KI-Werkzeuge, mit denen Online-Zahlungen sicher und zuverlässig werden.</span>
+          </span>
+        </button>
 
         <button type="button" class="map-pin" style="left:87%; top:33%">
           <span class="pin-dot"></span>
@@ -3604,6 +3783,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-ling.jpg" alt="Ling" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Hallo, hier ist wieder Ling!</strong></p>
           <p>KI ist gerade jetzt ÜBERALL um dich herum! Lass uns schauen, wo du sie im echten Leben findest.</p>
         </div>
       </div>
@@ -3679,7 +3859,7 @@
             <div class="flip-back has-image" style="background:var(--teal)">
               <div class="flip-back-text">
                 <h4>Wetter</h4>
-                <p>Genauere 5-Tage-Wettervorhersagen, Hurrikan-Warnungen, Klimabeobachtung, Frühwarnung bei Hochwasser.</p>
+                <p>Genauere 5-Tage-Wettervorhersagen, Hurrikan-Warnungen, <a href="#glossary-monitor" class="glossary-link" onclick="event.stopPropagation()">Klimabeobachtung</a>, Frühwarnung bei Hochwasser.</p>
               </div>
               <img class="flip-back-img" src="assets/daily-weather.jpg" alt="Illustration Wetter" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
@@ -3694,7 +3874,7 @@
             <div class="flip-back has-image" style="background:var(--purple); color:#fff">
               <div class="flip-back-text">
                 <h4>Essen</h4>
-                <p>Pizza-Roboter, weniger Essen im Müll, Rezeptideen, Überwachung von Feldern.</p>
+                <p>Pizza-Roboter, weniger Essen im Müll, Rezeptideen, <a href="#glossary-monitor" class="glossary-link" onclick="event.stopPropagation()">Überwachung</a> von Feldern.</p>
               </div>
               <img class="flip-back-img" src="assets/daily-food.jpg" alt="Illustration Essen" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" style="cursor:zoom-in" loading="lazy" decoding="async" />
             </div>
@@ -3706,10 +3886,93 @@
         <p class="fact-banner-kicker"><span class="emoji">💡</span> Wusstest du schon?</p>
         <p>KI verbraucht in einem Jahr so viel Strom wie manche kleinen Länder! Das Training eines großen KI-Modells kann so viel <a href="#glossary-co2" class="glossary-link">CO₂</a> erzeugen wie eine Autofahrt über 700.000 km. Deshalb arbeiten Forscherinnen und Forscher an „<a href="#glossary-green-ai" class="glossary-link">grüner KI</a>“!</p>
       </div>
-      <figure class="img-placeholder img-wide">
-            <span class="emoji" aria-hidden="true">⚖️</span>
-            <span>Grüne KI: eine Waage zwischen dem, was KI die Umwelt kostet, und dem, was sie einspart – Bild folgt</span>
-          </figure>
+      <figure class="eco-scale" id="ecoScale">
+        <div class="eco-stage" aria-hidden="true">
+          <div class="eco-post"></div>
+          <div class="eco-beam">
+            <div class="eco-pan eco-pan-l"><span class="eco-load" id="ecoLeft"></span><span class="eco-tag">Was KI den Planeten kostet</span></div>
+            <div class="eco-pan eco-pan-r"><span class="eco-load" id="ecoRight"></span><span class="eco-tag">Was KI spart</span></div>
+          </div>
+          <div class="eco-base"></div>
+        </div>
+        <div class="eco-controls">
+          <div class="eco-ends" aria-hidden="true">
+            <span>Eine riesige KI, die immer läuft</span>
+            <span class="eco-mid">Grüne KI</span>
+            <span>Grüne KI hilft der Natur</span>
+          </div>
+          <p class="eco-hint" id="ecoHint"><span class="eco-hand" aria-hidden="true">👆</span> Schiebe den Schalter nach links und rechts!</p>
+          <input type="range" class="eco-slider eco-attract" id="ecoSlider" min="0" max="100" step="1" value="50" aria-label="Von einer riesigen KI, die immer läuft, bis zu grüner KI, die der Natur hilft" />
+        </div>
+        <figcaption id="ecoCaption" aria-live="polite"></figcaption>
+      </figure>
+      <script>
+      (function(){
+        var root = document.getElementById('ecoScale');
+        if (!root) return;
+        var beam = root.querySelector('.eco-beam');
+        var L = document.getElementById('ecoLeft'), R = document.getElementById('ecoRight');
+        var cap = document.getElementById('ecoCaption');
+        var slider = document.getElementById('ecoSlider');
+        var MAX_TILT = 12;                      // degrees at either end of the slider
+        var S = {
+          big:   { name: 'Eine riesige KI, die immer läuft', l: '⚡⚡⚡🏭☁️☁️', r: '🌱',
+                   t: 'Eine riesige KI, die nie ausgeschaltet wird, verschwendet Energie, erzeugt viel CO₂, schluckt viel Wasser und macht viel Hitze. Das schadet unserem Planeten sehr, deshalb senkt sich die Waage auf dieser Seite.' },
+          green: { name: 'Grüne KI', l: '⚡☁️', r: '🌱🌳',
+                   t: 'Grüne KI nutzt kleinere Modelle und sauberere Energie, deshalb wird das Gewicht auf der Waage viel leichter. Jetzt ist sie im Gleichgewicht.' },
+          help:  { name: 'Grüne KI hilft der Natur', l: '⚡', r: '🌳🌍☀️💧',
+                   t: 'Grüne KI kann sogar der Natur helfen! Sie spart Energie, erzeugt weniger CO₂, braucht weniger Wasser und macht weniger Hitze. Sie kann Wälder im Blick behalten und Solaranlagen klüger machen. Jetzt senkt sich die Waage auf die andere Seite!' }
+        };
+        var shown = null;
+        function update(){
+          var v = Number(slider.value);                       // 0 … 100, 50 = balanced
+          var tilt = (v - 50) / 50 * MAX_TILT;                // negative = left side heavier
+          beam.style.setProperty('--tilt', tilt.toFixed(1) + 'deg');
+          var key = v < 35 ? 'big' : (v > 65 ? 'help' : 'green');
+          if (key !== shown) {
+            shown = key;
+            L.textContent = S[key].l; R.textContent = S[key].r;
+            cap.textContent = S[key].t;
+          }
+          slider.setAttribute('aria-valuetext', S[key].name);
+        }
+        // Show children that the switch can move: until they touch it, it slides
+        // left and right by itself a few times once the scale is on screen.
+        var hint = document.getElementById('ecoHint');
+        var touched = false, demoRaf = 0, demoTimer = 0, rounds = 0;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function stopDemo(){
+          touched = true;
+          cancelAnimationFrame(demoRaf); clearTimeout(demoTimer);
+          slider.classList.remove('eco-attract');
+          hint.classList.add('is-calm');
+        }
+        ['input', 'pointerdown', 'keydown'].forEach(function(ev){ slider.addEventListener(ev, stopDemo); });
+        function demo(){
+          if (touched || rounds >= 3) { if (!touched) slider.value = 50, update(); return; }
+          rounds++;
+          var start = null, DUR = 3600;
+          function step(ts){
+            if (touched) return;
+            if (start === null) start = ts;
+            var p = Math.min((ts - start) / DUR, 1);
+            // 50 -> 10 -> 90 -> 50, smooth
+            slider.value = 50 - Math.sin(p * 2 * Math.PI) * 40;
+            update();
+            if (p < 1) demoRaf = requestAnimationFrame(step);
+            else { slider.value = 50; update(); demoTimer = setTimeout(demo, 3500); }
+          }
+          demoRaf = requestAnimationFrame(step);
+        }
+        slider.addEventListener('input', update);
+        update();
+        if (!reduce && 'IntersectionObserver' in window) {
+          new IntersectionObserver(function(entries, obs){
+            if (entries[0].isIntersecting) { obs.disconnect(); demoTimer = setTimeout(demo, 700); }
+          }, { threshold: 0.6 }).observe(root);
+        }
+      })();
+      </script>
     </div>
   </section>
 
@@ -3762,7 +4025,7 @@
                 <h4>Umwelt</h4>
                 <ul>
                   <li>Verfolgt <a href="#glossary-deforestation" class="glossary-link" onclick="event.stopPropagation()">Waldrodung</a></li>
-                  <li>Beobachtet Tiere</li>
+                  <li><a href="#glossary-monitor" class="glossary-link" onclick="event.stopPropagation()">Beobachtet</a> Tiere</li>
                   <li>Spart Energie</li>
                   <li>Sagt Waldbrände voraus</li>
                 </ul>
@@ -3824,7 +4087,7 @@
                 <ul>
                   <li>Entdeckt neue Planeten</li>
                   <li>Lenkt Mars-Rover</li>
-                  <li>Untersucht Sterndaten</li>
+                  <li>Untersucht <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Sterndaten</a></li>
                   <li>Plant Raketenrouten</li>
                 </ul>
               </div>
@@ -3843,7 +4106,7 @@
                 <h4>Verteidigung</h4>
                 <ul>
                   <li>Erkennt <a href="#glossary-cyber-attack" class="glossary-link" onclick="event.stopPropagation()">Cyberangriffe</a></li>
-                  <li>Überwacht Grenzen</li>
+                  <li><a href="#glossary-monitor" class="glossary-link" onclick="event.stopPropagation()">Überwacht</a> Grenzen</li>
                   <li>Analysiert Gefahren</li>
                   <li>Hilft, uns zu schützen</li>
                   <li>Frieden schaffen können aber nur Menschen</li>
@@ -3876,7 +4139,7 @@
           <img class="quiz-cloud" src="assets/ai-cloud.png" alt="" aria-hidden="true" />
           <div class="quiz-answer-bubble" role="status">
             <strong>Antwort</strong>
-            <p>Eine KI liest einen medizinischen Scan in nur 0,1 Sekunden – eine Ärztin oder ein Arzt braucht dafür rund 20 Minuten! So könnte KI helfen, 12.000 Scans am Tag zu prüfen. Stell dir vor, wie viele Leben das retten könnte! Aber nur eine Ärztin oder ein Arzt kann den Scan mit allem anderen zusammenbringen, was zu einem Menschen gehört – die Krankengeschichte, die Familie, wie es ihm gerade geht – und über <a href="#glossary-diagnosis" class="glossary-link">Diagnose</a> und Behandlung entscheiden.</p>
+            <p>Eine KI liest einen medizinischen <a href="#glossary-<a href="#glossary-<a href="#glossary-scan" class="glossary-link" onclick="event.stopPropagation()">scan</a>" class="glossary-link" onclick="event.stopPropagation()">scan</a>" class="glossary-link" onclick="event.stopPropagation()">Scan</a> in nur 0,1 Sekunden – eine Ärztin oder ein Arzt braucht dafür rund 20 Minuten! So könnte KI helfen, 12.000 Scans am Tag zu prüfen. Stell dir vor, wie viele Leben das retten könnte! Aber nur eine Ärztin oder ein Arzt kann den Scan mit allem anderen zusammenbringen, was zu einem Menschen gehört – die Krankengeschichte, die Familie, wie es ihm gerade geht – und über <a href="#glossary-diagnosis" class="glossary-link">Diagnose</a> und Behandlung entscheiden.</p>
           </div>
         </div>
       </div>
@@ -3940,7 +4203,7 @@
           <h4><span class="emoji">🔬</span> Turbo für die Wissenschaft</h4>
           <ul>
             <li>Entdeckt neue <a href="#glossary-protein" class="glossary-link">Proteine</a></li>
-            <li>Berechnet Wettermuster</li>
+            <li>Berechnet <a href="#glossary-pattern" class="glossary-link" onclick="event.stopPropagation()">Wettermuster</a></li>
             <li>Analysiert <a href="#glossary-gene" class="glossary-link">Gendaten</a></li>
             <li>Beschleunigt die Forschung</li>
           </ul>
@@ -4013,7 +4276,7 @@
         <div class="concept-card" style="background:var(--gold)">
           <h4><span class="emoji">🔒</span> <a href="#glossary-privacy" class="glossary-link">Privatsphäre</a></h4>
           <ul>
-            <li>KI lernt aus DEINEN Daten</li>
+            <li>KI lernt aus DEINEN <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a></li>
             <li>Gesichtserkennung in der Öffentlichkeit</li>
             <li>Dein Surfverhalten wird verfolgt</li>
             <li>Denk nach, bevor du teilst!</li>
@@ -4022,7 +4285,7 @@
         <div class="concept-card" style="background:var(--cyan)">
           <h4><span class="emoji">⚖️</span> Unfaire KI</h4>
           <ul>
-            <li>Mit <a href="#glossary-bias" class="glossary-link">einseitigen</a> Daten trainiert</li>
+            <li>Mit <a href="#glossary-bias" class="glossary-link">einseitigen</a> <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> trainiert</li>
             <li>Kann Menschen benachteiligen</li>
             <li>Kann manche Gruppen übersehen</li>
             <li>Fairness muss eingebaut werden</li>
@@ -4096,6 +4359,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-fleur.jpg" alt="Fleur" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Hi, hier ist Fleur!</strong></p>
           <p>Ethik heißt: darüber nachdenken, was RICHTIG und FAIR ist. Gute KI muss fair, sicher und ehrlich sein – und ALLEN helfen, nicht nur ein paar Menschen!</p>
         </div>
       </div>
@@ -4127,7 +4391,7 @@
           <div class="principle-blob" style="background:var(--coral)">
             <span class="emoji">🔒</span>
             <strong><a href="#glossary-privacy" class="glossary-link">Privatsphäre</a></strong>
-            KI soll deine persönlichen Daten schützen und nichts ohne Erlaubnis weitergeben.
+            KI soll deine persönlichen <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> schützen und nichts ohne Erlaubnis weitergeben.
           </div>
           <div class="principle-blob" style="background:var(--jet); color:#fff">
             <span class="emoji">🧑‍💻</span>
@@ -4154,7 +4418,7 @@
           <img class="quiz-photo" src="assets/gang-ling.jpg" alt="Ling" loading="lazy" decoding="async" />
           <div class="quiz-bubble">
             <p><strong>Hallo, ich bin Ling – noch eine Frage!</strong></p>
-            <p>Was hat die Europäische Union 2024 beschlossen?</p>
+            <p>Was hat die <a href="#glossary-european-union" class="glossary-link" onclick="event.stopPropagation()">Europäische Union</a> 2024 beschlossen?</p>
             <p class="quiz-hint">Klicke auf eine Antwort – die richtige erscheint darunter.</p>
           </div>
         </div>
@@ -4206,7 +4470,7 @@
               <div class="career-card-back" style="background:var(--coral)">
                 <img class="career-card-img" src="assets/career-ai-doctor.jpg" alt="Illustration: KI-Ärztin oder KI-Arzt" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
                 <h4>KI-Ärztin oder KI-Arzt</h4>
-                <p>Erkennt mit KI Krankheiten auf Bildern und findet für jeden Menschen die beste Behandlung.</p>
+                <p>Erkennt mit KI Krankheiten auf <a href="#glossary-scan" class="glossary-link" onclick="event.stopPropagation()">Bildern</a> und findet für jeden Menschen die beste Behandlung.</p>
                 <p class="career-study">Fächer: Medizin + Informatik</p>
               </div>
             </div>
@@ -4276,7 +4540,7 @@
               <div class="career-card-back" style="background:var(--cyan)">
                 <img class="career-card-img" src="assets/career-ai-teacher.jpg" alt="Illustration: KI-Lehrerin oder KI-Lehrer" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
                 <h4>KI-Lehrerin oder KI-Lehrer</h4>
-                <p>Baut persönliche KI-Lernhilfen, mit denen jedes Kind so lernt, wie es am besten kann.</p>
+                <p>Baut <a href="#glossary-personalised" class="glossary-link" onclick="event.stopPropagation()">persönliche</a> KI-Lernhilfen, mit denen jedes Kind so lernt, wie es am besten kann.</p>
                 <p class="career-study">Fächer: Pädagogik + Psychologie + Informatik</p>
               </div>
             </div>
@@ -4302,10 +4566,7 @@
                 <h4>KI-Bankerin oder KI-Banker</h4>
               </div>
               <div class="career-card-back" style="background:var(--cyan)">
-                <figure class="img-placeholder card-img-todo">
-                  <span class="emoji" aria-hidden="true">🏦</span>
-                  <span>Illustration: KI-Bank – Bild folgt</span>
-                </figure>
+                <img class="career-card-img" src="assets/economics-finance.webp" alt="Illustration: KI-Bankerin oder KI-Banker" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
                 <h4>KI-Bankerin oder KI-Banker</h4>
                 <p>Baut KI, die eine gestohlene Karte in Sekundenbruchteilen erkennt und das Geld der Menschen schützt.</p>
                 <p class="career-study">Fächer: Mathe + Wirtschaft + Informatik</p>
@@ -4372,7 +4633,7 @@
             <div class="career-card-back" style="background:var(--coral)">
               <img class="career-card-img" src="assets/study-computing.jpg" alt="Illustration: Informatik" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
               <h4>Informatik</h4>
-              <p>Erstes Programmieren (Scratch!), wie Computer funktionieren, Daten und Datenbanken, Apps &amp; Spiele bauen.</p>
+              <p>Erstes Programmieren (Scratch!), wie Computer funktionieren, <a href="#glossary-data" class="glossary-link" onclick="event.stopPropagation()">Daten</a> und Datenbanken, Apps &amp; Spiele bauen.</p>
             </div>
           </div>
         </div>
@@ -4422,10 +4683,7 @@
               <h4>Wirtschaft</h4>
             </div>
             <div class="career-card-back" style="background:var(--coral)">
-              <figure class="img-placeholder card-img-todo">
-                <span class="emoji" aria-hidden="true">📈</span>
-                <span>Illustration: Wirtschaft – Bild folgt</span>
-              </figure>
+              <img class="career-card-img" src="assets/economics-finance.webp" alt="Illustration: Wirtschaft" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
               <h4>Wirtschaft</h4>
               <p>Wie Geld, Arbeit und Preise zusammenhängen: Mikroökonomie, Makroökonomie, Wirtschaftstheorien und angewandte Mathematik.</p>
             </div>
@@ -4438,10 +4696,7 @@
               <h4>Psychologie</h4>
             </div>
             <div class="career-card-back" style="background:var(--teal)">
-              <figure class="img-placeholder card-img-todo">
-                <span class="emoji" aria-hidden="true">🧩</span>
-                <span>Illustration: Psychologie – Bild folgt</span>
-              </figure>
+              <img class="career-card-img" src="assets/study-psychology.webp" alt="Illustration: Psychologie" onclick="event.stopPropagation(); openLightbox(this.src, this.alt)" loading="lazy" decoding="async" />
               <h4>Psychologie</h4>
               <p>Warum Menschen tun, was sie tun: Motivation, wie wir entscheiden, wie sich Menschenmengen verhalten und wie man in einer Krise hilft.</p>
             </div>
@@ -4542,7 +4797,7 @@
               <h4><span class="emoji">🩺</span> Krankheiten</h4>
               <ul>
                 <li>Frühwarnung vor Pandemien</li>
-                <li>Persönliche Heilmittel gegen Krebs</li>
+                <li><a href="#glossary-personalised" class="glossary-link" onclick="event.stopPropagation()">Persönliche</a> Heilmittel gegen Krebs</li>
                 <li>KI-Impfstoffe in wenigen Tagen</li>
                 <li><a href="#glossary-bot" class="glossary-link">Bots</a> für die seelische Gesundheit</li>
               </ul>
@@ -4569,8 +4824,8 @@
               <h4><span class="emoji">🍲</span> Essen</h4>
               <ul>
                 <li>Angebaut in vertikalen Farmen</li>
-                <li>Ernährung nach Maß</li>
-                <li>Proteine aus dem Labor</li>
+                <li>Ernährung <a href="#glossary-personalised" class="glossary-link" onclick="event.stopPropagation()">nach Maß</a></li>
+                <li><a href="#glossary-protein" class="glossary-link" onclick="event.stopPropagation()">Proteine</a> aus dem Labor</li>
                 <li>KI-Köchinnen, KI-Köche &amp; Rezepte</li>
               </ul>
             </div>
@@ -4627,6 +4882,7 @@
       <div class="explain-card quiz-card">
         <img class="quiz-photo" src="assets/gang-bembe.jpg" alt="Bembe" loading="lazy" decoding="async" />
         <div class="quiz-bubble">
+          <p><strong>Und jetzt wieder ich, Bembe!</strong></p>
           <p>Eine KI hat kein Herz und kein Gewissen – WIR schon. Deshalb müssen immer Menschen dafür sorgen, dass KI für Gutes eingesetzt wird.</p>
         </div>
       </div>
@@ -4672,7 +4928,7 @@
 
       <div class="fact-banner" style="background:var(--paper)">
         <p class="fact-banner-kicker"><span class="emoji">🔍</span> KI-Fehler zu verstehen gehört zur Verantwortung</p>
-        <p>Eine KI kann sich irren, voreingenommen sein oder sogar gefährlich werden, wenn kein Mensch sie überprüft. Jedes Mal, wenn du einen KI-Fehler entdeckst, hilfst du mit, sie besser zu machen! Bei guten KI-Systemen kontrollieren MENSCHEN die Arbeit der KI. Immer. Das heißt „Human-in-the-Loop“ – und dieser Mensch könntest eines Tages DU sein!</p>
+        <p>Eine KI kann sich irren, <a href="#glossary-bias" class="glossary-link" onclick="event.stopPropagation()">voreingenommen</a> sein oder sogar gefährlich werden, wenn kein Mensch sie überprüft. Jedes Mal, wenn du einen KI-Fehler entdeckst, hilfst du mit, sie besser zu machen! Bei guten KI-Systemen kontrollieren MENSCHEN die Arbeit der KI. Immer. Das heißt „Human-in-the-Loop“ – und dieser Mensch könntest eines Tages DU sein!</p>
       </div>
 
       <!-- Quiz: real content, drawn straight from the book's "Fun fact!" box.
@@ -4747,6 +5003,15 @@
         <div class="final-quiz-screen" data-screen="results" hidden>
           <div class="final-quiz-medal" id="finalQuizMedal" aria-hidden="true"></div>
           <h4 id="finalQuizScoreText"></h4>
+          <div class="cert-form">
+            <h5>🎓 Hol dir dein Zertifikat</h5>
+            <p>Tippe deinen Namen ein und erhalte dein eigenes Zertifikat als PDF. Dein Name wird nur benutzt, um dein Zertifikat zu erstellen. Er wird nirgendwo gespeichert und niemand sonst kann ihn sehen.</p>
+            <div class="cert-row">
+              <label for="certName" class="cert-label">Dein Name</label>
+              <input type="text" id="certName" class="cert-input" maxlength="30" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Tippe hier deinen Namen ein" />
+              <button type="button" class="btn-cta" id="certPrintBtn">Mein Zertifikat holen <span class="arrow" aria-hidden="true">📄</span></button>
+            </div>
+          </div>
           <ul class="final-quiz-review" id="finalQuizReview"></ul>
           <button type="button" class="btn-cta" id="finalQuizRetry">
             Nochmal versuchen <span class="arrow" aria-hidden="true">↺</span>
@@ -4789,6 +5054,10 @@
           <dt>ChatGPT</dt>
           <dd>Ein berühmter KI-Chatbot. Er beantwortet Fragen, schreibt Geschichten und unterhält sich mit dir – indem er vorhersagt, welches Wort als Nächstes am besten passt.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-cpu">
+          <dt>CPU</dt>
+          <dd>Der „Gehirn“-Chip eines Computers. Er arbeitet Anweisungen eine nach der anderen ab, sehr, sehr schnell, damit alles erledigt wird, worum du den Computer bittest.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-cyber-attack">
           <dt>Cyberangriff</dt>
           <dd>Wenn jemand versucht, in Computer einzudringen, um etwas zu stehlen, zu zerstören oder zu blockieren. KI kann solche Versuche früh erkennen, oft in Sekunden.</dd>
@@ -4807,7 +5076,7 @@
         </div>
         <div class="glossary-entry" id="glossary-bias">
           <dt>Einseitigkeit (Bias)</dt>
-          <dd>Wenn eine KI manche Menschen unfair behandelt – zum Beispiel wegen ihres Geschlechts, ihrer Hautfarbe, ihrer Herkunft, ihrer Religion oder einer Behinderung. Meistens liegt es daran, dass schon die Beispiele unfair waren, aus denen sie gelernt hat. Der Computer merkt das nicht – das kann nur ein Mensch.</dd>
+          <dd>Wenn eine KI manche Menschen unfair behandelt – zum Beispiel wegen ihres Geschlechts, ihrer Ethnie oder Herkunft (woher die Familie kommt und welche Hautfarbe jemand hat), ihrer Religion oder ihrer Fähigkeiten (einer Behinderung). Meistens liegt es daran, dass schon die Beispiele unfair waren, aus denen sie gelernt hat. Der Computer merkt das nicht – das kann nur ein Mensch.</dd>
         </div>
         <div class="glossary-entry" id="glossary-repetitive">
           <dt>Eintönig (immer dasselbe)</dt>
@@ -4913,6 +5182,10 @@
           <dt>Protein (Eiweiß)</dt>
           <dd>Eine winzige Maschine in jedem Lebewesen. Proteine bauen deine Muskeln, transportieren Sauerstoff und bekämpfen Krankheitserreger. KI kann heute ihre Form vorhersagen – das hilft, neue Medikamente zu finden.</dd>
         </div>
+        <div class="glossary-entry" id="glossary-ram">
+          <dt>RAM</dt>
+          <dd>Der Kurzzeitspeicher des Computers. Er hält fest, woran du gerade arbeitest, damit der Computer schnell darauf zugreifen kann. Wenn du den Computer ausschaltest, vergisst er alles.</dd>
+        </div>
         <div class="glossary-entry" id="glossary-scan">
           <dt>Scan</dt>
           <dd>Ein Bild vom Inneren eines Körpers, aufgenommen von einem Gerät statt von einer Kamera – ein Röntgenbild, ein MRT, ein Ultraschall.</dd>
@@ -4977,13 +5250,18 @@
           <li>Herr Williams</li>
           <li>Frau Rokakis</li>
           <li>Frau Vatsitsis</li>
+          <li>Frau Iris Deligianni</li>
           <li>Herr Pearce</li>
           <li>Dr. Tapeinos</li>
           <li>Dr. Erenstein und seine Kinder</li>
           <li>Dr. Adibi und ihre Kinder</li>
           <li>Herr Vitale und Frau Rizic und ihre Kinder</li>
-          <li>Morgan Stanley</li>
+          <li>Claire Travers</li>
         </ul>
+        <div class="thanks-dedication">
+          <p class="dedication-kicker">Widmung</p>
+          <p class="dedication-text">Dieses Buch ist allen Großeltern gewidmet – besonders Opa Georgios und Oma Keti – für all die Liebe, die endlosen Geschichten, die Umarmungen, die lustigen Spiele, das leckere Essen und die ständige Fürsorge, die uns alle zu dem machen, was wir sind: neugierig, verantwortungsvoll und freundlich.</p>
+        </div>
         <div class="info-callout">
           <p class="info-callout-kicker"><span class="emoji">🛠️</span> Wie dieses Buch entstanden ist</p>
           <p>Einige Bilder sind mit openart.ai entstanden – aus vielen lustigen Prompts von Katerina.</p>
@@ -4998,7 +5276,7 @@
       <span class="kicker" style="justify-content:center">Ende – erst mal</span>
       <h2>Das war die ganze Reise.</h2>
       <p class="intro">Du willst mehr über das Projekt, das Team oder darüber wissen, wie du es unterstützen kannst?</p>
-      <a href="about.html#contact" class="btn-cta">
+      <a href="about-de.html#contact" class="btn-cta">
         Schreib uns <span class="arrow" aria-hidden="true">→</span>
       </a>
     </div>
@@ -5010,9 +5288,9 @@
   <div class="wrap row">
     <div>© <span id="yr"></span> GR4AI · Ein interaktiver Guide über KI für Kinder.</div>
     <div>
-      <a href="about.html#book">Das Buch</a>
-      <a href="about.html#team">Team</a>
-      <a href="about.html#contact">Kontakt</a>
+      <a href="about-de.html#book">Das Buch</a>
+      <a href="about-de.html#team">Team</a>
+      <a href="about-de.html#contact">Kontakt</a>
     </div>
   </div>
 </footer>
@@ -5041,31 +5319,50 @@
   // Shared lightbox: clicking any career-card image opens it here at full size.
   let lightboxEl = null;
   let lightboxOpenScrollY = null;
-  function openLightbox(src, alt) {
+  function getLightbox() {
     if (!lightboxEl) {
       lightboxEl = document.createElement('div');
       lightboxEl.className = 'lightbox-overlay';
-      lightboxEl.innerHTML = '<img alt="">';
-      lightboxEl.addEventListener('click', () => {
-        lightboxEl.classList.remove('is-open');
-        lightboxOpenScrollY = null;
-      });
+      lightboxEl.innerHTML = '<img alt=""><div class="lightbox-node"></div>';
+      lightboxEl.addEventListener('click', closeLightbox);
       document.body.appendChild(lightboxEl);
     }
-    lightboxEl.querySelector('img').src = src;
-    lightboxEl.querySelector('img').alt = alt || '';
-    lightboxEl.classList.add('is-open');
+    return lightboxEl;
+  }
+  function closeLightbox() {
+    if (!lightboxEl) return;
+    lightboxEl.classList.remove('is-open');
+    lightboxOpenScrollY = null;
+  }
+  function openLightbox(src, alt) {
+    const box = getLightbox();
+    box.classList.remove('has-node');
+    box.querySelector('img').src = src;
+    box.querySelector('img').alt = alt || '';
+    box.classList.add('is-open');
     lightboxOpenScrollY = window.scrollY;
   }
-
+  // Same lightbox for a picture that is not a plain <img> (the neural-network drawing),
+  // shown together with its caption.
+  function openLightboxNode(node) {
+    const box = getLightbox();
+    const holder = box.querySelector('.lightbox-node');
+    holder.textContent = '';
+    const copy = node.cloneNode(true);
+    copy.removeAttribute('tabindex'); copy.removeAttribute('role'); copy.removeAttribute('aria-label');
+    holder.appendChild(copy);
+    box.classList.add('has-node');
+    box.classList.add('is-open');
+    lightboxOpenScrollY = window.scrollY;
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   // A small scroll closes the lightbox automatically — same buffer used for
   // the flashcards, so a tiny accidental nudge doesn't dismiss it instantly.
   const LIGHTBOX_AUTO_CLOSE_SCROLL_DISTANCE = 80;
   window.addEventListener('scroll', () => {
     if (lightboxOpenScrollY === null) return;
     if (Math.abs(window.scrollY - lightboxOpenScrollY) > LIGHTBOX_AUTO_CLOSE_SCROLL_DISTANCE) {
-      lightboxEl.classList.remove('is-open');
-      lightboxOpenScrollY = null;
+      closeLightbox();
     }
   }, { passive: true });
 
@@ -5695,6 +5992,219 @@
       showScreen('results');
     }
 
+    // Certificate: drawn on a canvas in this browser, wrapped into a one-page PDF
+    // and opened as a file. The name only ever lives in the text box and in that
+    // PDF: nothing is stored (no cookies, no localStorage) or sent anywhere.
+    const certNameEl = document.getElementById('certName');
+    const certBtn = document.getElementById('certPrintBtn');
+
+    function wrapLines(ctx, text, maxW) {
+      const words = text.split(' '), lines = [];
+      let line = '';
+      words.forEach(w => {
+        const test = line ? line + ' ' + w : w;
+        if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; } else line = test;
+      });
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    // All wording on the certificate lives here, so each language only changes this block.
+    /* TXT-START */
+    const TXT = {
+      title: 'KI-Superstar!',
+      sub: 'URKUNDE',
+      hooray: 'Hurra! Diese Urkunde geht an',
+      lead: 'weil du die letzte Herausforderung von GR4AI geschafft hast. Du hast',
+      score: (s, n) => s + ' von ' + n + ' richtig!',
+      learnedHead: 'Das habe ich gelernt:',
+      learned: [
+        'KI heißt Künstliche Intelligenz: Computer, die lernen und Probleme lösen können.',
+        'KI lernt aus Daten und erkennt Muster, ein bisschen so, wie wir aus Beispielen lernen.',
+        'KI kann Fehler machen und sich sogar Dinge ausdenken, deshalb prüfe ich immer nach.',
+        'Ich sage einem Chatbot nie meinen vollen Namen, meine Adresse oder meine Passwörter.',
+        'Deepfakes können echt aussehen, sind aber gefälscht, deshalb denke ich nach, bevor ich glaube.',
+        'Menschen müssen immer die Verantwortung für KI haben, und KI muss fair zu allen sein.'
+      ],
+      about: 'GR4AI ist ein Buchprojekt für Kinder von 7 bis 12 Jahren, das auf lustige und einfache Weise zeigt, wie KI funktioniert. Es ist gemeinnützig, das heißt: Es soll helfen, nicht Geld verdienen.',
+      link: 'Komm wieder, um zu lesen, zu spielen und mehr zu lernen: gr4ai.org',
+      locale: 'de-DE'
+    };
+    /* TXT-END */
+
+    async function drawCertificate(name, score, total, medal, withCloud) {
+      const W = 2480, H = 3508;                       // A4 portrait at 300 dpi
+      const cv = document.createElement('canvas');
+      cv.width = W; cv.height = H;
+      const ctx = cv.getContext('2d');
+      try { await Promise.all([document.fonts.load('900 100px Fraunces'), document.fonts.load('800 100px Fraunces')]); } catch (e) {}
+      // the AI cloud character; if it cannot be loaded the certificate is drawn without it
+      const cloud = withCloud === false ? null : await new Promise(res => {
+        const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = 'assets/ai-cloud.png';
+      });
+      const serif = 'Fraunces, Georgia, serif', sans = 'Inter, Helvetica, Arial, sans-serif';
+      const INK = '#15171A', YEL = '#F2D63A', CX = W / 2;
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = INK; ctx.lineWidth = 36; ctx.strokeRect(18, 18, W - 36, H - 36);
+      ctx.strokeStyle = YEL; ctx.lineWidth = 14; ctx.strokeRect(120, 120, W - 240, H - 240);
+      ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = INK;
+
+      // shrink a line until it fits the page (other languages can be longer)
+      const fit = (txt, weight, fam, size, maxW) => {
+        for (; size > 30; size -= 3) { ctx.font = weight + ' ' + size + 'px ' + fam; if (ctx.measureText(txt).width <= maxW) break; }
+      };
+
+      // the AI cloud, top centre, hovering over a soft shadow
+      if (cloud) {
+        const cw = 700, ch = cw * cloud.height / cloud.width, cx0 = CX - cw / 2, cy0 = 205;
+        ctx.save();
+        ctx.translate(cx0 + cw / 2, cy0 + ch + 36); ctx.scale(1, 0.08);
+        const sh = ctx.createRadialGradient(0, 0, 0, 0, 0, 290);
+        sh.addColorStop(0, 'rgba(21,23,26,0.22)'); sh.addColorStop(1, 'rgba(21,23,26,0)');
+        ctx.fillStyle = sh; ctx.beginPath(); ctx.arc(0, 0, 290, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+        ctx.drawImage(cloud, cx0, cy0, cw, ch);
+        ctx.fillStyle = INK;
+      }
+
+      fit(TXT.title, '900', serif, 160, 1850); ctx.fillText(TXT.title, CX, 760);
+      ctx.font = '600 46px ' + sans; ctx.fillStyle = '#666'; ctx.fillText(TXT.sub, CX, 845);
+      ctx.fillStyle = INK;
+      fit(TXT.hooray, '500', sans, 54, 1850); ctx.fillText(TXT.hooray, CX, 1010);
+
+      // name, shrunk to fit
+      let size = 150;
+      do { ctx.font = '800 ' + size + 'px ' + serif; size -= 6; } while (ctx.measureText(name).width > 1700 && size > 50);
+      ctx.fillText(name, CX, 1180);
+      const nw = Math.max(ctx.measureText(name).width + 120, 1100);
+      ctx.fillRect(CX - nw / 2, 1215, nw, 6);
+
+      fit(TXT.lead, '500', sans, 52, 1850); ctx.fillText(TXT.lead, CX, 1330);
+      const scoreTxt = TXT.score(score, total);
+      fit(scoreTxt, '900', serif, 118, 1550);
+      const sw = ctx.measureText(scoreTxt).width;
+      ctx.fillText(scoreTxt, CX - 60, 1485);
+      ctx.font = '100px serif'; ctx.textAlign = 'left'; ctx.fillText(medal, CX - 60 + sw / 2 + 34, 1480);
+      ctx.textAlign = 'center';
+
+      // what I learned (one column; the text size drops a little if a language needs more room)
+      ctx.font = '800 58px ' + serif; ctx.fillText(TXT.learnedHead, CX, 1650);
+      let bsize = 50, lines = [];
+      for (const sz of [50, 47, 44, 41, 38, 35, 32]) {
+        bsize = sz; ctx.font = '500 ' + sz + 'px ' + sans;
+        lines = TXT.learned.map(t => wrapLines(ctx, t, 1500));
+        const h = lines.reduce((a, ls) => a + ls.length * Math.round(sz * 1.35) + Math.round(sz * 0.75), 0);
+        if (1730 + h <= 2780) break;
+      }
+      const lh = Math.round(bsize * 1.35), gap = Math.round(bsize * 0.75);
+      ctx.textAlign = 'left';
+      let yy = 1730;
+      lines.forEach(ls => {
+        ctx.fillStyle = '#1FA059'; ctx.font = '900 ' + (bsize + 4) + 'px ' + sans; ctx.fillText('✓', 400, yy);
+        ctx.fillStyle = INK; ctx.font = '500 ' + bsize + 'px ' + sans;
+        ls.forEach(l => { ctx.fillText(l, 475, yy); yy += lh; });
+        yy += gap;
+      });
+
+      // bottom left: date, then a line about the project and the web address
+      ctx.fillStyle = '#666'; ctx.font = '500 44px ' + sans;
+      ctx.fillText(new Date().toLocaleDateString(TXT.locale, { day: 'numeric', month: 'long', year: 'numeric' }), 400, 2905);
+      ctx.fillStyle = '#bbb'; ctx.fillRect(400, 2945, 1300, 4);
+      ctx.fillStyle = '#444'; ctx.font = '500 38px ' + sans;
+      let y = 3020;
+      wrapLines(ctx, TXT.about, 1300).forEach(l => { ctx.fillText(l, 400, y); y += 50; });
+      ctx.fillStyle = INK; ctx.font = '800 42px ' + sans;
+      wrapLines(ctx, TXT.link, 1300).forEach(l => { ctx.fillText(l, 400, y + 28); y += 54; });
+
+      // official seal, bottom right
+      ctx.save(); ctx.translate(2010, 3040); ctx.scale(1.05, 1.05);
+      ctx.beginPath();
+      const bumps = 40;
+      for (let i = 0; i <= bumps * 8; i++) {
+        const a = i / (bumps * 8) * Math.PI * 2, r = 215 + Math.cos(a * bumps) * 11;
+        const px = Math.cos(a) * r, py = Math.sin(a) * r;
+        if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+      }
+      ctx.closePath(); ctx.fillStyle = YEL; ctx.fill(); ctx.lineWidth = 8; ctx.strokeStyle = INK; ctx.stroke();
+      ctx.beginPath(); ctx.arc(0, 0, 182, 0, Math.PI * 2); ctx.lineWidth = 5; ctx.stroke();
+      ctx.beginPath(); ctx.arc(0, 0, 120, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); ctx.lineWidth = 5; ctx.stroke();
+      const ring = 'GR4AI · GET READY FOR AI · ';
+      ctx.fillStyle = INK; ctx.font = '800 29px ' + sans; ctx.textAlign = 'center';
+      for (let i = 0; i < ring.length; i++) {
+        const a = -Math.PI / 2 + (i + 0.5) / ring.length * Math.PI * 2;
+        ctx.save(); ctx.translate(Math.cos(a) * 151, Math.sin(a) * 151); ctx.rotate(a + Math.PI / 2);
+        ctx.fillText(ring[i], 0, 10); ctx.restore();
+      }
+      // star in the middle
+      ctx.beginPath();
+      for (let i = 0; i < 10; i++) {
+        const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? 40 : 86;
+        const px = Math.cos(a) * r, py = Math.sin(a) * r + 6;
+        if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+      }
+      ctx.closePath(); ctx.fillStyle = YEL; ctx.fill(); ctx.lineWidth = 6; ctx.strokeStyle = INK; ctx.lineJoin = 'round'; ctx.stroke();
+      ctx.restore();
+      return cv;
+    }
+
+    // one-page A4 PDF around a JPEG
+    function pdfFromJpeg(jpeg, wPx, hPx) {
+      const enc = new TextEncoder(), parts = [], offsets = [];
+      let len = 0;
+      const push = d => { const u = typeof d === 'string' ? enc.encode(d) : d; parts.push(u); len += u.length; };
+      const obj = (n, head, stream) => {
+        offsets[n] = len;
+        push(n + ' 0 obj\n' + head + '\n');
+        if (stream) { push('stream\n'); push(stream); push('\nendstream\n'); }
+        push('endobj\n');
+      };
+      const PW = wPx < hPx ? 595.28 : 841.89, PH = wPx < hPx ? 841.89 : 595.28;   // A4, portrait or landscape
+      const content = 'q ' + PW + ' 0 0 ' + PH + ' 0 0 cm /Im0 Do Q';
+      push('%PDF-1.4\n');
+      obj(1, '<< /Type /Catalog /Pages 2 0 R >>');
+      obj(2, '<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
+      obj(3, '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + PW + ' ' + PH + '] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>');
+      obj(4, '<< /Type /XObject /Subtype /Image /Width ' + wPx + ' /Height ' + hPx + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + jpeg.length + ' >>', jpeg);
+      obj(5, '<< /Length ' + content.length + ' >>', content);
+      const xref = len;
+      push('xref\n0 6\n0000000000 65535 f \n');
+      for (let i = 1; i <= 5; i++) push(String(offsets[i]).padStart(10, '0') + ' 00000 n \n');
+      push('trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF');
+      const out = new Uint8Array(len); let pos = 0;
+      parts.forEach(u => { out.set(u, pos); pos += u.length; });
+      return new Blob([out], { type: 'application/pdf' });
+    }
+
+    certBtn.addEventListener('click', async () => {
+      const name = certNameEl.value.trim();
+      if (!name) { certNameEl.focus(); certNameEl.classList.add('is-needed'); return; }
+      certNameEl.classList.remove('is-needed');
+      certBtn.disabled = true;
+      // open the tab straight away, while the click still counts, then fill it in
+      const tab = window.open('', '_blank');
+      try {
+        const total = FINAL_QUIZ_QUESTIONS.length;
+        const score = results.filter(r => r.correct).length;
+        let cv = await drawCertificate(name, score, total, medalEl.textContent, true);
+        let jpgBlob;
+        try {
+          jpgBlob = await new Promise((res, rej) => { try { cv.toBlob(b => (b ? res(b) : rej(new Error('blob'))), 'image/jpeg', 0.92); } catch (e) { rej(e); } });
+        } catch (e) {
+          // a page opened straight from disk may not allow the cloud picture: draw it again without
+          cv = await drawCertificate(name, score, total, medalEl.textContent, false);
+          jpgBlob = await new Promise(res => cv.toBlob(res, 'image/jpeg', 0.92));
+        }
+        const jpeg = new Uint8Array(await jpgBlob.arrayBuffer());
+        const url = URL.createObjectURL(pdfFromJpeg(jpeg, cv.width, cv.height));
+        if (tab) tab.location.href = url;
+        else { const a = document.createElement('a'); a.href = url; a.download = 'GR4AI-certificate.pdf'; document.body.appendChild(a); a.click(); a.remove(); }
+        setTimeout(() => URL.revokeObjectURL(url), 120000);
+      } finally {
+        certBtn.disabled = false;
+      }
+    });
+    certNameEl.addEventListener('input', () => certNameEl.classList.remove('is-needed'));
+
     startBtn.addEventListener('click', () => {
       index = 0;
       results = [];
@@ -5705,6 +6215,7 @@
     retryBtn.addEventListener('click', () => {
       index = 0;
       results = [];
+      certNameEl.value = '';
       showScreen('intro');
     });
   })();
@@ -5772,14 +6283,32 @@
       return wasOpen;
     }
 
+    // With a mouse the card opens on hover; on touch it opens on tap (click handler below)
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let leaveTimer = null;
+    const cancelLeave = () => { clearTimeout(leaveTimer); leaveTimer = null; };
+    const leaveSoon = link => {
+      cancelLeave();
+      leaveTimer = setTimeout(() => { if (current === link) close(); }, 220);
+    };
+
     links.forEach(link => {
       link.setAttribute('aria-expanded', 'false');
+      link.addEventListener('mouseenter', () => {
+        if (!canHover.matches) return;
+        cancelLeave();
+        if (current !== link) open(link);
+      });
+      link.addEventListener('mouseleave', () => { if (canHover.matches) leaveSoon(link); });
       link.addEventListener('click', e => {
         if (e.metaKey || e.ctrlKey || e.shiftKey) return;   // let people open it properly
-        if (current === link) { e.preventDefault(); close(); return; }
+        if (current === link) { e.preventDefault(); if (!canHover.matches) close(); return; }
         if (open(link)) e.preventDefault();
       });
     });
+    // moving the pointer from the word onto the card keeps it open
+    pop.addEventListener('mouseenter', cancelLeave);
+    pop.addEventListener('mouseleave', () => { if (canHover.matches && current) leaveSoon(current); });
 
     closeEl.addEventListener('click', () => { const l = close(); if (l) l.focus(); });
     document.addEventListener('keydown', e => {
@@ -6788,5 +7317,236 @@
 })();
 </script>
 
+<script>
+// "Neural Networks" box: two small animations in place of pictures.
+//   left : brain cells, one fires and wakes up its neighbours
+//   right: data packets flowing through an artificial neural network
+(function(){
+  var brainCv = document.getElementById('brainAnim'), netCv = document.getElementById('netAnim');
+  if (!brainCv || !netCv || !brainCv.getContext) return;       // otherwise the brain picture stays
+  var LABELS = ['Eingabe', 'Versteckt', 'Ausgabe'];                       // input / hidden / output, in the page's language
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  // a canvas that fills its frame; the caption lies over the bottom of the frame, so that part is left free
+  function setup(canvas){
+    var o = { canvas: canvas, ctx: canvas.getContext('2d'), w: 0, h: 0, uh: 0 };
+    var cap = canvas.closest('.pic').querySelector('.img-caption');
+    function resize(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2), r = canvas.getBoundingClientRect();
+      o.w = r.width; o.h = r.height; o.uh = r.height - (cap ? cap.offsetHeight : 70) - 6;
+      canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
+      o.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize(); window.addEventListener('resize', function(){ resize(); if (reduceMotion) drawBoth(); });
+    return o;
+  }
+
+  /* ---------------- left: a net of glowing brain cells ---------------- */
+  var brain = (function(){
+    var V = setup(brainCv), R = rng(23), N = 38, HUES = [205, 265, 175, 28], cells = [], tries = 0;
+    while (cells.length < N && tries++ < 8000) {
+      var x = 0.05 + R() * 0.9, y = 0.06 + R() * 0.88;
+      if (cells.every(function(c){ return Math.hypot((c.x - x) * 1.25, c.y - y) > 0.105; })) {
+        var arms = [], n = 4 + Math.floor(R() * 4);
+        for (var i = 0; i < n; i++) arms.push({ a: R() * Math.PI * 2, l: 9 + R() * 14 });
+        cells.push({ x: x, y: y, hue: HUES[Math.floor(R() * HUES.length)], r: 5.5 + R() * 3.5, glow: 0, wave: 0, refractory: 0, pending: -1, arms: arms });
+      }
+    }
+    var links = [];
+    function has(a, b){ return links.some(function(l){ return (l.a === a && l.b === b) || (l.a === b && l.b === a); }); }
+    function dist(i, j){ return Math.hypot((cells[i].x - cells[j].x) * 1.25, cells[i].y - cells[j].y); }
+    cells.forEach(function(c, i){
+      cells.map(function(d, j){ return { j: j, d: dist(i, j) }; }).filter(function(o){ return o.j !== i; })
+        .sort(function(p, q){ return p.d - q.d; }).slice(0, 3)
+        .forEach(function(o){ if (!has(i, o.j)) links.push({ a: i, b: o.j, bend: (R() - 0.5) * 0.28 }); });
+    });
+    for (var k = 0; k < 14; k++) {
+      var i2 = Math.floor(R() * cells.length), j2 = Math.floor(R() * cells.length);
+      if (i2 !== j2 && !has(i2, j2) && dist(i2, j2) < 0.42) links.push({ a: i2, b: j2, bend: (R() - 0.5) * 0.4 });
+    }
+    var sig = [], idle = 0;
+
+    function geo(l){
+      var A = cells[l.a], B = cells[l.b], ax = A.x * V.w, ay = A.y * V.uh, bx = B.x * V.w, by = B.y * V.uh, dx = bx - ax, dy = by - ay;
+      return { ax: ax, ay: ay, bx: bx, by: by, cx: (ax + bx) / 2 - dy * l.bend, cy: (ay + by) / 2 + dx * l.bend, len: Math.hypot(dx, dy) * 1.05 + 1 };
+    }
+    function at(g, t){ var u = 1 - t; return { x: u * u * g.ax + 2 * u * t * g.cx + t * t * g.bx, y: u * u * g.ay + 2 * u * t * g.cy + t * t * g.by }; }
+
+    function fire(i){
+      var c = cells[i];
+      if (c.refractory > 0) return;
+      c.glow = 1; c.wave = 0.001; c.refractory = 2.4; c.pending = -1;
+      links.forEach(function(l, k){ if (l.a === i) sig.push({ k: k, t: 0, rev: false }); else if (l.b === i) sig.push({ k: k, t: 0, rev: true }); });
+      idle = 0;
+    }
+    function update(dt){
+      cells.forEach(function(c, i){
+        c.glow = Math.max(0, c.glow - dt * 0.7);
+        if (c.wave > 0) c.wave = c.wave + dt * 1.1 > 1 ? 0 : c.wave + dt * 1.1;
+        c.refractory = Math.max(0, c.refractory - dt);
+        if (c.pending >= 0) { c.pending -= dt; if (c.pending < 0) { c.pending = -1; fire(i); } }
+      });
+      for (var s = sig.length - 1; s >= 0; s--) {
+        var g = sig[s], l = links[g.k];
+        g.t += dt * 260 / geo(l).len;
+        if (g.t >= 1) {
+          var target = cells[g.rev ? l.a : l.b];
+          sig.splice(s, 1);
+          if (target.refractory <= 0 && target.pending < 0) target.pending = 0.1;     // it wakes up and fires a moment later
+          else target.glow = Math.max(target.glow, 0.3);
+        }
+      }
+      idle = (sig.length || cells.some(function(c){ return c.pending >= 0 || c.refractory > 0.9; })) ? 0 : idle + dt;
+      if (idle > 1.0) fire(Math.floor(Math.random() * cells.length));                  // quiet again: another cell starts
+    }
+    function draw(){
+      var ctx = V.ctx, w = V.w, h = V.h;
+      ctx.clearRect(0, 0, w, h); ctx.lineCap = 'round';
+      links.forEach(function(l){
+        var g = geo(l), warm = Math.max(cells[l.a].glow, cells[l.b].glow);
+        ctx.strokeStyle = 'rgba(' + Math.round(110 + warm * 145) + ',' + Math.round(150 + warm * 80) + ',255,' + (0.2 + warm * 0.35) + ')';
+        ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(g.ax, g.ay); ctx.quadraticCurveTo(g.cx, g.cy, g.bx, g.by); ctx.stroke();
+      });
+      cells.forEach(function(c){
+        var x = c.x * w, y = c.y * V.uh;
+        ctx.strokeStyle = 'hsla(' + c.hue + ',80%,75%,' + (0.28 + c.glow * 0.4) + ')'; ctx.lineWidth = 1;
+        c.arms.forEach(function(a){ ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(a.a) * a.l, y + Math.sin(a.a) * a.l); ctx.stroke(); });
+      });
+      sig.forEach(function(s){
+        var g = geo(links[s.k]);
+        for (var k = 0; k < 8; k++) {
+          var t = Math.max(0, s.t - k * 0.02), p = at(g, s.rev ? 1 - t : t);
+          ctx.fillStyle = 'rgba(255,' + (230 - k * 6) + ',' + (150 - k * 14) + ',' + (0.95 - k * 0.11) + ')';
+          ctx.beginPath(); ctx.arc(p.x, p.y, 3.6 - k * 0.3, 0, Math.PI * 2); ctx.fill();
+        }
+      });
+      cells.forEach(function(c){
+        var x = c.x * w, y = c.y * V.uh, r = c.r + c.glow * 4, gr = ctx.createRadialGradient(x, y, 1, x, y, 26 + c.glow * 26);
+        gr.addColorStop(0, 'hsla(' + c.hue + ',95%,65%,' + (0.32 + c.glow * 0.6) + ')'); gr.addColorStop(1, 'hsla(' + c.hue + ',95%,65%,0)');
+        ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(x, y, 26 + c.glow * 26, 0, Math.PI * 2); ctx.fill();
+        if (c.wave > 0) { ctx.strokeStyle = 'rgba(255,235,160,' + ((1 - c.wave) * 0.7) + ')'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, r + c.wave * 36, 0, Math.PI * 2); ctx.stroke(); }
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = c.glow > 0.25 ? 'hsl(' + (48 - c.glow * 6) + ',100%,' + (72 + c.glow * 14) + '%)' : 'hsl(' + c.hue + ',80%,68%)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(x, y, r * 0.42, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.fill();
+      });
+    }
+    brainCv.addEventListener('pointerdown', function(e){          // a tap on a cell makes it fire
+      var r = brainCv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, best = -1, bd = 30;
+      cells.forEach(function(c, i){ var d = Math.hypot(c.x * V.w - mx, c.y * V.uh - my); if (d < bd) { bd = d; best = i; } });
+      if (best >= 0) fire(best);
+    });
+    brainCv.style.cursor = 'pointer';
+    fire(Math.floor(cells.length / 3));
+    return { update: update, draw: draw };
+  })();
+
+  /* ---------------- right: data flowing through a neural network ---------------- */
+  var net = (function(){
+    var V = setup(netCv), layers = [3, 5, 2], xs = [0.15, 0.5, 0.85], nodes = [], edges = [], packets = [], pendingSend = [];
+    var timer = 0, phase = 'in', winner = -1, winGlow = 0;
+    function ys(n){ var a = []; for (var i = 0; i < n; i++) a.push(0.2 + i * 0.64 / (n - 1)); return a; }
+    layers.forEach(function(n, L){ ys(n).forEach(function(y){ nodes.push({ L: L, x: xs[L], y: y, glow: 0, got: 0, need: L ? layers[L - 1] : 0, act: 0, delay: -1 }); }); });
+    nodes.forEach(function(a, i){ nodes.forEach(function(b, j){ if (b.L === a.L + 1) edges.push({ a: i, b: j, w: 0.5 }); }); });
+
+    function send(from){ edges.forEach(function(e, k){ if (e.a === from) packets.push({ k: k, t: 0, d: Math.random() < 0.5 ? '0' : '1' }); }); }
+    function start(){
+      var d = 0;
+      nodes.forEach(function(n){ n.got = 0; n.act = 0; if (n.L === 0) { n.delay = d; d += 0.18; } });
+      winner = -1; winGlow = 0; phase = 'in'; timer = 0;
+      edges.forEach(function(e){ e.w = 0.2 + Math.random() * 0.8; });     // a new run, so the answer is not always the same one
+    }
+    function update(dt){
+      nodes.forEach(function(n){ n.glow = Math.max(0, n.glow - dt * 0.8); });
+      winGlow = Math.max(0, winGlow - dt * 0.25); timer += dt;
+      if (phase === 'in') nodes.forEach(function(n, i){ if (n.L === 0 && n.delay >= 0 && timer >= n.delay) { n.delay = -1; n.glow = 1; send(i); } });
+      for (var p = packets.length - 1; p >= 0; p--) {
+        var g = packets[p], e = edges[g.k], A = nodes[e.a], B = nodes[e.b];
+        g.t += dt * 230 / (Math.hypot((B.x - A.x) * V.w, (B.y - A.y) * V.uh) + 1);
+        if (g.t >= 1) {
+          packets.splice(p, 1);
+          B.got++; B.act += e.w; B.glow = Math.max(B.glow, 0.7);
+          if (B.got >= B.need) {
+            B.glow = 1;
+            if (B.L === 1) pendingSend.push({ idx: nodes.indexOf(B), wait: 0.12 });
+            if (B.L === 2) {
+              var outs = nodes.filter(function(n){ return n.L === 2; });
+              if (outs.every(function(n){ return n.got >= n.need; })) {
+                winner = nodes.indexOf(outs.reduce(function(p1, p2){ return p2.act > p1.act ? p2 : p1; }));
+                winGlow = 1; phase = 'done'; timer = 0;
+              }
+            }
+          }
+        }
+      }
+      for (var k = pendingSend.length - 1; k >= 0; k--) { pendingSend[k].wait -= dt; if (pendingSend[k].wait <= 0) { send(pendingSend[k].idx); pendingSend.splice(k, 1); } }
+      if (phase === 'done' && timer > 2.4) start();
+    }
+    function draw(){
+      var ctx = V.ctx, w = V.w, h = V.h, uh = V.uh;
+      ctx.clearRect(0, 0, w, h);
+      ctx.font = '700 12px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(21,23,26,.5)';
+      LABELS.forEach(function(t, i){ ctx.fillText(t, xs[i] * w, 22); });
+      edges.forEach(function(e){
+        var A = nodes[e.a], B = nodes[e.b];
+        ctx.strokeStyle = 'rgba(21,23,26,.32)'; ctx.lineWidth = 1.8;
+        ctx.beginPath(); ctx.moveTo(A.x * w, A.y * uh); ctx.lineTo(B.x * w, B.y * uh); ctx.stroke();
+      });
+      packets.forEach(function(g){
+        var e = edges[g.k], A = nodes[e.a], B = nodes[e.b], s = 17;
+        var x = (A.x + (B.x - A.x) * g.t) * w, y = (A.y + (B.y - A.y) * g.t) * uh;
+        ctx.fillStyle = 'rgba(255,214,70,.38)'; ctx.beginPath(); ctx.arc(x, y, s * 0.95, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#FFE66D'; ctx.strokeStyle = '#15171A'; ctx.lineWidth = 1.8;
+        ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x - s / 2, y - s / 2, s, s, 4); else ctx.rect(x - s / 2, y - s / 2, s, s); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#15171A'; ctx.font = '800 12px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(g.d, x, y + 1); ctx.textBaseline = 'alphabetic';
+      });
+      nodes.forEach(function(n, i){
+        var x = n.x * w, y = n.y * uh, r = 17 + n.glow * 4;
+        if (n.glow > 0.02) {
+          var gr = ctx.createRadialGradient(x, y, 3, x, y, 50);
+          gr.addColorStop(0, 'rgba(255,214,70,' + (0.7 * n.glow) + ')'); gr.addColorStop(1, 'rgba(255,214,70,0)');
+          ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(x, y, 50, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = n.L === 0 ? '#3aa5dc' : n.L === 2 ? '#ee9022' : '#ffffff'; ctx.fill();
+        ctx.lineWidth = 2.5; ctx.strokeStyle = '#15171A'; ctx.stroke();
+        if (i === winner && winGlow > 0) {
+          ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(31,160,89,' + (0.4 + winGlow * 0.6) + ')';
+          ctx.beginPath(); ctx.arc(x, y, r + 9 + (1 - winGlow) * 8, 0, Math.PI * 2); ctx.stroke();
+          ctx.fillStyle = '#15171A'; ctx.font = '900 18px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText('✓', x, y + 1); ctx.textBaseline = 'alphabetic';
+        }
+      });
+    }
+    start();
+    return { update: update, draw: draw };
+  })();
+
+  function drawBoth(){ if (!reduceMotion) brain.draw(); net.draw(); }
+
+  // people who asked their device for less motion keep the brain picture, and get one still picture of the data flow
+  if (reduceMotion) { for (var s = 0; s < 14; s++) net.update(0.1); net.draw(); return; }
+
+  // the brain animation takes the picture's place
+  brainCv.parentNode.classList.add('is-live');
+  brainCv.removeAttribute('aria-hidden'); brainCv.setAttribute('role', 'img'); brainCv.setAttribute('aria-label', brainCv.getAttribute('data-label') || '');
+
+  // the animations only run while the box is on screen
+  var last = 0, raf = 0, visible = false;
+  function frame(now){
+    var dt = Math.min(0.05, (now - last) / 1000); last = now;
+    brain.update(dt); net.update(dt); drawBoth();
+    raf = visible ? requestAnimationFrame(frame) : 0;
+  }
+  function go(){ if (!raf && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){ visible = entries[0].isIntersecting; if (visible) go(); }, { threshold: 0.05 }).observe(brainCv.closest('.neural-box'));
+  } else { visible = true; go(); }
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) go(); });
+  drawBoth();
+})();
+</script>
 </body>
 </html>
