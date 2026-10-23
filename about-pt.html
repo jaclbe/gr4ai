@@ -685,6 +685,14 @@
     .specs .label{ font-size: 12px; }
     .follow{ font-size: 12.5px; }
   }
+  /* ---------- Privacy (a card, so the dashed journey line never runs through the text) ---------- */
+  #privacy{ padding-top: 24px; }
+  #privacy .section-head{
+    background: var(--paper); border: 2px solid var(--ink); border-radius: var(--radius);
+    box-shadow: 6px 6px 0 var(--ink); padding: 28px 32px; margin: 0;
+  }
+  #privacy .section-head p.intro{ color: var(--ink); }
+  @media (max-width: 600px){ #privacy .section-head{ padding: 22px 20px; } }
 </style>
 <script src="assets/stats.js" defer></script>
 </head>
@@ -1027,6 +1035,20 @@
       </div>
     </div>
   </section>
+
+  <!-- Privacy -->
+  <!-- TODO-TRANSLATE (pt): privacy.kicker, privacy.heading, privacy.counting -->
+  <section class="privacy" id="privacy">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Privacy</span>
+          <h2>Your privacy</h2>
+        </div>
+        <p class="intro">We count visits and which country they come from so we know how many people the book reaches. We don't use cookies and we can't see who you are.</p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site">
@@ -1036,6 +1058,7 @@
       <a href="#book">O livro</a>
       <a href="#team">Equipe</a>
       <a href="#contact">Contato</a>
+      <!-- TODO-TRANSLATE (pt): footer.privacy --> <a href="#privacy">Privacy</a>
     </div>
   </div>
 </footer>
