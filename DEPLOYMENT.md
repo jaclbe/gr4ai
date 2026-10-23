@@ -133,7 +133,7 @@ Web3Forms dashboard → the key/form → settings → **Recipient Emails** → a
 
 1. **Susan Shelmerdine's bio.** Card still says "Bio coming soon". Swap in like any team update when it arrives.
 2. **Open Graph image is a placeholder** (`assets/card.jpg`, the original Carrd image). It's what shows when gr4ai.org is shared on LinkedIn, WhatsApp, etc. Should be replaced with a proper 1200×630 social card.
-3. **Visitor counting is built in but switched off** until the GoatCounter code is entered — see [Visitor counting](#visitor-counting-goatcounter).
+3. **Visitor counting is on** (GoatCounter, dashboard at gr4ai.goatcounter.com) — see [Visitor counting](#visitor-counting-goatcounter).
 4. **Manual deploys.** Drag-drop works but is friction. Turning on Netlify-to-GitHub auto-deploy ([above](#recommended-switch-on-automatic-deploys)) removes it.
 
 ---

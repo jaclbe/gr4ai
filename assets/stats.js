@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  var CODE = "";   // <-- GoatCounter code goes here
+  var CODE = "gr4ai";   // <-- GoatCounter code: https://gr4ai.goatcounter.com
 
   var queue = [];
   function count(name) {
