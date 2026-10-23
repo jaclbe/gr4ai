@@ -693,6 +693,12 @@
   }
   #privacy .section-head p.intro{ color: var(--ink); }
   @media (max-width: 600px){ #privacy .section-head{ padding: 22px 20px; } }
+
+  /* Mobile fixes (pre-check 23.10.2026): 16px form fields so iOS does not zoom in on focus;
+     a taller invisible tap area for the language links. */
+  form.contact input, form.contact textarea{ font-size: 16px; }
+  .lang-switch a{ position: relative; }
+  .lang-switch a::after{ content: ""; position: absolute; inset: -9px 0; }
 </style>
 <script src="assets/stats.js" defer></script>
 </head>

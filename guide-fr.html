@@ -2932,6 +2932,37 @@
   .tm-more:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
   .tm-who{ margin: 12px 0 0; padding-top: 12px; border-top: 2px solid rgba(21,23,26,.25); font-size: 15.5px; line-height: 1.45; }
   .tm-who strong{ font-weight: 700; }
+
+  /* ---------- Mobile fixes (pre-check 23.10.2026) ----------
+     B1 the farewell card's inline two-column grid beat the one-column phone rule
+     B2 search box + "show all" button could not shrink and ran off the screen
+     B3 the rotated decorative arrows in chapter 1 lay over the cards and ate taps on glossary words
+     B4 the dots' enlarged tap areas overlapped, so a tap chose the next card
+     B5 small tap targets get a larger invisible hit area (no visual change)
+     B6 the quiz question scrolls into view below the sticky header
+     B7 language dialog on landscape phones: smaller globe so the language cards fit
+     B8 16px inputs, so iOS does not zoom in on focus */
+  .compare-arrow{ pointer-events: none; }
+  .final-quiz-screen{ scroll-margin-top: 84px; }
+  .glossary-pop-close{ width: 44px; height: 44px; top: 2px; right: 2px; }
+  .gw-say::after{ content: ""; position: absolute; inset: -8px; border-radius: 50%; }
+  .lg-later{ padding: 14px 10px; }
+  .gw-search{ font-size: 16px; }
+  @media (max-width: 760px){
+    .carousel-dots{ gap: 20px; }
+    .carousel-dot::after{ inset: -14px -10px; }
+  }
+  @media (max-width: 700px){
+    #guide-farewell .quiz-card{ grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 560px){
+    .gw-tools{ flex: 1 1 100%; flex-wrap: wrap; min-width: 0; }
+    .gw-search{ flex: 1 1 100%; width: auto; max-width: none; }
+  }
+  @media (max-height: 500px) and (orientation: landscape){
+    .lg-stage{ width: clamp(140px, 42vh, 344px); }
+    .lg-inner{ gap: 10px; }
+  }
 </style>
 <script src="assets/stats.js" defer></script>
 </head>
@@ -5955,6 +5986,16 @@
       return a;
     }
 
+    function bringQuestionIntoView() {
+      const qs = root.querySelector('[data-screen="question"]');
+      if (!qs) return;
+      const r = qs.getBoundingClientRect();
+      if (r.top < 70 || r.bottom > window.innerHeight) {
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        qs.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      }
+    }
+
     function renderQuestion() {
       const total = FINAL_QUIZ_QUESTIONS.length;
       const item = FINAL_QUIZ_QUESTIONS[index];
@@ -5974,6 +6015,7 @@
         btn.addEventListener('click', () => handleAnswer(displayIndex));
         optionsEl.appendChild(btn);
       });
+      requestAnimationFrame(bringQuestionIntoView);
     }
 
     function handleAnswer(pickedDisplayIndex) {
