@@ -2934,6 +2934,7 @@
   .tm-who{ margin: 12px 0 0; padding-top: 12px; border-top: 2px solid rgba(21,23,26,.25); font-size: 15.5px; line-height: 1.45; }
   .tm-who strong{ font-weight: 700; }
 </style>
+<script src="assets/stats.js" defer></script>
 </head>
 <body>
 
@@ -6030,6 +6031,7 @@
       });
 
       showScreen('results');
+      document.dispatchEvent(new CustomEvent('gr4ai:count', { detail: 'quiz-completed-de' }));
     }
 
     // Certificate: drawn on a canvas in this browser, wrapped into a one-page PDF
@@ -6236,6 +6238,7 @@
         }
         const jpeg = new Uint8Array(await jpgBlob.arrayBuffer());
         const url = URL.createObjectURL(pdfFromJpeg(jpeg, cv.width, cv.height));
+        document.dispatchEvent(new CustomEvent('gr4ai:count', { detail: 'certificate-de' }));
         if (tab) tab.location.href = url;
         else { const a = document.createElement('a'); a.href = url; a.download = 'GR4AI-certificate.pdf'; document.body.appendChild(a); a.click(); a.remove(); }
         setTimeout(() => URL.revokeObjectURL(url), 120000);
@@ -6955,6 +6958,7 @@
 
   function commit(lang){
     store.set(lang);
+    document.dispatchEvent(new CustomEvent("gr4ai:count", { detail: "language-" + lang }));
     if(lang !== PAGE){
       var url = HREF[lang] + (window.location.hash || "");
       /* Für die seitenübergreifende Blende muss der Name eindeutig sein:
